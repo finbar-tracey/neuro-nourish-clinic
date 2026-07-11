@@ -1,0 +1,657 @@
+@import "tailwindcss";
+
+/* NeuroNourish Clinic brand tokens — docs/NeuroNourish_Brand_Guidelines.pdf */
+:root {
+  --background: #f5f0e6;
+  --foreground: #2a2830;
+  --keyboard-offset: 0px;
+
+  --brand-deep-slate: #1a3348;
+  --brand-slate-blue: #3d6480;
+  --brand-sky-blue: #6b98b2;
+  --brand-mist: #b8d4e2;
+  --brand-deep-violet: #2c1f4a;
+  --brand-plum: #5c4a8a;
+  --brand-lavender: #a896cc;
+  --brand-gold: #c9a84c;
+  --brand-ivory: #f5f0e6;
+  --brand-linen: #d4c8b8;
+  --brand-ink: #2a2830;
+
+  /* Legacy aliases used by workspace components */
+  --brand-navy: var(--brand-deep-slate);
+  --brand-navy-light: var(--brand-slate-blue);
+  --brand-navy-dark: var(--brand-deep-slate);
+  --brand-orange: var(--brand-gold);
+  --brand-orange-light: #d4b86a;
+  --brand-orange-dark: #a8873a;
+  --brand-orange-ink: #6b5520;
+  --brand-cream: var(--brand-ivory);
+  --brand-muted: #64748b;
+
+  --navy: var(--brand-deep-slate);
+  --navy-light: var(--brand-slate-blue);
+  --navy-dark: var(--brand-deep-slate);
+  --gold: var(--brand-gold);
+  --gold-light: #d4b86a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-deep-slate: var(--brand-deep-slate);
+  --color-slate-blue: var(--brand-slate-blue);
+  --color-sky-blue: var(--brand-sky-blue);
+  --color-mist: var(--brand-mist);
+  --color-deep-violet: var(--brand-deep-violet);
+  --color-plum: var(--brand-plum);
+  --color-lavender: var(--brand-lavender);
+  --color-gold: var(--brand-gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--brand-orange-dark);
+  --color-gold-ink: var(--brand-orange-ink);
+  --color-ivory: var(--brand-ivory);
+  --color-linen: var(--brand-linen);
+  --color-ink: var(--brand-ink);
+  --color-navy: var(--brand-deep-slate);
+  --color-navy-light: var(--brand-slate-blue);
+  --color-navy-dark: var(--brand-deep-slate);
+  --color-brand-cream: var(--brand-ivory);
+  --color-brand-muted: var(--brand-muted);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-playfair), Georgia, serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  letter-spacing: 0.015em;
+  overflow-x: clip;
+}
+
+.touch-input {
+  font-size: 16px;
+}
+
+@media (min-width: 640px) {
+  .touch-input {
+    font-size: 0.875rem;
+  }
+}
+
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Brand typography — docs/NeuroNourish_Brand_Guidelines.pdf */
+.nn-display-hero {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 5vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.nn-hero-lead {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.015em;
+  max-width: 42ch;
+}
+
+.nn-hero-brand {
+  line-height: 1.15;
+}
+
+.nn-hero-trust-bar {
+  max-width: 40ch;
+}
+
+.nn-hero-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(201, 168, 76, 0.16), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 20%, rgba(107, 152, 178, 0.12), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 10% 90%, rgba(61, 100, 128, 0.2), transparent 50%);
+}
+
+.nn-hero-enter {
+  animation: nn-hero-rise 0.7s ease-out both;
+}
+
+.nn-hero-enter .nn-hero-brand {
+  animation: nn-hero-rise 0.7s ease-out both;
+}
+
+.nn-hero-enter h1 {
+  animation: nn-hero-rise 0.75s ease-out 0.08s both;
+}
+
+.nn-hero-enter .nn-hero-lead {
+  animation: nn-hero-rise 0.75s ease-out 0.16s both;
+}
+
+.nn-hero-enter .mt-10 {
+  animation: nn-hero-rise 0.75s ease-out 0.24s both;
+}
+
+@keyframes nn-hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-hero-enter,
+  .nn-hero-enter .nn-hero-brand,
+  .nn-hero-enter h1,
+  .nn-hero-enter .nn-hero-lead,
+  .nn-hero-enter .mt-10 {
+    animation: none;
+  }
+}
+
+.nn-display-section {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.nn-display-card {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.nn-body {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.015em;
+  max-width: 65ch;
+}
+
+.nn-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.nn-pull-quote {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  border-left: 4px solid var(--brand-gold);
+  padding-left: 1.5rem;
+}
+
+.nn-pull-quote-dark {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  .nn-pull-quote-dark {
+    font-size: 1.375rem;
+  }
+}
+
+.nn-app-section {
+  background-color: var(--brand-ivory);
+  background-image: radial-gradient(
+    ellipse 70% 55% at 85% 50%,
+    rgba(184, 212, 226, 0.28),
+    transparent 60%
+  );
+}
+
+.nn-app-preview {
+  background-color: color-mix(in oklab, var(--brand-linen) 32%, var(--brand-ivory));
+  box-shadow: 0 12px 40px rgba(26, 51, 72, 0.06);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-app-streak {
+    animation: none;
+  }
+}
+
+.nn-partners-section {
+  background-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(92, 74, 138, 0.22),
+    transparent 65%
+  );
+}
+
+.nn-partner-logo {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.nn-partner-link:hover .nn-partner-logo {
+  transform: translateY(-1px);
+}
+
+.nn-b2b-section {
+  background-color: var(--brand-ivory);
+  background-image: radial-gradient(
+    ellipse 75% 55% at 50% 100%,
+    rgba(184, 212, 226, 0.22),
+    transparent 62%
+  );
+}
+
+.nn-b2b-pillar {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nn-b2b-pillar:hover {
+  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
+}
+
+.nn-why-section {
+  background-color: color-mix(in oklab, var(--brand-linen) 28%, var(--brand-ivory));
+}
+
+.nn-why-benefit {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nn-why-benefit:hover {
+  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
+}
+
+.nn-journey-section {
+  background-color: var(--brand-ivory);
+  background-image: radial-gradient(
+    ellipse 90% 45% at 50% 100%,
+    rgba(212, 200, 184, 0.25),
+    transparent 55%
+  );
+}
+
+.nn-journey-step {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nn-journey-step:hover {
+  box-shadow: 0 8px 24px rgba(26, 51, 72, 0.07);
+}
+
+.nn-outcomes-section {
+  background-color: color-mix(in oklab, var(--brand-linen) 22%, var(--brand-ivory));
+  background-image: radial-gradient(
+    ellipse 80% 50% at 50% 0%,
+    rgba(184, 212, 226, 0.35),
+    transparent 60%
+  );
+}
+
+.nn-outcomes-stat {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nn-outcomes-stat:hover {
+  box-shadow: 0 8px 24px rgba(26, 51, 72, 0.08);
+}
+
+.nn-founder-section {
+  background-color: var(--brand-deep-violet);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 15% 20%, rgba(201, 168, 76, 0.1), transparent 55%),
+    radial-gradient(circle at 85% 75%, rgba(92, 74, 138, 0.35), transparent 50%);
+}
+
+.nn-closing-section {
+  background-image: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(92, 74, 138, 0.2),
+    transparent 65%
+  );
+}
+
+.nn-site-footer a:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--brand-gold) 70%, white);
+  outline-offset: 2px;
+}
+
+.nn-footer-text {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.nn-text-link {
+  color: var(--brand-gold);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nn-text-link:hover {
+  color: var(--gold-light);
+}
+
+.nn-badge {
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: color-mix(in oklab, var(--brand-lavender) 22%, transparent);
+  padding: 0.2rem 0.65rem;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-plum);
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nn-hero {
+  background-color: var(--brand-deep-slate);
+  background-image: none;
+}
+
+.nn-defer-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+.nn-quiz-fold {
+  background-color: color-mix(in oklab, var(--brand-linen) 18%, var(--brand-ivory));
+}
+
+.nn-quiz-question {
+  animation: nn-quiz-fade 0.45s ease-out;
+}
+
+@keyframes nn-quiz-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nn-app-streak {
+  animation: nn-streak-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes nn-streak-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.nn-faq-section {
+  background-color: var(--brand-ivory);
+  background-image: radial-gradient(
+    ellipse 65% 50% at 100% 20%,
+    rgba(184, 212, 226, 0.18),
+    transparent 60%
+  );
+}
+
+.nn-faq-item + .nn-faq-item {
+  border-top: 1px solid color-mix(in oklab, var(--brand-linen) 65%, transparent);
+}
+
+.nn-faq-item[open] .nn-faq-toggle {
+  background-color: color-mix(in oklab, var(--brand-gold) 18%, transparent);
+}
+
+.nn-blog-section {
+  background-color: color-mix(in oklab, var(--brand-linen) 22%, var(--brand-ivory));
+  background-image: radial-gradient(
+    ellipse 70% 50% at 15% 0%,
+    rgba(201, 168, 76, 0.1),
+    transparent 55%
+  );
+}
+
+.nn-blog-card {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.nn-blog-card:hover {
+  box-shadow: 0 12px 32px rgba(26, 51, 72, 0.1);
+  transform: translateY(-2px);
+}
+
+.nn-blog-art {
+  background-size: cover;
+  background-position: center;
+}
+
+.nn-blog-art--sleep {
+  background-image:
+    radial-gradient(circle at 75% 25%, rgba(201, 168, 76, 0.35), transparent 45%),
+    linear-gradient(145deg, #1a3348 0%, #3d6480 55%, #6b98b2 100%);
+}
+
+.nn-blog-art--movement {
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(201, 168, 76, 0.3), transparent 40%),
+    linear-gradient(135deg, #2c1f4a 0%, #5c4a8a 50%, #a896cc 100%);
+}
+
+.nn-blog-art--nutrition {
+  background-image:
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.2), transparent 45%),
+    linear-gradient(145deg, #3d6480 0%, #6b98b2 45%, #b8d4e2 100%);
+}
+
+.nn-blog-art--energy {
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(201, 168, 76, 0.45), transparent 50%),
+    linear-gradient(160deg, #1a3348 0%, #3d6480 100%);
+}
+
+.nn-blog-art--habits {
+  background-image:
+    radial-gradient(circle at 60% 40%, rgba(168, 150, 204, 0.5), transparent 45%),
+    linear-gradient(145deg, #5c4a8a 0%, #a896cc 60%, #d4c8b8 100%);
+}
+
+.nn-blog-art--metabolic {
+  background-image:
+    radial-gradient(circle at 70% 20%, rgba(184, 212, 226, 0.55), transparent 40%),
+    linear-gradient(135deg, #1a3348 0%, #6b98b2 70%, #c9a84c 100%);
+}
+
+[id="waitlist"],
+[id="quiz"],
+[id="journey"],
+[id="founder"],
+[id="outcomes"],
+[id="why"],
+[id="app"],
+[id="partners"],
+[id="healthcare-partnerships"],
+[id="blog"],
+[id="faq"],
+[id="get-started"] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (max-width: 767px) {
+  [id="waitlist"],
+  [id="quiz"],
+  [id="journey"],
+  [id="founder"],
+  [id="outcomes"],
+  [id="why"],
+  [id="app"],
+  [id="partners"],
+  [id="healthcare-partnerships"],
+  [id="blog"],
+  [id="faq"],
+  [id="get-started"] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+.nn-founder-trust-badge {
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.nn-founder-trust-badge:hover {
+  transform: translateY(-1px);
+}
+
+.nn-quiz-results-section,
+.nn-assessment-section,
+.nn-discovery-section {
+  background-color: var(--brand-ivory);
+  background-image: radial-gradient(
+    ellipse 70% 50% at 50% 0%,
+    rgba(184, 212, 226, 0.2),
+    transparent 60%
+  );
+}
+
+.nn-score-ring {
+  --score-pct: 50%;
+  position: relative;
+  display: flex;
+  height: 9rem;
+  width: 9rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: conic-gradient(
+    var(--brand-gold) var(--score-pct),
+    color-mix(in oklab, var(--brand-linen) 55%, var(--brand-ivory)) 0
+  );
+  padding: 4px;
+}
+
+.nn-score-ring-inner {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--brand-ivory);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--brand-mist) 50%, transparent);
+}
+
+.nn-funnel-card {
+  position: relative;
+}
+
+@media print {
+  nav,
+  footer,
+  .sidebar,
+  .crm-action-buttons,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  .print-container,
+  .print-container * {
+    visibility: visible;
+  }
+
+  .print-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff !important;
+    color: #1a2e3b !important;
+    font-family: "Inter", sans-serif !important;
+    margin: 0 !important;
+    padding: 20mm !important;
+  }
+
+  .print-header-serif {
+    font-family: "Playfair Display", serif !important;
+    color: #1a2e3b !important;
+    border-bottom: 2px solid #d4af37 !important;
+    padding-bottom: 8mm !important;
+    margin-bottom: 10mm !important;
+  }
+
+  .print-metric-card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    border: 1px solid rgba(26, 46, 59, 0.1) !important;
+    border-left: 4px solid #d4af37 !important;
+    padding: 5mm !important;
+    margin-bottom: 5mm !important;
+    background: #fcfbf7 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .nn-referral-card-preview,
+  .nn-referral-card-preview * {
+    visibility: visible;
+  }
+
+  .nn-referral-card-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0;
+  }
+
+  .nn-referral-card-face {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none !important;
+  }
+}

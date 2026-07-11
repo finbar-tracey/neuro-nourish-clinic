@@ -1,0 +1,39 @@
+# Prebuilt production deploy — bypasses Vercel Hobby git-author blocks on private repos.
+# Requires VERCEL_TOKEN in GitHub repo secrets (https://vercel.com/account/tokens).
+name: Deploy Production
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: team_FmVVpG9IxHvCilvK5qhLgpan
+      VERCEL_PROJECT_ID: prj_QbGJO4IIO7CiNXvVW8WSapoZq8kA
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify commit author email
+        run: |
+          EMAIL=$(git log -1 --format='%ae')
+          echo "Author: $EMAIL"
+          if echo "$EMAIL" | grep -q '+'; then
+            echo "::error::Commit author uses GitHub ID noreply ($EMAIL). Set git user.email to joepenmandev@users.noreply.github.com"
+            exit 1
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - run: npm ci
+      - run: npm run deploy:prod
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}

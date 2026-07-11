@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  BOOKED
+  WON
+  LOST
+  DISQUALIFIED
+  FOLLOW_UP
+}
+
+enum CaseStage {
+  NEW_ENQUIRY
+  CONTACT_DUE
+  CONTACTED
+  CONSULTATION_BOOKED
+  CONSULTATION_COMPLETED
+  DOCUMENTS_REQUESTED
+  DOCUMENTS_RECEIVED
+  APPLICATION_PREPARING
+  APPLICATION_SUBMITTED
+  OFFER_RECEIVED
+  COMPLETION_SCHEDULED
+  COMPLETED
+  LOST
+  DISQUALIFIED
+}
+
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum OperationalQueue {
+  NEW_LEAD
+  AWAITING_CALLBACK
+  AWAITING_DOCUMENTS
+  APPLICATION
+  COMPLETION
+  AT_RISK
+}
+
+enum ActivityType {
+  LEAD_CREATED
+  STATUS_CHANGED
+  NOTE_ADDED
+  EMAIL_SENT
+  AUTOMATION_RUN
+  FORM_SUBMITTED
+  CALL_ATTEMPTED
+  CALL_CONNECTED
+  SMS_SENT
+  DOCUMENT_REQUESTED
+  DOCUMENT_UPLOADED
+  STAGE_CHANGED
+  CONSULTATION_COMPLETED
+}
+
+enum AutomationTrigger {
+  LEAD_CREATED
+  LEAD_CAPTURED
+  STATUS_CHANGED
+  LEAD_IDLE
+}
+
+enum AutomationAction {
+  SEND_EMAIL
+  ADD_NOTE
+  UPDATE_STATUS
+  WEBHOOK
+  CREATE_TASK
+}
+
+model Lead {
+  id                  String     @id @default(cuid())
+  firstName           String
+  lastName            String
+  email               String
+  phone               String
+  loanPurpose         String
+  loanAmount          Int
+  termMonths          Int
+  propertyType        String
+  propertyValue       Int
+  propertyLocation    String
+  ltv                 String?
+  timeframe           String
+  hasExistingMortgage Boolean    @default(false)
+  willOccupy          Boolean    @default(false)
+  hasEverOccupied     Boolean    @default(false)
+  nurtureEnrolled     Boolean    @default(false)
+  formCompleted       Boolean    @default(false)
+  additionalInfo      String?
+  status              LeadStatus @default(NEW)
+  owner               String     @default("Daniel")
+  operationalQueue    OperationalQueue @default(NEW_LEAD)
+  nextAction          String?
+  nextActionAt        DateTime?
+  callbackDueAt       DateTime?
+  priorityCallSlot    String?
+  priorityCallBookedAt DateTime?
+  source              String     @default("landing_page")
+  utmSource           String?
+  utmMedium           String?
+  utmCampaign         String?
+  fbclid              String?
+  /** Normalized channel: Meta, Google Ads, Organic, Referral, Direct */
+  attributionChannel  String?
+  firstResponseAt     DateTime?
+  responseTimeMinutes Int?
+  conversationStarted Boolean  @default(false)
+  estimatedCommission Int?
+  caseStage           CaseStage  @default(NEW_ENQUIRY)
+  riskLevel           RiskLevel  @default(MEDIUM)
+  riskReason          String?
+  probability         Int        @default(10)
+  expectedValue       Int?
+  utmContent          String?
+  utmTerm             String?
+  gclid               String?
+  landingPageUrl      String?
+  referrer            String?
+  deviceType          String?
+  uploadToken         String?
+  uploadTokenExpiresAt DateTime?
+  teamsMeetingUrl     String?
+  outlookEventId      String?
+  documentsRequestedAt DateTime?
+  consultationCompletedAt DateTime?
+  lostReason          String?
+  disqualifiedReason  String?
+  investmentOnly      Boolean?
+  remindersPaused     Boolean    @default(false)
+  winbackEnrolled     Boolean    @default(false)
+  winbackStatus       String?
+  winbackSequenceId   String?
+  winbackStep         Int        @default(0)
+  winbackNextAt       DateTime?
+  winbackStoppedReason String?
+  importBatchId       String?
+  importCampaign      String?
+  /** Meta Lead Ads leadgen_id for webhook dedupe */
+  metaLeadgenId       String?    @unique
+  lawfulBasis         String?
+  importedAt          DateTime?
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
+  lastContactedAt     DateTime?
+  /** Commitment fee invoiced when sale completed */
+  initialInvoiceAmount Int?
+  /** Actual revenue generated on completed deal */
+  revenueGenerated    Int?
+  saleCompletedAt     DateTime?
+  /** Qualified lead booking chase (7-day email+SMS) */
+  bookingChaseEnrolled Boolean    @default(false)
+  bookingChaseStep     Int        @default(0)
+  bookingChaseNextAt   DateTime?
+  noAnswerCount        Int        @default(0)
+
+  // NeuroNourish clinical CRM — native fields (decoupled from legacy loan columns)
+  funnelStage          String     @default("quiz_partial")
+  quizScore            Int?
+  primaryConcern       String?
+  /** Quiz segment: elevated | standard */
+  segment              String?
+  /** Clinical qualification: unscreened | highly_qualified | nurture | out_of_scope */
+  qualificationTier    String     @default("unscreened")
+  revenueEur           Float      @default(0)
+  pipelineValueEur     Float      @default(0)
+  discoveryBookedAt    DateTime?
+  assessmentPaidAt     DateTime?
+  /** 30-day assessment credit window toward programme enrolment */
+  creditExpiryDate     DateTime?
+  enrolledAt           DateTime?
+  /** PBKDF2 password hash + salt (consumer portal onboarding) */
+  passwordHash         String?
+  passwordSalt         String?
+
+  notes          Note[]
+  activities     Activity[]
+  tasks          Task[]
+  caseDocuments  CaseDocument[]
+}
+
+model CaseDocument {
+  id         String   @id @default(cuid())
+  leadId     String
+  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  docKey     String
+  label      String
+  required   Boolean  @default(true)
+  status     String   @default("REQUIRED")
+  fileName   String?
+  fileUrl    String?
+  uploadedAt DateTime?
+  createdAt  DateTime @default(now())
+}
+
+model Note {
+  id        String   @id @default(cuid())
+  content   String
+  author    String   @default("System")
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+}
+
+model Activity {
+  id          String       @id @default(cuid())
+  type        ActivityType
+  description String
+  metadata    String?
+  leadId      String?
+  lead        Lead?        @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdAt   DateTime     @default(now())
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  dueDate     DateTime?
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
+
+model AutomationRule {
+  id          String            @id @default(cuid())
+  name        String
+  description String?
+  trigger     AutomationTrigger
+  action      AutomationAction
+  config      String
+  enabled     Boolean           @default(true)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  runs        AutomationRun[]
+}
+
+model AutomationRun {
+  id        String         @id @default(cuid())
+  ruleId    String
+  rule      AutomationRule @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+  leadId    String?
+  status    String
+  message   String?
+  createdAt DateTime       @default(now())
+}

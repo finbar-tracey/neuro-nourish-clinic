@@ -1,0 +1,21 @@
+-- Case operating system fields
+ALTER TABLE "Lead" ADD COLUMN "caseStage" TEXT NOT NULL DEFAULT 'NEW_ENQUIRY';
+ALTER TABLE "Lead" ADD COLUMN "riskLevel" TEXT NOT NULL DEFAULT 'MEDIUM';
+ALTER TABLE "Lead" ADD COLUMN "riskReason" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "probability" INTEGER NOT NULL DEFAULT 10;
+ALTER TABLE "Lead" ADD COLUMN "expectedValue" INTEGER;
+ALTER TABLE "Lead" ADD COLUMN "utmContent" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "utmTerm" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "gclid" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "landingPageUrl" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "referrer" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "deviceType" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "uploadToken" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "teamsMeetingUrl" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "outlookEventId" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "documentsRequestedAt" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "consultationCompletedAt" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "lostReason" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "disqualifiedReason" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "investmentOnly" INTEGER;
+ALTER TABLE "Lead" ADD COLUMN "remindersPaused" INTEGER NOT NULL DEFAULT 0;
