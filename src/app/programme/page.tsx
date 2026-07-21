@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
@@ -22,6 +23,7 @@ export default function ProgrammePage() {
             subtext={NN_PROGRAMME.subtext}
             align="center"
             headlineClassName="max-w-3xl"
+            as="h1"
           />
 
           <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-ink/75">
@@ -40,11 +42,13 @@ export default function ProgrammePage() {
             <span className="text-xs text-ink/60">{NN_PROGRAMME.ctaDiscoveryHint}</span>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {tiers.map((tier) => (
-              <ShopProductCard key={tier.slug} product={tier} />
-            ))}
-          </div>
+          <Suspense fallback={<p className="mt-14 text-center text-sm text-ink/60">Loading tiers…</p>}>
+            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {tiers.map((tier) => (
+                <ShopProductCard key={tier.slug} product={tier} />
+              ))}
+            </div>
+          </Suspense>
 
           <p className="mx-auto mt-6 max-w-lg text-center text-sm text-ink/65">
             Light programme includes app-led monitoring.{" "}

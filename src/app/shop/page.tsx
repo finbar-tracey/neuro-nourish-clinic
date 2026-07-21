@@ -30,6 +30,7 @@ export default function ShopPage() {
             subtext={NN_SHOP.subtext}
             align="center"
             headlineClassName="max-w-3xl"
+            as="h1"
           />
 
           <div className="mt-8 flex flex-col items-center gap-1.5">

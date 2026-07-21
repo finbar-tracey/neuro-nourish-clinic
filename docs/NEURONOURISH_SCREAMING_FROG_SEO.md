@@ -1,190 +1,211 @@
 # NeuroNourish — Screaming Frog SEO Checklist
 
-Based on [Screaming Frog SEO Spider Issues](https://www.screamingfrog.co.uk/seo-spider/issues/), [Quick Start Guide](https://www.screamingfrog.co.uk/seo-spider/tutorials/quick-start-guide/), and [Mastering SEO Audits](https://www.screamingfrog.co.uk/blog/mastering-seo-audits/).
+Based on the [Screaming Frog SEO Spider Issues library](https://www.screamingfrog.co.uk/seo-spider/issues/), [Quick Start](https://www.screamingfrog.co.uk/seo-spider/tutorials/quick-start-guide/), and [Mastering SEO Audits](https://www.screamingfrog.co.uk/blog/mastering-seo-audits/).
 
-**Domain:** https://neuronourish.clinic  
-**Crawl mode:** Spider (not List)  
-**Rendering:** HTML default (Next.js SSR — JS rendering optional)  
-**Unlike legacy LP verticals:** This site is **indexable** for organic search.
+**Crawl host (current):** https://neuro-nourish-clinic.vercel.app  
+**Target host (cutover):** https://neuronourish.clinic  
+**Mode:** Spider · HTML (Next.js SSR) · Respect robots.txt + noindex  
+**Indexable:** Yes (marketing). Auth / transactional / stubs: noindex.
 
 **Automated gate:**
 
 ```bash
 npm run neuronourish:seo
-```
-
-**With live HTTP crawl:**
-
-```bash
-NN_SEO_BASE_URL=https://neuronourish.clinic npm run neuronourish:seo
+NN_SEO_BASE_URL=https://neuro-nourish-clinic.vercel.app npm run neuronourish:seo
 ```
 
 ---
 
-## Screaming Frog configuration (before crawl)
+## Screaming Frog configuration
 
-| Setting | Value |
-|---------|--------|
-| Start URL | `https://neuronourish.clinic/` |
-| Crawl linked XML sitemaps | ✓ Configuration → Spider → Crawl Linked XML Sitemaps |
-| Respect robots.txt | ✓ |
-| Respect noindex | ✓ |
-| Max URI length | 2048 (default) |
-| Exclude | `/workspace/*`, `/api/*`, `/lp/*` (legacy) |
-| User-Agent | Googlebot Smartphone (optional mobile check) |
-
----
-
-## 1. Directives (Issues tab — P0)
-
-| # | Screaming Frog issue | Expected | ☐ |
-|---|---------------------|----------|---|
-| 1 | **Noindex** | Public pages indexable; workspace/api noindex | |
-| 2 | **X-Robots-Tag** | No global `noindex` header on marketing pages | |
-| 3 | **Canonicals** | Self-referencing canonical on every public URL | |
-| 4 | **Canonicalised** | No unintended canonical chains | |
-| 5 | **Meta robots** | `index, follow` on public pages | |
-| 6 | **404 pages** | Return HTTP 404 + `noindex` | |
+| Setting | Value | ☐ |
+|---------|--------|---|
+| Start URL | Production / staging root | |
+| Crawl linked XML sitemaps | On | |
+| Respect robots.txt | On | |
+| Respect noindex | On | |
+| Exclude | `/workspace/*`, `/api/*`, `/lp/*`, `/login`, `/onboarding`, `/dashboard` | |
+| Optional UA | Googlebot Smartphone | |
 
 ---
 
-## 2. XML sitemaps (P0)
+## 1. Response codes (SF: Response Codes)
+
+| # | Issue / check | Expected | ☐ |
+|---|---------------|----------|---|
+| 1 | Internal Client Error (4XX) | 0 on internal links | |
+| 2 | Internal Server Error (5XX) | 0 | |
+| 3 | Internal Redirect Loop | 0 | |
+| 4 | Internal Redirect Chain | ≤1 hop (`/blog`→`/`, `/assessment`→shop) | |
+| 5 | HTTPS | All public URLs HTTPS | |
+| 6 | Soft 404 | Custom 404 returns HTTP 404 + noindex | |
+
+---
+
+## 2. Directives (SF: Directives)
+
+| # | Issue / check | Expected | ☐ |
+|---|---------------|----------|---|
+| 1 | Noindex (public) | Marketing pages `index,follow` | |
+| 2 | Noindex (private) | `/login`, `/onboarding`, `/dashboard`, `/workspace/*`, `/quiz/results`, `/shop/success`, stub SKUs | |
+| 3 | X-Robots-Tag | No global noindex on marketing | |
+| 4 | Canonicals | Self-referencing on every indexable URL | |
+| 5 | Canonicalised | No accidental chains to wrong host | |
+
+---
+
+## 3. Sitemaps (SF: Sitemaps)
 
 | # | Check | Expected | ☐ |
 |---|--------|----------|---|
-| 1 | `/sitemap.xml` returns 200 | Populated with 12 marketing URLs | |
-| 2 | Sitemap URLs only indexable pages | No `/workspace`, `/api`, hash fragments | |
-| 3 | Sitemap URLs match canonicals | Same scheme + host | |
-| 4 | `robots.txt` references sitemap | `Sitemap: https://neuronourish.clinic/sitemap.xml` | |
-| 5 | Submit sitemap in Google Search Console | After go-live | |
+| 1 | `/sitemap.xml` 200 | Populated | |
+| 2 | Only indexable URLs | No workspace/api/hash; no stubs (`pt257`, `blood-work`); no `/quiz/results` or `/shop/success` | |
+| 3 | URLs match canonical host | Same scheme + host as `NEXT_PUBLIC_SITE_URL` | |
+| 4 | `robots.txt` lists Sitemap | Present | |
+| 5 | Orphan pages | 0 for indexable marketing URLs (Inlinks) | |
+
+**Indexable set (target):** `/`, `/quiz`, `/shop`, shop SKUs (assessment, consults, 3 tiers), `/programme`, `/team`, `/discovery`, `/contact`, `/about`, `/clinics`, `/privacy`
 
 ---
 
-## 3. Page titles & meta descriptions (P0)
+## 4. Page titles (SF: Page Titles)
+
+| # | Issue | Expected | ☐ |
+|---|-------|----------|---|
+| 1 | Missing | 0 | |
+| 2 | Duplicate | 0 unique routes | |
+| 3 | Over 60 / below 30 chars | Opportunity — review | |
+| 4 | Same as H1 | Opportunity OK if close | |
+
+---
+
+## 5. Meta description (SF: Meta Description)
+
+| # | Issue | Expected | ☐ |
+|---|-------|----------|---|
+| 1 | Missing | 0 on indexable pages | |
+| 2 | Duplicate | 0 | |
+| 3 | Over 155 / below 70 | Opportunity — review | |
+
+---
+
+## 6. H1 / H2 (SF: H1, H2)
+
+| # | Issue | Expected | ☐ |
+|---|-------|----------|---|
+| 1 | **Missing H1** | 0 — exactly one H1 on every indexable page | |
+| 2 | **Multiple H1** | 0 (clinics form section must be H2) | |
+| 3 | Non-sequential | Avoid H3 before H2 | |
+| 4 | H2 structure | Sections under single H1 | |
+
+**Implemented:** `SectionHeader` supports `as="h1"` on shop / programme / team; clinics partnership block uses `as="h2"`; quiz results has SSR-friendly H1; team member names are H3.
+
+---
+
+## 7. Canonicals & URLs (SF: Canonicals, URL)
 
 | # | Check | Expected | ☐ |
 |---|--------|----------|---|
-| 1 | **Missing title** | 0 on public pages | |
-| 2 | **Duplicate titles** | 0 — each route unique (`NN_PAGE_SEO`) | |
-| 3 | **Title length** | 30–60 characters (warnings if outside) | |
-| 4 | **Missing meta description** | 0 on public pages | |
-| 5 | **Duplicate meta description** | 0 | |
-| 6 | **Meta description length** | 70–160 characters | |
-
-**Public routes (12):** `/`, `/quiz`, `/quiz/results`, `/assessment`, `/assessment/success`, `/programme`, `/programme/success`, `/discovery`, `/contact`, `/about`, `/clinics`, `/blog`, `/how-the-app-works`, `/privacy`
+| 1 | Missing canonical | 0 on indexable | |
+| 2 | Canonical ≠ crawl URL | Fix host / trailing slash | |
+| 3 | Uppercase / spaces / params | Avoid GA params on canonicals | |
+| 4 | Stub products | Reachable but **noindex** + out of sitemap until content ready | |
 
 ---
 
-## 4. Headings (P0)
-
-| # | Screaming Frog issue | Expected | ☐ |
-|---|---------------------|----------|---|
-| 1 | **Missing H1** | 0 on public pages | |
-| 2 | **Multiple H1** | 0 — exactly one H1 per page | |
-| 3 | **H2 structure** | Logical hierarchy under single H1 | |
-
----
-
-## 5. Response codes & redirects (P0)
+## 8. Content & index quality (SF: Content)
 
 | # | Check | Expected | ☐ |
 |---|--------|----------|---|
-| 1 | **4xx errors** | 0 on internal links | |
-| 2 | **5xx errors** | 0 | |
-| 3 | **Redirect chains** | None > 1 hop | |
-| 4 | **Internal redirects** | `/lp/*` → `/` (legacy routes blocked) | |
-| 5 | **HTTPS** | All public URLs HTTPS | |
+| 1 | Thin / near-duplicate | Avoid indexing transactional success/results | |
+| 2 | Placeholder SKUs | noindex until Emer assets | |
+| 3 | Blog | Redirect + noindex until posts exist | |
+| 4 | App explainer | noindex until public app | |
 
 ---
 
-## 6. Structured data (P1)
+## 9. Structured data (SF: Structured Data)
 
 | # | Check | Expected | ☐ |
 |---|--------|----------|---|
-| 1 | **JSON-LD on homepage** | Organization, WebSite, FAQPage | |
-| 2 | **Schema validation** | [Google Rich Results Test](https://search.google.com/test/rich-results) | |
-| 3 | **No conflicting schema** | Single FAQ block on `/` | |
+| 1 | Homepage JSON-LD | Organization (MedicalBusiness), WebSite, FAQPage | |
+| 2 | Rich Results Test | Validate `/` | |
+| 3 | Product schema | Only when `showPublicPrice` true | |
 
 ---
 
-## 7. Social & previews (P1)
+## 10. Social (SF: related / Open Graph)
 
 | # | Check | Expected | ☐ |
 |---|--------|----------|---|
-| 1 | **Open Graph title** | Matches page title | |
-| 2 | **Open Graph description** | Matches meta description | |
-| 3 | **og:image** | `/opengraph-image` (1200×630) | |
-| 4 | **Twitter card** | `summary_large_image` | |
+| 1 | og:title / og:description | Present | |
+| 2 | og:image | `/opengraph-image` 1200×630 | |
+| 3 | twitter:card | `summary_large_image` | |
 
 ---
 
-## 8. International & locale (P2)
+## 11. Security / mobile / accessibility (SF tabs)
 
 | # | Check | Expected | ☐ |
 |---|--------|----------|---|
-| 1 | **HTML lang** | `en` on `<html>` | |
-| 2 | **og:locale** | `en_GB` | |
-| 3 | **Hreflang** | Not required (single locale) | |
+| 1 | Mixed content | 0 | |
+| 2 | Security headers | X-Content-Type-Options, X-Frame-Options, Referrer-Policy | |
+| 3 | Viewport | Present | |
+| 4 | Skip link / main landmark | Present | |
+| 5 | PageSpeed | Separate `npm run neuronourish:pagespeed` | |
 
 ---
 
-## 9. Performance & security (P1)
+## 12. Post-crawl export order
 
-| # | Check | Expected | ☐ |
-|---|--------|----------|---|
-| 1 | **PageSpeed Insights** | Mobile + desktop on `/` and `/quiz` | |
-| 2 | **Core Web Vitals** | LCP, CLS, INP in green after traffic | |
-| 3 | **Security headers** | `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy` | |
-| 4 | **Mixed content** | 0 HTTP resources on HTTPS pages | |
-
----
-
-## 10. Post-crawl Screaming Frog exports
-
-After crawl, export and review:
-
-1. **Issues** tab — fix all Errors, then Warnings
-2. **Page Titles** — filter duplicates / missing
-3. **Meta Description** — filter duplicates / missing
-4. **H1** — filter multiple / missing
-5. **Canonicals** — filter missing / non-indexable
-6. **Response Codes** — filter 4xx / 5xx
-7. **Structured Data** — validate JSON-LD
-8. **Inlinks** — orphan pages (should be 0 for public routes)
+1. Issues → Errors first, then Warnings  
+2. H1 → Missing / Multiple  
+3. Page Titles / Meta Description  
+4. Canonicals  
+5. Response Codes  
+6. Sitemaps → Non-indexable URLs in sitemap  
+7. Directives → Indexable pages with noindex (and reverse)  
+8. Structured Data  
+9. Inlinks → orphans  
 
 ---
 
-## 11. Google Search Console (post-launch)
+## 13. Implementation status (code)
 
-| # | Check | ☐ |
-|---|--------|---|
-| 1 | Property verified for `neuronourish.clinic` | |
-| 2 | Sitemap submitted | |
-| 3 | URL Inspection: `/` → "URL is on Google" (after indexing) | |
-| 4 | No accidental "Excluded by noindex" on marketing URLs | |
-| 5 | Core Web Vitals report clean | |
+| Item | Status |
+|------|--------|
+| Missing H1 on shop / programme / team | Fixed (`SectionHeader as="h1"`) |
+| Multiple H1 on clinics | Fixed (form `as="h2"`) |
+| Quiz results H1 | Fixed |
+| Sitemap excludes stubs + transactional | Fixed |
+| Stub products noindex | Fixed (`placeholderNote`) |
+| Results / success noindex | Fixed |
+| Auth pages noindex + robots disallow | Fixed |
+| Ops CNS banner off public by default | Fixed (`NN_SHOW_OPS_BANNER`) |
+| Shop cards preserve `leadId` | Fixed |
 
 ---
 
-## 12. Sign-off
+## 14. Sign-off
 
 ```
 NEURONOURISH — SCREAMING FROG SEO SIGN-OFF
 Date:     ____________________
-Crawl:    SF v____ · _____ URLs · _____ issues
+Crawl:    SF v____ · host ____________________
 Tester:   ____________________
 
 AUTOMATED
-[ ] npm run neuronourish:seo — pass
-[ ] NN_SEO_BASE_URL=… neuronourish:seo — live pass
+[ ] npm run neuronourish:seo — PASS
+[ ] NN_SEO_BASE_URL=… neuronourish:seo — live PASS
 
-SCREAMING FROG MANUAL
-[ ] Directives (§1)
-[ ] Sitemap (§2)
-[ ] Titles & descriptions (§3)
-[ ] Headings (§4)
-[ ] Response codes (§5)
-[ ] Structured data validated (§6)
+MANUAL SF
+[ ] Response codes (§1)
+[ ] Directives (§2)
+[ ] Sitemaps (§3)
+[ ] Titles & descriptions (§4–5)
+[ ] H1/H2 (§6)
+[ ] Canonicals / stubs (§7–8)
+[ ] Structured data (§9)
 
 VERDICT:  PASS / PASS WITH FIXES / FAIL
 SEO score: ___/10
@@ -194,7 +215,7 @@ SEO score: ___/10
 
 ## Related
 
-- [docs/NEURONOURISH_GO_LIVE.md](./NEURONOURISH_GO_LIVE.md) — full launch checklist
-- [Screaming Frog Issues Library](https://www.screamingfrog.co.uk/seo-spider/issues/)
-- `src/lib/neuronourish-seo.ts` — canonical page SEO source
-- `npm run seo:audit` — legacy LP noindex audit (not for NeuroNourish)
+- [NEURONOURISH_GO_LIVE.md](./NEURONOURISH_GO_LIVE.md)
+- [Screaming Frog Issues](https://www.screamingfrog.co.uk/seo-spider/issues/)
+- `src/lib/neuronourish-seo.ts` — paths + metadata
+- `npm run neuronourish:seo`

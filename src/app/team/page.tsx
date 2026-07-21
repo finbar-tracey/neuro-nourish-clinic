@@ -18,6 +18,7 @@ export default function TeamPage() {
             subtext={NN_TEAM.subtext}
             align="center"
             headlineClassName="max-w-2xl"
+            as="h1"
           />
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -27,7 +28,7 @@ export default function TeamPage() {
                 className="relative overflow-hidden rounded-2xl border border-mist bg-white/90 p-6 shadow-sm"
               >
                 <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
-                <h2 className="nn-display-card text-slate-blue">{member.name}</h2>
+                <h3 className="nn-display-card text-slate-blue">{member.name}</h3>
                 <p className="mt-2 text-xs font-medium uppercase tracking-wide text-gold">
                   {member.role}
                 </p>

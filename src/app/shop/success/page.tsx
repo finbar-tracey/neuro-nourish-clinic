@@ -3,17 +3,20 @@ import { HighlightList, PageContainer } from "@/components/neuronourish/content"
 import { GoldButton, NeuroNourishShell, SectionEyebrow } from "@/components/neuronourish/shell";
 import { db } from "@/lib/db";
 import { getShopProduct } from "@/lib/neuronourish-shop";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, NOINDEX_ROBOTS } from "@/lib/seo";
 
 type PageProps = {
   searchParams: Promise<{ product?: string; leadId?: string; session_id?: string }>;
 };
 
-export const metadata = buildPageMetadata({
-  title: "Purchase confirmed | NeuroNourish",
-  description: "Your NeuroNourish purchase is confirmed. Check your email for next steps.",
-  path: "/shop/success",
-});
+export const metadata = {
+  ...buildPageMetadata({
+    title: "Purchase confirmed | NeuroNourish",
+    description: "Your NeuroNourish purchase is confirmed. Check your email for next steps.",
+    path: "/shop/success",
+  }),
+  robots: NOINDEX_ROBOTS,
+};
 
 type AssessmentSuccessState = "test_sent" | "pending_dob" | "manual" | "default";
 

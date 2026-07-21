@@ -93,8 +93,17 @@ const robots = read("src/app/robots.ts");
 check(
   "R1",
   "robots.txt",
-  "Disallows workspace, api, legacy lp",
-  includesAll(robots, ["/workspace/", "/api/", "/lp/"]),
+  "Disallows workspace, api, legacy lp, auth, transactional",
+  includesAll(robots, [
+    "/workspace/",
+    "/api/",
+    "/lp/",
+    "/login",
+    "/onboarding",
+    "/dashboard",
+    "/quiz/results",
+    "/shop/success",
+  ]),
 );
 check(
   "R2",
@@ -107,6 +116,19 @@ check(
 
 const seoRegistry = read("src/lib/neuronourish-seo.ts");
 const publicPaths = neuronourishPublicPaths();
+check(
+  "SM3",
+  "Sitemap",
+  "Stub shop SKUs excluded from public paths",
+  !publicPaths.includes("/shop/pt257") && !publicPaths.includes("/shop/blood-work"),
+  publicPaths.filter((p) => p.includes("pt257") || p.includes("blood")).join(",") || "none",
+);
+check(
+  "SM4",
+  "Sitemap",
+  "Transactional results/success excluded from public paths",
+  !publicPaths.includes("/quiz/results") && !publicPaths.includes("/shop/success"),
+);
 check(
   "SEO1",
   "Titles & descriptions",

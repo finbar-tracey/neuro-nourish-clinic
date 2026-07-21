@@ -48,6 +48,7 @@ export default function ClinicsPage() {
             eyebrow={NN_CLINICIAN_PARTNERSHIP.formEyebrow}
             headline={NN_CLINICIAN_PARTNERSHIP.formHeadline}
             subtext={NN_CLINICIAN_PARTNERSHIP.formSubtext}
+            as="h2"
           />
           <div className="mt-8">
             <ExpressionOfInterestForm

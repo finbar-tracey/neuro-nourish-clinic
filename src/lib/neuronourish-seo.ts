@@ -22,6 +22,7 @@ export const NN_PAGE_SEO = {
     description:
       "View your brain health score and email your personalised report — with clear next steps toward assessment and the 12-month programme.",
     path: "/quiz/results",
+    noindex: true,
   },
   assessment: {
     title: "Cognitive Health Assessment | NeuroNourish",
@@ -33,6 +34,7 @@ export const NN_PAGE_SEO = {
     title: "Assessment Confirmed | NeuroNourish",
     description: "Your cognitive health assessment purchase is confirmed. Check your email for next steps.",
     path: "/shop/success",
+    noindex: true,
   },
   programme: {
     title: "12-Month Personalised Brain Health Programme | NeuroNourish",
@@ -44,6 +46,7 @@ export const NN_PAGE_SEO = {
     title: "Programme Enrolment Confirmed | NeuroNourish",
     description: "Welcome to the NeuroNourish 12-month brain health programme. Our team will contact you shortly.",
     path: "/shop/success",
+    noindex: true,
   },
   shop: {
     title: "Shop | NeuroNourish",
@@ -107,12 +110,11 @@ export function neuronourishPublicPaths(): string[] {
   const base = Object.values(NN_PAGE_SEO)
     .filter((p) => !("noindex" in p && p.noindex))
     .map((p) => p.path);
+  /** Indexable shop SKUs only — exclude placeholder/stub products (Screaming Frog: URL quality). */
   const shopSlugs = [
     "cognitive-assessment",
     "nutrition-consultation",
     "dietetic-consultation",
-    "blood-work",
-    "pt257",
     "premium-programme",
     "medium-programme",
     "light-programme",

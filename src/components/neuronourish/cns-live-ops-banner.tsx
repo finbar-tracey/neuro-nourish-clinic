@@ -1,9 +1,13 @@
 import { isCnsVsLive, cnsVsConfigured } from "@/lib/cnsvitalsigns";
 import { isNeuronourish } from "@/lib/vertical-config";
 
-/** Shown on marketing shell when CNS auto-issue is not armed — ops visibility only. */
+/**
+ * Ops-only banner. Hidden on public marketing by default (Screaming Frog / UX).
+ * Set NN_SHOW_OPS_BANNER=true to surface CNS readiness on staging.
+ */
 export function CnsLiveOpsBanner() {
   if (!isNeuronourish()) return null;
+  if (process.env.NN_SHOW_OPS_BANNER !== "true") return null;
   if (isCnsVsLive() && cnsVsConfigured()) return null;
 
   const reason = !isCnsVsLive()

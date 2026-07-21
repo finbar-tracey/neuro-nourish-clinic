@@ -12,7 +12,7 @@ import {
   shopPublicPriceLabel,
   shopRelatedProducts,
 } from "@/lib/neuronourish-shop";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, NOINDEX_ROBOTS } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -27,11 +27,15 @@ export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const product = getShopProduct(slug);
   if (!product) return {};
-  return buildPageMetadata({
+  const meta = buildPageMetadata({
     title: `${product.name} | NeuroNourish Shop`,
     description: product.subtext,
     path: `/shop/${product.slug}`,
   });
+  if (product.placeholderNote) {
+    return { ...meta, robots: NOINDEX_ROBOTS };
+  }
+  return meta;
 }
 
 export default async function ShopProductPage({ params }: PageProps) {
@@ -104,11 +108,13 @@ export default async function ShopProductPage({ params }: PageProps) {
             <h2 className="text-center font-display text-2xl text-slate-blue">
               {NN_SHOP.relatedTitle}
             </h2>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {related.map((item) => (
-                <ShopProductCard key={item.slug} product={item} />
-              ))}
-            </div>
+            <Suspense fallback={<p className="mt-8 text-center text-sm text-ink/60">Loading…</p>}>
+              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {related.map((item) => (
+                  <ShopProductCard key={item.slug} product={item} />
+                ))}
+              </div>
+            </Suspense>
           </PageContainer>
         ) : null}
       </PageSection>

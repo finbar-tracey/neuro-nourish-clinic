@@ -1,8 +1,20 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import type { ShopProduct } from "@/lib/neuronourish-shop";
 import { NN_SHOP } from "@/lib/neuronourish-shop";
 
+function withLead(href: string, leadId: string | null) {
+  if (!leadId) return href;
+  const join = href.includes("?") ? "&" : "?";
+  return `${href}${join}leadId=${encodeURIComponent(leadId)}`;
+}
+
 export function ShopProductCard({ product }: { product: ShopProduct }) {
+  const searchParams = useSearchParams();
+  const leadId = searchParams.get("leadId");
+
   return (
     <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-mist bg-white/90 p-6 shadow-sm">
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
@@ -19,7 +31,7 @@ export function ShopProductCard({ product }: { product: ShopProduct }) {
         {product.showPublicPrice ? null : product.priceLabel ?? NN_SHOP.priceHiddenLabel}
       </p>
       <Link
-        href={`/shop/${product.slug}`}
+        href={withLead(`/shop/${product.slug}`, leadId)}
         className="nn-text-link mt-5 inline-block text-sm font-medium"
       >
         View details →

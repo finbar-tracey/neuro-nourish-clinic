@@ -234,6 +234,9 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       <FunnelStepper active="quiz" leadId={leadId || undefined} />
       <div className="mt-8">
         <SectionEyebrow>Your NeuroNourish Brain Health Score</SectionEyebrow>
+        <h1 className="mt-3 font-display text-3xl text-deep-slate sm:text-4xl">
+          Your brain health results
+        </h1>
       </div>
 
       <div
