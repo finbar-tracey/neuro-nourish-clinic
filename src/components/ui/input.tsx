@@ -58,5 +58,15 @@ export const Label = ({
   />
 );
 
-export const FieldError = ({ message }: { message?: string }) =>
-  message ? <p className="mt-1 text-xs text-red-600">{message}</p> : null;
+export const FieldError = ({
+  message,
+  id,
+}: {
+  message?: string;
+  id?: string;
+}) =>
+  message ? (
+    <p id={id} role="alert" aria-live="polite" className="mt-1 text-xs text-red-600">
+      {message}
+    </p>
+  ) : null;

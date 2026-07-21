@@ -39,7 +39,7 @@ export function FunnelStepper({
                 )}
                 <Link
                   href={withLead(step.href)}
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-medium transition hover:opacity-90 ${
+                  className={`flex h-11 w-11 min-h-[44px] min-w-[44px] shrink-0 items-center justify-center rounded-full text-[11px] font-medium transition hover:opacity-90 ${
                     isActive
                       ? "bg-gold text-deep-slate"
                       : isComplete

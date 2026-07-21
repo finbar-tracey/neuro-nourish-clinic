@@ -56,7 +56,7 @@ export function ShopCatalog({
               key={item.id}
               type="button"
               onClick={() => setFilter(item.id)}
-              className={`min-h-[40px] rounded-full px-4 py-2 text-[12px] font-medium transition ${
+              className={`min-h-[44px] rounded-full px-4 py-2 text-[12px] font-medium transition ${
                 active
                   ? "bg-gold text-deep-slate"
                   : "border border-mist bg-white/80 text-ink/70 hover:border-gold/40 hover:text-deep-slate"

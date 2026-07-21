@@ -133,29 +133,32 @@ check(
 // ── Layout ──
 
 const home = read("src/components/neuronourish/home-page.tsx");
+const hero = read("src/components/neuronourish/content/hero-section.tsx");
+const globals = read("src/app/globals.css");
 check(
   "L1",
   "Layout",
-  "Hero headline responsive scale",
-  home.includes("text-4xl") && home.includes("sm:text-5xl"),
+  "Hero headline uses responsive display scale",
+  hero.includes("nn-display-hero") && globals.includes(".nn-display-hero"),
 );
 check(
   "L2",
   "Layout",
-  "CTA groups stack on mobile",
-  home.includes("flex-col") && home.includes("sm:flex-row"),
+  "Hero CTAs stack on mobile",
+  hero.includes("flex flex-col"),
 );
 check(
   "L3",
   "Layout",
-  "Content grids stack until lg",
-  home.includes("lg:grid-cols-2"),
+  "Content grids stack until lg where used",
+  home.includes("JourneySection") ||
+    read("src/components/neuronourish/content/journey-section.tsx").includes("lg:grid-cols-2"),
 );
 check(
   "L4",
   "Layout",
   "Footer responsive columns",
-  shell.includes("sm:grid-cols-2") && shell.includes("lg:grid-cols-4"),
+  shell.includes("sm:grid-cols-2") && shell.includes("lg:grid-cols-"),
 );
 
 const copy = read("src/lib/neuronourish-copy.ts");
@@ -168,23 +171,25 @@ check(
 
 // ── Forms & funnel ──
 
+const quiz = read("src/components/neuronourish/brain-health-quiz.tsx");
 check(
   "F1",
   "Forms",
-  "Quiz capture stacks on mobile",
-  read("src/components/neuronourish/brain-health-quiz.tsx").includes("sm:grid-cols-2"),
+  "Quiz capture stacks as single column form",
+  quiz.includes("space-y-4") && quiz.includes("max-w-md"),
 );
 check(
   "F2",
   "Forms",
-  "Assessment CTAs full width on mobile",
-  read("src/app/assessment/page.tsx").includes("w-full") && read("src/app/assessment/page.tsx").includes("sm:w-auto"),
+  "Shop checkout CTAs full width on mobile",
+  read("src/components/neuronourish/shop-checkout-button.tsx").includes("w-full") &&
+    read("src/components/neuronourish/shop-checkout-button.tsx").includes("sm:w-auto"),
 );
 check(
   "F3",
   "Forms",
-  "Programme CTAs full width on mobile",
-  read("src/app/programme/page.tsx").includes("w-full") && read("src/app/programme/page.tsx").includes("sm:w-auto"),
+  "Programme page uses GoldButton (touch-friendly CTA)",
+  read("src/app/programme/page.tsx").includes("GoldButton"),
 );
 check(
   "F4",

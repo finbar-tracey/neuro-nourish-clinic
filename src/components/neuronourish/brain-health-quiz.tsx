@@ -63,13 +63,19 @@ export function BrainHealthQuiz() {
     const captured = captureTrackingFromUrl();
     setTracking(captured);
     try {
+      const urlLead = new URLSearchParams(window.location.search).get("leadId");
+      if (urlLead) setLeadId(urlLead);
+    } catch {
+      /* ignore */
+    }
+    try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const saved: QuizState = JSON.parse(raw);
         const answered = Object.keys(saved.answers ?? {}).length;
         if (answered > 0 || saved.leadId) {
           setAnswers(saved.answers ?? {});
-          setLeadId(saved.leadId);
+          if (saved.leadId) setLeadId(saved.leadId);
           setHasSavedProgress(true);
           setShowResumeBanner(true);
           // Do not auto-jump into questions — let the user choose continue vs restart
@@ -309,8 +315,10 @@ export function BrainHealthQuiz() {
                 onChange={(e) => setCapture({ ...capture, firstName: e.target.value })}
                 autoComplete="given-name"
                 autoCapitalize="words"
+                aria-invalid={Boolean(errors.firstName)}
+                aria-describedby={errors.firstName ? "fn-error" : undefined}
               />
-              <FieldError message={errors.firstName} />
+              <FieldError id="fn-error" message={errors.firstName} />
             </div>
             <div>
               <Label htmlFor="em">Email</Label>
@@ -321,19 +329,24 @@ export function BrainHealthQuiz() {
                 onChange={(e) => setCapture({ ...capture, email: e.target.value })}
                 autoComplete="email"
                 inputMode="email"
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? "em-error" : undefined}
               />
-              <FieldError message={errors.email} />
+              <FieldError id="em-error" message={errors.email} />
             </div>
-            <label className="flex gap-3 text-left text-sm text-ink/80">
+            <label htmlFor="quiz-consent" className="flex gap-3 text-left text-sm text-ink/80">
               <input
+                id="quiz-consent"
                 type="checkbox"
                 checked={capture.consent}
                 onChange={(e) => setCapture({ ...capture, consent: e.target.checked })}
                 className="mt-1"
+                aria-invalid={Boolean(errors.consent)}
+                aria-describedby={errors.consent ? "consent-error" : undefined}
               />
               {NN_QUIZ_CAPTURE.consent}
             </label>
-            <FieldError message={errors.consent} />
+            <FieldError id="consent-error" message={errors.consent} />
             {captureError ? <p className="text-sm text-red-700">{captureError}</p> : null}
             <Button
               type="submit"
