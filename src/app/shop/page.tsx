@@ -35,7 +35,11 @@ export default function ShopPage() {
           />
 
           <div className="mt-8 flex flex-col items-center gap-1.5">
-            <Link href="/discovery" className="nn-text-link text-sm">
+            <Link href="/quiz" className="nn-text-link text-sm">
+              {NN_SHOP.quizCta} →
+            </Link>
+            <span className="text-xs text-ink/60">{NN_SHOP.quizHint}</span>
+            <Link href="/discovery" className="nn-text-link mt-2 text-sm">
               {NN_SHOP.discoveryCta} →
             </Link>
             <span className="text-xs text-ink/60">{NN_SHOP.discoveryHint}</span>

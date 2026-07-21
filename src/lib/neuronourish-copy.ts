@@ -1664,8 +1664,8 @@ export const NN_BLOG = {
   headline: "Insights to Help You Care for Your Brain Every Day",
   subtext:
     "Evidence-led articles on sleep, nutrition, movement, and daily habits — written for adults taking a proactive approach to brain health.",
-  cta: "View All Articles",
-  ctaHint: "6 guides · ~4 min average read",
+  cta: "Take the Brain Health Quiz",
+  ctaHint: "Free · 3 minutes · Personalised score",
   posts: [
     {
       slug: "sleep-brain-investment",

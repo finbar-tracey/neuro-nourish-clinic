@@ -16,7 +16,7 @@ export function BlogSection({ className = "" }: { className?: string }) {
         />
         <BlogGrid posts={NN_BLOG.posts} />
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-mist/80 pt-10">
-          <GoldButton href="/blog">{NN_BLOG.cta}</GoldButton>
+          <GoldButton href="/quiz">{NN_BLOG.cta}</GoldButton>
           <span className="text-xs text-ink/60">{NN_BLOG.ctaHint}</span>
         </div>
       </PageContainer>

@@ -1,0 +1,240 @@
+#!/usr/bin/env npx tsx
+/**
+ * CRO audit for NeuroNourish public funnel.
+ *
+ * Run: npm run neuronourish:cro
+ * Reference: docs/NEURONOURISH_CRO.md
+ */
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { config } from "dotenv";
+
+const ROOT = resolve(import.meta.dirname, "..");
+config({ path: resolve(ROOT, ".env.local") });
+config();
+
+type Check = { id: string; category: string; name: string; pass: boolean; detail?: string; p0?: boolean };
+const checks: Check[] = [];
+
+function read(rel: string): string {
+  return readFileSync(resolve(ROOT, rel), "utf8");
+}
+
+function check(
+  id: string,
+  category: string,
+  name: string,
+  pass: boolean,
+  detail?: string,
+  p0 = true,
+) {
+  checks.push({ id, category, name, pass, detail, p0 });
+}
+
+const quizData = read("src/lib/neuronourish-quiz-data.ts");
+const quiz = read("src/components/neuronourish/brain-health-quiz.tsx");
+const hero = read("src/components/neuronourish/content/hero-section.tsx");
+const closing = read("src/components/neuronourish/content/closing-cta.tsx");
+const quizFold = read("src/components/neuronourish/content/quiz-fold-section.tsx");
+const results = read("src/components/neuronourish/content/quiz-results-panel.tsx");
+const home = read("src/components/neuronourish/home-page.tsx");
+const sticky = existsSync(resolve(ROOT, "src/components/neuronourish/sticky-cta.tsx"))
+  ? read("src/components/neuronourish/sticky-cta.tsx")
+  : "";
+const card = read("src/components/neuronourish/shop-product-card.tsx");
+const shopPage = read("src/app/shop/page.tsx");
+const blogSection = read("src/components/neuronourish/content/blog-section.tsx");
+const copy = read("src/lib/neuronourish-copy.ts");
+const shopLib = read("src/lib/neuronourish-shop.ts");
+const headerDesktop = read("src/components/neuronourish/header-nav-desktop.tsx");
+
+// Continuity
+check(
+  "C1",
+  "Continuity",
+  "Quiz capture after all questions (end gate)",
+  quizData.includes("NN_QUIZ_CAPTURE_AFTER = NN_QUIZ_QUESTIONS.length"),
+);
+check(
+  "C2",
+  "Continuity",
+  "Capture gate uses name + email + consent only",
+  quiz.includes('htmlFor="fn"') &&
+    quiz.includes('htmlFor="em"') &&
+    quiz.includes('id="quiz-consent"') &&
+    !quiz.includes('htmlFor="ln"'),
+);
+check(
+  "C3",
+  "Continuity",
+  "Shop cards preserve leadId",
+  card.includes("leadId") && card.includes("withLead"),
+);
+check(
+  "C4",
+  "Continuity",
+  "Quiz hydrates leadId from URL",
+  quiz.includes("URLSearchParams") && quiz.includes("leadId"),
+);
+check(
+  "C5",
+  "Continuity",
+  "Results preserve leadId on assessment CTA",
+  results.includes("withLead") && results.includes("/shop/cognitive-assessment"),
+);
+check(
+  "C6",
+  "Continuity",
+  "Funnel stepper on results",
+  results.includes("FunnelStepper"),
+);
+check(
+  "C7",
+  "Continuity",
+  "Blog section CTA avoids dead /blog redirect",
+  !blogSection.includes('href="/blog"') &&
+    (blogSection.includes('href="/quiz"') || blogSection.includes('href="/programme"')),
+);
+
+// CTA hierarchy
+check(
+  "H1",
+  "CTA hierarchy",
+  "Hero gold primary is quiz; discovery is text link",
+  hero.includes('GoldButton href="/quiz"') &&
+    hero.includes('href="/discovery"') &&
+    hero.includes("nn-text-link") &&
+    !hero.includes("OutlineButton"),
+);
+check(
+  "H2",
+  "CTA hierarchy",
+  "Closing gold primary is quiz; discovery is text link",
+  closing.includes("GoldButton") &&
+    closing.includes("ctaQuiz") &&
+    closing.includes("nn-text-link") &&
+    closing.includes("discoveryTarget"),
+);
+check(
+  "H3",
+  "CTA hierarchy",
+  "Quiz fold single gold quiz CTA",
+  quizFold.includes('GoldButton href="/quiz"') && !quizFold.includes("OutlineButton"),
+);
+check(
+  "H4",
+  "CTA hierarchy",
+  "Results next steps: assessment is GoldButton; discovery is text link",
+  results.includes("ctaAssessment") &&
+    results.includes("GoldButton") &&
+    results.includes("ctaDiscovery") &&
+    /ctaDiscovery[\s\S]{0,200}nn-text-link|nn-text-link[\s\S]{0,200}ctaDiscovery/.test(results) &&
+    !/OutlineButton[\s\S]{0,80}ctaDiscovery|ctaDiscovery[\s\S]{0,80}OutlineButton/.test(
+      results.slice(results.indexOf("function NextStepsBlock")),
+    ),
+);
+check(
+  "H5",
+  "CTA hierarchy",
+  "Header desktop quiz is gold primary",
+  headerDesktop.includes("ctaQuiz") && headerDesktop.includes("bg-gold"),
+);
+check(
+  "H6",
+  "CTA hierarchy",
+  "Home wires sticky mobile quiz CTA",
+  home.includes("StickyCta") && sticky.includes("/quiz") && sticky.includes("fixed"),
+);
+
+// Friction
+check(
+  "F1",
+  "Friction",
+  "Quiz shows question progress",
+  quiz.includes("Question {step + 1} of") || quiz.includes("Question {"),
+);
+check(
+  "F2",
+  "Friction",
+  "Capture microcopy reassures speed / completion",
+  copy.includes("fieldsHint") &&
+    copy.includes("Takes 10 seconds") &&
+    copy.includes("progressLabel") &&
+    copy.includes("18 of 18"),
+);
+check(
+  "F3",
+  "Friction",
+  "Capture offers discovery soft escape",
+  quiz.includes("discoverySoft") || quiz.includes("NN_QUIZ_CAPTURE.discovery"),
+);
+check(
+  "F4",
+  "Friction",
+  "Shop offers quiz path for unsure visitors",
+  shopPage.includes("/quiz") && (shopLib.includes("quizCta") || shopPage.includes("quiz")),
+);
+
+// Trust
+check(
+  "T1",
+  "Trust",
+  "Hero trust bar under CTA",
+  hero.includes("trustBar") || hero.includes("nn-hero-trust-bar"),
+);
+check(
+  "T2",
+  "Trust",
+  "Results FunnelTrustBar present",
+  results.includes("FunnelTrustBar"),
+);
+check(
+  "T3",
+  "Trust",
+  "Closing trust chips present",
+  closing.includes("trustChips"),
+);
+check(
+  "T4",
+  "Trust",
+  "Assessment credit hint in results copy",
+  copy.includes("ctaAssessmentHint") && copy.includes("Credited toward enrolment"),
+);
+
+// Docs
+check(
+  "DOC1",
+  "Documentation",
+  "CRO checklist exists",
+  existsSync(resolve(ROOT, "docs/NEURONOURISH_CRO.md")),
+);
+
+async function main() {
+  const categories = [...new Set(checks.map((c) => c.category))];
+  const p0 = checks.filter((c) => c.p0 !== false);
+  const p0Pass = p0.filter((c) => c.pass).length;
+  const allPass = checks.filter((c) => c.pass).length;
+
+  console.log("\n📈 NeuroNourish CRO audit\n");
+  for (const cat of categories) {
+    console.log(`\n## ${cat}`);
+    for (const c of checks.filter((x) => x.category === cat)) {
+      console.log(`${c.pass ? "✅" : "❌"} [${c.id}] ${c.name}${c.detail ? ` — ${c.detail}` : ""}`);
+    }
+  }
+
+  console.log(`\nP0: ${p0Pass}/${p0.length} · Total: ${allPass}/${checks.length}`);
+  console.log(
+    p0Pass === p0.length
+      ? "\nVerdict: PASS (automated P0 CRO checks)\n"
+      : "\nVerdict: FAIL — fix P0 issues before CRO sign-off\n",
+  );
+  console.log("Full checklist: docs/NEURONOURISH_CRO.md\n");
+
+  process.exit(p0Pass === p0.length ? 0 : 1);
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

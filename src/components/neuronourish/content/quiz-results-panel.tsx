@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label } from "@/components/ui/input";
 import { FunnelStepper } from "@/components/neuronourish/content/funnel-stepper";
 import { FunnelTrustBar } from "@/components/neuronourish/content/funnel-trust-bar";
-import { GoldButton, OutlineButton, SectionEyebrow } from "@/components/neuronourish/shell";
+import { GoldButton, SectionEyebrow } from "@/components/neuronourish/shell";
 import { NN_QUIZ_REPORT_CTA, NN_QUIZ_RESULTS } from "@/lib/neuronourish-copy";
 import {
   NN_QUIZ_ARCHETYPES,
@@ -83,9 +83,12 @@ function NextStepsBlock({ leadId }: { leadId: string }) {
         >
           {NN_QUIZ_RESULTS.ctaProgramme} →
         </Link>
-        <OutlineButton href={withLead("/discovery", leadId)} className="w-full sm:w-auto">
-          {NN_QUIZ_RESULTS.ctaDiscovery}
-        </OutlineButton>
+        <Link
+          href={withLead("/discovery", leadId)}
+          className="nn-text-link text-center text-sm"
+        >
+          {NN_QUIZ_RESULTS.ctaDiscovery} →
+        </Link>
         <span className="text-center text-xs text-ink/55">{NN_QUIZ_RESULTS.ctaDiscoveryHint}</span>
       </div>
     </div>

@@ -23,6 +23,7 @@
     "neuronourish:go-live": "tsx scripts/neuronourish-go-live-audit.ts",
     "neuronourish:seo": "tsx scripts/neuronourish-seo-audit.ts",
     "neuronourish:webdev": "tsx scripts/neuronourish-webdev-audit.ts",
+    "neuronourish:cro": "tsx scripts/neuronourish-cro-audit.ts",
     "neuronourish:pagespeed": "tsx scripts/neuronourish-pagespeed-audit.ts",
     "neuronourish:mobile": "tsx scripts/neuronourish-mobile-audit.ts",
     "neuronourish:logos": "node scripts/process-neuronourish-logos.mjs",

@@ -292,6 +292,8 @@ export const NN_SHOP = {
   featuredTitle: "Most people start here",
   discoveryCta: "Book a discovery call",
   discoveryHint: "15 minutes · No obligation",
+  quizCta: "Not sure where to start? Take the free quiz",
+  quizHint: "Free · 3 minutes · Personalised score",
   placeholderBadge: "Details soon",
   priceHiddenLabel: "Investment discussed on discovery",
   relatedTitle: "Often booked with",

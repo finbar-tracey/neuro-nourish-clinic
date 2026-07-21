@@ -1,4 +1,5 @@
 import { NeuroNourishShell } from "@/components/neuronourish/shell";
+import { StickyCta } from "@/components/neuronourish/sticky-cta";
 import { JsonLd } from "@/components/neuronourish/structured-data";
 import {
   B2bSection,
@@ -37,6 +38,7 @@ export function NeuroNourishHomePage() {
       <FaqSection id="faq" className="nn-defer-section" />
 
       <ClosingCtaSection className="nn-defer-section" />
+      <StickyCta />
     </NeuroNourishShell>
   );
 }
