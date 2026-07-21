@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { ShopCatalog } from "@/components/neuronourish/shop-catalog";
@@ -40,7 +41,9 @@ export default function ShopPage() {
             <span className="text-xs text-ink/60">{NN_SHOP.discoveryHint}</span>
           </div>
 
-          <ShopCatalog featured={featured} tiers={tiers} services={services} />
+          <Suspense fallback={<p className="mt-10 text-center text-sm text-ink/60">Loading catalog…</p>}>
+            <ShopCatalog featured={featured} tiers={tiers} services={services} />
+          </Suspense>
 
           <section className="mx-auto mt-16 max-w-2xl" aria-labelledby="shop-faq">
             <h2 id="shop-faq" className="text-center font-display text-2xl text-slate-blue">
