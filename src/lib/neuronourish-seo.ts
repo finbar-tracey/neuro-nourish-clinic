@@ -49,7 +49,7 @@ export const NN_PAGE_SEO = {
     noindex: true,
   },
   shop: {
-    title: "Shop | NeuroNourish",
+    title: "Shop Brain Health Products | NeuroNourish",
     description:
       "Programme tiers, cognitive assessment, consultations, blood work review, and more — secure checkout.",
     path: "/shop",
