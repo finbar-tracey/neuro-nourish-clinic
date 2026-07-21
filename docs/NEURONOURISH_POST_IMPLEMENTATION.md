@@ -45,21 +45,33 @@ npm run neuronourish:go-live
 
 ## Automated results matrix
 
-Fill from the latest `npm run neuronourish:post-implementation` run:
+Latest run (`NN_POST_IMPL_BASE_URL=https://neuro-nourish-clinic.vercel.app`):
 
 | # | Gate | Expected | Result | ☐ |
 |---|------|----------|--------|---|
-| 1 | SEO | P0 PASS | | |
-| 2 | Webdev | P0 PASS | | |
-| 3 | Mobile | P0 PASS | | |
-| 4 | CRO | P0 PASS | | |
-| 5 | Brand | COMPLIANT | | |
-| 6 | Design | P0 PASS | | |
-| 7 | Animation | P0 PASS | | |
-| 8 | PageSpeed (static) | P0 PASS | | |
-| 9 | Go-live (static) | P0 PASS / known ops gaps | | |
-| 10 | Live crawl | Marketing URLs 200 | | |
-| 11 | Live health | Document integrations | | |
+| 1 | SEO | P0 PASS | **PASS** | x |
+| 2 | Webdev | P0 PASS | **PASS** | x |
+| 3 | Mobile | P0 PASS | **PASS** | x |
+| 4 | CRO | P0 PASS | **PASS** | x |
+| 5 | Brand | COMPLIANT | **PASS** | x |
+| 6 | Design | P0 PASS | **PASS** | x |
+| 7 | Animation | P0 PASS | **PASS** | x |
+| 8 | PageSpeed (static) | P0 PASS | **PASS** | x |
+| 9 | Go-live (static) | P0 PASS / known ops gaps | **PASS** (static) | x |
+| 10 | Live crawl | Marketing URLs 200 | **PASS** | x |
+| 11 | Live health | Document integrations | **degraded / partial** | x |
+
+**Aggregator verdict:** PASS (marketing P0) — `33/33` P0 · `37/37` total  
+**Commit at sign-off:** `82a9c13`  
+**Date:** 2026-07-22
+
+### Findings fixed during this audit
+
+| Issue | Cause | Fix |
+|-------|--------|-----|
+| Sitewide `X-Robots-Tag: noindex` | Empty `VERTICAL` → BLB header path | Default empty vertical to NeuroNourish in `next.config.ts` / middleware; re-set Vercel env |
+| `/discovery` H1 count 0 | H1 only in client Suspense tree | Server-render intro + H1 on `discovery/page.tsx` |
+| PageSpeed F2/R3/T2 drift | Brand weight 300 vs PSI “no 300”; hero check on wrong file; Calendly via panel | Aligned `neuronourish:pagespeed` with current architecture |
 
 ---
 
