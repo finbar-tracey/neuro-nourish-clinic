@@ -29,6 +29,7 @@
     "neuronourish:logos": "node scripts/process-neuronourish-logos.mjs",
     "neuronourish:brand": "tsx scripts/neuronourish-brand-check.ts",
     "neuronourish:design": "tsx scripts/neuronourish-design-audit.ts",
+    "neuronourish:animation": "tsx scripts/neuronourish-animation-audit.ts",
     "neuronourish:smoke-test": "tsx scripts/neuronourish-smoke-test.ts",
     "quiz:post-implementation": "tsx scripts/quiz-capture-post-implementation-audit.ts",
     "quiz:prompt": "tsx scripts/print-quiz-capture-post-impl-prompt.ts",

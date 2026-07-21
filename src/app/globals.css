@@ -148,6 +148,10 @@ h3,
   animation: nn-hero-rise 0.75s ease-out 0.24s both;
 }
 
+.nn-hero-enter .nn-hero-trust-bar {
+  animation: nn-hero-rise 0.7s ease-out 0.34s both;
+}
+
 @keyframes nn-hero-rise {
   from {
     opacity: 0;
@@ -164,7 +168,8 @@ h3,
   .nn-hero-enter .nn-hero-brand,
   .nn-hero-enter h1,
   .nn-hero-enter .nn-hero-lead,
-  .nn-hero-enter .mt-10 {
+  .nn-hero-enter .mt-10,
+  .nn-hero-enter .nn-hero-trust-bar {
     animation: none;
   }
 }
@@ -273,6 +278,7 @@ h3,
 
 .nn-b2b-pillar:hover {
   box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
+  transform: translateY(-2px);
 }
 
 .nn-why-section {
@@ -285,6 +291,7 @@ h3,
 
 .nn-why-benefit:hover {
   box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
+  transform: translateY(-2px);
 }
 
 .nn-journey-section {
@@ -302,6 +309,7 @@ h3,
 
 .nn-journey-step:hover {
   box-shadow: 0 8px 24px rgba(26, 51, 72, 0.07);
+  transform: translateY(-2px);
 }
 
 .nn-outcomes-section {
@@ -319,6 +327,7 @@ h3,
 
 .nn-outcomes-stat:hover {
   box-shadow: 0 8px 24px rgba(26, 51, 72, 0.08);
+  transform: translateY(-2px);
 }
 
 .nn-founder-section {
@@ -389,6 +398,58 @@ details > summary::-webkit-details-marker {
   contain-intrinsic-size: auto 600px;
 }
 
+/* One-shot scroll presence — paired with NnScrollReveal */
+.nn-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.55s ease-out,
+    transform 0.55s ease-out;
+}
+
+.nn-reveal.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nn-gold-cta {
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.nn-gold-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(201, 168, 76, 0.28);
+}
+
+.nn-shop-card {
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.nn-shop-card:hover {
+  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
+  transform: translateY(-2px);
+}
+
+.nn-sticky-cta {
+  transform: translateY(110%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.28s ease;
+}
+
+.nn-sticky-cta.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .nn-quiz-fold {
   background-color: color-mix(in oklab, var(--brand-linen) 18%, var(--brand-ivory));
 }
@@ -405,6 +466,35 @@ details > summary::-webkit-details-marker {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-reveal,
+  .nn-reveal.is-inview {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .nn-quiz-question {
+    animation: none;
+  }
+
+  .nn-gold-cta:hover,
+  .nn-shop-card:hover,
+  .nn-b2b-pillar:hover,
+  .nn-why-benefit:hover,
+  .nn-journey-step:hover,
+  .nn-outcomes-stat:hover,
+  .nn-blog-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .nn-sticky-cta,
+  .nn-sticky-cta.is-visible {
+    transition: none;
   }
 }
 

@@ -87,7 +87,7 @@ export function GoldButton({
   return (
     <Link
       href={href}
-      className={`inline-flex min-h-[48px] items-center justify-center rounded-full bg-gold px-6 py-3 text-[13px] font-medium text-deep-slate transition hover:bg-gold/90 ${className}`}
+      className={`nn-gold-cta inline-flex min-h-[48px] items-center justify-center rounded-full bg-gold px-6 py-3 text-[13px] font-medium text-deep-slate hover:bg-gold/90 ${className}`}
     >
       {children}
     </Link>

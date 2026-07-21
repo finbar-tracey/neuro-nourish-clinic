@@ -1,4 +1,5 @@
 import { NeuroNourishShell } from "@/components/neuronourish/shell";
+import { NnScrollReveal } from "@/components/neuronourish/nn-scroll-reveal";
 import { StickyCta } from "@/components/neuronourish/sticky-cta";
 import { JsonLd } from "@/components/neuronourish/structured-data";
 import {
@@ -19,25 +20,26 @@ export function NeuroNourishHomePage() {
   return (
     <NeuroNourishShell>
       <JsonLd data={neuronourishHomeJsonLd()} />
+      <NnScrollReveal />
       <HeroSection />
 
-      <QuizFoldSection className="nn-defer-section" />
+      <QuizFoldSection className="nn-defer-section nn-reveal" />
 
-      <FounderSection className="nn-defer-section" />
+      <FounderSection className="nn-defer-section nn-reveal" />
 
-      <OutcomesSection />
+      <OutcomesSection className="nn-reveal" />
 
-      <JourneySection className="nn-defer-section" />
+      <JourneySection className="nn-defer-section nn-reveal" />
 
-      <WhySection className="nn-defer-section" />
+      <WhySection className="nn-defer-section nn-reveal" />
 
-      <PartnerStrip className="nn-defer-section" />
+      <PartnerStrip className="nn-defer-section nn-reveal" />
 
-      <B2bSection className="nn-defer-section" />
+      <B2bSection className="nn-defer-section nn-reveal" />
 
-      <FaqSection id="faq" className="nn-defer-section" />
+      <FaqSection id="faq" className="nn-defer-section nn-reveal" />
 
-      <ClosingCtaSection className="nn-defer-section" />
+      <ClosingCtaSection className="nn-defer-section nn-reveal" />
       <StickyCta />
     </NeuroNourishShell>
   );

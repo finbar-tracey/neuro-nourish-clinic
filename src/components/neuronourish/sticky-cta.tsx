@@ -6,7 +6,7 @@ import { NN_NAV } from "@/lib/neuronourish-copy";
 
 /**
  * Mobile sticky quiz CTA for the home funnel.
- * Hides when the closing CTA (#get-started) is in view so we don't stack CTAs.
+ * Stays mounted and slides via CSS for a premium enter/exit (no remount jank).
  */
 export function StickyCta() {
   const [visible, setVisible] = useState(false);
@@ -46,13 +46,17 @@ export function StickyCta() {
     };
   }, []);
 
-  if (!visible) return null;
-
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-ivory/10 bg-deep-slate/95 p-3 shadow-[0_-8px_28px_rgba(26,51,72,0.35)] backdrop-blur-sm pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden">
+    <div
+      className={`nn-sticky-cta fixed inset-x-0 bottom-0 z-30 border-t border-ivory/10 bg-deep-slate/95 p-3 shadow-[0_-8px_28px_rgba(26,51,72,0.35)] backdrop-blur-sm pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden ${
+        visible ? "is-visible" : ""
+      }`}
+      aria-hidden={!visible}
+    >
       <Link
         href="/quiz"
-        className="flex min-h-[48px] w-full items-center justify-center rounded-full bg-gold px-6 text-[13px] font-medium text-deep-slate transition hover:bg-gold/90"
+        tabIndex={visible ? 0 : -1}
+        className="nn-gold-cta flex min-h-[48px] w-full items-center justify-center rounded-full bg-gold px-6 text-[13px] font-medium text-deep-slate hover:bg-gold/90"
       >
         {NN_NAV.ctaQuizShort}
       </Link>

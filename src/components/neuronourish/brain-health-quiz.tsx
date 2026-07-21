@@ -438,13 +438,13 @@ export function BrainHealthQuiz() {
         </div>
         <div className="mt-2 h-1 overflow-hidden rounded-full bg-linen">
           <div
-            className="h-full bg-gold transition-all"
+            className="h-full bg-gold transition-[width] duration-300 ease-out"
             style={{ width: `${((step + 1) / total) * 100}%` }}
           />
         </div>
 
         {question ? (
-          <div className="mt-10">
+          <div key={step} className="nn-quiz-question mt-10">
             <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-blue">
               {question.section}
             </p>
