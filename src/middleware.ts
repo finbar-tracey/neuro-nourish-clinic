@@ -3,8 +3,12 @@ import type { NextRequest } from "next/server";
 
 import { runtimeSecret } from "@/lib/runtime-env";
 
-const isNeuronourish =
-  process.env.VERTICAL === "neuronourish" || process.env.NEXT_PUBLIC_VERTICAL === "neuronourish";
+const vertical = (
+  process.env.NEXT_PUBLIC_VERTICAL ||
+  process.env.VERTICAL ||
+  "neuronourish"
+).toLowerCase();
+const isNeuronourish = vertical === "neuronourish" || vertical === "";
 
 /** Legacy routes from other verticals — keep out of NeuroNourish crawl index. */
 const NN_LEGACY_PREFIXES = ["/lp", "/for-clinics", "/email-preview"];

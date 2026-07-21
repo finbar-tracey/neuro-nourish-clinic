@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
-const isNeuronourish =
-  process.env.VERTICAL === "neuronourish" || process.env.NEXT_PUBLIC_VERTICAL === "neuronourish";
+const vertical = (
+  process.env.NEXT_PUBLIC_VERTICAL ||
+  process.env.VERTICAL ||
+  "neuronourish"
+).toLowerCase();
+/** Empty/missing VERTICAL defaults to NeuroNourish in this repo (avoids BLB sitewide noindex). */
+const isNeuronourish = vertical === "neuronourish" || vertical === "";
 
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },

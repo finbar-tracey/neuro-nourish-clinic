@@ -13,16 +13,21 @@ import { NN_DISCOVERY, NN_FOOTER } from "@/lib/neuronourish-copy";
 
 type DiscoveryBookingPanelProps = {
   calendlyUrl?: string;
+  /** When true, skip brand/H1 intro (rendered by the server page for SEO). */
+  hideIntro?: boolean;
 };
 
-export function DiscoveryBookingPanel({ calendlyUrl }: DiscoveryBookingPanelProps) {
+export function DiscoveryBookingPanel({
+  calendlyUrl,
+  hideIntro = false,
+}: DiscoveryBookingPanelProps) {
   const searchParams = useSearchParams();
   const leadId = useMemo(() => searchParams.get("leadId") ?? "", [searchParams]);
   const isRecovered = useMemo(() => searchParams.get("recovered") === "true", [searchParams]);
   const hasCalendly = Boolean(calendlyUrl);
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className={hideIntro && !isRecovered ? "mx-auto mt-12 max-w-2xl" : "mx-auto max-w-2xl"}>
       {isRecovered ? (
         <div className="mb-10 flex items-start gap-4 border-b border-linen/70 pb-8">
           <div className="mt-0.5 shrink-0 rounded-xl bg-gold/10 p-3">
@@ -37,7 +42,7 @@ export function DiscoveryBookingPanel({ calendlyUrl }: DiscoveryBookingPanelProp
             </p>
           </div>
         </div>
-      ) : (
+      ) : hideIntro ? null : (
         <header className="text-center">
           <p className="nn-display-section tracking-tight text-slate-blue">
             {NN_DISCOVERY.brand}
