@@ -39,6 +39,8 @@ export function BrainHealthQuiz() {
   const [leadId, setLeadId] = useState<string>();
   const [showCapture, setShowCapture] = useState(false);
   const [started, setStarted] = useState(false);
+  const [hasSavedProgress, setHasSavedProgress] = useState(false);
+  const [showResumeBanner, setShowResumeBanner] = useState(false);
   const [tracking, setTracking] = useState<TrackingParams>({});
   const [capture, setCapture] = useState({
     firstName: "",
@@ -64,17 +66,13 @@ export function BrainHealthQuiz() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const saved: QuizState = JSON.parse(raw);
-        setAnswers(saved.answers ?? {});
-        setLeadId(saved.leadId);
-        if (saved.captured || Object.keys(saved.answers ?? {}).length > 0) {
-          setStarted(true);
-          const answered = Object.keys(saved.answers ?? {}).length;
-          const resumeStep = Math.min(answered, total - 1);
-          setStep(resumeStep);
-          // Capture only after all questions — if finished without lead, show end gate
-          if (answered >= total && !saved.leadId) {
-            setShowCapture(true);
-          }
+        const answered = Object.keys(saved.answers ?? {}).length;
+        if (answered > 0 || saved.leadId) {
+          setAnswers(saved.answers ?? {});
+          setLeadId(saved.leadId);
+          setHasSavedProgress(true);
+          setShowResumeBanner(true);
+          // Do not auto-jump into questions — let the user choose continue vs restart
         }
       }
     } catch {
@@ -102,6 +100,28 @@ export function BrainHealthQuiz() {
 
   function persist(state: QuizState) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function continueSavedProgress() {
+    const answered = Object.keys(answers).length;
+    const resumeStep = Math.min(answered, total - 1);
+    setStep(resumeStep);
+    setStarted(true);
+    setShowResumeBanner(false);
+    if (answered >= total && !leadId) {
+      setShowCapture(true);
+    }
+  }
+
+  function startFresh() {
+    localStorage.removeItem(STORAGE_KEY);
+    setAnswers({});
+    setLeadId(undefined);
+    setStep(0);
+    setShowCapture(false);
+    setHasSavedProgress(false);
+    setShowResumeBanner(false);
+    setStarted(true);
   }
 
   function selectOption(optionIndex: number) {
@@ -328,6 +348,12 @@ export function BrainHealthQuiz() {
               </Button>
               <p className="text-xs text-ink/50">{NN_QUIZ_CAPTURE.fieldsHint}</p>
             </div>
+            <p className="pt-2 text-center text-sm text-ink/60">
+              {NN_QUIZ_CAPTURE.discoverySoft}{" "}
+              <Link href="/discovery" className="nn-text-link">
+                {NN_QUIZ_CAPTURE.discoveryCta}
+              </Link>
+            </p>
           </form>
         </div>
       </NeuroNourishShell>
@@ -348,14 +374,40 @@ export function BrainHealthQuiz() {
           <div className="mx-auto mt-6 max-w-md">
             <HighlightList items={NN_QUIZ_PAGE.highlights} />
           </div>
-          <div className="mt-10 flex justify-center">
-            <Button
-              className="bg-gold px-8 text-deep-slate hover:bg-gold/90"
-              onClick={() => setStarted(true)}
-            >
-              Begin the assessment
-            </Button>
-          </div>
+          <p className="mt-4 text-center text-xs font-medium text-slate-blue">
+            {NN_QUIZ_PAGE.timeEstimate}
+          </p>
+          {hasSavedProgress && showResumeBanner ? (
+            <div className="mx-auto mt-8 max-w-md rounded-2xl border border-gold/35 bg-gold/10 p-4 text-center">
+              <p className="text-sm text-deep-slate">{NN_QUIZ_PAGE.resumeBanner}</p>
+              <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:justify-center">
+                <Button
+                  className="bg-gold text-deep-slate hover:bg-gold/90"
+                  onClick={continueSavedProgress}
+                >
+                  {NN_QUIZ_PAGE.resumeContinue}
+                </Button>
+                <Button type="button" variant="outline" onClick={startFresh}>
+                  {NN_QUIZ_PAGE.resumeRestart}
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-10 flex justify-center">
+              <Button
+                className="bg-gold px-8 text-deep-slate hover:bg-gold/90"
+                onClick={() => setStarted(true)}
+              >
+                Begin the assessment
+              </Button>
+            </div>
+          )}
+          <p className="mt-6 text-center text-sm text-ink/60">
+            {NN_QUIZ_CAPTURE.discoverySoft}{" "}
+            <Link href="/discovery" className="nn-text-link">
+              {NN_QUIZ_CAPTURE.discoveryCta}
+            </Link>
+          </p>
           <p className="mt-8 text-center text-xs text-ink/50">{NN_QUIZ_PAGE.disclaimer}</p>
         </div>
       </NeuroNourishShell>

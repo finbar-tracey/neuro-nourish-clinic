@@ -1,13 +1,23 @@
+import Link from "next/link";
+
 type Step = "quiz" | "assessment" | "programme";
 
-const STEPS: { id: Step; label: string }[] = [
-  { id: "quiz", label: "Quiz" },
-  { id: "assessment", label: "Assessment" },
-  { id: "programme", label: "Programme" },
+const STEPS: { id: Step; label: string; href: string }[] = [
+  { id: "quiz", label: "Quiz", href: "/quiz" },
+  { id: "assessment", label: "Assessment", href: "/shop/cognitive-assessment" },
+  { id: "programme", label: "Programme", href: "/programme" },
 ];
 
-export function FunnelStepper({ active }: { active: Step }) {
+export function FunnelStepper({
+  active,
+  leadId,
+}: {
+  active: Step;
+  leadId?: string;
+}) {
   const activeIndex = STEPS.findIndex((s) => s.id === active);
+  const withLead = (href: string) =>
+    leadId ? `${href}?leadId=${encodeURIComponent(leadId)}` : href;
 
   return (
     <nav aria-label="Your journey progress" className="mx-auto max-w-md">
@@ -27,8 +37,9 @@ export function FunnelStepper({ active }: { active: Step }) {
                 ) : (
                   <span className="flex-1" aria-hidden />
                 )}
-                <span
-                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-medium ${
+                <Link
+                  href={withLead(step.href)}
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-medium transition hover:opacity-90 ${
                     isActive
                       ? "bg-gold text-deep-slate"
                       : isComplete
@@ -36,9 +47,10 @@ export function FunnelStepper({ active }: { active: Step }) {
                         : "border border-mist bg-white text-ink/45"
                   }`}
                   aria-current={isActive ? "step" : undefined}
+                  aria-label={`${step.label} step`}
                 >
                   {isComplete ? "✓" : index + 1}
-                </span>
+                </Link>
                 {index < STEPS.length - 1 ? (
                   <span
                     className={`h-px flex-1 ${isComplete ? "bg-gold/70" : "bg-mist"}`}
@@ -48,13 +60,14 @@ export function FunnelStepper({ active }: { active: Step }) {
                   <span className="flex-1" aria-hidden />
                 )}
               </div>
-              <span
-                className={`text-[10px] uppercase tracking-wider ${
+              <Link
+                href={withLead(step.href)}
+                className={`text-[10px] uppercase tracking-wider transition hover:text-slate-blue ${
                   isActive ? "text-slate-blue" : "text-ink/50"
                 }`}
               >
                 {step.label}
-              </span>
+              </Link>
             </li>
           );
         })}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   AppPreviewVisual,
   CheckList,
@@ -31,9 +32,12 @@ export default function HowTheAppWorksPage() {
             <div className="mt-8 flex flex-col items-start gap-1.5">
               <GoldButton href="/programme">{NN_APP.cta}</GoldButton>
               <span className="text-xs text-ink/55">{NN_APP.ctaHint}</span>
+              <Link href="/shop/light-programme" className="nn-text-link mt-3 text-sm">
+                View the Light programme →
+              </Link>
             </div>
           </div>
-          <AppPreviewVisual />
+              <AppPreviewVisual variant="screenshot" />
         </div>
       </PageContainer>
     </NeuroNourishShell>

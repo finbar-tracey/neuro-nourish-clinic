@@ -243,6 +243,8 @@ export const NN_JOURNEY = {
   steps: NN_JOURNEY_STEPS,
   cta: "Explore the 12-Month Programme",
   ctaHint: "Full detail on every stage",
+  shopSoft: "Ready to start with a product or tier?",
+  shopCta: "Browse the shop",
 } as const;
 
 export interface WhyBenefit {
@@ -390,6 +392,8 @@ export const NN_APP = {
   ctaHint: "App access is included for programme clients",
   badge: "Companion app",
   caption: "Meals · sleep · movement · mood",
+  previewImage: "/brand/app-dashboard-preview.png",
+  previewImageAlt: "NeuroNourish companion app habit tracking preview",
 } as const;
 
 export const NN_PARTNERS = {
@@ -1028,6 +1032,13 @@ export const NN_DISCOVERY = {
       "Select an open time slot below to sit down with our care team, explore your goals, and determine if our 12-month pathway matches what you need.",
   },
   schedulingFooter: "You'll receive a calendar confirmation by email after booking.",
+  preCallTitle: "Have ready before you join",
+  preCall: [
+    "A quiet 15 minutes and any recent health concerns you want to mention",
+    "Your quiz score or emailed report if you have one (optional)",
+    "Questions about assessment, programme tiers, or whether NeuroNourish is a fit",
+  ],
+  recoveredAssessmentCta: "Or continue to the cognitive assessment",
 } as const;
 
 /** Internal care-team script for the complimentary 15-minute discovery consultation (/discovery). */
@@ -1506,6 +1517,10 @@ export const NN_QUIZ_PAGE = {
     "Personalised score, archetype, and next-step guidance",
     "Email your report when you finish",
   ],
+  timeEstimate: "About 3 minutes · 18 questions",
+  resumeBanner: "Welcome back — we saved your progress on this device.",
+  resumeContinue: "Continue where you left off",
+  resumeRestart: "Start over",
   disclaimer:
     "Your answers are private. Results are not a medical diagnosis. Built on the 2024 Lancet Commission on dementia prevention, the FINGER multidomain intervention trial, the MIND diet research at Rush University, and Irish data from TILDA, the HSE and the FSAI.",
 } as const;
@@ -1521,6 +1536,8 @@ export const NN_QUIZ_CAPTURE = {
   progressLabel: "18 of 18 answered",
   error: "Couldn’t save — check your details and try again.",
   backLabel: "← Back",
+  discoverySoft: "Prefer to talk instead?",
+  discoveryCta: "Book a discovery call",
 } as const;
 
 export const NN_QUIZ_REPORT_CTA = {
@@ -1564,6 +1581,10 @@ export const NN_QUIZ_RESULTS = {
       label: "Explore the 12-month personalised programme",
       href: "/programme",
     },
+    {
+      label: "Or book a complimentary discovery call",
+      href: "/discovery",
+    },
   ],
   ctaAssessment: "Start My Assessment",
   ctaAssessmentHint: "Credited toward enrolment within 30 days",
@@ -1571,6 +1592,11 @@ export const NN_QUIZ_RESULTS = {
   ctaDiscoveryHint: "15-minute call · No obligation",
   ctaContact: "Contact Our Team",
   ctaProgramme: "Explore the 12-month programme",
+  emptyHeadline: "Complete the quiz to see your score",
+  emptyBody:
+    "Your personalised results need a full quiz session. Take the 3-minute quiz, or book a discovery call if you'd rather talk first.",
+  emptyCtaQuiz: "Take the brain health quiz",
+  emptyCtaDiscovery: "Book a discovery call",
 } as const;
 
 export const NN_CONTACT = {
@@ -1579,10 +1605,45 @@ export const NN_CONTACT = {
   subtext: "Share a few details and we'll be in touch.",
   highlights: [
     "Typical response within one business day",
+    "NovaUCD, Dublin · Cavan Digital Hub · Ireland & UK (online)",
     "Prefer a low-friction start? Take the brain health quiz first",
     "Partnership enquiries welcome from clinicians & organisations",
   ],
   quizLink: "Take the Brain Health Quiz",
+  discoveryLink: "Or book a discovery call",
+  discoveryHint: "15 minutes · Complimentary · No obligation",
+} as const;
+
+export const NN_TEAM = {
+  eyebrow: "Team",
+  headline: "Medical & care team",
+  subtext:
+    "Clinical oversight, nutrition expertise, and coaching — built around long-term brain health. Named clinician profiles expand as the team is published.",
+  members: [
+    {
+      name: "Emer Sexton",
+      role: "Founder · Nutrition Scientist · Ireland's First ReCODE Practitioner",
+      bio: "Leads clinical direction and Premium programme walkthroughs. Lived experience of cognitive recovery after a cycling accident shaped NeuroNourish.",
+      href: "/about",
+      hrefLabel: "Read Emer's full story",
+    },
+    {
+      name: "CORU-registered dietitians",
+      role: "Clinical nutrition oversight",
+      bio: "Programme nutrition protocols are developed and supervised with CORU-registered dietitian collaboration. Individual clinician profiles will be published here.",
+      href: "/shop/dietetic-consultation",
+      hrefLabel: "Dietetic consultation",
+    },
+    {
+      name: "Care & coaching team",
+      role: "Accountability and day-to-day support",
+      bio: "One-to-one coaching, check-ins, and app-guided habit support between clinical touchpoints.",
+      href: "/programme",
+      hrefLabel: "Explore programme tiers",
+    },
+  ],
+  ctaAbout: "Read Emer's full story",
+  ctaDiscovery: "Book a discovery call",
 } as const;
 
 export const NN_ABOUT = {
@@ -1593,6 +1654,9 @@ export const NN_ABOUT = {
     "NeuroNourish operates from Cavan Digital Hub and NovaUCD, with a team of 13 across nutrition, clinical research, software, and AI — delivering programmes across Ireland and the UK.",
   ],
   cta: "Take the Brain Health Quiz",
+  teamLink: "Meet the team",
+  discoveryLink: "Or book a discovery call",
+  premiumSoft: "Explore the Premium programme",
 } as const;
 
 export const NN_BLOG = {
@@ -1856,7 +1920,7 @@ export const NN_COMPLIANCE =
 
 export const NN_PRIVACY = {
   title: "Privacy Policy",
-  lastUpdated: "July 2026",
+  lastUpdated: "21 July 2026",
   contactEmail: "hello@neuronourish.clinic",
   sections: [
     {
@@ -1900,6 +1964,10 @@ export const NN_PRIVACY = {
     {
       heading: "Cognitive assessment & date of birth",
       body: "When you buy the Cognitive Health Assessment we collect your date of birth solely to generate an age-normed CNS Vital Signs remote test and interpret scores correctly. DOB and reports are stored securely in your care record, accessible to our care team, and are not used for marketing profiling.",
+    },
+    {
+      heading: "Advertising & analytics",
+      body: "We use Meta Pixel and similar tools to measure ad effectiveness and improve the site. You can control cookies via your browser settings. Marketing emails always include an unsubscribe link.",
     },
     {
       heading: "Retention & rights",

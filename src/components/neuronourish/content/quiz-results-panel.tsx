@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { FieldError, Input, Label } from "@/components/ui/input";
 import { FunnelStepper } from "@/components/neuronourish/content/funnel-stepper";
 import { FunnelTrustBar } from "@/components/neuronourish/content/funnel-trust-bar";
-import { SectionEyebrow } from "@/components/neuronourish/shell";
+import { GoldButton, OutlineButton, SectionEyebrow } from "@/components/neuronourish/shell";
 import { NN_QUIZ_REPORT_CTA, NN_QUIZ_RESULTS } from "@/lib/neuronourish-copy";
 import {
   NN_QUIZ_ARCHETYPES,
@@ -20,7 +20,13 @@ import {
   type QuizResult,
   type StoredQuizResult,
 } from "@/lib/neuronourish-quiz-data";
-import { formatPhoneInput, phoneValidationError, normalizePhone, isValidPhone, phoneDigitHint } from "@/lib/phone-ie";
+import {
+  formatPhoneInput,
+  phoneValidationError,
+  normalizePhone,
+  isValidPhone,
+  phoneDigitHint,
+} from "@/lib/phone-ie";
 
 function barColor(pct: number) {
   if (pct >= 70) return "#6E8E6A";
@@ -46,8 +52,50 @@ function fallbackResult(score: number): QuizResult {
   };
 }
 
+function withLead(href: string, leadId: string) {
+  if (!leadId) return href;
+  const join = href.includes("?") ? "&" : "?";
+  return `${href}${join}leadId=${encodeURIComponent(leadId)}`;
+}
+
+function NextStepsBlock({ leadId }: { leadId: string }) {
+  return (
+    <div className="mt-8 rounded-2xl border border-mist bg-linen/20 p-6 text-left">
+      <h3 className="font-display text-lg text-deep-slate">{NN_QUIZ_RESULTS.nextStepsTitle}</h3>
+      <ol className="mt-4 space-y-3 text-sm text-ink/80">
+        {NN_QUIZ_RESULTS.nextSteps.map((step, index) => (
+          <li key={step.href} className="flex gap-3">
+            <span className="font-display text-gold">{index + 1}</span>
+            <Link href={withLead(step.href, leadId)} className="nn-text-link text-left">
+              {step.label}
+            </Link>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-6 flex flex-col items-stretch gap-3 sm:items-center">
+        <GoldButton href={withLead("/shop/cognitive-assessment", leadId)} className="w-full sm:w-auto">
+          {NN_QUIZ_RESULTS.ctaAssessment}
+        </GoldButton>
+        <span className="text-center text-xs text-ink/55">{NN_QUIZ_RESULTS.ctaAssessmentHint}</span>
+        <Link
+          href={withLead("/programme", leadId)}
+          className="nn-text-link text-center text-sm"
+        >
+          {NN_QUIZ_RESULTS.ctaProgramme} →
+        </Link>
+        <OutlineButton href={withLead("/discovery", leadId)} className="w-full sm:w-auto">
+          {NN_QUIZ_RESULTS.ctaDiscovery}
+        </OutlineButton>
+        <span className="text-center text-xs text-ink/55">{NN_QUIZ_RESULTS.ctaDiscoveryHint}</span>
+      </div>
+    </div>
+  );
+}
+
 export function QuizResultsPanel({ score, leadId }: { score: number; leadId: string }) {
   const [result, setResult] = useState<QuizResult>(() => fallbackResult(score));
+  const [hasStoredResult, setHasStoredResult] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
@@ -59,21 +107,26 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
   const phoneRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    let storedOk = false;
     try {
       const raw = sessionStorage.getItem(NN_QUIZ_RESULT_STORAGE_KEY);
-      if (!raw) return;
-      const stored = JSON.parse(raw) as StoredQuizResult;
-      if (stored?.score != null) {
-        setResult(fromStoredQuizResult(stored));
+      if (raw) {
+        const stored = JSON.parse(raw) as StoredQuizResult;
+        if (stored?.score != null && stored.archetypeKey) {
+          setResult(fromStoredQuizResult(stored));
+          storedOk = true;
+        }
       }
     } catch {
       /* ignore */
     }
+    setHasStoredResult(storedOk);
     try {
       setEmail(sessionStorage.getItem("nn-quiz-email") ?? "");
     } catch {
       /* ignore */
     }
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -140,6 +193,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
   const phoneReady = isValidPhone(phone) && consent;
   const digitHint = phone.trim() ? phoneDigitHint(phone) : NN_QUIZ_REPORT_CTA.phoneHintIdle;
   const arch = result.archetype;
+  const showEmpty = hydrated && !hasStoredResult && !leadId;
 
   const categoryRows = (
     Object.entries(NN_QUIZ_CATEGORY_LABELS) as [QuizCategory, string][]
@@ -149,9 +203,35 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
     pct: result.catPercents[key] ?? 0,
   }));
 
+  const reportDone =
+    reportStatus === "sent" && (phoneStatus === "saved" || phoneStatus === "skipped");
+
+  if (showEmpty) {
+    return (
+      <div className="nn-quiz-results mx-auto max-w-lg text-center">
+        <FunnelStepper active="quiz" />
+        <div className="mt-10">
+          <SectionEyebrow>{NN_QUIZ_RESULTS.eyebrow}</SectionEyebrow>
+          <h1 className="mt-3 font-display text-3xl text-deep-slate">
+            {NN_QUIZ_RESULTS.emptyHeadline}
+          </h1>
+          <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/75">
+            {NN_QUIZ_RESULTS.emptyBody}
+          </p>
+          <div className="mt-8 flex flex-col items-center gap-3">
+            <GoldButton href="/quiz">{NN_QUIZ_RESULTS.emptyCtaQuiz}</GoldButton>
+            <Link href="/discovery" className="nn-text-link text-sm">
+              {NN_QUIZ_RESULTS.emptyCtaDiscovery} →
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="nn-quiz-results mx-auto max-w-lg text-center">
-      <FunnelStepper active="quiz" />
+      <FunnelStepper active="quiz" leadId={leadId || undefined} />
       <div className="mt-8">
         <SectionEyebrow>Your NeuroNourish Brain Health Score</SectionEyebrow>
       </div>
@@ -224,28 +304,30 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         </div>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-mist bg-white/85 p-6 text-left shadow-sm">
-        <p className="text-sm font-medium text-slate-blue">Where your score is coming from</p>
-        <ul className="mt-4 space-y-3">
-          {categoryRows.map((row) => (
-            <li key={row.key}>
-              <div className="mb-1 flex items-center justify-between text-xs text-ink/70">
-                <span>{row.label}</span>
-                <span className="font-semibold tabular-nums">{row.pct}%</span>
-              </div>
-              <div className="h-2 overflow-hidden rounded-full bg-linen">
-                <div
-                  className="h-full rounded-full transition-all"
-                  style={{ width: `${row.pct}%`, background: barColor(row.pct) }}
-                />
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {hasStoredResult ? (
+        <div className="mt-8 rounded-2xl border border-mist bg-white/85 p-6 text-left shadow-sm">
+          <p className="text-sm font-medium text-slate-blue">Where your score is coming from</p>
+          <ul className="mt-4 space-y-3">
+            {categoryRows.map((row) => (
+              <li key={row.key}>
+                <div className="mb-1 flex items-center justify-between text-xs text-ink/70">
+                  <span>{row.label}</span>
+                  <span className="font-semibold tabular-nums">{row.pct}%</span>
+                </div>
+                <div className="h-2 overflow-hidden rounded-full bg-linen">
+                  <div
+                    className="h-full rounded-full transition-all"
+                    style={{ width: `${row.pct}%`, background: barColor(row.pct) }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       {result.insight ? (
-        <div className="mt-6 rounded-xl border border-mist bg-linen/30 px-4 py-4 text-left">
+        <div className="mt-8 rounded-2xl border border-mist bg-white/85 p-6 text-left shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-blue">
             {result.insight.tag}
           </p>
@@ -256,7 +338,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       <div className="mt-8 rounded-2xl border border-gold/40 bg-white p-6 text-left shadow-sm">
         <h3 className="font-display text-xl text-deep-slate">
           {NN_QUIZ_REPORT_CTA.titlePrefix}{" "}
-          <em className="not-italic text-slate-blue">{arch.name}</em>{" "}
+          <span className="text-slate-blue">{arch.name}</span>{" "}
           {NN_QUIZ_REPORT_CTA.titleSuffix}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-ink/75">
@@ -386,6 +468,24 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
           </div>
         )}
       </div>
+
+      {reportDone ? <NextStepsBlock leadId={leadId} /> : null}
+
+      {/* Soft next steps always visible so funnel never dead-ends before email */}
+      {reportStatus !== "sent" ? (
+        <div className="mt-6 text-center">
+          <Link
+            href={withLead("/shop/cognitive-assessment", leadId)}
+            className="nn-text-link text-sm"
+          >
+            {NN_QUIZ_RESULTS.ctaAssessment} →
+          </Link>
+          <span className="mx-2 text-ink/30">·</span>
+          <Link href={withLead("/discovery", leadId)} className="nn-text-link text-sm">
+            {NN_QUIZ_RESULTS.ctaDiscovery}
+          </Link>
+        </div>
+      ) : null}
 
       <FunnelTrustBar className="mt-6" />
 

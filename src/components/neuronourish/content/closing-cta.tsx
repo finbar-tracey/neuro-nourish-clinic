@@ -8,16 +8,23 @@ import { PageContainer } from "@/components/neuronourish/content/container";
 import { NN_CLOSING } from "@/lib/neuronourish-copy";
 
 export function ClosingCtaSection({
-  primaryHref = "/quiz",
-  quizHref = "/discovery",
+  primaryHref,
+  quizHref,
+  discoveryHref,
   className = "",
 }: {
+  /** Quiz CTA — preferred name is quizHref; primaryHref kept for older call sites */
   primaryHref?: string;
+  quizHref?: string;
   /** @deprecated Kept for call-site compatibility; secondary CTA removed. */
   secondaryHref?: string;
-  quizHref?: string;
+  /** Discovery soft link — was previously misnamed quizHref */
+  discoveryHref?: string;
   className?: string;
 }) {
+  const quizTarget = quizHref ?? primaryHref ?? "/quiz";
+  const discoveryTarget = discoveryHref ?? "/discovery";
+
   return (
     <section
       id="get-started"
@@ -40,12 +47,12 @@ export function ClosingCtaSection({
         </ul>
 
         <div className="mt-10 flex flex-col items-center gap-1.5">
-          <GoldButton href={primaryHref}>{NN_CLOSING.ctaQuiz}</GoldButton>
+          <GoldButton href={quizTarget}>{NN_CLOSING.ctaQuiz}</GoldButton>
           <span className="text-xs text-sky-blue/80">Free · 3 minutes · Personalised score</span>
         </div>
 
         <Link
-          href={quizHref}
+          href={discoveryTarget}
           className="nn-text-link mt-6 inline-block text-sm text-mist hover:text-ivory"
         >
           {NN_CLOSING.ctaPrimary} →

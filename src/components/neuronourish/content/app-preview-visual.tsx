@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { NN_APP } from "@/lib/neuronourish-copy";
 
-export function AppPreviewVisual() {
+type AppPreviewVisualProps = {
+  /** Prefer real screenshot on product pages; keep mock animation on homepage. */
+  variant?: "mock" | "screenshot";
+};
+
+export function AppPreviewVisual({ variant = "mock" }: AppPreviewVisualProps) {
   const rows = NN_APP.previewMetrics;
   const [active, setActive] = useState(0);
   const [mounted, setMounted] = useState(false);
@@ -20,10 +26,34 @@ export function AppPreviewVisual() {
   }, []);
 
   useEffect(() => {
-    if (!motionOk) return;
+    if (!motionOk || variant === "screenshot") return;
     const tick = setInterval(() => setActive((i) => (i + 1) % rows.length), 2800);
     return () => clearInterval(tick);
-  }, [rows.length, motionOk]);
+  }, [rows.length, motionOk, variant]);
+
+  if (variant === "screenshot") {
+    return (
+      <div className="nn-app-preview rounded-2xl border border-mist bg-linen/25 p-4 shadow-sm sm:p-6">
+        <div className="mb-4 flex items-center justify-between gap-3 px-1">
+          <span className="nn-badge">{NN_APP.badge}</span>
+          <span className="text-[10px] font-medium uppercase tracking-wider text-ink/45">
+            App preview
+          </span>
+        </div>
+        <div className="overflow-hidden rounded-2xl border border-mist bg-white shadow-sm">
+          <Image
+            src={NN_APP.previewImage}
+            alt={NN_APP.previewImageAlt}
+            width={1200}
+            height={900}
+            className="h-auto w-full object-cover object-top"
+            sizes="(max-width: 768px) 100vw, 560px"
+          />
+        </div>
+        <p className="mt-4 text-center text-xs text-ink/55">{NN_APP.caption}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="nn-app-preview rounded-2xl border border-mist bg-linen/25 p-6 shadow-sm sm:p-8">

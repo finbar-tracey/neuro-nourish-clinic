@@ -289,9 +289,36 @@ export const NN_SHOP = {
     "Choose a clear next step — from a cognitive baseline to consultations, lab review, or a 12-month tier. Unsure? Start with a discovery call.",
   tiersTitle: "12-month programme tiers",
   productsTitle: "Assessments & services",
+  featuredTitle: "Most people start here",
   discoveryCta: "Book a discovery call",
   discoveryHint: "15 minutes · No obligation",
-  placeholderBadge: "Imagery soon",
+  placeholderBadge: "Details soon",
+  priceHiddenLabel: "Investment discussed on discovery",
+  relatedTitle: "Often booked with",
+  faqTitle: "Shop FAQ",
+  faq: [
+    {
+      q: "How does the shop relate to the 12-month programme?",
+      a: "The shop is where you purchase assessments, consultations, and programme tiers. The programme page compares tiers and helps you decide — buying happens here.",
+    },
+    {
+      q: "Should I book a discovery call first?",
+      a: "If you're unsure which tier or product fits, book a discovery call. Many people take the cognitive assessment first, then decide on a programme.",
+    },
+    {
+      q: "Why don't I see prices on every product?",
+      a: "Some investments are confirmed at checkout or on a discovery call so we can confirm clinical fit. Labels on each product explain which applies.",
+    },
+  ],
+  programmeCompareCta: "Compare programme tiers",
+  filterAll: "All",
+  filterLabels: {
+    assessment: "Assessment",
+    consultation: "Consultations",
+    lab: "Labs",
+    supplement: "Supplements",
+    programme: "Programmes",
+  },
 } as const;
 
 export function getShopProduct(slugOrLegacy: string): ShopProduct | undefined {
@@ -313,10 +340,38 @@ export function shopServiceProducts(): ShopProduct[] {
   return NN_SHOP_PRODUCTS.filter((p) => p.category !== "programme");
 }
 
+export function shopFeaturedProducts(): ShopProduct[] {
+  return NN_SHOP_PRODUCTS.filter((p) => p.featured);
+}
+
+/** Related products for cross-sell on detail pages (excludes self). */
+export function shopRelatedProducts(slug: string, limit = 3): ShopProduct[] {
+  const related: Record<string, readonly string[]> = {
+    "cognitive-assessment": ["premium-programme", "medium-programme", "blood-work"],
+    "nutrition-consultation": ["dietetic-consultation", "blood-work", "cognitive-assessment"],
+    "dietetic-consultation": ["medium-programme", "blood-work", "nutrition-consultation"],
+    "blood-work": ["cognitive-assessment", "dietetic-consultation", "medium-programme"],
+    pt257: ["cognitive-assessment", "medium-programme", "nutrition-consultation"],
+    "premium-programme": ["cognitive-assessment", "blood-work", "medium-programme"],
+    "medium-programme": ["cognitive-assessment", "blood-work", "dietetic-consultation"],
+    "light-programme": ["cognitive-assessment", "how-the-app"],
+  };
+  const slugs = (related[slug] ?? []).filter((s) => s !== "how-the-app");
+  return slugs
+    .map((s) => getShopProduct(s))
+    .filter((p): p is ShopProduct => Boolean(p))
+    .slice(0, limit);
+}
+
 export function formatShopPrice(product: ShopProduct): string {
   return new Intl.NumberFormat("en-IE", {
     style: "currency",
     currency: product.currency.toUpperCase(),
     maximumFractionDigits: 0,
   }).format(product.amountCents / 100);
+}
+
+export function shopPublicPriceLabel(product: ShopProduct): string {
+  if (product.showPublicPrice) return formatShopPrice(product);
+  return product.priceLabel ?? NN_SHOP.priceHiddenLabel;
 }

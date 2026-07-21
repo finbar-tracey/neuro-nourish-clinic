@@ -279,6 +279,57 @@ Copy matrix: `NN_META_AD_MATRIX` in `src/lib/neuronourish-copy.ts`.
 
 ---
 
+## Remaining tracks (July 2026 — after page polish)
+
+Marketing page polish is live. Finish in this order. **Do not invent** prices, team bios, blog posts, or clinical claims.
+
+### Track 0 — Sync
+- [x] Page-polish deployed to Vercel
+- [ ] Commit + push polish to `origin/main` (this repo)
+- [ ] Confirm git SHA ≈ production after next deploy
+
+### Track A — Ops / prove commerce (current Vercel gap)
+As of July 2026, production Vercel env has KV / workspace / dry-run flags but **not** Stripe, Resend, Calendly, or CNSVS keys.
+
+- [ ] Add `STRIPE_SECRET_KEY`, publishable key, `STRIPE_WEBHOOK_SECRET`
+- [ ] Stripe webhook → `https://neuro-nourish-clinic.vercel.app/api/stripe/webhook` (or custom domain)
+- [ ] Add `RESEND_API_KEY` + `RESEND_FROM`; verify `neuronourish.clinic`
+- [ ] Set `NOTIFICATIONS_DRY_RUN=false` in production
+- [ ] Add `NEXT_PUBLIC_CALENDLY_URL`
+- [ ] Apply Turso migration `20260721230000_add_cns_pipeline_fields`
+- [ ] Staging CNSVS prove (`CNSVS_*`, then `CNSVS_LIVE=true`)
+- [ ] **E2E:** pay assessment → `NN-{leadId}` → CNS email → CRM status
+
+### Track B — Emer content pack (blocked on client)
+- [ ] Price sheet per SKU / tier
+- [ ] Team names + photos
+- [ ] PT257 + blood-work copy/imagery
+- [ ] Hero + partner logos
+- [ ] Blog drafts (≥4) or defer
+
+### Track C — Site updates after B
+- [ ] Hero image, partners, team, shop placeholders removed
+- [ ] Flip `showPublicPrice` where locked
+- [ ] Blog routes only when posts exist
+
+### Track D — Optional polish
+- [x] Quiz resume + time estimate
+- [x] Shop category filters
+- [x] App page real screenshot preview
+- [ ] GitHub → Vercel auto-deploy
+- [ ] Rotate any Resend keys pastedin chat
+
+### Track E — Demo path (Friday / VC)
+1. `/quiz` → complete → email report → next steps → `/shop/cognitive-assessment`
+2. `/programme` compare tiers → discovery CTA
+3. `/shop` filters + featured
+4. Workspace CNS panel (even if `CNSVS_LIVE` off)
+5. Label Stripe test mode clearly
+
+**Cut line if Track A incomplete:** demo UI funnel only; say CNS/Stripe are staging.
+
+---
+
 ## Related docs
 
 - [QUIZ_CAPTURE_POST_IMPLEMENTATION.md](./QUIZ_CAPTURE_POST_IMPLEMENTATION.md) — quiz soft-gate + report CTA + CRM wiring gate (`npm run quiz:post-implementation`)

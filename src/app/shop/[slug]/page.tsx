@@ -4,8 +4,14 @@ import { notFound } from "next/navigation";
 import { CheckList } from "@/components/neuronourish/content/highlight-list";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { ShopCheckoutButton } from "@/components/neuronourish/shop-checkout-button";
+import { ShopProductCard } from "@/components/neuronourish/shop-product-card";
 import { NeuroNourishShell, SectionEyebrow } from "@/components/neuronourish/shell";
-import { getShopProduct, NN_SHOP } from "@/lib/neuronourish-shop";
+import {
+  getShopProduct,
+  NN_SHOP,
+  shopPublicPriceLabel,
+  shopRelatedProducts,
+} from "@/lib/neuronourish-shop";
 import { buildPageMetadata } from "@/lib/seo";
 
 type PageProps = {
@@ -33,6 +39,9 @@ export default async function ShopProductPage({ params }: PageProps) {
   const product = getShopProduct(slug);
   if (!product) notFound();
 
+  const related = shopRelatedProducts(product.slug);
+  const showAppLink = product.slug === "light-programme";
+
   return (
     <NeuroNourishShell>
       <PageSection className="py-14 sm:py-20">
@@ -59,7 +68,7 @@ export default async function ShopProductPage({ params }: PageProps) {
           <div className="mx-auto mt-10 max-w-lg rounded-2xl border border-mist bg-white/90 p-6 shadow-sm sm:p-8">
             <p className="text-sm font-medium text-slate-blue">What&apos;s included</p>
             <CheckList items={product.includes} className="mt-4" />
-            <p className="mt-6 text-center text-sm text-ink/65">{product.priceLabel}</p>
+            <p className="mt-6 text-center text-sm text-ink/65">{shopPublicPriceLabel(product)}</p>
           </div>
 
           <div className="mx-auto mt-10 flex max-w-lg flex-col items-center gap-3">
@@ -77,8 +86,31 @@ export default async function ShopProductPage({ params }: PageProps) {
                 {NN_SHOP.discoveryCta} →
               </Link>
             )}
+            {showAppLink ? (
+              <Link href="/how-the-app-works" className="nn-text-link text-sm">
+                See how the companion app works →
+              </Link>
+            ) : null}
+            {product.category === "programme" ? (
+              <Link href="/programme" className="text-xs text-ink/55 underline-offset-2 hover:underline">
+                Compare all programme tiers
+              </Link>
+            ) : null}
           </div>
         </PageContainer>
+
+        {related.length > 0 ? (
+          <PageContainer width="xl" className="mt-16">
+            <h2 className="text-center font-display text-2xl text-slate-blue">
+              {NN_SHOP.relatedTitle}
+            </h2>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((item) => (
+                <ShopProductCard key={item.slug} product={item} />
+              ))}
+            </div>
+          </PageContainer>
+        ) : null}
       </PageSection>
     </NeuroNourishShell>
   );

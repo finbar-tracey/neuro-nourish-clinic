@@ -16,7 +16,7 @@ export function ShopProductCard({ product }: { product: ShopProduct }) {
         </p>
       ) : null}
       <p className="mt-4 text-xs font-medium text-slate-blue">
-        {product.showPublicPrice ? null : product.priceLabel}
+        {product.showPublicPrice ? null : product.priceLabel ?? NN_SHOP.priceHiddenLabel}
       </p>
       <Link
         href={`/shop/${product.slug}`}

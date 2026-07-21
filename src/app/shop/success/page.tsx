@@ -69,6 +69,7 @@ function assessmentSuccessCopy(state: AssessmentSuccessState): {
 export default async function ShopSuccessPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const product = getShopProduct(params.product ?? "");
+  const missingProduct = !product;
   const isAssessment = product?.slug === "cognitive-assessment";
 
   let assessmentState: AssessmentSuccessState = "default";
@@ -80,10 +81,7 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
     if (lead) {
       if (lead.cnsRemoteId && lead.cnsTestUrl && lead.cnsStatus === "awaiting_report") {
         assessmentState = "test_sent";
-      } else if (
-        !lead.dateOfBirth ||
-        lead.cnsStatus === "pending_dob"
-      ) {
+      } else if (!lead.dateOfBirth || lead.cnsStatus === "pending_dob") {
         assessmentState = "pending_dob";
       } else if (lead.cnsStatus === "failed" || lead.cnsLastError?.includes("CNSVS_LIVE")) {
         assessmentState = "manual";
@@ -93,15 +91,42 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
     }
   }
 
+  if (missingProduct) {
+    return (
+      <NeuroNourishShell>
+        <PageContainer width="md" className="py-16 text-center">
+          <SectionEyebrow>Shop</SectionEyebrow>
+          <h1 className="mt-3 font-display text-3xl text-deep-slate">You&apos;re in the right place</h1>
+          <p className="mt-4 text-sm leading-relaxed text-ink/75">
+            If you just completed a purchase, check your email for confirmation. You can also return
+            to the shop or book a discovery call if you have questions.
+          </p>
+          <div className="mx-auto mt-6 max-w-sm text-left">
+            <HighlightList
+              items={[
+                "Check your inbox for a Stripe / NeuroNourish confirmation",
+                "Browse the shop if you want to continue",
+                "Book a discovery call for personalised guidance",
+              ]}
+            />
+          </div>
+          <GoldButton href="/shop" className="mt-8">
+            Back to shop
+          </GoldButton>
+          <Link href="/discovery" className="mt-4 block text-sm text-slate-blue underline">
+            Book a discovery call
+          </Link>
+        </PageContainer>
+      </NeuroNourishShell>
+    );
+  }
+
   const assessmentCopy = isAssessment ? assessmentSuccessCopy(assessmentState) : null;
-  const headline = assessmentCopy?.headline ?? product?.successHeadline ?? "Purchase confirmed";
-  const body =
-    assessmentCopy?.body ??
-    product?.successBody ??
-    "Thank you. Our care team will follow up by email with next steps.";
+  const headline = assessmentCopy?.headline ?? product.successHeadline;
+  const body = assessmentCopy?.body ?? product.successBody;
   const nextSteps =
     assessmentCopy?.steps ??
-    product?.successNextSteps ?? [
+    product.successNextSteps ?? [
       "Check your inbox for confirmation",
       "Book a discovery call if you have questions",
     ];
@@ -111,8 +136,8 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
     : "/onboarding";
   const showOnboarding =
     !isAssessment &&
-    (product?.funnelStage === "assessment_purchased" ||
-      product?.funnelStage === "programme_enrolled");
+    (product.funnelStage === "assessment_purchased" ||
+      product.funnelStage === "programme_enrolled");
 
   const primaryIsUnlock = assessmentState === "pending_dob" && unlockHref;
 
@@ -149,6 +174,11 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
         <Link href="/shop" className="mt-3 block text-sm text-slate-blue underline">
           Browse shop
         </Link>
+        {isAssessment ? (
+          <Link href="/programme" className="mt-3 block text-sm text-slate-blue underline">
+            Explore programme tiers
+          </Link>
+        ) : null}
       </PageContainer>
     </NeuroNourishShell>
   );

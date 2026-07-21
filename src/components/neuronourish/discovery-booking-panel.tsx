@@ -72,6 +72,37 @@ export function DiscoveryBookingPanel({ calendlyUrl }: DiscoveryBookingPanelProp
         </ol>
       </section>
 
+      <section className="mt-12" aria-labelledby="discovery-precall">
+        <h2
+          id="discovery-precall"
+          className="text-center font-display text-xl text-slate-blue sm:text-2xl"
+        >
+          {NN_DISCOVERY.preCallTitle}
+        </h2>
+        <ul className="mx-auto mt-6 max-w-md space-y-3 text-left text-sm text-ink/80">
+          {NN_DISCOVERY.preCall.map((item) => (
+            <li key={item} className="flex gap-3">
+              <span className="text-gold">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        {isRecovered ? (
+          <p className="mt-6 text-center text-sm">
+            <Link
+              href={
+                leadId
+                  ? `/shop/cognitive-assessment?leadId=${encodeURIComponent(leadId)}`
+                  : "/shop/cognitive-assessment"
+              }
+              className="nn-text-link"
+            >
+              {NN_DISCOVERY.recoveredAssessmentCta} →
+            </Link>
+          </p>
+        ) : null}
+      </section>
+
       {hasCalendly ? (
         <section className="mt-12" aria-labelledby="discovery-calendar">
           <h2

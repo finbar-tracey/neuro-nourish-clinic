@@ -2,32 +2,10 @@ import Link from "next/link";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
-import { buildPageMetadata } from "@/lib/seo";
+import { NN_TEAM } from "@/lib/neuronourish-copy";
+import { buildNeuronourishMetadata } from "@/lib/neuronourish-seo";
 
-const TEAM = [
-  {
-    name: "Emer Sexton",
-    role: "Founder · Nutrition Scientist · Ireland's First ReCODE Practitioner",
-    bio: "Leads clinical direction and Premium programme walkthroughs. Lived experience of cognitive recovery after a cycling accident shaped NeuroNourish.",
-  },
-  {
-    name: "CORU-registered dietitians",
-    role: "Clinical nutrition oversight",
-    bio: "Programme nutrition protocols are developed and supervised with CORU-registered dietitian collaboration.",
-  },
-  {
-    name: "Care & coaching team",
-    role: "Accountability and day-to-day support",
-    bio: "One-to-one coaching, check-ins, and app-guided habit support between clinical touchpoints.",
-  },
-] as const;
-
-export const metadata = buildPageMetadata({
-  title: "Medical & Care Team | NeuroNourish",
-  description:
-    "Meet the NeuroNourish clinical and care team — founder-led brain health programmes with dietitian oversight and coaching support.",
-  path: "/team",
-});
+export const metadata = buildNeuronourishMetadata("team");
 
 export default function TeamPage() {
   return (
@@ -35,15 +13,15 @@ export default function TeamPage() {
       <PageSection className="py-14 sm:py-20">
         <PageContainer width="lg">
           <SectionHeader
-            eyebrow="Team"
-            headline="Medical & care team"
-            subtext="Clinical oversight, nutrition expertise, and coaching — built around long-term brain health."
+            eyebrow={NN_TEAM.eyebrow}
+            headline={NN_TEAM.headline}
+            subtext={NN_TEAM.subtext}
             align="center"
             headlineClassName="max-w-2xl"
           />
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {TEAM.map((member) => (
+            {NN_TEAM.members.map((member) => (
               <article
                 key={member.name}
                 className="relative overflow-hidden rounded-2xl border border-mist bg-white/90 p-6 shadow-sm"
@@ -54,14 +32,19 @@ export default function TeamPage() {
                   {member.role}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-ink/75">{member.bio}</p>
+                {member.href ? (
+                  <Link href={member.href} className="nn-text-link mt-4 inline-block text-sm">
+                    {member.hrefLabel} →
+                  </Link>
+                ) : null}
               </article>
             ))}
           </div>
 
           <div className="mt-12 flex flex-col items-center gap-3">
-            <GoldButton href="/about">Read Emer&apos;s full story</GoldButton>
+            <GoldButton href="/about">{NN_TEAM.ctaAbout}</GoldButton>
             <Link href="/discovery" className="nn-text-link text-sm">
-              Book a discovery call →
+              {NN_TEAM.ctaDiscovery} →
             </Link>
           </div>
         </PageContainer>

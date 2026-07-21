@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { GoldButton } from "@/components/neuronourish/shell";
 import { AppPreviewVisual } from "@/components/neuronourish/content/app-preview-visual";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
@@ -36,6 +37,12 @@ export function JourneySection({ className = "" }: { className?: string }) {
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-mist/80 pt-10">
           <GoldButton href="/programme">{NN_JOURNEY.cta}</GoldButton>
           <span className="text-xs text-ink/60">{NN_JOURNEY.ctaHint}</span>
+          <p className="mt-3 text-sm text-ink/65">
+            {NN_JOURNEY.shopSoft}{" "}
+            <Link href="/shop" className="nn-text-link">
+              {NN_JOURNEY.shopCta}
+            </Link>
+          </p>
         </div>
       </PageContainer>
     </PageSection>

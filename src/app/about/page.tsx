@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   GoldButton,
   NeuroNourishShell,
@@ -69,14 +70,17 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
+        <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
           <GoldButton href="/quiz">{NN_ABOUT.cta}</GoldButton>
-          <a href="/team" className="nn-text-link text-sm">
-            Meet the team →
-          </a>
-          <a href="/discovery" className="nn-text-link text-sm">
-            Or book a discovery call →
-          </a>
+          <Link href="/team" className="nn-text-link text-sm">
+            {NN_ABOUT.teamLink} →
+          </Link>
+          <Link href="/shop/premium-programme" className="nn-text-link text-sm">
+            {NN_ABOUT.premiumSoft} →
+          </Link>
+          <Link href="/discovery" className="nn-text-link text-sm">
+            {NN_ABOUT.discoveryLink} →
+          </Link>
         </div>
       </PageContainer>
     </NeuroNourishShell>
