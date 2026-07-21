@@ -72,6 +72,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    if (!isNeuronourish) return [];
+    return [
+      {
+        source: "/assessment",
+        destination: "/shop/cognitive-assessment",
+        permanent: false,
+      },
+      {
+        source: "/assessment/success",
+        destination: "/shop/success?product=cognitive-assessment",
+        permanent: false,
+      },
+      {
+        source: "/programme/success",
+        destination: "/shop/success?product=medium-programme",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

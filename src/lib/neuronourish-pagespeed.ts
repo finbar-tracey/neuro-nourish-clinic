@@ -15,9 +15,11 @@ export const NN_CWV_THRESHOLDS = {
 export const NN_PAGESPEED_URLS = [
   "/",
   "/quiz",
+  "/shop",
+  "/shop/cognitive-assessment",
   "/discovery",
-  "/assessment",
   "/programme",
+  "/team",
 ] as const;
 
 export function neuronourishPagespeedPaths(): string[] {

@@ -47,6 +47,15 @@ type LeadLike = {
   initialInvoiceAmount?: number | null;
   revenueGenerated?: number | null;
   expectedValue?: number | null;
+  cnsSubjectId?: string | null;
+  cnsRemoteId?: string | null;
+  cnsStatus?: string | null;
+  cnsTestUrl?: string | null;
+  cnsSummaryStatus?: string | null;
+  cnsSummaryText?: string | null;
+  cnsLastError?: string | null;
+  dateOfBirth?: string | null;
+  cnsPdfDocId?: string | null;
 };
 
 function Row({ label, value }: { label: string; value: React.ReactNode }) {
@@ -118,7 +127,7 @@ export function CaseDetailNnSummary({ lead }: { lead: LeadLike }) {
             Quiz results
           </Link>
           <Link
-            href={`/assessment?leadId=${lead.id}`}
+            href={`/shop/cognitive-assessment?leadId=${lead.id}`}
             className="rounded-full border border-slate-200 px-2.5 py-1 font-medium text-navy hover:bg-slate-50"
             target="_blank"
           >
@@ -202,8 +211,115 @@ export function CaseDetailNnHeaderMeta({ lead }: { lead: LeadLike }) {
   const parts = [
     score != null ? `Score ${score}/100` : null,
     concern,
-    nnStageLabel(lead as never),
+    lead.cnsStatus && lead.cnsStatus !== "none" ? `CNS: ${lead.cnsStatus}` : null,
   ].filter(Boolean);
 
-  return <p className="mt-2 text-lg text-slate-700">{parts.join(" · ")}</p>;
+  return <p className="text-sm text-slate-500">{parts.join(" · ")}</p>;
+}
+
+export function CaseDetailNnCnsPanel({
+  lead,
+  onAction,
+  busy,
+  caseId,
+}: {
+  lead: LeadLike;
+  onAction: (action: "reissue" | "approve_summary") => void;
+  busy?: boolean;
+  caseId: string;
+}) {
+  const status = lead.cnsStatus ?? "none";
+  if (status === "none" && !lead.assessmentPaidAt) return null;
+
+  const pdfHref = lead.cnsPdfDocId
+    ? `/api/leads/${caseId}/documents/${lead.cnsPdfDocId}`
+    : null;
+
+  return (
+    <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+      <h2 className="mb-3 font-semibold text-navy">CNS Vital Signs</h2>
+      <dl className="space-y-0 text-sm">
+        <Row label="Status" value={status} />
+        {lead.cnsSubjectId ? <Row label="Subject ID" value={lead.cnsSubjectId} /> : null}
+        {lead.cnsRemoteId ? <Row label="Remote ID" value={lead.cnsRemoteId} /> : null}
+        {lead.dateOfBirth ? (
+          <Row label="DOB on file" value={formatDate(lead.dateOfBirth)} />
+        ) : (
+          <Row label="DOB on file" value="Missing" />
+        )}
+        {lead.cnsSummaryStatus && lead.cnsSummaryStatus !== "none" ? (
+          <Row label="Summary" value={lead.cnsSummaryStatus} />
+        ) : null}
+        {lead.cnsLastError ? (
+          <Row label="Last error" value={<span className="text-red-700">{lead.cnsLastError}</span>} />
+        ) : null}
+      </dl>
+
+      {lead.cnsTestUrl ? (
+        <a
+          href={lead.cnsTestUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-3 inline-block text-xs font-medium text-navy underline"
+        >
+          Open test launcher
+        </a>
+      ) : null}
+
+      {pdfHref ? (
+        <a
+          href={pdfHref}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-2 block text-xs font-medium text-navy underline"
+        >
+          View / download CNS PDF
+        </a>
+      ) : null}
+
+      {lead.cnsSummaryText ? (
+        <pre className="mt-4 max-h-48 overflow-auto whitespace-pre-wrap rounded-lg bg-slate-50 p-3 text-[11px] leading-relaxed text-slate-700">
+          {lead.cnsSummaryText}
+        </pre>
+      ) : null}
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        <button
+          type="button"
+          disabled={busy}
+          onClick={() => {
+            if (
+              typeof window !== "undefined" &&
+              !window.confirm("Re-issue a new CNS remote test for this client? Subject ID stays the same.")
+            ) {
+              return;
+            }
+            onAction("reissue");
+          }}
+          className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-navy hover:bg-slate-50 disabled:opacity-50"
+        >
+          Force re-issue test
+        </button>
+        {lead.cnsSummaryStatus === "draft" ? (
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => onAction("approve_summary")}
+            className="rounded-full bg-gold px-3 py-1.5 text-xs font-medium text-navy hover:bg-gold/90 disabled:opacity-50"
+          >
+            Approve &amp; send summary
+          </button>
+        ) : null}
+        {status === "pending_dob" ? (
+          <Link
+            href={`/shop/cognitive-assessment/unlock?leadId=${lead.id}`}
+            className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-navy hover:bg-slate-50"
+            target="_blank"
+          >
+            Open unlock page
+          </Link>
+        ) : null}
+      </div>
+    </section>
+  );
 }

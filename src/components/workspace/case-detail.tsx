@@ -25,6 +25,7 @@ import { ArrowLeft, Download, ExternalLink, FileText } from "lucide-react";
 import { AttributionPanel } from "@/components/workspace/attribution-panel";
 import { FollowUpPicker } from "@/components/workspace/follow-up-picker";
 import {
+  CaseDetailNnCnsPanel,
   CaseDetailNnHeaderMeta,
   CaseDetailNnJourney,
   CaseDetailNnSummary,
@@ -127,6 +128,14 @@ type CaseData = {
   assessmentPaidAt: string | null;
   discoveryBookedAt: string | null;
   enrolledAt: string | null;
+  dateOfBirth?: string | null;
+  cnsSubjectId?: string | null;
+  cnsRemoteId?: string | null;
+  cnsTestUrl?: string | null;
+  cnsStatus?: string | null;
+  cnsSummaryStatus?: string | null;
+  cnsSummaryText?: string | null;
+  cnsLastError?: string | null;
   credentialsProvisioned: boolean;
   additionalInfo: string | null;
   lostReason: string | null;
@@ -218,6 +227,28 @@ export function CaseDetail({ caseId }: { caseId: string }) {
       await load();
     } catch {
       setActionError("Update failed — try again");
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function cnsAction(action: "reissue" | "approve_summary") {
+    setSaving(true);
+    setActionError(null);
+    try {
+      const res = await fetch(`/api/workspace/cns/${caseId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action }),
+      });
+      if (!res.ok) {
+        const errBody = (await res.json().catch(() => ({}))) as { error?: string };
+        setActionError(errBody.error ?? "CNS action failed");
+        return;
+      }
+      await load();
+    } catch {
+      setActionError("CNS action failed — try again");
     } finally {
       setSaving(false);
     }
@@ -793,7 +824,19 @@ export function CaseDetail({ caseId }: { caseId: string }) {
           </div>
 
           {isNn ? (
-            <CaseDetailNnSummary lead={data} />
+            <>
+              <CaseDetailNnSummary lead={data} />
+              <CaseDetailNnCnsPanel
+                lead={{
+                  ...data,
+                  cnsPdfDocId:
+                    data.caseDocuments?.find((d) => d.docKey === "cns_clinical_report")?.id ?? null,
+                }}
+                caseId={caseId}
+                onAction={cnsAction}
+                busy={saving}
+              />
+            </>
           ) : (
           <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             <h2 className="mb-3 font-semibold text-navy">Case summary</h2>

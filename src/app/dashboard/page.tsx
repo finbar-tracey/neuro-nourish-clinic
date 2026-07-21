@@ -159,7 +159,7 @@ export default async function ConsumerDashboardPortalPage() {
                 </span>
               ) : (
                 <Link
-                  href={`/assessment?leadId=${encodeURIComponent(lead.id)}`}
+                  href={`/shop/cognitive-assessment?leadId=${encodeURIComponent(lead.id)}`}
                   className="block rounded border border-mist bg-ivory px-2 py-1 text-center text-xs font-semibold text-slate-blue hover:bg-linen/40"
                 >
                   Start baseline assessment

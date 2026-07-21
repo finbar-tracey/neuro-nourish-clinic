@@ -350,7 +350,7 @@ export async function handleFunnelPost(request: Request, body: unknown) {
         "Your NeuroNourish brain archetype report",
         `Hi ${lead.firstName},\n\nYour personalised brain health report is ready${
           lead.quizScore != null ? ` — your score is ${lead.quizScore}/100` : ""
-        }.\n\nView your results again: ${siteUrl()}/quiz/results?leadId=${lead.id}&score=${lead.quizScore ?? ""}\n\nYour next steps:\n1. Watch for your invitation to Emer's Brain Reset Masterclass\n2. When you're ready, take the Cognitive Health Assessment: ${siteUrl()}/assessment?leadId=${lead.id}\n3. Explore the 12-month personalised programme: ${siteUrl()}/programme?leadId=${lead.id}\n\nPrefer to talk first? Book a discovery call (goals and fit — not a live quiz walkthrough): ${siteUrl()}/discovery?leadId=${lead.id}\n\nIn partnership,\nEmer Sexton\nNeuroNourish Clinic`,
+        }.\n\nView your results again: ${siteUrl()}/quiz/results?leadId=${lead.id}&score=${lead.quizScore ?? ""}\n\nYour next steps:\n1. Watch for your invitation to Emer's Brain Reset Masterclass\n2. When you're ready, take the Cognitive Health Assessment: ${siteUrl()}/shop/cognitive-assessment?leadId=${lead.id}\n3. Explore programme tiers: ${siteUrl()}/shop?leadId=${lead.id}\n\nPrefer to talk first? Book a discovery call (goals and fit — not a live quiz walkthrough): ${siteUrl()}/discovery?leadId=${lead.id}\n\nIn partnership,\nEmer Sexton\nNeuroNourish Clinic`,
       );
       void sendNeuronourishPartnerAlert(lead, {
         sms: hasNewPhone,
@@ -413,7 +413,7 @@ export async function handleFunnelPost(request: Request, body: unknown) {
           archetypeName ? ` — your archetype is ${archetypeName}` : ""
         }${
           data.quizScore != null ? `. Your score is ${data.quizScore}/100` : ""
-        }.\n\nView your results and email your full report: ${siteUrl()}/quiz/results?leadId=${lead.id}&score=${data.quizScore}\n\nYour path from here:\n1. Email your report (includes Emer's Brain Reset Masterclass invitation)\n2. Cognitive Health Assessment when you're ready: ${siteUrl()}/assessment?leadId=${lead.id}\n3. 12-month programme: ${siteUrl()}/programme?leadId=${lead.id}\n\nIn partnership,\nEmer Sexton\nNeuroNourish Clinic`,
+        }.\n\nView your results and email your full report: ${siteUrl()}/quiz/results?leadId=${lead.id}&score=${data.quizScore}\n\nYour path from here:\n1. Email your report (includes Emer's Brain Reset Masterclass invitation)\n2. Cognitive Health Assessment when you're ready: ${siteUrl()}/shop/cognitive-assessment?leadId=${lead.id}\n3. Programme tiers: ${siteUrl()}/shop?leadId=${lead.id}\n\nIn partnership,\nEmer Sexton\nNeuroNourish Clinic`,
       );
       if (tracking.metaEventId || tracking.fbclid) {
         void sendMetaCapiEvent("Lead", {

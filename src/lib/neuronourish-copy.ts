@@ -17,9 +17,10 @@ export interface BlogPost {
 
 export const NN_NAV = {
   links: [
-    { href: "/#journey", label: "For Individuals" },
-    { href: "/clinics", label: "For Healthcare Partners" },
-    { href: "/about", label: "About Us" },
+    { href: "/shop", label: "Shop" },
+    { href: "/programme", label: "Programme" },
+    { href: "/about", label: "About" },
+    { href: "/team", label: "Team" },
   ],
   ctaQuiz: "Take the Brain Health Quiz",
   ctaQuizShort: "Take Quiz",
@@ -30,9 +31,11 @@ export const NN_FOOTER = {
   tagline: "Evidence-based brain health programmes for Ireland & the UK.",
   consumers: [
     { href: "/quiz", label: "Brain health quiz" },
+    { href: "/shop", label: "Shop" },
     { href: "/programme", label: "12-month programme" },
     { href: "/discovery", label: "Discovery call" },
     { href: "/about", label: "About us" },
+    { href: "/team", label: "Team" },
     { href: "/contact", label: "Contact" },
   ],
   clinics: [
@@ -1555,7 +1558,7 @@ export const NN_QUIZ_RESULTS = {
   nextSteps: [
     {
       label: "Take the clinician-reviewed cognitive assessment when you're ready",
-      href: "/assessment",
+      href: "/shop/cognitive-assessment",
     },
     {
       label: "Explore the 12-month personalised programme",
@@ -1863,8 +1866,10 @@ export const NN_PRIVACY = {
     {
       heading: "What we collect",
       highlights: [
-        "Contact details (name, email, phone) when you take the quiz or contact us",
+        "Contact details (name, email, phone) when you take the quiz, shop, or contact us",
+        "Date of birth when you purchase a cognitive assessment (required for age-normed CNS Vital Signs scoring)",
         "Health and lifestyle information you provide in forms and assessments",
+        "Cognitive assessment reports and summaries generated after you complete CNS testing",
         "Payment status via Stripe (we do not store full card numbers)",
         "Usage data, cookies, and ad attribution (UTM parameters, Meta pixel)",
       ],
@@ -1873,6 +1878,7 @@ export const NN_PRIVACY = {
       heading: "How we use your data",
       highlights: [
         "Deliver brain health programmes, assessments, and coaching",
+        "Issue and process CNS Vital Signs remote tests and clinician-reviewed summaries",
         "Send transactional and marketing communications (with your consent)",
         "Coordinate care with your GP or specialists when you give permission",
         "Improve our services and measure advertising effectiveness",
@@ -1880,23 +1886,28 @@ export const NN_PRIVACY = {
     },
     {
       heading: "Legal basis",
-      body: "We process data based on consent (marketing), contract (programme delivery), and legitimate interests (service improvement and clinical coordination with your permission). You may withdraw marketing consent at any time via unsubscribe links.",
+      body: "We process data based on consent (marketing), contract (programme and assessment delivery), and legitimate interests (service improvement and clinical coordination with your permission). You may withdraw marketing consent at any time via unsubscribe links.",
     },
     {
       heading: "Sharing",
       highlights: [
         "Clinical partners and CORU-registered dietitians involved in your care",
+        "CNS Vital Signs (cognitive testing platform) using your subject identifier and date of birth",
         "Payment processor (Stripe), email (Resend), SMS (Vonage), scheduling (Calendly)",
         "We do not sell your personal data to third parties",
       ],
     },
     {
+      heading: "Cognitive assessment & date of birth",
+      body: "When you buy the Cognitive Health Assessment we collect your date of birth solely to generate an age-normed CNS Vital Signs remote test and interpret scores correctly. DOB and reports are stored securely in your care record, accessible to our care team, and are not used for marketing profiling.",
+    },
+    {
       heading: "Retention & rights",
-      body: "We retain health programme records as required for clinical continuity and legal obligations. You may request access, correction, or deletion of your data by emailing us. EU/UK GDPR rights apply.",
+      body: "We retain health programme and assessment records as required for clinical continuity and legal obligations. You may request access, correction, or deletion of your data by emailing us. EU/UK GDPR rights apply.",
     },
     {
       heading: "Medical disclaimer",
-      body: "NeuroNourish programmes are preventative lifestyle medicine support — not a substitute for emergency care or medical diagnosis. If you experience a medical emergency, contact your GP or emergency services.",
+      body: "NeuroNourish programmes and assessment summaries are preventative lifestyle medicine support — not a substitute for emergency care or medical diagnosis. CNS summaries use cautious, non-diagnostic language and are reviewed by our care team before release. If you experience a medical emergency, contact your GP or emergency services.",
     },
   ],
 } as const;
@@ -1990,10 +2001,11 @@ NeuroNourish translates complex clinical science into simple, prioritized everyd
   ],
 } as const;
 
-/** Meta retargeting — /assessment payment drop-offs (quiz completers who did not pay). */
+/** Meta retargeting — cognitive assessment payment drop-offs (quiz completers who did not pay). */
 export const NN_META_RETARGETING_MATRIX = {
-  destinationUrl: "/assessment",
-  audience: "Quiz completers who visited /assessment but did not complete €90 checkout",
+  destinationUrl: "/shop/cognitive-assessment",
+  audience:
+    "Quiz completers who visited /shop/cognitive-assessment but did not complete €90 checkout",
   primaryConcernMatch: {
     primaryText: `You recently took our 5-minute Brain Health Assessment and discovered your baseline. But taking that next step—moving from high-level lifestyle insights to concrete, clinical protection—can sometimes feel like a commitment you're not entirely ready to make.
 
@@ -2045,7 +2057,7 @@ Lock in your testing window today and take ownership of your long-term focus and
       description: "Activate your secure 30-day cognitive testing window for €90.",
       cta: "Sign Up",
       destinationLink: "https://neuronourish.clinic",
-      destinationUrl: "/assessment",
+      destinationUrl: "/shop/cognitive-assessment",
     },
   ],
 } as const;

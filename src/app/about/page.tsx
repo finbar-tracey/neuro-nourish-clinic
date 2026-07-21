@@ -71,6 +71,9 @@ export default function AboutPage() {
 
         <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:gap-5">
           <GoldButton href="/quiz">{NN_ABOUT.cta}</GoldButton>
+          <a href="/team" className="nn-text-link text-sm">
+            Meet the team →
+          </a>
           <a href="/discovery" className="nn-text-link text-sm">
             Or book a discovery call →
           </a>

@@ -1,10 +1,16 @@
 #!/usr/bin/env npx tsx
 /**
- * End-to-end consumer funnel smoke test — local CRM + CNS token path (no HTTP traffic).
+ * End-to-end consumer funnel smoke test — local CRM + CNS subject-id path (no live CNSVS HTTP).
  *
  * Run: npm run neuronourish:smoke-test
  */
-import { generateClinicalAssessmentToken } from "../src/lib/cnsvitalsigns";
+import { ensureCnsSubjectId } from "../src/lib/cns-pipeline";
+import {
+  cnsSubjectIdForLead,
+  formatDobForCns,
+  generateClinicalAssessmentToken,
+  validateDobForCns,
+} from "../src/lib/cnsvitalsigns";
 import { db } from "../src/lib/db";
 import { normalizeClinicalSegment } from "../src/lib/neuronourish-funnel";
 import { nnLegacyLoanStub } from "../src/lib/neuronourish-workspace";
@@ -62,15 +68,24 @@ async function runEndToEndFunnelSmokeTest() {
       `  ✓ Assessment credit window tracked accurately. Expiration Date: ${updatedPaidLead.creditExpiryDate?.toLocaleDateString("en-IE") ?? "—"}`,
     );
 
-    console.log("\n[PHASE 3] Simulating Asynchronous CNS Vital Signs Patient Battery Registration...");
-    const cnsResult = await generateClinicalAssessmentToken(
-      updatedPaidLead.id,
-      updatedPaidLead.email,
-    );
-    if (!cnsResult.success || !cnsResult.testUrl) {
-      throw new Error("CNS operational client module collapsed or failed generation.");
+    console.log("\n[PHASE 3] CNS subject id assignment + DOB helpers...");
+    const subjectId = await ensureCnsSubjectId(updatedPaidLead);
+    const expected = cnsSubjectIdForLead(updatedPaidLead.id);
+    if (subjectId !== expected) {
+      throw new Error(`Subject id mismatch: ${subjectId} !== ${expected}`);
     }
-    console.log(`  ✓ Secure testing token url returned successfully: ${cnsResult.testUrl}`);
+    const dob = new Date("1975-06-15T00:00:00.000Z");
+    if (validateDobForCns(dob)) throw new Error("Valid DOB rejected");
+    const formatted = formatDobForCns(dob);
+    if (formatted.dob_year !== 1975 || formatted.dob_month !== "Jun" || formatted.dob_day !== "15") {
+      throw new Error(`DOB format unexpected: ${JSON.stringify(formatted)}`);
+    }
+    const offline = await generateClinicalAssessmentToken(updatedPaidLead.id, updatedPaidLead.email);
+    if (!offline.success) {
+      throw new Error("Offline CNS helper should succeed when CNSVS_LIVE is off");
+    }
+    console.log(`  ✓ Permanent CNS subject id locked: ${subjectId}`);
+    console.log(`  ✓ DOB → CNS month/day/year mapping verified`);
 
     console.log("\n[PHASE 4] Executing Post-Assessment /onboarding Wizard Persistence Post Call...");
     const finalizedOnboardingLead = await db.lead.update({

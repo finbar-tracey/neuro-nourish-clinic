@@ -27,23 +27,35 @@ export const NN_PAGE_SEO = {
     title: "Cognitive Health Assessment | NeuroNourish",
     description:
       "Clinician-reviewed cognitive assessment with personalised summary — a clear next step after the brain health quiz.",
-    path: "/assessment",
+    path: "/shop/cognitive-assessment",
   },
   assessmentSuccess: {
     title: "Assessment Confirmed | NeuroNourish",
     description: "Your cognitive health assessment purchase is confirmed. Check your email for next steps.",
-    path: "/assessment/success",
+    path: "/shop/success",
   },
   programme: {
     title: "12-Month Personalised Brain Health Programme | NeuroNourish",
     description:
-      "Personalised 12-month brain health programme — nutrition, biomarkers, cognitive assessment, coaching, and app tracking. Investment discussed on discovery call.",
+      "Compare Premium, Medium, and Light programme tiers — or book a discovery call before you enrol.",
     path: "/programme",
   },
   programmeSuccess: {
     title: "Programme Enrolment Confirmed | NeuroNourish",
     description: "Welcome to the NeuroNourish 12-month brain health programme. Our team will contact you shortly.",
-    path: "/programme/success",
+    path: "/shop/success",
+  },
+  shop: {
+    title: "Shop | NeuroNourish",
+    description:
+      "Programme tiers, cognitive assessment, consultations, blood work review, and more — secure checkout.",
+    path: "/shop",
+  },
+  team: {
+    title: "Medical & Care Team | NeuroNourish",
+    description:
+      "Meet the NeuroNourish clinical and care team — founder-led programmes with dietitian oversight.",
+    path: "/team",
   },
   discovery: {
     title: "Book a Discovery Call | NeuroNourish",
@@ -92,9 +104,20 @@ export const NN_PAGE_SEO = {
 export type NeuronourishSeoPage = keyof typeof NN_PAGE_SEO;
 
 export function neuronourishPublicPaths(): string[] {
-  return Object.values(NN_PAGE_SEO)
+  const base = Object.values(NN_PAGE_SEO)
     .filter((p) => !("noindex" in p && p.noindex))
     .map((p) => p.path);
+  const shopSlugs = [
+    "cognitive-assessment",
+    "nutrition-consultation",
+    "dietetic-consultation",
+    "blood-work",
+    "pt257",
+    "premium-programme",
+    "medium-programme",
+    "light-programme",
+  ].map((slug) => `/shop/${slug}`);
+  return [...new Set([...base, ...shopSlugs])];
 }
 
 export function buildNeuronourishMetadata(page: NeuronourishSeoPage): Metadata {

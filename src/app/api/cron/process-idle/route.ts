@@ -12,6 +12,7 @@ import { processOperationalFollowUps } from "@/lib/process-operational";
 import { processWeeklySourceDigest } from "@/lib/weekly-source-digest";
 import { processWeeklyWinbackDigest } from "@/lib/weekly-winback-digest";
 import { processWeeklyCrmBackup } from "@/lib/weekly-crm-backup";
+import { processDueCnsReportPolls } from "@/lib/process-cns-reports";
 
 /** Vercel Cron — runs every 15 minutes. Secured via CRON_SECRET. */
 export async function GET(request: NextRequest) {
@@ -19,8 +20,21 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const [idle, nurture, nnNurture, winback, metaChase, bookingChase, operational, caseSync, retries, weeklyDigest, winbackDigest, crmBackup] =
-    await Promise.all([
+  const [
+    idle,
+    nurture,
+    nnNurture,
+    winback,
+    metaChase,
+    bookingChase,
+    operational,
+    caseSync,
+    retries,
+    weeklyDigest,
+    winbackDigest,
+    crmBackup,
+    cnsReports,
+  ] = await Promise.all([
     processIdleLeads(),
     processDueNurtureEmails(),
     processDueNeuronourishNurtureEmails(),
@@ -33,6 +47,7 @@ export async function GET(request: NextRequest) {
     processWeeklySourceDigest(),
     processWeeklyWinbackDigest(),
     processWeeklyCrmBackup(),
+    processDueCnsReportPolls(),
   ]);
 
   return NextResponse.json({
@@ -49,5 +64,6 @@ export async function GET(request: NextRequest) {
     weeklyDigest,
     winbackDigest,
     crmBackup,
+    cnsReports,
   });
 }

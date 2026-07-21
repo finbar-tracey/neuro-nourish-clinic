@@ -2,14 +2,13 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logCaseTimeline } from "@/lib/case-engine";
 import { cancelSequenceTasksByPrefix } from "@/lib/cancel-sequence-tasks";
-import { resolveCnsAssessmentTestUrl } from "@/lib/cnsvitalsigns";
+import { ensureCnsSubjectId, issueCnsRemoteTest } from "@/lib/cns-pipeline";
 import {
   cancelBloodSugarNewsletterSeries,
   cancelGutBrainNewsletterSeries,
   cancelOnboardingWelcomeNurture,
   cancelProgrammeNurture,
   enrollNeuronourishNurture,
-  sendAssessmentInstructionsEmail,
 } from "@/lib/neuronourish-nurture";
 import { funnelStageLabel, NN_PRICING } from "@/lib/neuronourish-funnel";
 import { nnOperationalPatchForStage } from "@/lib/neuronourish-workspace";
@@ -17,9 +16,9 @@ import type { NnFunnelStage } from "@/lib/neuronourish-funnel";
 import { sendNeuronourishPartnerAlert, sendSlackAlert } from "@/lib/neuronourish-notifications";
 import { sendMetaCapiEvent } from "@/lib/meta-capi";
 import { buildMetaServerPurchasePayload } from "@/lib/meta-tracking";
+import { getShopProduct } from "@/lib/neuronourish-shop";
 import { siteUrl } from "@/lib/site-url";
 import { runtimeSecret } from "@/lib/runtime-env";
-import { format } from "date-fns";
 
 export async function POST(request: Request) {
   const stripeKey = runtimeSecret("STRIPE_SECRET_KEY");
@@ -44,20 +43,45 @@ export async function POST(request: Request) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as {
-      metadata?: { leadId?: string; product?: string; funnelStage?: string };
+      id?: string;
+      metadata?: {
+        leadId?: string;
+        product?: string;
+        funnelStage?: string;
+        crmTag?: string;
+        legacyProduct?: string;
+      };
       amount_total?: number | null;
     };
     const leadId = session.metadata?.leadId;
     const parsedValue = session.amount_total ? session.amount_total / 100 : 0;
-    const tier =
-      session.metadata?.product === "programme" ? "programme_enrolled" : "assessment_purchased";
+    const productKey = session.metadata?.product || session.metadata?.legacyProduct || "";
+    const shopProduct = getShopProduct(productKey);
+    const crmTag = session.metadata?.crmTag || shopProduct?.crmTag || `shop_${productKey}`;
+    const tier: NnFunnelStage =
+      (session.metadata?.funnelStage as NnFunnelStage) ||
+      shopProduct?.funnelStage ||
+      (productKey === "programme" ? "programme_enrolled" : "assessment_purchased");
+
     if (leadId) {
       const lead = await db.lead.findUnique({ where: { id: leadId } });
       if (lead) {
-        const patch = nnOperationalPatchForStage(tier as NnFunnelStage);
+        const patch =
+          tier === "assessment_purchased" || tier === "programme_enrolled"
+            ? nnOperationalPatchForStage(tier)
+            : {
+                funnelStage: tier,
+                status: "CONTACTED" as const,
+                nextAction: `Fulfil shop purchase · ${crmTag}`,
+                pipelineValueEur: parsedValue || undefined,
+              };
+
         const updated = await db.lead.update({
           where: { id: leadId },
-          data: patch,
+          data: {
+            ...patch,
+            additionalInfo: `${lead.additionalInfo ?? ""}\n[Shop] Paid · ${crmTag} · €${parsedValue}${session.id ? ` · session ${session.id}` : ""}`.trim(),
+          },
         });
 
         const purchasePayload = buildMetaServerPurchasePayload(
@@ -70,7 +94,7 @@ export async function POST(request: Request) {
           data: {
             leadId: updated.id,
             author: "System",
-            content: `Meta Conversion Event payload calculated for Purchase value: €${parsedValue} EUR. Dispatching tracking packets.`,
+            content: `Meta Conversion Event payload calculated for Purchase value: €${parsedValue} EUR (${crmTag}).`,
           },
         });
 
@@ -82,18 +106,15 @@ export async function POST(request: Request) {
           eventId: purchasePayload.event_id,
           loanAmount: parsedValue,
           currency: "EUR",
-          contentName:
-            tier === "programme_enrolled"
-              ? "12-Month Personalised Brain Health Programme"
-              : "Scientific Cognitive Baseline Assessment",
+          contentName: shopProduct?.name ?? productKey,
           contentType: "product",
-          sourceUrl: `${siteUrl()}/${tier === "programme_enrolled" ? "programme" : "assessment"}/success`,
+          sourceUrl: `${siteUrl()}/shop/success?product=${encodeURIComponent(shopProduct?.slug ?? productKey)}`,
         });
 
         await logCaseTimeline(
           lead.id,
           "STAGE_CHANGED",
-          `Payment complete — ${funnelStageLabel(tier)}`,
+          `Payment complete — ${shopProduct?.name ?? funnelStageLabel(tier)} · ${crmTag}`,
           "System",
         );
         void sendNeuronourishPartnerAlert(updated);
@@ -102,7 +123,7 @@ export async function POST(request: Request) {
           void sendSlackAlert("ASSESSMENT_PAID", {
             name: `${updated.firstName} ${updated.lastName}`.trim(),
             email: updated.email,
-            extra: `€90 Scientific Cognitive Baseline Assessment · CRM: ${siteUrl()}/workspace/cases/${updated.id}`,
+            extra: `Cognitive assessment · CRM: ${siteUrl()}/workspace/cases/${updated.id}`,
           });
           await cancelSequenceTasksByPrefix(updated.id, "NN nurture [discovery_post_call]");
           await cancelSequenceTasksByPrefix(updated.id, "NN nurture [missed_discovery_call]");
@@ -110,46 +131,16 @@ export async function POST(request: Request) {
           await cancelGutBrainNewsletterSeries(updated.id);
           void enrollNeuronourishNurture(updated, "assessment_complete");
 
-          console.log(`[AUTOMATION] Dispatching CNS credential creation for lead: ${updated.id}`);
-          const { testUrl, registration } = await resolveCnsAssessmentTestUrl(
-            updated.id,
-            updated.email,
-          );
-
-          if (!registration.success) {
-            await db.note.create({
-              data: {
-                leadId: updated.id,
-                author: "System",
-                content: `CNS API registration failure. Automated instructions fell back to standard systemic URL. Reason: ${registration.error ?? "Unknown tracking exception"}`,
-              },
-            });
-          }
-
-          const expiryDateString = updated.creditExpiryDate
-            ? format(new Date(updated.creditExpiryDate), "dd MMM yyyy")
-            : format(
-                new Date(Date.now() + NN_PRICING.assessmentCreditDays * 24 * 60 * 60 * 1000),
-                "dd MMM yyyy",
-              );
-
-          await sendAssessmentInstructionsEmail({
-            email: updated.email,
-            firstName: updated.firstName,
-            expiryDateString,
-            testUrl,
-            leadId: updated.id,
-          });
+          await ensureCnsSubjectId(updated);
+          const cns = await issueCnsRemoteTest(updated.id);
 
           await db.note.create({
             data: {
               leadId: lead.id,
               author: "System",
-              content: `[Credit] €90 assessment fee credited toward programme if enrolled within ${NN_PRICING.assessmentCreditDays} days (expires ${patch.creditExpiryDate?.toISOString().slice(0, 10) ?? "—"}). CNS test URL dispatched.`,
+              content: `[Credit] Assessment fee credited toward programme if enrolled within ${NN_PRICING.assessmentCreditDays} days. CNS status: ${cns.status}${cns.error ? ` · ${cns.error}` : ""}`,
             },
           });
-
-          console.log("[AUTOMATION COMPLETE] Assessment token delivery loop executed.");
         } else if (tier === "programme_enrolled") {
           await cancelSequenceTasksByPrefix(updated.id, "NN nurture [discovery_post_call]");
           await cancelBloodSugarNewsletterSeries(updated.id);

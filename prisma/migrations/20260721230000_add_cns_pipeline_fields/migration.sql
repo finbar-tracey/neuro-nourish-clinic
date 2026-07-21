@@ -1,0 +1,15 @@
+-- CNS Vital Signs assessment pipeline fields on Lead
+ALTER TABLE "Lead" ADD COLUMN "dateOfBirth" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "cnsSubjectId" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "cnsRemoteId" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "cnsSyncId" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "cnsTestUrl" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "cnsStatus" TEXT NOT NULL DEFAULT 'none';
+ALTER TABLE "Lead" ADD COLUMN "cnsLastPolledAt" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "cnsPollAttempts" INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE "Lead" ADD COLUMN "cnsPdfKey" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "cnsSummaryText" TEXT;
+ALTER TABLE "Lead" ADD COLUMN "cnsSummaryStatus" TEXT NOT NULL DEFAULT 'none';
+ALTER TABLE "Lead" ADD COLUMN "cnsSummaryApprovedAt" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "cnsSummarySentAt" DATETIME;
+ALTER TABLE "Lead" ADD COLUMN "cnsLastError" TEXT;

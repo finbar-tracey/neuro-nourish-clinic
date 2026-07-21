@@ -90,8 +90,11 @@ export function checkNeuronourishGoLiveHealth() {
   if (!runtimeSecret("CALENDLY_WEBHOOK_SIGNING_KEY")) {
     warnings.push("CALENDLY_WEBHOOK_SIGNING_KEY missing — webhook signature not verified");
   }
-  if (!runtimeSecret("CNS_VITAL_SIGNS_API_KEY")) {
-    warnings.push("CNS_VITAL_SIGNS_API_KEY missing — automated CNS test links use placeholder URL");
+  if (!runtimeSecret("CNSVS_PASSWORD") && !runtimeSecret("CNS_VITAL_SIGNS_API_KEY")) {
+    warnings.push("CNSVS_PASSWORD / CNS credentials missing — assessment test issue needs config");
+  }
+  if (runtimeEnv("CNSVS_LIVE") !== "true" && runtimeEnv("CNS_VITAL_SIGNS_LIVE") !== "true") {
+    warnings.push("CNSVS_LIVE is not true — paid assessments will not auto-issue remote tests");
   }
   if (!runtimeSecret("SLACK_PARTNER_WEBHOOK_URL")) {
     warnings.push("SLACK_PARTNER_WEBHOOK_URL missing — Slack care-team alerts disabled");
@@ -144,7 +147,13 @@ export function checkNeuronourishGoLiveHealth() {
     stripeConfigured: Boolean(runtimeSecret("STRIPE_SECRET_KEY")),
     calendlyConfigured: Boolean(runtimeEnv("NEXT_PUBLIC_CALENDLY_URL")),
     calendlyWebhookConfigured: Boolean(runtimeSecret("CALENDLY_WEBHOOK_SIGNING_KEY")),
-    cnsConfigured: Boolean(runtimeSecret("CNS_VITAL_SIGNS_API_KEY")),
+    cnsConfigured: Boolean(
+      runtimeEnv("CNSVS_API_URL") &&
+        runtimeEnv("CNSVS_ACCOUNT_NUMBER") &&
+        runtimeSecret("CNSVS_USERNAME") &&
+        runtimeSecret("CNSVS_PASSWORD"),
+    ),
+    cnsLive: runtimeEnv("CNSVS_LIVE") === "true" || runtimeEnv("CNS_VITAL_SIGNS_LIVE") === "true",
     partnerNotifyConfigured: Boolean(
       runtimeEnv("PARTNER_NOTIFY_EMAIL") || runtimeEnv("BROKER_NOTIFY_EMAIL"),
     ),

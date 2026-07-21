@@ -1,27 +1,13 @@
-import Link from "next/link";
-import { HighlightList, PageContainer } from "@/components/neuronourish/content";
-import { GoldButton, NeuroNourishShell, SectionEyebrow } from "@/components/neuronourish/shell";
-import { NN_SUCCESS } from "@/lib/neuronourish-copy";
+import { redirect } from "next/navigation";
 
-export default function ProgrammeSuccessPage() {
-  const copy = NN_SUCCESS.programme;
+type PageProps = {
+  searchParams: Promise<{ leadId?: string; session_id?: string }>;
+};
 
-  return (
-    <NeuroNourishShell>
-      <PageContainer width="md" className="py-16 text-center">
-        <SectionEyebrow>{copy.eyebrow}</SectionEyebrow>
-        <h1 className="mt-3 font-display text-3xl text-deep-slate">{copy.headline}</h1>
-        <p className="mt-4 text-sm leading-relaxed text-ink/75">{copy.subtext}</p>
-        <div className="mx-auto mt-6 max-w-sm text-left">
-          <HighlightList items={copy.highlights} />
-        </div>
-        <GoldButton href="/how-the-app-works" className="mt-8">
-          {copy.ctaApp}
-        </GoldButton>
-        <Link href="/discovery" className="mt-4 block text-sm text-slate-blue underline">
-          {copy.ctaDiscovery}
-        </Link>
-      </PageContainer>
-    </NeuroNourishShell>
-  );
+export default async function ProgrammeSuccessRedirect({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const q = new URLSearchParams({ product: "medium-programme" });
+  if (params.leadId) q.set("leadId", params.leadId);
+  if (params.session_id) q.set("session_id", params.session_id);
+  redirect(`/shop/success?${q.toString()}`);
 }

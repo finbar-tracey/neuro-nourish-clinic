@@ -53,7 +53,8 @@ type LeadWhere = {
   createdAt?: { gte: Date };
   qualificationTier?: string | null;
   formCompleted?: boolean;
-  OR?: Array<Pick<LeadWhere, "qualificationTier" | "formCompleted">>;
+  cnsStatus?: string | { in: string[] };
+  OR?: Array<Pick<LeadWhere, "qualificationTier" | "formCompleted" | "cnsStatus">>;
 };
 
 function matchesLeadWhere(lead: Lead, where?: LeadWhere): boolean {
@@ -77,6 +78,14 @@ function matchesLeadWhere(lead: Lead, where?: LeadWhere): boolean {
     return false;
   }
   if (rest.formCompleted !== undefined && lead.formCompleted !== rest.formCompleted) return false;
+  if (rest.cnsStatus !== undefined) {
+    const status = lead.cnsStatus ?? "none";
+    if (typeof rest.cnsStatus === "string") {
+      if (status !== rest.cnsStatus) return false;
+    } else if (!rest.cnsStatus.in.includes(status)) {
+      return false;
+    }
+  }
   return true;
 }
 
@@ -236,6 +245,20 @@ const leadModel = {
       enrolledAt: data.enrolledAt ?? null,
       passwordHash: data.passwordHash ?? null,
       passwordSalt: data.passwordSalt ?? null,
+      dateOfBirth: data.dateOfBirth ?? null,
+      cnsSubjectId: data.cnsSubjectId ?? null,
+      cnsRemoteId: data.cnsRemoteId ?? null,
+      cnsSyncId: data.cnsSyncId ?? null,
+      cnsTestUrl: data.cnsTestUrl ?? null,
+      cnsStatus: data.cnsStatus ?? "none",
+      cnsLastPolledAt: data.cnsLastPolledAt ?? null,
+      cnsPollAttempts: data.cnsPollAttempts ?? 0,
+      cnsPdfKey: data.cnsPdfKey ?? null,
+      cnsSummaryText: data.cnsSummaryText ?? null,
+      cnsSummaryStatus: data.cnsSummaryStatus ?? "none",
+      cnsSummaryApprovedAt: data.cnsSummaryApprovedAt ?? null,
+      cnsSummarySentAt: data.cnsSummarySentAt ?? null,
+      cnsLastError: data.cnsLastError ?? null,
     });
 
     await mutateStore((store) => {
@@ -755,6 +778,9 @@ const caseDocumentModel = {
       label: string;
       required?: boolean;
       status?: string;
+      fileName?: string | null;
+      fileUrl?: string | null;
+      uploadedAt?: Date | null;
     };
   }) {
     const doc: CaseDocument = {
@@ -764,9 +790,9 @@ const caseDocumentModel = {
       label: data.label,
       required: data.required ?? true,
       status: data.status ?? "REQUIRED",
-      fileName: null,
-      fileUrl: null,
-      uploadedAt: null,
+      fileName: data.fileName ?? null,
+      fileUrl: data.fileUrl ?? null,
+      uploadedAt: data.uploadedAt ?? null,
       createdAt: now(),
     };
     await mutateStore((store) => {

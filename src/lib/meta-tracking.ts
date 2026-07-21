@@ -92,7 +92,7 @@ export function fireClientMetaQuizCompleteEvents(leadId: string, score: number, 
   );
 }
 
-export type MetaCheckoutTier = "assessment" | "programme";
+export type MetaCheckoutTier = "assessment" | "programme" | string;
 
 export function metaInitiateCheckoutEventId(tier: MetaCheckoutTier, leadId: string): string {
   return metaEventId(`checkout-${tier}`, leadId);
@@ -114,9 +114,11 @@ export function fireMetaInitiateCheckoutEvent(
 
   const eventId = metaInitiateCheckoutEventId(tier, leadId);
   const contentName =
-    tier === "programme"
-      ? "12-Month Personalised Brain Health Programme"
-      : "Scientific Cognitive Baseline Assessment";
+    tier === "programme" || tier.includes("programme")
+      ? "NeuroNourish Programme"
+      : tier === "assessment" || tier.includes("assessment")
+        ? "Scientific Cognitive Baseline Assessment"
+        : `NeuroNourish ${tier}`;
 
   fbq(
     "track",

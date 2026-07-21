@@ -1,38 +1,13 @@
-import Link from "next/link";
-import { HighlightList, PageContainer } from "@/components/neuronourish/content";
-import { GoldButton, NeuroNourishShell, SectionEyebrow } from "@/components/neuronourish/shell";
-import { NN_SUCCESS } from "@/lib/neuronourish-copy";
+import { redirect } from "next/navigation";
 
-type AssessmentSuccessPageProps = {
+type PageProps = {
   searchParams: Promise<{ leadId?: string; session_id?: string }>;
 };
 
-export default async function AssessmentSuccessPage({ searchParams }: AssessmentSuccessPageProps) {
+export default async function AssessmentSuccessRedirect({ searchParams }: PageProps) {
   const params = await searchParams;
-  const copy = NN_SUCCESS.assessment;
-  const onboardingHref = params.leadId
-    ? `/onboarding?leadId=${encodeURIComponent(params.leadId)}`
-    : "/onboarding";
-
-  return (
-    <NeuroNourishShell>
-      <PageContainer width="md" className="py-16 text-center">
-        <SectionEyebrow>{copy.eyebrow}</SectionEyebrow>
-        <h1 className="mt-3 font-display text-3xl text-deep-slate">{copy.headline}</h1>
-        <p className="mt-4 text-sm leading-relaxed text-ink/75">{copy.subtext}</p>
-        <div className="mx-auto mt-6 max-w-sm text-left">
-          <HighlightList items={copy.highlights} />
-        </div>
-        <GoldButton href={onboardingHref} className="mt-8">
-          {copy.ctaOnboarding}
-        </GoldButton>
-        <Link href="/programme" className="mt-4 block text-sm text-slate-blue underline">
-          {copy.ctaProgramme}
-        </Link>
-        <Link href="/discovery" className="mt-4 block text-sm text-slate-blue underline">
-          {copy.ctaDiscovery}
-        </Link>
-      </PageContainer>
-    </NeuroNourishShell>
-  );
+  const q = new URLSearchParams({ product: "cognitive-assessment" });
+  if (params.leadId) q.set("leadId", params.leadId);
+  if (params.session_id) q.set("session_id", params.session_id);
+  redirect(`/shop/success?${q.toString()}`);
 }

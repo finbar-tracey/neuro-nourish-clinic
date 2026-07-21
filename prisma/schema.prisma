@@ -185,6 +185,30 @@ model Lead {
   passwordHash         String?
   passwordSalt         String?
 
+  /** Date of birth — required by CNS Vital Signs before rtl */
+  dateOfBirth          DateTime?
+  /** Permanent CNS subject id (format NN-{leadId}) */
+  cnsSubjectId         String?
+  /** Current remote test code from rtl */
+  cnsRemoteId          String?
+  /** Completed report sync id from list_reports */
+  cnsSyncId            String?
+  cnsTestUrl           String?
+  /**
+   * none | pending_dob | test_sent | awaiting_report | report_ready |
+   * summary_draft | summary_approved | summary_sent | failed
+   */
+  cnsStatus            String     @default("none")
+  cnsLastPolledAt      DateTime?
+  cnsPollAttempts      Int        @default(0)
+  cnsPdfKey            String?
+  cnsSummaryText       String?
+  /** none | draft | approved | sent */
+  cnsSummaryStatus     String     @default("none")
+  cnsSummaryApprovedAt DateTime?
+  cnsSummarySentAt     DateTime?
+  cnsLastError         String?
+
   notes          Note[]
   activities     Activity[]
   tasks          Task[]

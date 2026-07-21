@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NeuroNourishMark } from "@/components/brand/neuronourish-mark";
+import { CnsLiveOpsBanner } from "@/components/neuronourish/cns-live-ops-banner";
 import { NeuroNourishHeader } from "@/components/neuronourish/header";
 import { NN_COMPLIANCE, NN_FOOTER } from "@/lib/neuronourish-copy";
 
@@ -60,6 +61,7 @@ export function NeuroNourishFooter() {
 export function NeuroNourishShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col overflow-x-clip bg-ivory text-ink">
+      <CnsLiveOpsBanner />
       <NeuroNourishHeader />
       <main id="main-content" className="flex-1 scroll-mt-20">
         {children}

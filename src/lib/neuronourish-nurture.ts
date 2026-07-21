@@ -333,7 +333,7 @@ function missedCallEmails(lead: Lead): { subject: string; body: string }[] {
 function emailBodies(key: NurtureKey, lead: Lead): { subject: string; body: string }[] {
   const name = firstName(lead);
   const quiz = `${siteUrl()}/quiz`;
-  const assessment = `${siteUrl()}/assessment?leadId=${lead.id}`;
+  const assessment = `${siteUrl()}/shop/cognitive-assessment?leadId=${lead.id}`;
   const programme = `${siteUrl()}/programme?leadId=${lead.id}`;
   const discovery = `${siteUrl()}/discovery`;
   const results = `${siteUrl()}/quiz/results?leadId=${lead.id}`;

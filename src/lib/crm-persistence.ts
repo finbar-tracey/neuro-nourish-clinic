@@ -174,6 +174,15 @@ function hydrateLead(lead: Lead): Lead {
     assessmentPaidAt: lead.assessmentPaidAt ? hydrateDate(lead.assessmentPaidAt) : null,
     creditExpiryDate: lead.creditExpiryDate ? hydrateDate(lead.creditExpiryDate) : null,
     enrolledAt: lead.enrolledAt ? hydrateDate(lead.enrolledAt) : null,
+    dateOfBirth: lead.dateOfBirth ? hydrateDate(lead.dateOfBirth) : null,
+    cnsLastPolledAt: lead.cnsLastPolledAt ? hydrateDate(lead.cnsLastPolledAt) : null,
+    cnsSummaryApprovedAt: lead.cnsSummaryApprovedAt
+      ? hydrateDate(lead.cnsSummaryApprovedAt)
+      : null,
+    cnsSummarySentAt: lead.cnsSummarySentAt ? hydrateDate(lead.cnsSummarySentAt) : null,
+    cnsStatus: lead.cnsStatus ?? "none",
+    cnsPollAttempts: lead.cnsPollAttempts ?? 0,
+    cnsSummaryStatus: lead.cnsSummaryStatus ?? "none",
     caseStage: lead.caseStage ?? "NEW_ENQUIRY",
     riskLevel: lead.riskLevel ?? "MEDIUM",
     probability: lead.probability ?? 10,
