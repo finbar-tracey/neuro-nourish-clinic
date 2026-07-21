@@ -80,7 +80,7 @@ export function WhyBenefitsGrid() {
       {NN_WHY.benefits.map((benefit) => (
         <article
           key={benefit.title}
-          className="nn-why-benefit relative flex flex-col overflow-hidden rounded-2xl border border-mist bg-white/85 p-6 shadow-sm"
+          className="nn-why-benefit relative flex flex-col overflow-hidden rounded-2xl border border-mist bg-linen/30 p-6"
         >
           <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/12">

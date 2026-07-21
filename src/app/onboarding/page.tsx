@@ -193,7 +193,7 @@ function ConsumerOnboardingWizard() {
                   className="w-full rounded-lg border border-mist/80 bg-ivory py-3 pl-10 pr-4 text-sm font-medium text-ink transition focus:border-gold focus:outline-none"
                 />
               </div>
-              <span className="block text-[11px] italic text-ink/60">{copy.screen1.hintText}</span>
+              <span className="block text-[11px] text-ink/60">{copy.screen1.hintText}</span>
             </div>
 
             {authError ? (

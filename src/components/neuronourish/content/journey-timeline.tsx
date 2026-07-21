@@ -27,7 +27,7 @@ export function JourneyTimeline() {
             {group.steps.map((step) => (
               <li
                 key={step.id}
-                className="nn-journey-step relative flex gap-4 rounded-2xl border border-mist bg-white/80 p-5 shadow-sm"
+                className="nn-journey-step relative flex gap-4 rounded-2xl border border-mist bg-linen/30 p-5"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gold bg-ivory font-display text-sm text-slate-blue">
                   {step.id}

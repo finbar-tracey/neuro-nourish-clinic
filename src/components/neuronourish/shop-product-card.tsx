@@ -16,7 +16,7 @@ export function ShopProductCard({ product }: { product: ShopProduct }) {
   const leadId = searchParams.get("leadId");
 
   return (
-    <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-mist bg-white/90 p-6 shadow-sm">
+    <article className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-mist bg-linen/30 p-6">
       <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
       <p className="nn-eyebrow text-gold">{product.eyebrow}</p>
       <h3 className="nn-display-card mt-2 text-slate-blue">{product.shortName}</h3>

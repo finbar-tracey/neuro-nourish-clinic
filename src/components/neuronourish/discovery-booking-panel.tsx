@@ -29,7 +29,7 @@ export function DiscoveryBookingPanel({ calendlyUrl }: DiscoveryBookingPanelProp
             <Heart className="h-5 w-5 text-gold" aria-hidden />
           </div>
           <div>
-            <h1 className="font-display text-2xl text-deep-slate sm:text-3xl">
+            <h1 className="nn-display-section text-slate-blue">
               {NN_DISCOVERY.recoveredCard.headline}
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-ink/75">
@@ -39,7 +39,7 @@ export function DiscoveryBookingPanel({ calendlyUrl }: DiscoveryBookingPanelProp
         </div>
       ) : (
         <header className="text-center">
-          <p className="font-display text-2xl tracking-tight text-deep-slate sm:text-3xl">
+          <p className="nn-display-section tracking-tight text-slate-blue">
             {NN_DISCOVERY.brand}
           </p>
           <div className="mt-5">

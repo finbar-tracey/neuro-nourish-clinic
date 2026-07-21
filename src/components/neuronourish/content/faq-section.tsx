@@ -13,7 +13,7 @@ function FaqAccordion({
   defaultOpenIndex?: number;
 }) {
   return (
-    <div className="nn-faq-accordion rounded-2xl border border-mist bg-white/90 p-2 shadow-sm sm:p-3">
+    <div className="nn-faq-accordion rounded-2xl border border-mist bg-linen/30 p-2 sm:p-3">
       {items.map((item, index) => (
         <details
           key={item.q}

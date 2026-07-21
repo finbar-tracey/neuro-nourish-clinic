@@ -61,7 +61,7 @@ function withLead(href: string, leadId: string) {
 function NextStepsBlock({ leadId }: { leadId: string }) {
   return (
     <div className="mt-8 rounded-2xl border border-mist bg-linen/20 p-6 text-left">
-      <h3 className="font-display text-lg text-deep-slate">{NN_QUIZ_RESULTS.nextStepsTitle}</h3>
+      <h3 className="nn-display-card text-slate-blue">{NN_QUIZ_RESULTS.nextStepsTitle}</h3>
       <ol className="mt-4 space-y-3 text-sm text-ink/80">
         {NN_QUIZ_RESULTS.nextSteps.map((step, index) => (
           <li key={step.href} className="flex gap-3">
@@ -215,7 +215,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         <FunnelStepper active="quiz" />
         <div className="mt-10">
           <SectionEyebrow>{NN_QUIZ_RESULTS.eyebrow}</SectionEyebrow>
-          <h1 className="mt-3 font-display text-3xl text-deep-slate">
+          <h1 className="nn-display-section mt-3 text-slate-blue">
             {NN_QUIZ_RESULTS.emptyHeadline}
           </h1>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/75">
@@ -237,7 +237,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       <FunnelStepper active="quiz" leadId={leadId || undefined} />
       <div className="mt-8">
         <SectionEyebrow>Your NeuroNourish Brain Health Score</SectionEyebrow>
-        <h1 className="mt-3 font-display text-3xl text-deep-slate sm:text-4xl">
+        <h1 className="nn-display-section mt-3 text-slate-blue">
           Your brain health results
         </h1>
       </div>
@@ -249,7 +249,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         aria-label={`Brain health score ${result.score} out of 100. ${result.segment.name}.`}
       >
         <div className="nn-score-ring-inner">
-          <span className="font-display text-5xl text-slate-blue sm:text-6xl" aria-hidden>
+          <span className="nn-display-hero text-slate-blue" aria-hidden>
             {result.score}
           </span>
         </div>
@@ -258,7 +258,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       <p className="mt-4 text-sm text-ink/60">out of 100</p>
       <span className="nn-badge mt-3">{result.segment.name}</span>
 
-      <h2 className="mt-6 font-display text-2xl text-deep-slate">{result.segment.headline}</h2>
+      <h2 className="nn-display-section mt-6 text-slate-blue">{result.segment.headline}</h2>
       <p className="mx-auto mt-3 max-w-md text-base leading-[1.75] text-ink/80">
         {result.segment.body}
       </p>
@@ -273,7 +273,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         >
           Your brain archetype · {arch.eyebrow}
         </p>
-        <h3 className="mt-2 font-display text-2xl text-deep-slate">{arch.name}</h3>
+        <h3 className="nn-display-section mt-2 text-slate-blue">{arch.name}</h3>
         <p className="mt-3 text-sm leading-relaxed text-ink/80">{arch.tagline}</p>
 
         <div className="mt-5">
@@ -311,7 +311,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       </div>
 
       {hasStoredResult ? (
-        <div className="mt-8 rounded-2xl border border-mist bg-white/85 p-6 text-left shadow-sm">
+        <div className="mt-8 rounded-2xl border border-mist bg-linen/30 p-6 text-left">
           <p className="text-sm font-medium text-slate-blue">Where your score is coming from</p>
           <ul className="mt-4 space-y-3">
             {categoryRows.map((row) => (
@@ -333,7 +333,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       ) : null}
 
       {result.insight ? (
-        <div className="mt-8 rounded-2xl border border-mist bg-white/85 p-6 text-left shadow-sm">
+        <div className="mt-8 rounded-2xl border border-mist bg-linen/30 p-6 text-left">
           <p className="text-xs font-semibold uppercase tracking-wide text-slate-blue">
             {result.insight.tag}
           </p>
@@ -341,10 +341,10 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         </div>
       ) : null}
 
-      <div className="mt-8 rounded-2xl border border-gold/40 bg-white p-6 text-left shadow-sm">
-        <h3 className="font-display text-xl text-deep-slate">
+      <div className="mt-8 rounded-2xl border border-gold/40 bg-linen/30 p-6 text-left">
+        <h3 className="nn-display-card text-slate-blue">
           {NN_QUIZ_REPORT_CTA.titlePrefix}{" "}
-          <span className="text-slate-blue">{arch.name}</span>{" "}
+          <span className="text-deep-slate">{arch.name}</span>{" "}
           {NN_QUIZ_REPORT_CTA.titleSuffix}
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-ink/75">
@@ -379,7 +379,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
           </div>
         ) : phoneStatus === "saved" ? (
           <div className="mt-4 space-y-3">
-            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+            <p className="rounded-lg border border-mist/80 bg-linen/40 px-3 py-2 text-sm text-ink/80">
               {NN_QUIZ_REPORT_CTA.successWithPhone}
             </p>
             <p className="text-sm leading-relaxed text-ink/70">
@@ -389,7 +389,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
           </div>
         ) : phoneStatus === "skipped" ? (
           <div className="mt-4 space-y-3">
-            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+            <p className="rounded-lg border border-mist/80 bg-linen/40 px-3 py-2 text-sm text-ink/80">
               {NN_QUIZ_REPORT_CTA.success}
             </p>
             <p className="text-sm leading-relaxed text-ink/70">
@@ -399,7 +399,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
           </div>
         ) : (
           <div className="mt-4 space-y-3">
-            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+            <p className="rounded-lg border border-mist/80 bg-linen/40 px-3 py-2 text-sm text-ink/80">
               {NN_QUIZ_REPORT_CTA.success}
             </p>
             <p className="text-sm leading-relaxed text-ink/70">

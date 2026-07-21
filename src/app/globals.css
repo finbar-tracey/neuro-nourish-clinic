@@ -27,7 +27,7 @@
   --brand-orange-dark: #a8873a;
   --brand-orange-ink: #6b5520;
   --brand-cream: var(--brand-ivory);
-  --brand-muted: #64748b;
+  --brand-muted: #6B98B2;
 
   --navy: var(--brand-deep-slate);
   --navy-light: var(--brand-slate-blue);
@@ -601,7 +601,7 @@ details > summary::-webkit-details-marker {
     top: 0;
     width: 100%;
     background-color: #ffffff !important;
-    color: #1a2e3b !important;
+    color: #1A3348 !important;
     font-family: "Inter", sans-serif !important;
     margin: 0 !important;
     padding: 20mm !important;
@@ -609,8 +609,8 @@ details > summary::-webkit-details-marker {
 
   .print-header-serif {
     font-family: "Playfair Display", serif !important;
-    color: #1a2e3b !important;
-    border-bottom: 2px solid #d4af37 !important;
+    color: #1A3348 !important;
+    border-bottom: 2px solid #C9A84C !important;
     padding-bottom: 8mm !important;
     margin-bottom: 10mm !important;
   }
@@ -618,11 +618,11 @@ details > summary::-webkit-details-marker {
   .print-metric-card {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    border: 1px solid rgba(26, 46, 59, 0.1) !important;
-    border-left: 4px solid #d4af37 !important;
+    border: 1px solid rgba(26, 51, 72, 0.1) !important;
+    border-left: 4px solid #C9A84C !important;
     padding: 5mm !important;
     margin-bottom: 5mm !important;
-    background: #fcfbf7 !important;
+    background: #F5F0E6 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }

@@ -19,7 +19,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           {NN_OUTCOMES.stats.map((stat) => (
             <div
               key={stat.label}
-              className="nn-outcomes-stat relative overflow-hidden rounded-2xl border border-mist bg-white/90 px-5 py-6 text-center shadow-sm"
+              className="nn-outcomes-stat relative overflow-hidden rounded-2xl border border-mist bg-linen/30 px-5 py-6 text-center"
             >
               <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/60" aria-hidden />
               <p className="font-display text-4xl text-slate-blue lg:text-[2.75rem]">{stat.value}</p>
@@ -47,7 +47,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
 
         <blockquote className="nn-pull-quote mx-auto mt-10 max-w-2xl text-slate-blue">
           {NN_OUTCOMES.testimonial.quote}
-          <footer className="mt-3 font-sans text-sm font-normal not-italic text-ink/65">
+          <footer className="mt-3 font-sans text-sm font-normal text-ink/65">
             — {NN_OUTCOMES.testimonial.attribution}
           </footer>
         </blockquote>

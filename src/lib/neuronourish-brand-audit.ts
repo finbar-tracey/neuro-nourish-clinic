@@ -60,7 +60,7 @@ function addCheck(
   checks.push({ id, category, name, pass, detail });
 }
 
-/** 39-check brand guidelines matrix — docs/NeuroNourish_Brand_Guidelines.pdf */
+/** Brand guidelines matrix — docs/NeuroNourish_Brand_Guidelines.pdf */
 export function runNeuronourishBrandGuidelinesAudit(
   root = process.cwd(),
 ): BrandGuidelinesAuditResult {
@@ -147,6 +147,15 @@ export function runNeuronourishBrandGuidelinesAudit(
     readFile(root, "src/components/neuronourish/content/section-header.tsx").includes("text-slate-blue"),
   );
   addCheck(checks, "T10", "Typography", "No italics in marketing copy", !copy.includes("italic"));
+  const quizUi = readFile(root, "src/components/neuronourish/brain-health-quiz.tsx");
+  const resultsUi = readFile(root, "src/components/neuronourish/content/quiz-results-panel.tsx");
+  addCheck(
+    checks,
+    "T12",
+    "Typography",
+    "No italic utility on quiz / results UI",
+    !/\bitalic\b/.test(quizUi) && !/\bitalic\b/.test(resultsUi),
+  );
   addCheck(
     checks,
     "T11",
@@ -196,6 +205,13 @@ export function runNeuronourishBrandGuidelinesAudit(
     "No fear-language in hero copy",
     !heroCopy.includes("too late") && !heroCopy.includes("risk everything"),
   );
+  addCheck(
+    checks,
+    "V5",
+    "Voice & CTA",
+    "No scare framing (too late / fear of) in copy engine",
+    !/\btoo late\b/i.test(copy) && !/\bfear of\b/i.test(copy),
+  );
 
   addCheck(
     checks,
@@ -203,6 +219,44 @@ export function runNeuronourishBrandGuidelinesAudit(
     "Documentation",
     "Brand guidelines PDF in docs/",
     existsSync(resolve(root, "docs/NeuroNourish_Brand_Guidelines.pdf")),
+  );
+  addCheck(
+    checks,
+    "D2",
+    "Documentation",
+    "Branding & design checklist in docs/",
+    existsSync(resolve(root, "docs/NEURONOURISH_BRANDING_DESIGN.md")),
+  );
+
+  addCheck(
+    checks,
+    "C9",
+    "Colour",
+    "NN marketing avoids emerald/amber chrome",
+    !/emerald-|amber-/.test(quizUi) &&
+      !/emerald-|amber-/.test(resultsUi) &&
+      !/emerald-|amber-/.test(
+        readFile(root, "src/components/neuronourish/cns-live-ops-banner.tsx"),
+      ),
+  );
+  addCheck(
+    checks,
+    "C10",
+    "Colour",
+    "Print styles use brand Gold and Deep Slate",
+    globals.includes("#C9A84C") &&
+      globals.includes("#1A3348") &&
+      !globals.toLowerCase().includes("#d4af37") &&
+      !globals.toLowerCase().includes("#1a2e3b"),
+  );
+  addCheck(
+    checks,
+    "S1",
+    "Surfaces",
+    "Why benefits use linen card surfaces",
+    readFile(root, "src/components/neuronourish/content/why-benefits-grid.tsx").includes(
+      "bg-linen/",
+    ),
   );
 
   const passedChecks = checks.filter((c) => c.pass).length;

@@ -62,10 +62,15 @@ export function NeuroNourishMark({
 
   const titleColor = theme === "dark" ? "text-ivory" : "text-deep-slate";
 
+  // Clear space ≈ ¼ icon height (NN_LOGO.clearSpaceRatio) via padding on the lockup.
   return (
     <Link
       href={href}
-      className={cn("inline-flex shrink-0 items-center gap-2.5 sm:gap-3", brainPadding, className)}
+      className={cn(
+        "inline-flex shrink-0 items-center gap-2.5 sm:gap-3",
+        variant === "compact" ? "p-1" : "p-1.5 sm:p-2",
+        className,
+      )}
       aria-label="NeuroNourish Clinic"
     >
       <Image

@@ -17,7 +17,7 @@ export function CnsLiveOpsBanner() {
   return (
     <div
       role="status"
-      className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs text-amber-950 sm:px-6"
+      className="border-b border-gold/30 bg-linen/50 px-4 py-2 text-center text-xs text-ink sm:px-6"
     >
       <span className="font-semibold">Ops:</span> {reason} Payment and CRM still work.
     </div>

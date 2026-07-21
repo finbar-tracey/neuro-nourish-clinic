@@ -908,7 +908,7 @@ export const NN_ORGANIC_SOCIAL_VIDEOS = {
           timing: "25–50s",
           visual: "Medium shot. Emer shifts to an optimistic, authoritative stance.",
           script:
-            "While my journey began with an injury, I kept meeting people decades older describing the exact same gradual dimming—the persistent brain fog, the forgotten words, and the fear of what those changes meant. I realized that the same evidence-based strategies that help a brain recover are the exact lifestyle changes that protect it from future disease long before it's too late.",
+            "While my journey began with an injury, I kept meeting people decades older describing the exact same gradual dimming—the persistent brain fog, the forgotten words, and the uncertainty those changes brought. I realized that the same evidence-based strategies that help a brain recover are the exact lifestyle changes that protect it early enough to make a meaningful difference.",
         },
         {
           timing: "50–75s",
@@ -2044,7 +2044,7 @@ Our nutrition scientists and clinical experts at NeuroNourish have built a simpl
       format: "Punchy & direct",
       primaryText: `Do you find yourself waking up wondering why you feel mentally exhausted before your afternoon even begins? Or why staying focused through standard executive decision-making takes twice the cognitive stamina it used to?
 
-The brain doesn't shift overnight. It sends quiet, manageable indicators long before a crisis point arrives. Our structured, 12-month Personalised Brain Health Programme replaces the fear of the unknown with clear, objective tracking data.
+The brain doesn't shift overnight. It sends quiet, manageable indicators long before a crisis point arrives. Our structured, 12-month Personalised Brain Health Programme replaces uncertainty with clear, objective tracking data.
 
 It starts with a simple 5-minute baseline mapping. Discover how your current nutrition, sleep patterns, movement, and daily environment are actively influencing your mental clarity.`,
       headline: "Why Am I Forgetting Things? Discover the Science.",

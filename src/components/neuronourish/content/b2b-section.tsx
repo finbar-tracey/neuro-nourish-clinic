@@ -71,7 +71,7 @@ export function B2bSection({ className = "" }: { className?: string }) {
           {NN_B2B.pillars.map((pillar) => (
             <article
               key={pillar.title}
-              className="nn-b2b-pillar relative overflow-hidden rounded-2xl border border-mist bg-white/85 p-6 shadow-sm"
+              className="nn-b2b-pillar relative overflow-hidden rounded-2xl border border-mist bg-linen/30 p-6"
             >
               <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/12">
