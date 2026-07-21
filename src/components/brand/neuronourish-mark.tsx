@@ -66,11 +66,7 @@ export function NeuroNourishMark({
   return (
     <Link
       href={href}
-      className={cn(
-        "inline-flex shrink-0 items-center gap-2.5 sm:gap-3",
-        variant === "compact" ? "p-1" : "p-1.5 sm:p-2",
-        className,
-      )}
+      className={cn("inline-flex shrink-0 items-center gap-2.5 p-1.5 sm:gap-3 sm:p-2", className)}
       aria-label="NeuroNourish Clinic"
     >
       <Image
