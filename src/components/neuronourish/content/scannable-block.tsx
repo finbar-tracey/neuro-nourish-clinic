@@ -41,17 +41,18 @@ export function ScannableBlock({
 
 export function ScannableGrid({
   children,
-  columns = 2,
+  columns,
 }: {
   children: ReactNode;
-  columns?: 1 | 2 | 3;
+  /** Omit to auto-balance from child count (2→2, 3→3, 4→2×2). */
+  columns?: 1 | 2 | 3 | 4;
 }) {
   if (columns === 1) {
     return <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-5">{children}</div>;
   }
 
   return (
-    <NnCardGrid className="mt-10" columns={columns === 3 ? 3 : 2}>
+    <NnCardGrid className="mt-10" columns={columns}>
       {children}
     </NnCardGrid>
   );

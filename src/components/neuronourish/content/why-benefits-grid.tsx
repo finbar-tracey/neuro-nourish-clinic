@@ -77,7 +77,7 @@ function BenefitIcon({ icon }: { icon: WhyBenefit["icon"] }) {
 
 export function WhyBenefitsGrid() {
   return (
-    <NnCardGrid className="mt-10" columns={3}>
+    <NnCardGrid className="mt-10">
       {NN_WHY.benefits.map((benefit) => (
         <NnCard
           key={benefit.title}

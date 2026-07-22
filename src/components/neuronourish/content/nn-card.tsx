@@ -1,4 +1,8 @@
-import type { ElementType, ReactNode } from "react";
+import {
+  Children,
+  type ElementType,
+  type ReactNode,
+} from "react";
 
 /**
  * Global NeuroNourish marketing card — linen surface, gold hairline, equal-height ready.
@@ -87,29 +91,72 @@ export function NnCard({
   );
 }
 
+export type NnCardGridColumns = 1 | 2 | 3 | 4;
+
+/**
+ * Pick a balanced column count from the number of cards.
+ * - 2 → 2 across (never a lonely single beside empty space on sm+)
+ * - 3 → 3 across (never 2+1)
+ * - 4 → 2×2
+ * - 6 → 3×2
+ * - 5/7 → 3-across (accept a short last row rather than 2+1 of a trio)
+ */
+export function nnCardGridColumns(count: number): NnCardGridColumns {
+  if (count <= 1) return 1;
+  if (count === 2) return 2;
+  if (count === 3) return 3;
+  if (count === 4) return 4;
+  if (count % 3 === 0) return 3;
+  if (count % 2 === 0) return 2;
+  return 3;
+}
+
+function columnClass(columns: NnCardGridColumns): string {
+  switch (columns) {
+    case 1:
+      return "grid-cols-1";
+    case 2:
+      return "grid-cols-1 sm:grid-cols-2";
+    case 3:
+      /* Full trio from sm — never 2+1 orphan row. */
+      return "grid-cols-1 sm:grid-cols-3";
+    case 4:
+      /* 2×2 from sm. */
+      return "grid-cols-1 sm:grid-cols-2";
+    default:
+      return "grid-cols-1";
+  }
+}
+
 type NnCardGridProps = {
   children: ReactNode;
-  /** Column count from `sm`/`lg`; always 1 col on mobile */
-  columns?: 2 | 3;
+  /**
+   * Desktop/tablet column layout. Prefer matching the card count:
+   * 2→2, 3→3, 4→2×2. Omit to auto-detect from children.
+   */
+  columns?: NnCardGridColumns;
   className?: string;
   as?: "div" | "ul" | "ol";
 };
 
 /**
  * Equal-height card grid. Children should be NnCard (or wrappers that fill height).
- * Mobile: 1 column. sm: 2. lg: 3 when columns=3.
+ * Mobile: 1 column. From `sm`: balanced columns — never a 2+1 for a set of 3.
  */
 export function NnCardGrid({
   children,
-  columns = 3,
+  columns,
   className = "",
   as = "div",
 }: NnCardGridProps) {
   const Tag = as as ElementType;
-  const cols = columns === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3";
+  const count = Children.toArray(children).filter(Boolean).length;
+  const resolved = columns ?? nnCardGridColumns(count);
 
   return (
-    <Tag className={`nn-card-grid grid grid-cols-1 gap-4 sm:gap-5 lg:gap-6 ${cols} ${className}`}>
+    <Tag
+      className={`nn-card-grid grid gap-4 sm:gap-5 lg:gap-6 ${columnClass(resolved)} ${className}`}
+    >
       {children}
     </Tag>
   );

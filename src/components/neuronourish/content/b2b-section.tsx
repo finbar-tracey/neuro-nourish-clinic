@@ -68,7 +68,7 @@ export function B2bSection({ className = "" }: { className?: string }) {
           ))}
         </ul>
 
-        <NnCardGrid className="mt-10" columns={3}>
+        <NnCardGrid className="mt-10">
           {NN_B2B.pillars.map((pillar) => (
             <NnCard
               key={pillar.title}

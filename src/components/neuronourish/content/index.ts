@@ -9,7 +9,7 @@ export {
   NnFaqBlock,
   type NnFaqItem,
 } from "@/components/neuronourish/content/nn-faq-accordion";
-export { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
+export { NnCard, NnCardGrid, nnCardGridColumns } from "@/components/neuronourish/content/nn-card";
 export { ClinicianFaqSection } from "@/components/neuronourish/content/clinician-faq-accordion";
 export { B2bSection } from "@/components/neuronourish/content/b2b-section";
 export { BlogSection } from "@/components/neuronourish/content/blog-section";

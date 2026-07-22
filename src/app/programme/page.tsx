@@ -45,7 +45,7 @@ export default function ProgrammePage() {
           </div>
 
           <Suspense fallback={<p className="mt-14 text-center text-sm text-ink/60">Loading tiers…</p>}>
-            <NnCardGrid className="mt-14" columns={3}>
+            <NnCardGrid className="mt-14">
               {tiers.map((tier) => (
                 <ShopProductCard key={tier.slug} product={tier} />
               ))}
@@ -66,7 +66,7 @@ export default function ProgrammePage() {
             >
               {NN_PROGRAMME.yearTitle}
             </h2>
-            <NnCardGrid as="ol" className="mt-10" columns={3}>
+            <NnCardGrid as="ol" className="mt-10">
               {NN_PROGRAMME.yearPhases.map((phase) => (
                 <NnCard
                   key={phase.timing}
@@ -86,7 +86,7 @@ export default function ProgrammePage() {
             >
               {NN_PROGRAMME.inclusionsTitle}
             </h2>
-            <NnCardGrid as="ul" className="mx-auto mt-10 max-w-4xl" columns={2}>
+            <NnCardGrid as="ul" className="mt-10">
               {NN_PROGRAMME.inclusions.map((item) => (
                 <NnCard key={item.title} as="li" title={item.title} body={item.detail} />
               ))}

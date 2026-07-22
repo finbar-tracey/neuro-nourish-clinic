@@ -16,7 +16,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           <p className="nn-body mx-auto mt-4 text-ink/75">{NN_OUTCOMES.subtext}</p>
         </div>
 
-        <NnCardGrid className="mt-10" columns={3}>
+        <NnCardGrid className="mt-10">
           {NN_OUTCOMES.stats.map((stat) => (
             <NnCard key={stat.label} align="center">
               <p className="font-display text-4xl text-slate-blue lg:text-[2.75rem]">{stat.value}</p>

@@ -24,7 +24,7 @@ export function JourneyTimeline() {
       {phases.map((group, groupIndex) => (
         <div key={group.phase}>
           <p className="nn-eyebrow text-gold">{group.phase}</p>
-          <NnCardGrid as="ol" columns={2} className="mt-4">
+          <NnCardGrid as="ol" className="mt-4">
             {group.steps.map((step) => (
               <NnCard key={step.id} as="li">
                 <div className="flex gap-4">

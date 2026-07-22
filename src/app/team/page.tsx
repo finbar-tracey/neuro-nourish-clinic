@@ -22,7 +22,7 @@ export default function TeamPage() {
             as="h1"
           />
 
-          <NnCardGrid className="mt-12" columns={3}>
+          <NnCardGrid className="mt-12">
             {NN_TEAM.members.map((member) => (
               <NnCard
                 key={member.name}

@@ -114,7 +114,7 @@ export default async function ShopProductPage({ params }: PageProps) {
               {NN_SHOP.relatedTitle}
             </h2>
             <Suspense fallback={<p className="mt-8 text-center text-sm text-ink/60">Loading…</p>}>
-              <NnCardGrid className="mt-8" columns={3}>
+              <NnCardGrid className="mt-8">
                 {related.map((item) => (
                   <ShopProductCard key={item.slug} product={item} />
                 ))}

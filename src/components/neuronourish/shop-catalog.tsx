@@ -69,7 +69,7 @@ export function ShopCatalog({
           <h2 id="shop-tiers" className="text-center font-display text-2xl text-slate-blue">
             {NN_SHOP.tiersTitle}
           </h2>
-          <NnCardGrid className="mt-8" columns={3}>
+          <NnCardGrid className="mt-8">
             {visibleTiers.map((product) => (
               <ShopProductCard key={product.slug} product={product} />
             ))}
@@ -82,7 +82,7 @@ export function ShopCatalog({
           <h2 id="shop-services" className="text-center font-display text-2xl text-slate-blue">
             {NN_SHOP.productsTitle}
           </h2>
-          <NnCardGrid className="mt-8" columns={3}>
+          <NnCardGrid className="mt-8">
             {visibleServices.map((product) => (
               <ShopProductCard key={product.slug} product={product} />
             ))}
