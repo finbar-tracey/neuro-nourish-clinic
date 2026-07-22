@@ -1540,6 +1540,20 @@ export const NN_QUIZ_CAPTURE = {
   discoveryCta: "Book a discovery call",
 } as const;
 
+/** Mid-quiz idle recovery — soft discovery off-ramp (not mid-quiz email capture). */
+export const NN_QUIZ_ABANDON = {
+  eyebrow: "Take a breath",
+  headline: "Prefer to talk it through?",
+  subtext:
+    "You're partway through the quiz. Book a complimentary 15-minute discovery call and we'll pick up from where you are — or continue whenever you're ready.",
+  ctaBook: "Book a discovery call",
+  ctaContinue: "Continue the quiz",
+  ctaLater: "Finish later",
+  discoveryBanner:
+    "You stepped away from the brain health quiz — you can finish it anytime. This call focuses on your goals, not a live walkthrough of answers.",
+  discoveryBannerCta: "Return to the quiz",
+} as const;
+
 export const NN_QUIZ_REPORT_CTA = {
   titlePrefix: "Your",
   titleSuffix: "report — free",

@@ -9,7 +9,7 @@ import { CheckList } from "@/components/neuronourish/content/highlight-list";
 import { DiscoveryRequestForm } from "@/components/neuronourish/content/discovery-request-form";
 import { FunnelTrustBar } from "@/components/neuronourish/content/funnel-trust-bar";
 import { SectionEyebrow } from "@/components/neuronourish/shell";
-import { NN_DISCOVERY, NN_FOOTER } from "@/lib/neuronourish-copy";
+import { NN_DISCOVERY, NN_FOOTER, NN_QUIZ_ABANDON } from "@/lib/neuronourish-copy";
 
 type DiscoveryBookingPanelProps = {
   calendlyUrl?: string;
@@ -24,10 +24,26 @@ export function DiscoveryBookingPanel({
   const searchParams = useSearchParams();
   const leadId = useMemo(() => searchParams.get("leadId") ?? "", [searchParams]);
   const isRecovered = useMemo(() => searchParams.get("recovered") === "true", [searchParams]);
+  const fromQuizAbandon = useMemo(
+    () => searchParams.get("source") === "quiz_abandon",
+    [searchParams],
+  );
+  const abandonStep = useMemo(() => searchParams.get("step"), [searchParams]);
   const hasCalendly = Boolean(calendlyUrl);
 
   return (
     <div className={hideIntro && !isRecovered ? "mx-auto mt-12 max-w-2xl" : "mx-auto max-w-2xl"}>
+      {fromQuizAbandon && !isRecovered ? (
+        <div className="mb-8 rounded-2xl border border-gold/35 bg-gold/10 px-4 py-4 text-center sm:px-5">
+          <p className="text-sm leading-relaxed text-ink/80">{NN_QUIZ_ABANDON.discoveryBanner}</p>
+          {abandonStep ? (
+            <p className="mt-1 text-xs text-ink/55">You were around question {abandonStep}.</p>
+          ) : null}
+          <Link href="/quiz" className="nn-text-link mt-3 inline-block text-sm">
+            {NN_QUIZ_ABANDON.discoveryBannerCta} →
+          </Link>
+        </div>
+      ) : null}
       {isRecovered ? (
         <div className="mb-10 flex items-start gap-4 border-b border-linen/70 pb-8">
           <div className="mt-0.5 shrink-0 rounded-xl bg-gold/10 p-3">

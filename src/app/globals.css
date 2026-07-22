@@ -458,6 +458,16 @@ details > summary::-webkit-details-marker {
   animation: nn-quiz-fade 0.45s ease-out;
 }
 
+.nn-quiz-abandon-panel {
+  animation: nn-quiz-fade 0.35s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-quiz-abandon-panel {
+    animation: none;
+  }
+}
+
 @keyframes nn-quiz-fade {
   from {
     opacity: 0;

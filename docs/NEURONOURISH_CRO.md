@@ -77,6 +77,7 @@ npm run neuronourish:cro
 | 2 | Price policy | Hidden public € is intentional; FAQ/shop explain | |
 | 3 | Shop entry path | Unsure users offered quiz and/or discovery | |
 | 4 | Report email upsell | Optional phone after report — not blocking | |
+| 5 | Quiz abandon recovery | Idle ≥100s after ≥3 answers → soft discovery sheet (session + 7-day cap) | |
 
 ---
 
@@ -87,6 +88,7 @@ npm run neuronourish:cro
 | 1 | Funnel stages on Lead | `quiz_started` → `quiz_completed` → purchase / discovery | |
 | 2 | Stripe / Resend / Calendly on Vercel | Required for paid conversion E2E | |
 | 3 | Analytics events | Quiz start/complete, checkout start (when wired) | |
+| 4 | Abandon events | `nn:quiz-abandon` custom events + Meta ViewContent/Lead | |
 
 ---
 
@@ -100,6 +102,8 @@ npm run neuronourish:cro
 | Shop unsure path includes quiz | Done |
 | Blog section CTA retargeted off `/blog` | Done |
 | End capture / leadId / trust bar (prior) | Done |
+| Quiz abandon idle sheet + discovery banner | Done |
+| Kill switch `NEXT_PUBLIC_NN_QUIZ_ABANDON=false` | Done |
 
 ---
 

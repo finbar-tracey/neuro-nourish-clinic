@@ -201,6 +201,45 @@ check(
   copy.includes("ctaAssessmentHint") && copy.includes("Credited toward enrolment"),
 );
 
+const abandonLib = read("src/lib/neuronourish-quiz-abandon.ts");
+const abandonSheet = read("src/components/neuronourish/quiz-abandon-sheet.tsx");
+const discoveryPanel = read("src/components/neuronourish/discovery-booking-panel.tsx");
+check(
+  "A1",
+  "Abandon recovery",
+  "Quiz abandon copy + kill switch helper",
+  copy.includes("NN_QUIZ_ABANDON") &&
+    copy.includes("Prefer to talk it through") &&
+    abandonLib.includes("NEXT_PUBLIC_NN_QUIZ_ABANDON") &&
+    abandonLib.includes("NN_QUIZ_ABANDON_MIN_ANSWERS = 3") &&
+    abandonLib.includes("NN_QUIZ_ABANDON_IDLE_MS = 100_000"),
+);
+check(
+  "A2",
+  "Abandon recovery",
+  "Quiz wires idle sheet with session/cooldown caps",
+  quiz.includes("QuizAbandonSheet") &&
+    quiz.includes("markQuizAbandonShown") &&
+    quiz.includes("hasQuizAbandonSessionCap") &&
+    !/\btoo late\b|\bfear of\b/i.test(copy.slice(copy.indexOf("NN_QUIZ_ABANDON"))),
+);
+check(
+  "A3",
+  "Abandon recovery",
+  "Abandon sheet primary is discovery; continue is secondary",
+  abandonSheet.includes("discoveryHref") &&
+    abandonSheet.includes("ctaBook") &&
+    abandonSheet.includes("ctaContinue") &&
+    abandonSheet.includes('role="dialog"'),
+);
+check(
+  "A4",
+  "Abandon recovery",
+  "Discovery shows quiz_abandon banner",
+  discoveryPanel.includes('source") === "quiz_abandon"') ||
+    discoveryPanel.includes("quiz_abandon"),
+);
+
 // Docs
 check(
   "DOC1",

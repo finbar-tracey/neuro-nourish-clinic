@@ -24,6 +24,17 @@ import { isValidEmail } from "@/lib/form-validation";
 import { OptionPills } from "@/components/forms/option-pills";
 import { HighlightList } from "@/components/neuronourish/content";
 import { NeuroNourishShell, SectionEyebrow } from "@/components/neuronourish/shell";
+import { QuizAbandonSheet } from "@/components/neuronourish/quiz-abandon-sheet";
+import {
+  NN_QUIZ_ABANDON_IDLE_MS,
+  NN_QUIZ_ABANDON_MIN_ANSWERS,
+  buildQuizAbandonDiscoveryHref,
+  hasQuizAbandonCooldown,
+  hasQuizAbandonSessionCap,
+  isQuizAbandonEnabled,
+  markQuizAbandonShown,
+  trackQuizAbandonEvent,
+} from "@/lib/neuronourish-quiz-abandon";
 
 const STORAGE_KEY = "nn-quiz-state";
 
@@ -53,11 +64,19 @@ export function BrainHealthQuiz() {
   const [submitting, setSubmitting] = useState(false);
   const [captureError, setCaptureError] = useState<string | null>(null);
   const [finishError, setFinishError] = useState<string | null>(null);
+  const [abandonOpen, setAbandonOpen] = useState(false);
   const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastInteractionRef = useRef(Date.now());
+  const abandonEligibleTracked = useRef(false);
 
   const question = NN_QUIZ_QUESTIONS[step];
   const total = NN_QUIZ_QUESTIONS.length;
   const selectedIndex = question ? answers[question.id] : undefined;
+  const answersCount = Object.keys(answers).length;
+
+  function touchInteraction() {
+    lastInteractionRef.current = Date.now();
+  }
 
   useEffect(() => {
     const captured = captureTrackingFromUrl();
@@ -104,11 +123,54 @@ export function BrainHealthQuiz() {
     }
   }, [showCapture]);
 
+  // Idle abandon recovery — one-shot sheet after ≥3 answers
+  useEffect(() => {
+    if (!isQuizAbandonEnabled()) return;
+    if (!started || showCapture || showResumeBanner || abandonOpen || submitting) return;
+    if (answersCount < NN_QUIZ_ABANDON_MIN_ANSWERS) return;
+    if (hasQuizAbandonSessionCap() || hasQuizAbandonCooldown()) return;
+
+    if (!abandonEligibleTracked.current) {
+      abandonEligibleTracked.current = true;
+      trackQuizAbandonEvent("quiz_abandon_eligible", {
+        step,
+        answersCount,
+        leadId,
+      });
+    }
+
+    const tick = window.setInterval(() => {
+      if (Date.now() - lastInteractionRef.current < NN_QUIZ_ABANDON_IDLE_MS) return;
+      if (document.visibilityState !== "visible") return;
+      if (hasQuizAbandonSessionCap() || hasQuizAbandonCooldown()) return;
+
+      markQuizAbandonShown();
+      setAbandonOpen(true);
+      trackQuizAbandonEvent("quiz_abandon_shown", { step, answersCount, leadId });
+      trackMetaEvent("ViewContent", {
+        content_name: "Quiz abandon recovery",
+        content_category: "quiz_abandon",
+      });
+    }, 5_000);
+
+    return () => window.clearInterval(tick);
+  }, [
+    started,
+    showCapture,
+    showResumeBanner,
+    abandonOpen,
+    submitting,
+    answersCount,
+    step,
+    leadId,
+  ]);
+
   function persist(state: QuizState) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }
 
   function continueSavedProgress() {
+    touchInteraction();
     const answered = Object.keys(answers).length;
     const resumeStep = Math.min(answered, total - 1);
     setStep(resumeStep);
@@ -120,6 +182,7 @@ export function BrainHealthQuiz() {
   }
 
   function startFresh() {
+    touchInteraction();
     localStorage.removeItem(STORAGE_KEY);
     setAnswers({});
     setLeadId(undefined);
@@ -132,6 +195,8 @@ export function BrainHealthQuiz() {
 
   function selectOption(optionIndex: number) {
     if (!question || submitting) return;
+    touchInteraction();
+    setAbandonOpen(false);
     setFinishError(null);
     const next = { ...answers, [question.id]: optionIndex };
     setAnswers(next);
@@ -146,6 +211,8 @@ export function BrainHealthQuiz() {
   }
 
   function goBack() {
+    touchInteraction();
+    setAbandonOpen(false);
     if (showCapture) {
       setShowCapture(false);
       setCaptureError(null);
@@ -491,6 +558,28 @@ export function BrainHealthQuiz() {
           </Link>
         </p>
       </div>
+      <QuizAbandonSheet
+        open={abandonOpen}
+        discoveryHref={buildQuizAbandonDiscoveryHref({
+          step,
+          answersCount,
+          leadId,
+        })}
+        onContinue={() => {
+          touchInteraction();
+          setAbandonOpen(false);
+          trackQuizAbandonEvent("quiz_abandon_continue", { step, answersCount, leadId });
+        }}
+        onDismiss={() => {
+          touchInteraction();
+          setAbandonOpen(false);
+          trackQuizAbandonEvent("quiz_abandon_dismiss", { step, answersCount, leadId });
+        }}
+        onBook={() => {
+          trackQuizAbandonEvent("quiz_abandon_book", { step, answersCount, leadId });
+          trackMetaEvent("Lead", { content_name: "Quiz abandon book discovery" });
+        }}
+      />
     </NeuroNourishShell>
   );
 }
