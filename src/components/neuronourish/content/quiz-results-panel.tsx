@@ -249,7 +249,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         aria-label={`Brain health score ${result.score} out of 100. ${result.segment.name}.`}
       >
         <div className="nn-score-ring-inner">
-          <span className="nn-display-hero text-slate-blue" aria-hidden>
+          <span className="nn-score-ring-value text-slate-blue" aria-hidden>
             {result.score}
           </span>
         </div>
