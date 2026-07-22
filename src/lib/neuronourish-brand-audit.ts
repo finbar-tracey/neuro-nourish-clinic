@@ -122,7 +122,7 @@ export function runNeuronourishBrandGuidelinesAudit(
     "C8",
     "Colour",
     "Mist borders on cards",
-    readFile(root, "src/components/neuronourish/content/scannable-block.tsx").includes("border-mist"),
+    readFile(root, "src/components/neuronourish/content/nn-card.tsx").includes("border-mist"),
   );
 
   addCheck(checks, "T1", "Typography", "Inter loaded with weight 300 (footer)", layout.includes('"300"'));
@@ -254,9 +254,8 @@ export function runNeuronourishBrandGuidelinesAudit(
     "S1",
     "Surfaces",
     "Why benefits use linen card surfaces",
-    readFile(root, "src/components/neuronourish/content/why-benefits-grid.tsx").includes(
-      "bg-linen/",
-    ),
+    readFile(root, "src/components/neuronourish/content/nn-card.tsx").includes("bg-linen/") &&
+      readFile(root, "src/components/neuronourish/content/why-benefits-grid.tsx").includes("NnCard"),
   );
 
   const passedChecks = checks.filter((c) => c.pass).length;

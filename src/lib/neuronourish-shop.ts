@@ -289,7 +289,6 @@ export const NN_SHOP = {
     "Choose a clear next step — from a cognitive baseline to consultations, lab review, or a 12-month tier. Unsure? Start with a discovery call.",
   tiersTitle: "12-month programme tiers",
   productsTitle: "Assessments & services",
-  featuredTitle: "Most people start here",
   discoveryCta: "Book a discovery call",
   discoveryHint: "15 minutes · No obligation",
   quizCta: "Not sure where to start? Take the free quiz",
@@ -340,10 +339,6 @@ export function shopTierProducts(): ShopProduct[] {
 
 export function shopServiceProducts(): ShopProduct[] {
   return NN_SHOP_PRODUCTS.filter((p) => p.category !== "programme");
-}
-
-export function shopFeaturedProducts(): ShopProduct[] {
-  return NN_SHOP_PRODUCTS.filter((p) => p.featured);
 }
 
 /** Related products for cross-sell on detail pages (excludes self). */

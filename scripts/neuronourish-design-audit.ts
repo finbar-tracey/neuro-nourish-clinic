@@ -105,9 +105,10 @@ check(
   "DES-S2",
   "Design surfaces",
   "Key grids use linen card tint",
-  read("src/components/neuronourish/content/why-benefits-grid.tsx").includes("bg-linen/") &&
-    read("src/components/neuronourish/content/journey-timeline.tsx").includes("bg-linen/") &&
-    read("src/components/neuronourish/shop-product-card.tsx").includes("bg-linen/"),
+  read("src/components/neuronourish/content/nn-card.tsx").includes("bg-linen/") &&
+    read("src/components/neuronourish/content/why-benefits-grid.tsx").includes("NnCard") &&
+    read("src/components/neuronourish/content/journey-timeline.tsx").includes("NnCard") &&
+    read("src/components/neuronourish/shop-product-card.tsx").includes("NnCard"),
 );
 
 check(

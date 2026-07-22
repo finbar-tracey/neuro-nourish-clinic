@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { ShopProductCard } from "@/components/neuronourish/shop-product-card";
 import {
   NN_SHOP,
@@ -18,20 +19,14 @@ const FILTERS: { id: "all" | ShopCategory; label: string }[] = [
 ];
 
 export function ShopCatalog({
-  featured,
   tiers,
   services,
 }: {
-  featured: ShopProduct[];
   tiers: ShopProduct[];
   services: ShopProduct[];
 }) {
   const [filter, setFilter] = useState<"all" | ShopCategory>("all");
 
-  const visibleFeatured = useMemo(
-    () => (filter === "all" ? featured : featured.filter((p) => p.category === filter)),
-    [featured, filter],
-  );
   const visibleTiers = useMemo(
     () => (filter === "all" || filter === "programme" ? tiers : []),
     [tiers, filter],
@@ -69,29 +64,16 @@ export function ShopCatalog({
         })}
       </div>
 
-      {visibleFeatured.length > 0 ? (
-        <section className="mt-16" aria-labelledby="shop-featured">
-          <h2 id="shop-featured" className="text-center font-display text-2xl text-slate-blue">
-            {NN_SHOP.featuredTitle}
-          </h2>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleFeatured.map((product) => (
-              <ShopProductCard key={product.slug} product={product} />
-            ))}
-          </div>
-        </section>
-      ) : null}
-
       {visibleTiers.length > 0 ? (
         <section className="mt-16" aria-labelledby="shop-tiers">
           <h2 id="shop-tiers" className="text-center font-display text-2xl text-slate-blue">
             {NN_SHOP.tiersTitle}
           </h2>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <NnCardGrid className="mt-8" columns={3}>
             {visibleTiers.map((product) => (
               <ShopProductCard key={product.slug} product={product} />
             ))}
-          </div>
+          </NnCardGrid>
         </section>
       ) : null}
 
@@ -100,11 +82,11 @@ export function ShopCatalog({
           <h2 id="shop-services" className="text-center font-display text-2xl text-slate-blue">
             {NN_SHOP.productsTitle}
           </h2>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <NnCardGrid className="mt-8" columns={3}>
             {visibleServices.map((product) => (
               <ShopProductCard key={product.slug} product={product} />
             ))}
-          </div>
+          </NnCardGrid>
         </section>
       ) : null}
     </>

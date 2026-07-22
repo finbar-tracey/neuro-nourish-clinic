@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { HighlightList } from "@/components/neuronourish/content/highlight-list";
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 
 type Tone = "default" | "card";
 
@@ -14,13 +15,21 @@ export function ScannableBlock({
   highlights: readonly string[];
   tone?: Tone;
 }) {
-  const wrapper =
-    tone === "card"
-      ? "rounded-2xl border border-mist bg-linen/35 p-6"
-      : "border-l-2 border-gold py-2 pl-6";
+  if (tone === "card") {
+    return (
+      <NnCard
+        badge={benefitFocus ? <span className="nn-badge">{benefitFocus}</span> : undefined}
+        title={title}
+      >
+        <div className="mt-1">
+          <HighlightList items={highlights} />
+        </div>
+      </NnCard>
+    );
+  }
 
   return (
-    <article className={wrapper}>
+    <article className="border-l-2 border-gold py-2 pl-6">
       {benefitFocus ? <span className="nn-badge mb-2">{benefitFocus}</span> : null}
       <h3 className="nn-display-card text-slate-blue">{title}</h3>
       <div className="mt-3">
@@ -37,12 +46,13 @@ export function ScannableGrid({
   children: ReactNode;
   columns?: 1 | 2 | 3;
 }) {
-  const colClass =
-    columns === 3
-      ? "md:grid-cols-2 lg:grid-cols-3"
-      : columns === 1
-        ? "grid-cols-1"
-        : "md:grid-cols-2";
+  if (columns === 1) {
+    return <div className="mt-10 grid grid-cols-1 gap-4 sm:gap-5">{children}</div>;
+  }
 
-  return <div className={`mt-10 grid gap-6 ${colClass}`}>{children}</div>;
+  return (
+    <NnCardGrid className="mt-10" columns={columns === 3 ? 3 : 2}>
+      {children}
+    </NnCardGrid>
+  );
 }

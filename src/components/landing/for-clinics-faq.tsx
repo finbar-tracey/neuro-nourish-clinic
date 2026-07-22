@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Mail, ChevronDown } from "lucide-react";
+import { Mail } from "lucide-react";
+import { LandingFaqAccordion } from "@/components/landing/faq-accordion";
 import { SalesCalendlyLink } from "@/components/landing/sales-calendly-embed";
 import { Section, SectionHeader, ctaPrimary } from "@/components/landing/layout";
 import { salesContactEmailDisplay } from "@/lib/for-clinics-config";
@@ -32,10 +33,7 @@ export function ForClinicsFaq() {
         className="mb-6 text-left md:mb-8 [&_h2]:text-left"
       />
 
-      <nav
-        aria-label="FAQ categories"
-        className="mb-8 flex flex-wrap gap-2"
-      >
+      <nav aria-label="FAQ categories" className="mb-8 flex flex-wrap gap-2">
         {CATEGORY_ORDER.map((category) => (
           <a
             key={category}
@@ -58,36 +56,17 @@ export function ForClinicsFaq() {
                 <h3 className="mb-4 font-display text-lg font-medium text-navy">
                   {HEALTHCARE_FOR_CLINICS_FAQ_CATEGORIES[category]}
                 </h3>
-                <div className="space-y-3">
-                  {items.map(({ id, q, a, highlight }) => (
-                      <details
-                        key={id}
-                        id={id}
-                        className={cn(
-                          "group scroll-mt-24 overflow-hidden rounded-2xl border bg-white shadow-sm transition",
-                          highlight
-                            ? "border-gold/30 ring-1 ring-gold/10"
-                            : "border-slate-200",
-                        )}
-                        open={id === "faq-pricing"}
-                      >
-                        <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5 [&::-webkit-details-marker]:hidden">
-                          <span className="flex-1 text-left text-sm font-semibold text-navy md:text-base">
-                            {q}
-                          </span>
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-cream text-gold-ink transition group-open:bg-gold/15">
-                            <ChevronDown
-                              className="h-4 w-4 transition group-open:rotate-180"
-                              aria-hidden
-                            />
-                          </span>
-                        </summary>
-                        <div className="border-t border-slate-100 bg-slate-50/50 px-5 pb-5 pt-4 md:px-6 md:pb-6">
-                          <p className="text-sm leading-relaxed text-slate-700">{a}</p>
-                        </div>
-                      </details>
-                  ))}
-                </div>
+                <LandingFaqAccordion
+                  groupName={`for-clinics-faq-${category}`}
+                  defaultOpenId={category === "pilot" ? "faq-pricing" : undefined}
+                  defaultOpenIndex={-1}
+                  items={items.map(({ id, q, a, highlight }) => ({
+                    id,
+                    q,
+                    a,
+                    highlight,
+                  }))}
+                />
               </section>
             );
           })}

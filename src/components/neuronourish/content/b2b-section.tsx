@@ -1,5 +1,6 @@
 import { GoldButton } from "@/components/neuronourish/shell";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { NN_B2B } from "@/lib/neuronourish-copy";
 
@@ -67,21 +68,16 @@ export function B2bSection({ className = "" }: { className?: string }) {
           ))}
         </ul>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-3 lg:gap-6">
+        <NnCardGrid className="mt-10" columns={3}>
           {NN_B2B.pillars.map((pillar) => (
-            <article
+            <NnCard
               key={pillar.title}
-              className="nn-b2b-pillar relative overflow-hidden rounded-2xl border border-mist bg-linen/30 p-6"
-            >
-              <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/12">
-                <B2bPillarIcon icon={pillar.icon} />
-              </div>
-              <h3 className="nn-display-card mt-4 text-slate-blue">{pillar.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink/75">{pillar.description}</p>
-            </article>
+              icon={<B2bPillarIcon icon={pillar.icon} />}
+              title={pillar.title}
+              body={pillar.description}
+            />
           ))}
-        </div>
+        </NnCardGrid>
 
         <div className="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
           {NN_B2B.stats.map((stat) => (

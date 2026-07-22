@@ -1,5 +1,6 @@
 import { GoldButton, SectionEyebrow } from "@/components/neuronourish/shell";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { NN_OUTCOMES } from "@/lib/neuronourish-copy";
 
 export function OutcomesSection({ className = "" }: { className?: string }) {
@@ -15,18 +16,14 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           <p className="nn-body mx-auto mt-4 text-ink/75">{NN_OUTCOMES.subtext}</p>
         </div>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:gap-5">
+        <NnCardGrid className="mt-10" columns={3}>
           {NN_OUTCOMES.stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="nn-outcomes-stat relative overflow-hidden rounded-2xl border border-mist bg-linen/30 px-5 py-6 text-center"
-            >
-              <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/60" aria-hidden />
+            <NnCard key={stat.label} align="center">
               <p className="font-display text-4xl text-slate-blue lg:text-[2.75rem]">{stat.value}</p>
               <p className="mt-2 text-sm leading-relaxed text-ink/75">{stat.label}</p>
-            </div>
+            </NnCard>
           ))}
-        </div>
+        </NnCardGrid>
 
         <ul className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2.5">
           {NN_OUTCOMES.outcomes.map((outcome) => (
@@ -52,7 +49,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           </footer>
         </blockquote>
 
-        <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-mist/80 bg-white/50 px-4 py-3 text-center text-xs leading-relaxed text-ink/65">
+        <p className="mx-auto mt-6 max-w-2xl rounded-xl border border-mist/80 bg-linen/25 px-4 py-3 text-center text-xs leading-relaxed text-ink/65">
           {NN_OUTCOMES.disclaimer}
         </p>
 

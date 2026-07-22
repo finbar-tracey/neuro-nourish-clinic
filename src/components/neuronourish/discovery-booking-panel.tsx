@@ -8,6 +8,7 @@ import { DiscoveryCalendlyEmbed } from "@/components/neuronourish/calendly-embed
 import { CheckList } from "@/components/neuronourish/content/highlight-list";
 import { DiscoveryRequestForm } from "@/components/neuronourish/content/discovery-request-form";
 import { FunnelTrustBar } from "@/components/neuronourish/content/funnel-trust-bar";
+import { NnFaqBlock } from "@/components/neuronourish/content/nn-faq-accordion";
 import { SectionEyebrow } from "@/components/neuronourish/shell";
 import { NN_DISCOVERY, NN_FOOTER, NN_QUIZ_ABANDON } from "@/lib/neuronourish-copy";
 
@@ -179,22 +180,12 @@ export function DiscoveryBookingPanel({
         </section>
       )}
 
-      <section className="mt-14 border-t border-linen/70 pt-10" aria-labelledby="discovery-faq">
-        <h2
-          id="discovery-faq"
-          className="text-center font-display text-xl text-slate-blue sm:text-2xl"
-        >
-          {NN_DISCOVERY.faqTitle}
-        </h2>
-        <dl className="mx-auto mt-8 max-w-xl space-y-5">
-          {NN_DISCOVERY.faq.map((item) => (
-            <div key={item.q}>
-              <dt className="text-sm font-medium text-deep-slate">{item.q}</dt>
-              <dd className="mt-1 text-sm leading-relaxed text-ink/70">{item.a}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+      <NnFaqBlock
+        id="discovery-faq"
+        title={NN_DISCOVERY.faqTitle}
+        items={NN_DISCOVERY.faq}
+        className="mt-14 border-t border-linen/70 pt-10"
+      />
 
       <aside className="mt-12 border-t border-linen/70 pt-10 text-center">
         <p className="font-display text-lg text-slate-blue">{NN_DISCOVERY.quizAltTitle}</p>

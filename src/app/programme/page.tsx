@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
+import { NnFaqBlock } from "@/components/neuronourish/content/nn-faq-accordion";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { ShopProductCard } from "@/components/neuronourish/shop-product-card";
 import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
@@ -43,11 +45,11 @@ export default function ProgrammePage() {
           </div>
 
           <Suspense fallback={<p className="mt-14 text-center text-sm text-ink/60">Loading tiers…</p>}>
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <NnCardGrid className="mt-14" columns={3}>
               {tiers.map((tier) => (
                 <ShopProductCard key={tier.slug} product={tier} />
               ))}
-            </div>
+            </NnCardGrid>
           </Suspense>
 
           <p className="mx-auto mt-6 max-w-lg text-center text-sm text-ink/65">
@@ -64,18 +66,17 @@ export default function ProgrammePage() {
             >
               {NN_PROGRAMME.yearTitle}
             </h2>
-            <ol className="mt-10 grid gap-6 sm:grid-cols-3">
+            <NnCardGrid as="ol" className="mt-10" columns={3}>
               {NN_PROGRAMME.yearPhases.map((phase) => (
-                <li
+                <NnCard
                   key={phase.timing}
-                  className="rounded-2xl border border-mist bg-white/90 p-6 text-center shadow-sm sm:text-left"
-                >
-                  <p className="nn-eyebrow text-gold">{phase.timing}</p>
-                  <h3 className="mt-3 font-display text-xl text-slate-blue">{phase.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{phase.detail}</p>
-                </li>
+                  as="li"
+                  eyebrow={phase.timing}
+                  title={phase.title}
+                  body={phase.detail}
+                />
               ))}
-            </ol>
+            </NnCardGrid>
           </section>
 
           <section className="mt-16" aria-labelledby="programme-inclusions">
@@ -85,17 +86,11 @@ export default function ProgrammePage() {
             >
               {NN_PROGRAMME.inclusionsTitle}
             </h2>
-            <ul className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2">
+            <NnCardGrid as="ul" className="mx-auto mt-10 max-w-4xl" columns={2}>
               {NN_PROGRAMME.inclusions.map((item) => (
-                <li
-                  key={item.title}
-                  className="rounded-2xl border border-mist bg-white/80 p-5 text-left"
-                >
-                  <p className="text-sm font-medium text-deep-slate">{item.title}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{item.detail}</p>
-                </li>
+                <NnCard key={item.title} as="li" title={item.title} body={item.detail} />
               ))}
-            </ul>
+            </NnCardGrid>
           </section>
 
           <ul className="mx-auto mt-12 max-w-xl space-y-3 text-sm text-ink/80">
@@ -107,27 +102,19 @@ export default function ProgrammePage() {
             ))}
           </ul>
 
-          <section className="mx-auto mt-16 max-w-2xl" aria-labelledby="programme-faq">
-            <h2
-              id="programme-faq"
-              className="text-center font-display text-2xl text-slate-blue"
-            >
-              {NN_PROGRAMME.faqTitle}
-            </h2>
-            <dl className="mt-8 space-y-5">
-              {NN_PROGRAMME.faq.map((item) => (
-                <div key={item.q} className="rounded-2xl border border-mist bg-white/80 p-5">
-                  <dt className="text-sm font-medium text-deep-slate">{item.q}</dt>
-                  <dd className="mt-2 text-sm leading-relaxed text-ink/75">{item.a}</dd>
-                </div>
-              ))}
-            </dl>
-          </section>
+          <NnFaqBlock
+            id="programme-faq"
+            title={NN_PROGRAMME.faqTitle}
+            items={NN_PROGRAMME.faq}
+            className="mt-16"
+          />
 
-          <div className="mx-auto mt-14 max-w-xl rounded-2xl border border-mist bg-linen/20 p-6 text-center">
-            <p className="font-display text-lg text-slate-blue">{NN_PROGRAMME.capacityTitle}</p>
-            <p className="mt-2 text-sm leading-relaxed text-ink/75">{NN_PROGRAMME.capacityText}</p>
-          </div>
+          <NnCard
+            className="mx-auto mt-14 max-w-xl"
+            align="center"
+            title={NN_PROGRAMME.capacityTitle}
+            body={NN_PROGRAMME.capacityText}
+          />
 
           <p className="mx-auto mt-12 max-w-xl text-center text-sm text-ink/65">
             Ready to enrol?{" "}

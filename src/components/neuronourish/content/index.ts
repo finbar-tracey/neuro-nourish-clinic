@@ -4,6 +4,13 @@ export { HighlightList, CheckList } from "@/components/neuronourish/content/high
 export { SectionHeader, PageHeader } from "@/components/neuronourish/content/section-header";
 export { ScannableBlock, ScannableGrid } from "@/components/neuronourish/content/scannable-block";
 export { FaqSection, FaqSectionCompact } from "@/components/neuronourish/content/faq-section";
+export {
+  NnFaqAccordion,
+  NnFaqBlock,
+  type NnFaqItem,
+} from "@/components/neuronourish/content/nn-faq-accordion";
+export { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
+export { ClinicianFaqSection } from "@/components/neuronourish/content/clinician-faq-accordion";
 export { B2bSection } from "@/components/neuronourish/content/b2b-section";
 export { BlogSection } from "@/components/neuronourish/content/blog-section";
 export { BlogGrid } from "@/components/neuronourish/content/blog-grid";

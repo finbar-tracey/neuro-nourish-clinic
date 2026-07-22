@@ -6,6 +6,7 @@ import {
   Landmark,
   TrendingUp,
 } from "lucide-react";
+import { LandingFaqAccordion } from "@/components/landing/faq-accordion";
 
 const services = [
   {
@@ -390,22 +391,7 @@ export function FAQ() {
         <h2 className="mb-10 text-center text-3xl font-bold text-navy">
           Frequently Asked Questions
         </h2>
-        <div className="space-y-4">
-          {faqs.map(({ q, a }) => (
-            <details
-              key={q}
-              className="group rounded-xl border border-slate-200 bg-white p-5"
-            >
-              <summary className="cursor-pointer font-medium text-navy marker:content-none">
-                <span className="flex items-center justify-between">
-                  {q}
-                  <span className="text-gold transition group-open:rotate-45">+</span>
-                </span>
-              </summary>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">{a}</p>
-            </details>
-          ))}
-        </div>
+        <LandingFaqAccordion groupName="blb-sections-faq" defaultOpenIndex={-1} items={faqs} />
       </div>
     </section>
   );

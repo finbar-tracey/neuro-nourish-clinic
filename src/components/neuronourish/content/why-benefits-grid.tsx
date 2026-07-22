@@ -1,3 +1,4 @@
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import type { WhyBenefit } from "@/lib/neuronourish-copy";
 import { NN_WHY } from "@/lib/neuronourish-copy";
 
@@ -76,20 +77,15 @@ function BenefitIcon({ icon }: { icon: WhyBenefit["icon"] }) {
 
 export function WhyBenefitsGrid() {
   return (
-    <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+    <NnCardGrid className="mt-10" columns={3}>
       {NN_WHY.benefits.map((benefit) => (
-        <article
+        <NnCard
           key={benefit.title}
-          className="nn-why-benefit relative flex flex-col overflow-hidden rounded-2xl border border-mist bg-linen/30 p-6"
-        >
-          <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/55" aria-hidden />
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gold/12">
-            <BenefitIcon icon={benefit.icon} />
-          </div>
-          <h3 className="nn-display-card mt-4 text-slate-blue">{benefit.title}</h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-ink/75">{benefit.description}</p>
-        </article>
+          icon={<BenefitIcon icon={benefit.icon} />}
+          title={benefit.title}
+          body={benefit.description}
+        />
       ))}
-    </div>
+    </NnCardGrid>
   );
 }

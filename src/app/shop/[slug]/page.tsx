@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckList } from "@/components/neuronourish/content/highlight-list";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { ShopCheckoutButton } from "@/components/neuronourish/shop-checkout-button";
 import { ShopProductCard } from "@/components/neuronourish/shop-product-card";
 import { NeuroNourishShell, SectionEyebrow } from "@/components/neuronourish/shell";
@@ -69,11 +70,15 @@ export default async function ShopProductPage({ params }: PageProps) {
             ) : null}
           </header>
 
-          <div className="mx-auto mt-10 max-w-lg rounded-2xl border border-mist bg-white/90 p-6 shadow-sm sm:p-8">
-            <p className="text-sm font-medium text-slate-blue">What&apos;s included</p>
-            <CheckList items={product.includes} className="mt-4" />
-            <p className="mt-6 text-center text-sm text-ink/65">{shopPublicPriceLabel(product)}</p>
-          </div>
+          <NnCard
+            className="mx-auto mt-10 max-w-lg sm:p-8"
+            title="What's included"
+            footer={
+              <p className="text-center text-sm text-ink/65">{shopPublicPriceLabel(product)}</p>
+            }
+          >
+            <CheckList items={product.includes} className="mt-2" />
+          </NnCard>
 
           <div className="mx-auto mt-10 flex max-w-lg flex-col items-center gap-3">
             {product.ctaType === "buy" ? (
@@ -109,11 +114,11 @@ export default async function ShopProductPage({ params }: PageProps) {
               {NN_SHOP.relatedTitle}
             </h2>
             <Suspense fallback={<p className="mt-8 text-center text-sm text-ink/60">Loading…</p>}>
-              <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              <NnCardGrid className="mt-8" columns={3}>
                 {related.map((item) => (
                   <ShopProductCard key={item.slug} product={item} />
                 ))}
-              </div>
+              </NnCardGrid>
             </Suspense>
           </PageContainer>
         ) : null}

@@ -272,26 +272,8 @@ h3,
   );
 }
 
-.nn-b2b-pillar {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.nn-b2b-pillar:hover {
-  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
-  transform: translateY(-2px);
-}
-
 .nn-why-section {
   background-color: color-mix(in oklab, var(--brand-linen) 28%, var(--brand-ivory));
-}
-
-.nn-why-benefit {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.nn-why-benefit:hover {
-  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
-  transform: translateY(-2px);
 }
 
 .nn-journey-section {
@@ -303,15 +285,6 @@ h3,
   );
 }
 
-.nn-journey-step {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.nn-journey-step:hover {
-  box-shadow: 0 8px 24px rgba(26, 51, 72, 0.07);
-  transform: translateY(-2px);
-}
-
 .nn-outcomes-section {
   background-color: color-mix(in oklab, var(--brand-linen) 22%, var(--brand-ivory));
   background-image: radial-gradient(
@@ -321,13 +294,21 @@ h3,
   );
 }
 
-.nn-outcomes-stat {
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+/* Global marketing card — shared hover / equal-height grid */
+.nn-card {
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.nn-outcomes-stat:hover {
-  box-shadow: 0 8px 24px rgba(26, 51, 72, 0.08);
+.nn-card:hover {
+  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
   transform: translateY(-2px);
+}
+
+.nn-card-grid > * {
+  min-width: 0;
+  height: 100%;
 }
 
 .nn-founder-section {
@@ -424,17 +405,6 @@ details > summary::-webkit-details-marker {
   box-shadow: 0 6px 18px rgba(201, 168, 76, 0.28);
 }
 
-.nn-shop-card {
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-.nn-shop-card:hover {
-  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.08);
-  transform: translateY(-2px);
-}
-
 .nn-sticky-cta {
   transform: translateY(110%);
   opacity: 0;
@@ -492,11 +462,7 @@ details > summary::-webkit-details-marker {
   }
 
   .nn-gold-cta:hover,
-  .nn-shop-card:hover,
-  .nn-b2b-pillar:hover,
-  .nn-why-benefit:hover,
-  .nn-journey-step:hover,
-  .nn-outcomes-stat:hover,
+  .nn-card:hover,
   .nn-blog-card:hover {
     transform: none;
     box-shadow: none;
@@ -531,12 +497,50 @@ details > summary::-webkit-details-marker {
   );
 }
 
+.nn-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.nn-faq-summary {
+  list-style: none;
+}
+
+.nn-faq-summary:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--brand-gold) 70%, white);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+.landing-faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+.landing-faq-summary {
+  list-style: none;
+}
+
+.landing-faq-summary:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--brand-gold, #c9a84c) 70%, white);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+.landing-faq-item + .landing-faq-item {
+  border-top: 1px solid rgb(226 232 240);
+}
+
 .nn-faq-item + .nn-faq-item {
   border-top: 1px solid color-mix(in oklab, var(--brand-linen) 65%, transparent);
 }
 
 .nn-faq-item[open] .nn-faq-toggle {
   background-color: color-mix(in oklab, var(--brand-gold) 18%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-faq-toggle {
+    transition: none;
+  }
 }
 
 .nn-blog-section {

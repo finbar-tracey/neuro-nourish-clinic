@@ -120,16 +120,14 @@ check(
 check(
   "C2",
   "CTA & cards",
-  "Shop cards use nn-shop-card hover lift",
-  shopCard.includes("nn-shop-card") && globals.includes(".nn-shop-card:hover"),
+  "Shop cards use NnCard hover lift",
+  shopCard.includes("NnCard") && globals.includes(".nn-card:hover"),
 );
 check(
   "C3",
   "CTA & cards",
   "Marketing card hovers translateY",
-  globals.includes(".nn-why-benefit:hover") &&
-    globals.includes("translateY(-2px)") &&
-    globals.includes(".nn-b2b-pillar:hover"),
+  globals.includes(".nn-card:hover") && globals.includes("translateY(-2px)"),
 );
 
 check(
