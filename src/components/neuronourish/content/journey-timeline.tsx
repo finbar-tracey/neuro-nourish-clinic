@@ -1,4 +1,4 @@
-import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
+import { NnCard, NnCardGrid, nnCardGridColumns } from "@/components/neuronourish/content/nn-card";
 import { NN_JOURNEY } from "@/lib/neuronourish-copy";
 
 function groupTimelineByPhase() {
@@ -24,7 +24,11 @@ export function JourneyTimeline() {
       {phases.map((group, groupIndex) => (
         <div key={group.phase}>
           <p className="nn-eyebrow text-gold">{group.phase}</p>
-          <NnCardGrid as="ol" className="mt-4">
+          <NnCardGrid
+            as="ol"
+            className="mt-4"
+            columns={nnCardGridColumns(group.steps.length)}
+          >
             {group.steps.map((step) => (
               <NnCard key={step.id} as="li">
                 <div className="flex gap-4">
