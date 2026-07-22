@@ -190,6 +190,36 @@ add(
     home.includes("nn-reveal"),
 );
 
+const abandonLib = existsSync(resolve(ROOT, "src/lib/neuronourish-quiz-abandon.ts"))
+  ? readFileSync(resolve(ROOT, "src/lib/neuronourish-quiz-abandon.ts"), "utf8")
+  : "";
+const quizUi = readFileSync(
+  resolve(ROOT, "src/components/neuronourish/brain-health-quiz.tsx"),
+  "utf8",
+);
+const abandonSheet = existsSync(
+  resolve(ROOT, "src/components/neuronourish/quiz-abandon-sheet.tsx"),
+)
+  ? readFileSync(resolve(ROOT, "src/components/neuronourish/quiz-abandon-sheet.tsx"), "utf8")
+  : "";
+const discoveryPanel = readFileSync(
+  resolve(ROOT, "src/components/neuronourish/discovery-booking-panel.tsx"),
+  "utf8",
+);
+
+add(
+  "C-ABANDON",
+  "Constraints",
+  "Quiz abandon recovery shipped (idle sheet + caps + kill switch)",
+  copy.includes("NN_QUIZ_ABANDON") &&
+    abandonLib.includes("NN_QUIZ_ABANDON_MIN_ANSWERS = 3") &&
+    abandonLib.includes("NN_QUIZ_ABANDON_IDLE_MS = 100_000") &&
+    abandonLib.includes("NEXT_PUBLIC_NN_QUIZ_ABANDON") &&
+    quizUi.includes("QuizAbandonSheet") &&
+    abandonSheet.includes('role="dialog"') &&
+    discoveryPanel.includes("quiz_abandon"),
+);
+
 // Live HTTP
 const LIVE_PATHS = [
   "/",

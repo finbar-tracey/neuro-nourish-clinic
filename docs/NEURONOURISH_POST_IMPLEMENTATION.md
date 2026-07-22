@@ -52,7 +52,7 @@ Latest run (`NN_POST_IMPL_BASE_URL=https://neuro-nourish-clinic.vercel.app`):
 | 1 | SEO | P0 PASS | **PASS** | x |
 | 2 | Webdev | P0 PASS | **PASS** | x |
 | 3 | Mobile | P0 PASS | **PASS** | x |
-| 4 | CRO | P0 PASS | **PASS** | x |
+| 4 | CRO (incl. quiz abandon A1–A4) | P0 PASS | **PASS** | x |
 | 5 | Brand | COMPLIANT | **PASS** | x |
 | 6 | Design | P0 PASS | **PASS** | x |
 | 7 | Animation | P0 PASS | **PASS** | x |
@@ -60,12 +60,24 @@ Latest run (`NN_POST_IMPL_BASE_URL=https://neuro-nourish-clinic.vercel.app`):
 | 9 | Go-live (static) | P0 PASS / known ops gaps | **PASS** (static) | x |
 | 10 | Live crawl | Marketing URLs 200 | **PASS** | x |
 | 11 | Live health | Document integrations | **degraded / partial** | x |
+| 12 | Quiz abandon constraint | Idle sheet + caps + kill switch | **PASS** | x |
 
-**Aggregator verdict:** PASS (marketing P0) — `33/33` P0 · `37/37` total  
-**Commit at sign-off:** `82a9c13`  
+**Aggregator verdict:** PASS (marketing P0) — see latest CLI totals  
+**Commit at sign-off:** `3a81b3d` (quiz abandon) · doc update follows  
 **Date:** 2026-07-22
 
-### Findings fixed during this audit
+### Quiz abandon (post `3a81b3d`)
+
+| Check | Expected | Status |
+|-------|----------|--------|
+| Trigger | ≥3 answers + 100s idle | Code |
+| UI | Soft dialog/sheet; discovery primary | Code + CRO A3 |
+| Caps | Session + 7-day cooldown | Code |
+| Kill switch | `NEXT_PUBLIC_NN_QUIZ_ABANDON=false` | Code |
+| Discovery | Banner when `source=quiz_abandon` | Code |
+| End-capture | Still end-of-quiz email (not mid) | Constraint C-END |
+
+### Findings fixed in prior post-impl
 
 | Issue | Cause | Fix |
 |-------|--------|-----|
@@ -111,6 +123,8 @@ Latest run (`NN_POST_IMPL_BASE_URL=https://neuro-nourish-clinic.vercel.app`):
 | 5 | Shop: quiz path + leadId on cards from `?leadId=` | |
 | 6 | Discovery Calendly / EOI loads | |
 | 7 | No H-scroll @ 375px on `/`, `/quiz`, `/shop` | |
+| 8 | Quiz abandon: answer 3+, idle ~100s → sheet; Book → discovery banner | |
+| 9 | Quiz abandon: Continue returns to quiz; no second show same session | |
 
 ---
 
