@@ -311,6 +311,21 @@ h3,
   height: 100%;
 }
 
+/* Force equal tracks — prevents wide card content from wrapping a trio into 2+1 */
+@media (min-width: 640px) {
+  .nn-card-grid[data-cols="2"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nn-card-grid[data-cols="3"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nn-card-grid[data-cols="4"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .nn-founder-section {
   background-color: var(--brand-deep-violet);
   background-image:

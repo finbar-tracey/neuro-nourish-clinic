@@ -155,6 +155,7 @@ export function NnCardGrid({
 
   return (
     <Tag
+      data-cols={resolved}
       className={`nn-card-grid grid gap-4 sm:gap-5 lg:gap-6 ${columnClass(resolved)} ${className}`}
     >
       {children}
