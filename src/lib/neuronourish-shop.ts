@@ -479,7 +479,6 @@ export const NN_SHOP = {
     assessment: "Cognitive tests",
     consultation: "Consultations",
     lab: "Blood tests",
-    supplement: "Supplements",
     programme: "Programmes",
   },
 } as const;
@@ -500,7 +499,11 @@ export function shopTierProducts(): ShopProduct[] {
 }
 
 export function shopServiceProducts(): ShopProduct[] {
-  return NN_SHOP_PRODUCTS.filter((p) => p.category !== "programme");
+  /** Hide placeholder / non–Version 2 catalog SKUs from public Tests listing. */
+  const hiddenFromTests = new Set(["blood-work", "pt257"]);
+  return NN_SHOP_PRODUCTS.filter(
+    (p) => p.category !== "programme" && !hiddenFromTests.has(p.slug),
+  );
 }
 
 /** Related products for cross-sell on detail pages (excludes self). */

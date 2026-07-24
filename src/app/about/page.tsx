@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   GoldButton,
@@ -10,7 +11,7 @@ import {
   FounderPortrait,
   FounderTrustStrip,
 } from "@/components/neuronourish/content";
-import { NN_ABOUT, NN_FOUNDER_ABOUT } from "@/lib/neuronourish-copy";
+import { NN_ABOUT, NN_CREDENTIAL_LOGOS, NN_FOUNDER_ABOUT } from "@/lib/neuronourish-copy";
 import { buildNeuronourishMetadata } from "@/lib/neuronourish-seo";
 
 export const metadata = buildNeuronourishMetadata("about");
@@ -57,6 +58,36 @@ export default function AboutPage() {
         ))}
 
         <CheckList items={NN_ABOUT.credentials} className="mt-8" />
+
+        <div className="mt-12 border-t border-linen/70 pt-10">
+          <p className="nn-eyebrow text-slate-blue">{NN_CREDENTIAL_LOGOS.eyebrow}</p>
+          <ul className="mt-6 flex flex-wrap items-stretch justify-center gap-3 sm:justify-start sm:gap-4">
+            {NN_CREDENTIAL_LOGOS.items.map((item) => (
+              <li
+                key={item.label}
+                className="flex min-h-[5.5rem] w-[calc(50%-0.4rem)] max-w-[11rem] flex-col items-center justify-center gap-2 rounded-xl border border-mist/80 bg-white px-3 py-4 text-center sm:w-[calc(25%-0.75rem)]"
+              >
+                <Image
+                  src={item.logo}
+                  alt={item.label}
+                  width={item.width}
+                  height={item.height}
+                  className="h-10 w-auto max-w-[8rem] object-contain"
+                />
+                <p className="text-[11px] leading-snug text-ink/60">{item.detail}</p>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 overflow-hidden rounded-xl border border-mist/80 bg-white p-4">
+            <Image
+              src={NN_CREDENTIAL_LOGOS.strip.logo}
+              alt={NN_CREDENTIAL_LOGOS.strip.label}
+              width={NN_CREDENTIAL_LOGOS.strip.width}
+              height={NN_CREDENTIAL_LOGOS.strip.height}
+              className="mx-auto h-auto w-full max-w-3xl object-contain"
+            />
+          </div>
+        </div>
 
         <div className="mt-12 space-y-5 border-t border-linen/70 pt-10">
           <p className="nn-eyebrow text-slate-blue">Lived experience</p>

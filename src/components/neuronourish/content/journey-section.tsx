@@ -1,34 +1,46 @@
 import { GoldButton } from "@/components/neuronourish/shell";
 import { AppPreviewVisual } from "@/components/neuronourish/content/app-preview-visual";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
-import { JourneyTimeline } from "@/components/neuronourish/content/journey-timeline";
+import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { NN_APP, NN_JOURNEY } from "@/lib/neuronourish-copy";
 
+/** Homepage journey — Emer 3-step Method (detail stays on /programme). */
 export function JourneySection({ className = "" }: { className?: string }) {
   return (
     <PageSection id="journey" className={`nn-journey-section ${className}`}>
       <PageContainer width="xl">
         <SectionHeader
-          eyebrow="Your journey"
+          eyebrow={NN_JOURNEY.eyebrow}
           headline={NN_JOURNEY.headline}
           subtext={NN_JOURNEY.subtext}
         />
-        <div className="mt-8 lg:mt-10">
-          <JourneyTimeline />
-        </div>
 
-        <div className="mt-10 grid items-center gap-8 border-t border-mist/80 pt-10 lg:mt-12 lg:grid-cols-2 lg:gap-12 lg:pt-12">
+        <NnCardGrid as="ol" className="mt-8 lg:mt-10">
+          {NN_JOURNEY.method.map((phase) => (
+            <NnCard key={phase.title} as="li">
+              <div className="flex gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gold bg-ivory font-display text-sm text-slate-blue">
+                  {phase.step}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="nn-display-card text-slate-blue">{phase.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/75">{phase.body}</p>
+                </div>
+              </div>
+            </NnCard>
+          ))}
+        </NnCardGrid>
+
+        <div className="mt-10 grid items-center gap-8 border-t border-mist/80 pt-10 lg:grid-cols-2 lg:gap-12">
           <div className="max-w-lg">
             <p className="nn-eyebrow text-gold">Ongoing support</p>
             <h3 className="nn-display-card mt-3 text-slate-blue">
               Daily tracking inside the NeuroNourish App
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-ink/75">
-              Your progress doesn&apos;t happen in sessions alone. Through regular check-ins,
-              personalised guidance, and daily tracking inside the NeuroNourish App, you receive
-              ongoing support, accountability, and real-time insight into your cognitive,
-              nutritional, and lifestyle progress.
+              Through ongoing coaching, app tracking and regular reviews, we help you build habits
+              that support lifelong cognitive health. App access is included for programme clients.
             </p>
             <p className="mt-4 text-xs leading-relaxed text-ink/55">{NN_APP.ctaHint}</p>
           </div>

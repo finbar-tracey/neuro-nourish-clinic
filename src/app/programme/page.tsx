@@ -4,6 +4,7 @@ import { PageContainer, PageSection } from "@/components/neuronourish/content/co
 import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { NnFaqBlock } from "@/components/neuronourish/content/nn-faq-accordion";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
+import { ProgrammeCompareTable } from "@/components/neuronourish/programme-compare-table";
 import { ShopProductCard } from "@/components/neuronourish/shop-product-card";
 import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
 import { NN_PROGRAMME } from "@/lib/neuronourish-copy";
@@ -51,6 +52,8 @@ export default function ProgrammePage() {
               ))}
             </NnCardGrid>
           </Suspense>
+
+          <ProgrammeCompareTable />
 
           <p className="mx-auto mt-6 max-w-lg text-center text-sm text-ink/65">
             Self-Led includes app-led monitoring.{" "}

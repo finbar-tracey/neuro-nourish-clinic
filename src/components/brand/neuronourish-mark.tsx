@@ -29,7 +29,7 @@ export function NeuroNourishMark({
       <Link href={href} className={cn("inline-flex shrink-0", className)}>
         <Image
           src={src}
-          alt="NeuroNourish Clinic"
+          alt="NeuroNourish"
           width={220}
           height={220}
           className={cn("h-auto object-contain", className ?? "w-[min(100%,220px)]")}
@@ -49,7 +49,7 @@ export function NeuroNourishMark({
       <Link href={href} className={cn("inline-flex shrink-0 items-center", brainPadding, className)}>
         <Image
           src={NN_BRAND_ASSETS.brain}
-          alt="NeuroNourish Clinic"
+          alt="NeuroNourish"
           width={558}
           height={448}
           className={cn("shrink-0 object-contain", brainClass)}
@@ -67,7 +67,7 @@ export function NeuroNourishMark({
     <Link
       href={href}
       className={cn("inline-flex shrink-0 items-center gap-2.5 p-1.5 sm:gap-3 sm:p-2", className)}
-      aria-label="NeuroNourish Clinic"
+      aria-label="NeuroNourish"
     >
       <Image
         src={NN_BRAND_ASSETS.brain}

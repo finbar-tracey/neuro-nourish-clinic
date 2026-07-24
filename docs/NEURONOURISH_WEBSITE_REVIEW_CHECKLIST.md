@@ -22,6 +22,14 @@ Where Priya (earlier) and Emer Version 2 (later) conflict, **implement Emer / lo
 
 Hero Emer H1 + quiz-only; Vision Behind NeuroNourish; nav Tests · Programme · About · Team · For Businesses; `/tests` catalog with €; High-Touch / Guided / Self-Led rename; outcomes clinical stats + buy assessment + delivery partners; About rewrite with assessment CTA.
 
+### No-blocker polish (24 Jul 2026)
+
+- [x] About credential logos + accreditations strip
+- [x] Programme High-Touch / Guided / Self-Led comparison table
+- [x] Home journey → Emer 3-step Method (Understand · Personalise · Optimise)
+- [x] PT257 + Blood Work Review hidden from Tests catalog
+- [x] Brand mark `aria-label` → NeuroNourish; closing chip drop Ireland & UK → Habit baseline first
+
 ### Post-implementation audit — Emer Version 2 (24 Jul 2026)
 
 Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-check vs PDF.
@@ -48,7 +56,7 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 | D3 | Public prices | Tests + € | **Locked** |
 | D4 | Quiz audience | Softened | Locked (soft) |
 | D5 | Discovery + quiz | No walkthrough | Locked |
-| D6 | Journey on home | Phases + detail | Locked (keep; shorten later if needed) |
+| D6 | Journey on home | Emer 3-step Method | **Locked** (detail on `/programme`) |
 | D7 | Hero CTAs | Quiz only | **Locked** |
 
 ---
@@ -96,8 +104,8 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 - [ ] **O-06** Quarterly review form (ops / Ishan)
 
 ### Fold 5–10
-- [x] Journey phases + Find Your Programme
-- [x] Why / Partners / B2B / FAQ soft price / Closing quiz + soft discovery
+- [x] Journey = Emer 3-step Method + Find Your Programme
+- [x] Why / Partners / B2B / FAQ soft price / Closing quiz + soft discovery (Habit baseline first chip)
 
 ---
 
@@ -118,7 +126,9 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 
 - [x] Tests catalog + public € for listed cognitive/blood/consultations
 - [x] High-Touch / Guided / Self-Led (no Premium/Medium/Light labels)
-- [x] About vision rewrite + assessment CTA
+- [x] Programme comparison table (High-Touch / Guided / Self-Led)
+- [x] PT257 + Blood Work Review not listed on Tests (SKU still in registry)
+- [x] About vision rewrite + assessment CTA + credential logos strip
 - [ ] At-home finger-prick prices (Emer to confirm)
 - [ ] Programme vs Tests blurbs Emer [d]
 - [ ] Client dashboard CD-01–CD-11 (Wave D)

@@ -9,13 +9,12 @@ import {
   type ShopProduct,
 } from "@/lib/neuronourish-shop";
 
-const FILTERS: { id: "all" | ShopCategory; label: string }[] = [
+const FILTERS: { id: "all" | Exclude<ShopCategory, "supplement">; label: string }[] = [
   { id: "all", label: NN_SHOP.filterAll },
   { id: "programme", label: NN_SHOP.filterLabels.programme },
   { id: "assessment", label: NN_SHOP.filterLabels.assessment },
   { id: "consultation", label: NN_SHOP.filterLabels.consultation },
   { id: "lab", label: NN_SHOP.filterLabels.lab },
-  { id: "supplement", label: NN_SHOP.filterLabels.supplement },
 ];
 
 export function ShopCatalog({

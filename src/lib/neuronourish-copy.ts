@@ -240,14 +240,34 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
 ];
 
+export const NN_JOURNEY_METHOD = [
+  {
+    step: 1,
+    title: "Understand",
+    body: "We begin by building a complete picture of your brain health. Through your motivations, medical history, blood results, cognitive assessment results and lifestyle analysis, we identify the factors that matter most to you.",
+  },
+  {
+    step: 2,
+    title: "Personalise",
+    body: "Using your results, we create a personalised programme combining nutrition, lifestyle medicine, targeted supplementation and behaviour change coaching to support your brain health.",
+  },
+  {
+    step: 3,
+    title: "Optimise",
+    body: "Your programme evolves as you do. Through ongoing coaching, app tracking and regular reviews, we monitor your progress, refine your plan and help you build habits that support lifelong cognitive health.",
+  },
+] as const;
+
 export const NN_JOURNEY = {
-  headline: "A personalised journey designed around your brain health.",
+  eyebrow: "The NeuroNourish Method",
+  headline: "A personalised programme built around you.",
   subtext:
-    "We shape every recommendation around your health history, biomarkers, cognitive assessment, lifestyle and goals.",
+    "No two brains are the same, which is why no two NeuroNourish programmes are either. We shape every recommendation by your health history, blood biomarkers, cognitive assessment, lifestyle and personal goals.",
+  method: NN_JOURNEY_METHOD,
   timeline: NN_JOURNEY_TIMELINE,
   steps: NN_JOURNEY_STEPS,
   cta: "Find Your Programme",
-  ctaHint: "Compare tiers and what is included",
+  ctaHint: "Compare High-Touch, Guided, and Self-Led",
   shopSoft: "",
   shopCta: "",
 } as const;
@@ -1894,7 +1914,7 @@ export const NN_CLOSING = {
   headline: "Your Brain Is With You for Life. Give It the Care It Deserves.",
   subtext:
     "Whether you're looking to support your cognitive health, improve mental clarity, or better understand your personal risk factors, we're here to guide you with personalised, evidence-based care designed around you.",
-  trustChips: ["Free brain health quiz", "No obligation", "Ireland & UK"],
+  trustChips: ["Free brain health quiz", "No obligation", "Habit baseline first"],
   ctaPrimary: "Or book a discovery call",
   ctaQuizHint: "3 minutes · Habit baseline for your next conversation",
   ctaSecondary: "Contact Our Team",
@@ -2036,6 +2056,19 @@ export const NN_PROGRAMME = {
       title: "Measure & lock in",
       detail: "Re-assessment, progress review, and habits designed to last.",
     },
+  ],
+  compareTitle: "What’s included in each option",
+  compareTiers: ["High-Touch", "Guided", "Self-Led"] as const,
+  compareRows: [
+    { feature: "Full intake & lifestyle timeline", highTouch: true, guided: true, selfLed: true },
+    { feature: "Blood biomarker review", highTouch: true, guided: true, selfLed: false },
+    { feature: "Validated cognitive assessment", highTouch: true, guided: true, selfLed: false },
+    { feature: "CORU dietitian-supervised nutrition", highTouch: true, guided: true, selfLed: false },
+    { feature: "Emer clinical walkthrough touchpoints", highTouch: true, guided: false, selfLed: false },
+    { feature: "1-on-1 coaching & accountability", highTouch: true, guided: true, selfLed: false },
+    { feature: "NeuroNourish app tracking", highTouch: true, guided: true, selfLed: true },
+    { feature: "Scheduled progress reviews", highTouch: true, guided: true, selfLed: false },
+    { feature: "Lighter-touch check-ins", highTouch: false, guided: false, selfLed: true },
   ],
   capacityTitle: "Why intake is capped",
   capacityText:
