@@ -85,14 +85,14 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 - [x] **F-04** CTA: Read Full Story
 - [ ] **F-05** New founder image
 - [x] **F-06** Deep-violet full-bleed removed (light vision fold)
-- [~] **F-07** Trust badges; fuller logo set still TBD
+- [x] **F-07** Trust / featured logos from Emer pack (Sunday Times, EI, LEO, DkIT, TU Dublin, IINH, etc.)
 
 ### Fold 4 — Outcomes
 - [x] **O-01** Clinical stats from review (pending real quarterly form later)
 - [x] **O-02** Headline: Let the numbers speak for themselves
 - [x] **O-03** Outcome chips centred
 - [x] **O-04** Buy Cognitive Assessment CTA (€89.99)
-- [x] **O-05** Clinical delivery partner names strip
+- [x] **O-05** Clinical delivery partner logos (Head Diagnostics, Apollo, Genova, BrainHQ, Kenko, CNS, MoCA)
 - [ ] **O-06** Quarterly review form (ops / Ishan)
 
 ### Fold 5–10
@@ -140,5 +140,5 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 |------|--------|--------|
 | A–C | **Done** | Emer Version 2 marketing surfaces |
 | D | Open | Client dashboard UX |
-| E | Partial | Real quarterly stats form + fuller logo assets |
+| E | Partial | Quarterly stats form; Randox + Cavan Digital Hub logos if supplied |
 | — | Open | New founder photo; hero media; finger-prick prices |

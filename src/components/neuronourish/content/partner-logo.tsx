@@ -10,13 +10,13 @@ export type PartnerLogoItem = {
 
 export function PartnerLogo({ partner }: { partner: PartnerLogoItem }) {
   const tile = (
-    <div className="nn-partner-logo flex h-[4.75rem] w-full min-w-[10rem] max-w-[14rem] items-center justify-center rounded-xl border border-lavender/20 bg-plum/35 px-5 py-3 transition-all duration-200 hover:border-lavender/40 hover:bg-plum/45">
+    <div className="nn-partner-logo flex h-[4.75rem] w-full min-w-[10rem] max-w-[14rem] items-center justify-center rounded-xl border border-mist/80 bg-white px-5 py-3 transition-all duration-200 hover:border-gold/40 hover:bg-linen/30">
       <Image
         src={partner.logo}
         alt={`${partner.name} logo`}
         width={partner.width}
         height={partner.height}
-        className="h-auto max-h-[2.35rem] w-auto max-w-[10.5rem] object-contain"
+        className="h-auto max-h-[2.5rem] w-auto max-w-[10.5rem] object-contain"
       />
     </div>
   );

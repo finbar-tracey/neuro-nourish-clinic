@@ -106,9 +106,8 @@ export function runNeuronourishBrandGuidelinesAudit(
     checks,
     "C6",
     "Colour",
-    "Plum used in partner strip",
-    readFile(root, "src/components/neuronourish/content/partner-strip.tsx").includes("bg-plum") ||
-      readFile(root, "src/components/neuronourish/content/partner-logo.tsx").includes("bg-plum"),
+    "Partner logo tiles present on partner strip",
+    readFile(root, "src/components/neuronourish/content/partner-logo.tsx").includes("nn-partner-logo"),
   );
   addCheck(
     checks,

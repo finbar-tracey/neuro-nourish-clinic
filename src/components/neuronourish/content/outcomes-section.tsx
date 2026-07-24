@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { GoldButton, SectionEyebrow } from "@/components/neuronourish/shell";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
@@ -42,12 +43,21 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           ))}
         </ul>
 
-        <div className="mx-auto mt-12 max-w-3xl border-t border-mist/80 pt-10 text-center">
+        <div className="mx-auto mt-12 max-w-4xl border-t border-mist/80 pt-10 text-center">
           <p className="nn-eyebrow text-slate-blue">{NN_OUTCOMES.clinicalPartnersEyebrow}</p>
-          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+          <ul className="mt-6 flex flex-wrap items-stretch justify-center gap-3 sm:gap-4">
             {NN_OUTCOMES.clinicalPartners.map((partner) => (
-              <li key={partner} className="text-sm font-medium text-ink/70">
-                {partner}
+              <li
+                key={partner.name}
+                className="flex min-h-[5rem] w-[calc(50%-0.4rem)] max-w-[12rem] items-center justify-center rounded-xl border border-mist/80 bg-white px-4 py-3 sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(25%-0.75rem)]"
+              >
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={partner.width}
+                  height={partner.height}
+                  className="h-10 w-auto max-w-[9.5rem] object-contain"
+                />
               </li>
             ))}
           </ul>
