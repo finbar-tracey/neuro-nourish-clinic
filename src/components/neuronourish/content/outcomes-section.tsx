@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { GoldButton, SectionEyebrow } from "@/components/neuronourish/shell";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
+import { LogoMarquee } from "@/components/neuronourish/content/logo-marquee";
 import { NN_OUTCOMES } from "@/lib/neuronourish-copy";
 
 export function OutcomesSection({ className = "" }: { className?: string }) {
@@ -42,28 +42,22 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
             </li>
           ))}
         </ul>
+      </PageContainer>
 
-        <div className="mx-auto mt-12 max-w-4xl border-t border-mist/80 pt-10 text-center">
-          <p className="nn-eyebrow text-slate-blue">{NN_OUTCOMES.clinicalPartnersEyebrow}</p>
-          <ul className="mt-6 flex flex-wrap items-stretch justify-center gap-3 sm:gap-4">
-            {NN_OUTCOMES.clinicalPartners.map((partner) => (
-              <li
-                key={partner.name}
-                className="flex min-h-[5rem] w-[calc(50%-0.4rem)] max-w-[12rem] items-center justify-center rounded-xl border border-mist/80 bg-white px-4 py-3 sm:w-[calc(33.333%-0.7rem)] lg:w-[calc(25%-0.75rem)]"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={partner.width}
-                  height={partner.height}
-                  className="h-10 w-auto max-w-[9.5rem] object-contain"
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+      <div className="mt-12 -mx-4 sm:-mx-6">
+        <LogoMarquee
+          eyebrow={NN_OUTCOMES.clinicalPartnersEyebrow}
+          items={NN_OUTCOMES.clinicalPartners.map((partner) => ({
+            name: partner.name,
+            logo: partner.logo,
+            width: partner.width,
+            height: partner.height,
+          }))}
+        />
+      </div>
 
-        <blockquote className="nn-pull-quote mx-auto mt-10 max-w-2xl text-slate-blue">
+      <PageContainer width="xl" className="mt-10">
+        <blockquote className="nn-pull-quote mx-auto max-w-2xl text-slate-blue">
           {NN_OUTCOMES.testimonial.quote}
           <footer className="mt-3 font-sans text-sm font-normal text-ink/65">
             — {NN_OUTCOMES.testimonial.attribution}

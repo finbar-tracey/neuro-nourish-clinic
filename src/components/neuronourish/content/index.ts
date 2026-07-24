@@ -16,6 +16,8 @@ export { BlogSection } from "@/components/neuronourish/content/blog-section";
 export { BlogGrid } from "@/components/neuronourish/content/blog-grid";
 export { PartnerLogo } from "@/components/neuronourish/content/partner-logo";
 export { PartnerStrip } from "@/components/neuronourish/content/partner-strip";
+export { LogoMarquee } from "@/components/neuronourish/content/logo-marquee";
+export type { LogoMarqueeItem } from "@/components/neuronourish/content/logo-marquee";
 export { ClosingCtaSection, CtaPair } from "@/components/neuronourish/content/closing-cta";
 export { FounderTrustStrip } from "@/components/neuronourish/content/founder-trust-strip";
 export {

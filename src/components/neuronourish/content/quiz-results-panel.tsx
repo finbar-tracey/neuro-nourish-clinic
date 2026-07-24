@@ -59,22 +59,17 @@ function withLead(href: string, leadId: string) {
 }
 
 function NextStepsBlock({ leadId }: { leadId: string }) {
+  const discovery = NN_QUIZ_RESULTS.nextSteps[0];
   return (
-    <div className="mt-8 rounded-2xl border border-mist bg-linen/20 p-6 text-left">
-      <h3 className="nn-display-card text-slate-blue">{NN_QUIZ_RESULTS.nextStepsTitle}</h3>
-      <p className="mt-2 text-sm text-ink/65">
-        After your emailed report, choose one next step when you are ready.
-      </p>
-      <ol className="mt-4 space-y-3 text-sm text-ink/80">
-        {NN_QUIZ_RESULTS.nextSteps.map((step, index) => (
-          <li key={step.href} className="flex gap-3">
-            <span className="font-display text-gold">{index + 1}</span>
-            <Link href={withLead(step.href, leadId)} className="nn-text-link text-left">
-              {step.label}
-            </Link>
-          </li>
-        ))}
-      </ol>
+    <div className="mt-8 text-center">
+      <p className="text-sm text-ink/65">{NN_QUIZ_RESULTS.nextStepsTitle}</p>
+      <Link
+        href={withLead(discovery.href, leadId)}
+        className="nn-text-link mt-3 inline-block text-sm"
+      >
+        {NN_QUIZ_RESULTS.ctaDiscovery} →
+      </Link>
+      <p className="mt-1 text-xs text-ink/50">{NN_QUIZ_RESULTS.ctaDiscoveryHint}</p>
     </div>
   );
 }

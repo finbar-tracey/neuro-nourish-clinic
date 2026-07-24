@@ -106,8 +106,9 @@ export function runNeuronourishBrandGuidelinesAudit(
     checks,
     "C6",
     "Colour",
-    "Partner logo tiles present on partner strip",
-    readFile(root, "src/components/neuronourish/content/partner-logo.tsx").includes("nn-partner-logo"),
+    "Partner logo marks present on logo marquee",
+    readFile(root, "src/components/neuronourish/content/logo-marquee.tsx").includes("nn-partner-logo") &&
+      readFile(root, "src/components/neuronourish/content/partner-strip.tsx").includes("LogoMarquee"),
   );
   addCheck(
     checks,

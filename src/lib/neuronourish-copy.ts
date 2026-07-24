@@ -661,6 +661,29 @@ export const NN_CLINICS = {
   eyebrow: "For clinicians & organisations",
   headline: NN_B2B.headline,
   subtext: NN_B2B.subtext,
+  heroCtaHint: "10-minute clinical briefing · No obligation",
+  partnersEyebrow: "Clinical & research partners",
+  partnersHeadline: "Built with recognised clinical and innovation partners",
+  referral: {
+    eyebrow: "How referral works",
+    headline: "Zero operational burden on your team",
+    subtext:
+      "You identify the patient. We run the programme. You receive structured progress reports.",
+    steps: [
+      {
+        title: "Identify",
+        body: "Flag patients with early memory concerns, cognitive fatigue, or strong family history of neurodegenerative conditions.",
+      },
+      {
+        title: "Refer",
+        body: "Share our referral card or intake link — about 60 seconds. We handle biomarkers, cognitive mapping, and coaching.",
+      },
+      {
+        title: "We report back",
+        body: "GP-ready longitudinal summaries return to your practice at key milestones, with patient consent.",
+      },
+    ],
+  },
   pillars: [
     {
       title: "Structured Clinical Reporting",
@@ -1747,24 +1770,16 @@ export const NN_QUIZ_RESULTS = {
   scoreLabel: "Brain health score / 100",
   disclaimer:
     "This is not a medical diagnosis. A clinician-reviewed assessment provides objective insight.",
-  nextStepsTitle: "Your path after the report",
+  nextStepsTitle: "Prefer to talk it through?",
   nextSteps: [
     {
-      label: "Take the clinician-reviewed cognitive assessment when you're ready",
-      href: "/shop/cognitive-assessment",
-    },
-    {
-      label: "Explore the 12-month personalised programme",
-      href: "/programme",
-    },
-    {
-      label: "Or book a complimentary discovery call",
+      label: "Book a complimentary discovery call",
       href: "/discovery",
     },
   ],
   ctaAssessment: "Start My Assessment",
   ctaAssessmentHint: "Credited toward enrolment within 30 days",
-  ctaDiscovery: "Book a discovery call",
+  ctaDiscovery: "Or book a discovery call",
   ctaDiscoveryHint: "15-minute call · No obligation",
   ctaContact: "Contact Our Team",
   ctaProgramme: "Find Your Programme",
@@ -1792,28 +1807,28 @@ export const NN_CONTACT = {
 
 export const NN_TEAM = {
   eyebrow: "Team",
-  headline: "Medical & care team",
+  headline: "Led by Emer Sexton",
   subtext:
-    "Clinical oversight, nutrition expertise, and coaching — built around long-term brain health. Named clinician profiles expand as the team is published.",
+    "Clinical direction from Ireland's first ReCODE practitioner, with CORU dietitian oversight and dedicated coaching between visits. Full named clinician profiles publish here as the roster is released.",
   members: [
     {
       name: "Emer Sexton",
-      role: "Founder · Nutraceuticals · Ireland's First ReCODE Practitioner",
-      bio: "Leads clinical direction and High-Touch programme walkthroughs. Lived experience of cognitive recovery after a cycling accident shaped NeuroNourish.",
+      role: "Founder · Nutraceuticals · ReCODE practitioner",
+      bio: "Leads clinical direction and High-Touch programme walkthroughs.",
       href: "/about",
       hrefLabel: "Read Emer's full story",
     },
     {
-      name: "CORU-registered dietitians",
+      name: "CORU dietitian collaboration",
       role: "Clinical nutrition oversight",
-      bio: "Programme nutrition protocols are developed and supervised with CORU-registered dietitian collaboration. Individual clinician profiles will be published here.",
+      bio: "Programme nutrition protocols supervised with CORU-registered dietitians.",
       href: "/shop/dietetic-consultation",
       hrefLabel: "Dietetic consultation",
     },
     {
-      name: "Care & coaching team",
-      role: "Accountability and day-to-day support",
-      bio: "One-to-one coaching, check-ins, and app-guided habit support between clinical touchpoints.",
+      name: "Care & coaching",
+      role: "Day-to-day support",
+      bio: "One-to-one coaching and app-guided habit support between clinical touchpoints.",
       href: "/programme",
       hrefLabel: "Explore programme tiers",
     },

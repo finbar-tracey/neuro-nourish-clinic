@@ -255,12 +255,36 @@ h3,
   );
 }
 
-.nn-partner-logo {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+.nn-partner-link:hover .nn-partner-logo {
+  opacity: 1;
 }
 
-.nn-partner-link:hover .nn-partner-logo {
-  transform: translateY(-1px);
+@keyframes nn-logo-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.nn-logo-marquee-track {
+  animation: nn-logo-marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.nn-logo-marquee:hover .nn-logo-marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nn-logo-marquee-track {
+    display: none !important;
+  }
+
+  .nn-logo-marquee-static {
+    display: flex !important;
+  }
 }
 
 .nn-b2b-section {

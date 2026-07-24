@@ -43,7 +43,8 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 
 **Pass (unchanged):** Emer hero H1; quiz-only hero; Vision fold (no deep violet); nav Tests + For Businesses; Tests € prices; High-Touch/Guided/Self-Led; outcomes buy assessment; About assessment CTA; CRO/brand green.
 
-**Still open:** founder photo; hero media; finger-prick prices; dashboard Wave D; quarterly review form.
+**Still open:** Wave F logo/Clinics polish; founder photo; hero media; finger-prick prices; dashboard Wave D; quarterly review form.  
+**Next implement:** §9 Wave F (F1–F3 no Emer; F4 blocked on assets).
 
 ---
 
@@ -149,6 +150,63 @@ Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-che
 | Wave | Status | Focus |
 |------|--------|--------|
 | A–C | **Done** | Emer Version 2 marketing surfaces |
+| F | **Done (F1–F3)** | Logo marquee + Clinics lift + quick wins |
 | D | Open | Client dashboard UX |
 | E | Partial | Quarterly stats form; Randox + Cavan Digital Hub logos if supplied |
 | — | Open | New founder photo; hero media; finger-prick prices |
+
+---
+
+## 9. Wave F — Implementation checklist (next ship)
+
+Score-driven polish after live audit (Clinics ~6.5; logos hard to read). **Do F1–F3 first** — highest lift, no Emer.
+
+### F1 — Logo band (fix)
+
+- [x] **F1-01** Shared `LogoMarquee` component: one full-bleed row, logos ~48–64px tall, **no white cards**
+- [x] **F1-02** Band surface: soft Mist/Linen (colour logos read clearly; assets have light backgrounds)
+- [x] **F1-03** Slow infinite scroll (~42s loop); pause on hover; respect `prefers-reduced-motion` (static row)
+- [x] **F1-04** Wire on **Home** — partner strip + clinical outcomes logos
+- [x] **F1-05** Wire on **Clinics** — clinical + research partners under hero
+- [x] **F1-06** Keep **About credentials** as static grid (do not marquee accreditations)
+- [x] **F1-07** Drop / avoid: stock-ticker chrome, bounce, dual-speed lanes, grayscale wash
+
+### F2 — Clinics page lift (`/clinics`)
+
+- [x] **F2-01** Add logo marquee under hero (F1-05)
+- [x] **F2-02** Add one “How referral works” beat (3 short steps: identify → refer → we report back)
+- [x] **F2-03** Soften pillar card chrome → gold border-l scannable blocks
+- [x] **F2-04** Hero: primary CTA only above the fold (referral card secondary text link)
+- [x] **F2-05** Ensure form H2 / single H1 stays SEO-clean
+
+### F3 — Quick wins elsewhere (same PR ok)
+
+- [x] **F3-01** Home Vision trust tiles: larger marks, lighter frames on light tone
+- [x] **F3-02** About credential tiles: larger logos, less border noise
+- [x] **F3-03** Team page: tighter roster copy until bios land
+- [x] **F3-04** Quiz results: single soft discovery link after report (QF-06 direction)
+
+### F4 — Needs Emer / assets (block before coding)
+
+- [ ] **F4-01** New founder headshot (F-05)
+- [ ] **F4-02** Hero media crop / side layout (H-09)
+- [ ] **F4-03** At-home finger-prick SKU prices + show on Tests
+- [ ] **F4-04** Confirm consult public € (€150 / €180) if changing
+- [ ] **F4-05** Retests: web vs app messaging
+- [ ] **F4-06** Randox + Cavan Digital Hub logo files
+- [ ] **F4-07** Programme vs Tests blurbs Emer [d]
+- [ ] **F4-08** Quiz “Free / no account” hint — Emer yes/no
+- [ ] **F4-09** Blog in nav — only when ≥ posts exist
+
+### F5 — Later / other surface
+
+- [ ] **F5-01** Client dashboard diary UX (Wave D / CD-01–CD-11)
+- [ ] **F5-02** Quarterly biomarker / outcomes review form (O-06)
+- [ ] **F5-03** Unhide PT257 + Blood Work when assets + copy signed
+- [ ] **F5-04** Brand + CRO audits green after Wave F deploy
+
+### Suggested ship order
+
+1. F1 (shared marquee) → F2 (Clinics) → F3 (quick wins) → commit / deploy  
+2. Ping Emer for F4 assets while F1–F3 builds  
+3. Wave D / F5 after marketing polish locked
