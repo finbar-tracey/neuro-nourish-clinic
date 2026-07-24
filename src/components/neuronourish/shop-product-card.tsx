@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { NnCard } from "@/components/neuronourish/content/nn-card";
 import type { ShopProduct } from "@/lib/neuronourish-shop";
-import { NN_SHOP } from "@/lib/neuronourish-shop";
+import { NN_SHOP, shopPublicPriceLabel } from "@/lib/neuronourish-shop";
 
 function withLead(href: string, leadId: string | null) {
   if (!leadId) return href;
@@ -29,8 +29,8 @@ export function ShopProductCard({ product }: { product: ShopProduct }) {
               {product.placeholderNote}
             </p>
           ) : null}
-          <p className="mt-4 text-xs font-medium text-slate-blue">
-            {product.showPublicPrice ? null : product.priceLabel ?? NN_SHOP.priceHiddenLabel}
+          <p className="mt-4 text-sm font-medium text-slate-blue">
+            {shopPublicPriceLabel(product)}
           </p>
         </>
       }

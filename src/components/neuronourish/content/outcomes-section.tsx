@@ -42,6 +42,17 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           ))}
         </ul>
 
+        <div className="mx-auto mt-12 max-w-3xl border-t border-mist/80 pt-10 text-center">
+          <p className="nn-eyebrow text-slate-blue">{NN_OUTCOMES.clinicalPartnersEyebrow}</p>
+          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            {NN_OUTCOMES.clinicalPartners.map((partner) => (
+              <li key={partner} className="text-sm font-medium text-ink/70">
+                {partner}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <blockquote className="nn-pull-quote mx-auto mt-10 max-w-2xl text-slate-blue">
           {NN_OUTCOMES.testimonial.quote}
           <footer className="mt-3 font-sans text-sm font-normal text-ink/65">
@@ -54,7 +65,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
         </p>
 
         <div className="mt-8 flex flex-col items-center gap-1.5">
-          <GoldButton href="/discovery">{NN_OUTCOMES.cta}</GoldButton>
+          <GoldButton href={NN_OUTCOMES.ctaHref}>{NN_OUTCOMES.cta}</GoldButton>
           <span className="text-xs text-ink/60">{NN_OUTCOMES.ctaHint}</span>
         </div>
       </PageContainer>

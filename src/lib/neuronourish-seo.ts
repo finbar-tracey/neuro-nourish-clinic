@@ -39,7 +39,7 @@ export const NN_PAGE_SEO = {
   programme: {
     title: "12-Month Personalised Brain Health Programme | NeuroNourish",
     description:
-      "Compare Premium, Medium, and Light programme tiers — or book a discovery call before you enrol.",
+      "Compare High-Touch, Guided, and Self-Led programme options — or book a discovery call before you enrol.",
     path: "/programme",
   },
   programmeSuccess: {
@@ -49,10 +49,10 @@ export const NN_PAGE_SEO = {
     noindex: true,
   },
   shop: {
-    title: "Shop Brain Health Products | NeuroNourish",
+    title: "Brain Health Tests & Consultations | NeuroNourish",
     description:
-      "Programme tiers, cognitive assessment, consultations, blood work review, and more — secure checkout.",
-    path: "/shop",
+      "Cognitive tests, blood panels, and consultations with clear pricing — plus High-Touch, Guided, and Self-Led programmes.",
+    path: "/tests",
   },
   team: {
     title: "Medical & Care Team | NeuroNourish",

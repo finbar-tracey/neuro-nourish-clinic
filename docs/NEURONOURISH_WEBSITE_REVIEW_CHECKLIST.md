@@ -2,51 +2,48 @@
 
 **Source:** [Website Review.pdf](file:///Users/josephpenman/Downloads/Website Review.pdf) (24 Jul 2026)  
 **Compared against:** live https://neuro-nourish-clinic.vercel.app + current `main`  
-**Purpose:** Single implementation backlog. Resolve **Decision** items before coding conflicting copy.
+**Purpose:** Single implementation backlog. **Later document wins** (Emer Version 2 / homepage corrections).
 
 Legend: `[x]` done · `[ ]` open · `[!]` conflict / needs Emer or Priya · `[~]` partial
 
-### Wave A shipped (24 Jul 2026)
+### Decision rule (24 Jul 2026)
 
-Implemented unblocked review items without flipping D1/D2/D3 (hero H1, Vision fold, public €).  
-**Summary:** hero cleanup; quiz fold rewrite; journey phases Understand/Personalise/Optimise; one programme CTA label; partners strip compressed; B2B bullets centred; quiz results = Email my report primary; app page no public download CTA; founder credentials + trust badge alignment; Why icons/copy tweaks.
+Where Priya (earlier) and Emer Version 2 (later) conflict, **implement Emer / lower in the document**.
 
-### Post-implementation audit (24 Jul 2026)
+| ID | Decision locked |
+|----|-----------------|
+| D1 | Emer H1: *Protect Your Memory. Optimise Brain Performance. Strengthen Your Future.* |
+| D2 | Vision fold on home (no personal story / no deep violet) |
+| D3 | Tests page with public € |
+| D7 | Hero quiz CTA only (discovery stays in header) |
+| D4–D6 | Softened audience live; discovery = no quiz walkthrough; journey stays on home with phases |
 
-Automated CRO: **26/26 → 28/28** after fixes. Live spot-check vs checklist.
+### Waves B+C shipped (24 Jul 2026)
 
-| Finding | Severity | Fix |
-|---------|----------|-----|
-| Closing CTA still showed “Free · 3 minutes · Personalised score” | P0 regression (H-06) | Closing uses `NN_CLOSING.ctaQuizHint` = habit baseline |
-| Blog / shop quiz hints still said “Personalised score” | Consistency | Softened to match hero |
-| Team page Emer role still “Nutrition Scientist” | F-03 drift | Role → Nutraceuticals · ReCODE |
-| Dead journey step badge still “It starts with understanding you” | J-01 hygiene | Reworded baseline focus |
-| CRO did not guard closing score claim | Process | Added H2b + H7 checks |
-
-Wave A items remain `[x]` below. Open items (D1–D3, Waves B–E) unchanged.
+Hero Emer H1 + quiz-only; Vision Behind NeuroNourish; nav Tests · Programme · About · Team · For Businesses; `/tests` catalog with €; High-Touch / Guided / Self-Led rename; outcomes clinical stats + buy assessment + delivery partners; About rewrite with assessment CTA.
 
 ---
 
 ## 0. Decisions required before build (blockers)
 
-| ID | Topic | Review A (Priya / earlier) | Review B (Emer / Version 2) | Live today | Decision |
-|----|--------|----------------------------|-----------------------------|------------|----------|
-| D1 | Hero H1 | *Support your memory…* | *Protect Your Memory. Optimise…* | A is live | Pick one |
-| D2 | Founder fold | Keep lived-experience story on home | *The Vision Behind NeuroNourish* | A is live (+ credentials updated) | Pick one |
-| D3 | Public prices | Soft / discovery | Tests page with € | Prices hidden | Pick strategy |
-| D4 | Quiz audience | Soften 45+ | — | Softened to stressed adults + anyone | Confirm |
-| D5 | Discovery + quiz | No results walkthrough | Emer [b] | FAQ + abandon copy aligned | Confirm |
-| D6 | Journey on home | Keep detail | Short method only | 7 steps, phases renamed | Pick depth |
-| D7 | Hero CTAs | Dual OK | Quiz only | Quiz gold + discovery text link | Confirm if remove text link |
+| ID | Topic | Live today | Decision |
+|----|--------|------------|----------|
+| D1 | Hero H1 | Emer Version 2 | **Locked** |
+| D2 | Founder fold | Vision fold | **Locked** |
+| D3 | Public prices | Tests + € | **Locked** |
+| D4 | Quiz audience | Softened | Locked (soft) |
+| D5 | Discovery + quiz | No walkthrough | Locked |
+| D6 | Journey on home | Phases + detail | Locked (keep; shorten later if needed) |
+| D7 | Hero CTAs | Quiz only | **Locked** |
 
 ---
 
 ## 1. Information architecture & navigation
 
-- [ ] **IA-01** Rename / restructure nav to: Home · **Tests** · **Programme(s)** · About · Team · **For Businesses**
+- [x] **IA-01** Nav: Tests · Programme · About · Team · For Businesses
 - [x] **IA-02** Logo → home (shell mark)
-- [ ] **IA-03** Replace **Shop** with **Tests** catalog OR rebrand Shop
-- [ ] **IA-04** **For Businesses** → `/clinics` mapping in primary nav
+- [x] **IA-03** Shop catalog rebranded as **Tests** (`/tests`; `/shop` redirects)
+- [x] **IA-04** **For Businesses** → `/clinics`
 - [x] **IA-05** Blog off marketing home
 - [x] **IA-06** App page: not for public download; CTA is Find Your Programme only
 
@@ -55,98 +52,61 @@ Wave A items remain `[x]` below. Open items (D1–D3, Waves B–E) unchanged.
 ## 2. Homepage — Fold by fold
 
 ### Fold 1 — Hero
-- [x] **H-01** Empowering H1 (Priya) live
-- [ ] **H-02** If D1 = Emer: swap H1
-- [~] **H-03** Quiz is sole gold CTA; discovery remains text link (full remove = D7)
+- [x] **H-01 / H-02** Emer H1 live
+- [x] **H-03** Quiz sole gold CTA on hero (discovery in header)
 - [x] **H-04** Removed Ireland & UK eyebrow
 - [x] **H-05** Removed NovaUCD · ReCODE hero chips
-- [x] **H-06** Softened quiz hint (habit baseline, not “personalised score”)
-- [x] **H-07** Subtext: mental clarity; no em dash
-- [x] **H-08** Brand lockup: **NeuroNourish** (dropped Clinic in hero)
+- [x] **H-06** Softened quiz hint (habit baseline)
+- [x] **H-07** Subtext: protect memory + mental performance
+- [x] **H-08** Brand lockup: **NeuroNourish**
 - [ ] **H-09** Hero media crop / side layout
 
 ### Fold 2 — Quiz
-- [x] **Q-01** Discover Your Brain Health Score rewrite
-- [x] **Q-02** Habit / baseline bullets (less overclaim)
-- [x] **Q-03** CTA: Start Your Assessment
-- [x] **Q-04** Hint centred; “Free / No account” removed
-- [x] **Q-05** Disclaimer only: not a medical diagnosis
-- [x] **Q-06** Preview cycles **2** questions
-- [x] **Q-07** Preview still shows Q n / 18
+- [x] **Q-01–Q-07** Discover Your Brain Health Score rewrite + 2-Q preview
 
-### Fold 3 — Founder / Vision
-- [x] **F-01** Priya lived-experience copy live
-- [ ] **F-02** Emer Vision fold (blocked on D2)
-- [x] **F-03** Credentials: nutraceuticals / ReCODE / PreCODE / coaching (not “nutrition scientist”)
-- [x] **F-04** CTA: Read Full Story; no hint under CTA
+### Fold 3 — Vision
+- [x] **F-02** Emer Vision fold on home
+- [x] **F-03** Credentials: nutraceuticals / ReCODE / PreCODE / coaching
+- [x] **F-04** CTA: Read Full Story
 - [ ] **F-05** New founder image
-- [ ] **F-06** Remove deep-violet founder full-bleed (blocked on D2/design)
-- [~] **F-07** Trust badges centre-aligned; full logo set still TBD
+- [x] **F-06** Deep-violet full-bleed removed (light vision fold)
+- [~] **F-07** Trust badges; fuller logo set still TBD
 
 ### Fold 4 — Outcomes
-- [ ] **O-01** Real clinical stats (blocked on Emer data)
-- [ ] **O-02** Alternate headline
-- [x] **O-03** Outcome chips more even / centre wrap
-- [ ] **O-04** Buy assessment CTA (blocked on D3)
-- [ ] **O-05** Clinical delivery partner logos
-- [ ] **O-06** Quarterly review form (ops)
+- [x] **O-01** Clinical stats from review (pending real quarterly form later)
+- [x] **O-02** Headline: Let the numbers speak for themselves
+- [x] **O-03** Outcome chips centred
+- [x] **O-04** Buy Cognitive Assessment CTA (€89.99)
+- [x] **O-05** Clinical delivery partner names strip
+- [ ] **O-06** Quarterly review form (ops / Ishan)
 
-### Fold 5 — Journey
-- [x] **J-01** Removed duplicate “It starts with understanding you”
-- [x] **J-02** Tightened journey section spacing
-- [x] **J-03** Phases: Understand · Personalise · Optimise
-- [x] **J-04** Removed “Build your personalised plan” phase label
-- [ ] **J-05** Shorten home further vs programme page (D6)
-- [x] **J-06** App visual in journey; no public app CTA
-- [x] **J-07** Single CTA: Find Your Programme
-
-### Fold 6 — Why
-- [x] **W-01** No per-card Learn more CTAs (already none)
-- [x] **W-02** Programme CTA label: Find Your Programme
-- [x] **W-03** Updated 360° + coaching icons
-- [x] **W-04** Six-pillar copy aligned to review writeup
-
-### Fold 7 — App
-- [x] **A-01** No public See how the app works sell
-- [x] **A-02** App lives in journey + programme-gated page
-
-### Fold 8 — Partners
-- [x] **P-01** Compressed horizontal linen strip
-
-### Fold 9 — B2B
-- [x] **B-01** Highlights centre-aligned
-- [x] **B-02** One CTA: Contact Partnership Team
-- [x] **B-03** Partnership form: clinic name, business email, practice type
-
-### Fold 10 — FAQ + closing
-- [x] **FAQ-01** Price soft on FAQ
-- [x] **FAQ-02** Single discovery CTA in FAQ fold
-- [~] **FAQ-03** Closing still quiz gold + discovery text (D7)
+### Fold 5–10
+- [x] Journey phases + Find Your Programme
+- [x] Why / Partners / B2B / FAQ soft price / Closing quiz + soft discovery
 
 ---
 
 ## 3. Quiz funnel
 
-- [x] **QF-01** Email at end
-- [x] **QF-02** No 45+ framing on quiz page
-- [x] **QF-03** Primary = Email my report; next steps text links only
-- [x] **QF-04** Report copy paths Masterclass → assessment → programme
-- [x] **QF-05** Score ring optical centering shipped
-- [!] **QF-06** Emer sign-off on single-CTA results
+- [x] **QF-01–QF-05** Email at end; Email my report primary; score ring
+- [!] **QF-06** Emer sign-off on single-CTA results (soft links remain)
 
 ---
 
 ## 4. Discovery
 
-- [x] **DI-01** Aligned: no live quiz walkthrough
-- [x] **DI-02** Pre-call checklist retained
-- [~] **DI-03** Booking primary; secondary paths still present
+- [x] **DI-01–DI-02** No live quiz walkthrough; pre-call checklist
 
 ---
 
-## 5–6. Tests / Programme / Dashboard
+## 5–6. Tests / Programme / About
 
-Still open (Waves C–D): Tests catalogue + €, High-Touch/Guided/Self-Led rename, About rewrite, client dashboard CD-01–CD-11.
+- [x] Tests catalog + public € for listed cognitive/blood/consultations
+- [x] High-Touch / Guided / Self-Led (no Premium/Medium/Light labels)
+- [x] About vision rewrite + assessment CTA
+- [ ] At-home finger-prick prices (Emer to confirm)
+- [ ] Programme vs Tests blurbs Emer [d]
+- [ ] Client dashboard CD-01–CD-11 (Wave D)
 
 ---
 
@@ -155,7 +115,7 @@ Still open (Waves C–D): Tests catalogue + €, High-Touch/Guided/Self-Led rena
 - [x] Shared FAQ accordion + equal card grids
 - [x] Soft quiz-abandon → discovery
 - [x] Blog off home
-- [x] Public € hidden until D3
+- [x] CRO + brand audits green after Emer flip
 
 ---
 
@@ -163,8 +123,7 @@ Still open (Waves C–D): Tests catalogue + €, High-Touch/Guided/Self-Led rena
 
 | Wave | Status | Focus |
 |------|--------|--------|
-| A | **Done** | Hero/quiz/journey/why/partners/B2B/results |
-| B | Blocked | D1/D2/D7 Vision + hero H1 |
-| C | Blocked | D3 Tests + prices + tier rename |
+| A–C | **Done** | Emer Version 2 marketing surfaces |
 | D | Open | Client dashboard UX |
-| E | Open | Real clinical stats + partner logos |
+| E | Partial | Real quarterly stats form + fuller logo assets |
+| — | Open | New founder photo; hero media; finger-prick prices |

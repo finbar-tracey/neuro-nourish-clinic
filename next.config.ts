@@ -81,6 +81,11 @@ const nextConfig: NextConfig = {
     if (!isNeuronourish) return [];
     return [
       {
+        source: "/shop",
+        destination: "/tests",
+        permanent: false,
+      },
+      {
         source: "/assessment",
         destination: "/shop/cognitive-assessment",
         permanent: false,

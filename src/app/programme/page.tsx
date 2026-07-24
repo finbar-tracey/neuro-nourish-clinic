@@ -29,8 +29,8 @@ export default function ProgrammePage() {
           />
 
           <p className="mx-auto mt-6 max-w-2xl text-center text-sm leading-relaxed text-ink/75">
-            Choose the tier that fits your goals — or book a discovery call if you want guidance
-            before you enrol. Purchases happen in the shop; this page is here to help you compare.
+            Compare High-Touch, Guided, and Self-Led — or book a discovery call if you want guidance
+            before you enrol. Purchases happen in Tests; this page helps you choose.
           </p>
 
           {!NN_PROGRAMME.showPublicPrice ? (
@@ -53,7 +53,7 @@ export default function ProgrammePage() {
           </Suspense>
 
           <p className="mx-auto mt-6 max-w-lg text-center text-sm text-ink/65">
-            Light programme includes app-led monitoring.{" "}
+            Self-Led includes app-led monitoring.{" "}
             <Link href="/how-the-app-works" className="nn-text-link">
               See how the companion app works
             </Link>

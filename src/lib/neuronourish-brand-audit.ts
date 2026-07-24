@@ -98,8 +98,8 @@ export function runNeuronourishBrandGuidelinesAudit(
     checks,
     "C5",
     "Colour",
-    "Max one Deep Violet section on homepage",
-    (founder.match(/bg-deep-violet/g) ?? []).length === 1 &&
+    "Homepage avoids Deep Violet full-bleed sections",
+    !(founder.match(/bg-deep-violet/g) ?? []).length &&
       !(home.match(/bg-deep-violet/g) ?? []).length,
   );
   addCheck(

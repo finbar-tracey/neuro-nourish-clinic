@@ -102,10 +102,9 @@ check(
 check(
   "H1",
   "CTA hierarchy",
-  "Hero gold primary is quiz; discovery is text link",
+  "Hero gold primary is quiz only (discovery lives in header)",
   hero.includes('GoldButton href="/quiz"') &&
-    hero.includes('href="/discovery"') &&
-    hero.includes("nn-text-link") &&
+    !hero.includes('href="/discovery"') &&
     !hero.includes("OutlineButton"),
 );
 check(
@@ -134,9 +133,10 @@ check(
 check(
   "H7",
   "CTA hierarchy",
-  "Hero brand is NeuroNourish; no geography eyebrow chips",
+  "Hero brand is NeuroNourish; Emer H1; no geography eyebrow chips",
   hero.includes("NN_HERO.brand") &&
     copy.includes('brand: "NeuroNourish"') &&
+    copy.includes("Protect Your Memory") &&
     copy.includes('eyebrow: ""') &&
     !hero.includes("Ireland") &&
     !hero.includes("NovaUCD"),

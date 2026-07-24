@@ -17,10 +17,11 @@ export interface BlogPost {
 
 export const NN_NAV = {
   links: [
-    { href: "/shop", label: "Shop" },
+    { href: "/tests", label: "Tests" },
     { href: "/programme", label: "Programme" },
     { href: "/about", label: "About" },
     { href: "/team", label: "Team" },
+    { href: "/clinics", label: "For Businesses" },
   ],
   ctaQuiz: "Take the Brain Health Quiz",
   ctaQuizShort: "Take Quiz",
@@ -31,7 +32,7 @@ export const NN_FOOTER = {
   tagline: "Evidence-based brain health programmes for Ireland & the UK.",
   consumers: [
     { href: "/quiz", label: "Brain health quiz" },
-    { href: "/shop", label: "Shop" },
+    { href: "/tests", label: "Tests" },
     { href: "/programme", label: "12-month programme" },
     { href: "/discovery", label: "Discovery call" },
     { href: "/about", label: "About us" },
@@ -39,7 +40,7 @@ export const NN_FOOTER = {
     { href: "/contact", label: "Contact" },
   ],
   clinics: [
-    { href: "/clinics", label: "Healthcare partnerships" },
+    { href: "/clinics", label: "For Businesses" },
     { href: "/privacy", label: "Privacy" },
     { href: "/workspace/login", label: "Team login" },
   ],
@@ -49,9 +50,9 @@ export const NN_FOOTER = {
 } as const;
 
 export const NN_METADATA = {
-  title: "Brain Fog & Memory Loss? Personalised Brain Health | NeuroNourish",
+  title: "Protect Memory & Optimise Brain Performance | NeuroNourish",
   description:
-    "Evidence-based brain health programmes for adults in Ireland & the UK. Support memory, mental clarity and cognitive wellbeing. Take our free brain health quiz.",
+    "Personalised lifestyle medicine, biomarker analysis and targeted nutrition for adults who want to protect memory and boost mental performance. Take our free brain health quiz.",
   ogImage: "/opengraph-image",
 } as const;
 
@@ -59,13 +60,14 @@ export const NN_HERO = {
   brand: "NeuroNourish",
   /** Kept empty: location chips removed per website review (nobody buys on geography). */
   eyebrow: "",
-  headline: "Support your memory.\nStrengthen your brain health.\nLive with confidence.",
+  headline: "Protect Your Memory.\nOptimise Brain Performance.\nStrengthen Your Future.",
   subtext:
-    "Personalised lifestyle medicine, biomarker analysis and targeted nutrition for adults who want to support memory and mental clarity.",
+    "Personalised lifestyle medicine, biomarker analysis and targeted nutrition for adults who want to protect memory and boost mental performance.",
   /** Trust logos live in the partners / founder strips — not the hero. */
   trustBar: [] as readonly string[],
   ctaQuiz: "Take the Brain Health Quiz",
   ctaQuizHint: "3 minutes · Habit baseline for your next conversation",
+  /** Discovery remains in header; hero is quiz-only per Emer Version 2. */
   ctaDiscovery: "Or book a 15-minute discovery call",
 } as const;
 
@@ -307,13 +309,14 @@ export const NN_WHY = {
 
 export const NN_OUTCOMES = {
   eyebrow: "Results",
-  headline: "What Our Clients Tell Us",
+  headline: "Let the numbers speak for themselves",
   subtext:
-    "Individual results vary. These reflect common themes from clients who complete our 12-month programme.",
+    "From a medically led clinic. Individual results vary — figures reflect measured change across programme clients.",
   stats: [
-    { value: "89%", label: "Improved concentration" },
-    { value: "84%", label: "Less brain fog" },
-    { value: "91%", label: "More daily confidence" },
+    { value: "4.4", label: "Average-point improvement in cognitive scores over 12 months" },
+    { value: "73%", label: "Improved on family-reported symptom assessments" },
+    { value: "63%", label: "Improved on comprehensive cognitive testing" },
+    { value: "72%", label: "Stability or improvement in executive functioning" },
   ],
   outcomes: [
     "Better concentration",
@@ -324,15 +327,27 @@ export const NN_OUTCOMES = {
     "Clearer memory",
     "Healthier biomarkers",
   ],
+  clinicalPartners: [
+    "Head Diagnostics",
+    "Apollo Health",
+    "Genova Diagnostics",
+    "Randox Health",
+    "BrainHQ",
+    "Kenko Health",
+    "CNS Vital Signs",
+    "MoCA",
+  ],
+  clinicalPartnersEyebrow: "Our clinical delivery partners",
   testimonial: {
     quote:
       "I finally understand what's actually happening with my brain — and I have a plan that fits my life.",
     attribution: "Programme client, Dublin",
   },
   disclaimer:
-    "Not a guarantee of outcomes. Clinical results depend on individual health, adherence, and medical context.",
-  cta: "Book Your Discovery Call",
-  ctaHint: "15-minute call · No obligation",
+    "Not a guarantee of outcomes. Clinical results depend on individual health, adherence, and medical context. Biomarker impact figures will be published as quarterly review data accumulates.",
+  cta: "Buy Cognitive Assessment",
+  ctaHint: "€89.99 · Remote CNS Vital Signs baseline",
+  ctaHref: "/shop/cognitive-assessment",
 } as const;
 
 export const NN_FOUNDER_TRUST = {
@@ -1639,7 +1654,7 @@ export const NN_TEAM = {
     {
       name: "Emer Sexton",
       role: "Founder · Nutraceuticals · Ireland's First ReCODE Practitioner",
-      bio: "Leads clinical direction and Premium programme walkthroughs. Lived experience of cognitive recovery after a cycling accident shaped NeuroNourish.",
+      bio: "Leads clinical direction and High-Touch programme walkthroughs. Lived experience of cognitive recovery after a cycling accident shaped NeuroNourish.",
       href: "/about",
       hrefLabel: "Read Emer's full story",
     },
@@ -1664,15 +1679,36 @@ export const NN_TEAM = {
 
 export const NN_ABOUT = {
   eyebrow: "About",
+  headline: "The Vision Behind NeuroNourish",
+  subtext: "The Future of Brain Health is Proactive.",
+  visionBody: [
+    "NeuroNourish was created to bridge the gap between dementia prevention research and everyday action. Drawing on evidence from nutrition, neuroscience, neurology and neuropsychology, our programme brings together personalised nutrition, cognitive assessment, blood biomarkers, lifestyle medicine and behaviour change into one practical, evidence-based approach to brain health.",
+    "Because science only changes lives when people can apply it.",
+  ],
+  founderEyebrow: "Built by Emer Sexton",
+  founderBelief: "Brain health is shaped by the decisions we make every day.",
+  founderBody: [
+    "Emer founded NeuroNourish with one belief: brain health is shaped by the decisions we make every day.",
+    "Drawing on her background in nutraceuticals, ReCODE®, PreCODE®, functional medicine principles, and nutrition and health coaching, she brought together expertise across nutrition, neuroscience, neurology and neuropsychology to create a personalised brain health programme that translates complex science into practical action.",
+    "Every recommendation is designed to be evidence-based, personalised with precision, and realistic enough to become part of everyday life.",
+  ],
+  credentials: [
+    "Health Coach · IINH",
+    "BSc Nutraceuticals · TU Dublin",
+    "ReCODE® practitioner · Apollo Health",
+    "Irish Independent 30 Under 30",
+  ],
   bio: [
     "Emer grew up in Stradone, Co. Cavan. A cycling accident in 2020 led to years rebuilding her cognitive health — an experience that shaped her obsession with evidence-based brain health and prevention.",
     "With a BSc in Nutraceuticals from TU Dublin, training through Apollo Health, and as Ireland's first ReCODE practitioner, Emer founded NeuroNourish to offer the structured, proactive care she saw missing.",
     "NeuroNourish operates from Cavan Digital Hub and NovaUCD, with a team of 13 across nutrition, clinical research, software, and AI — delivering programmes across Ireland and the UK.",
   ],
-  cta: "Take the Brain Health Quiz",
+  cta: "Book a Cognitive Assessment",
+  ctaHref: "/shop/cognitive-assessment",
+  ctaHint: "€89.99 · Remote CNS Vital Signs baseline",
   teamLink: "Meet the team",
   discoveryLink: "Or book a discovery call",
-  premiumSoft: "Explore the Premium programme",
+  programmeSoft: "Explore programme tiers",
 } as const;
 
 export const NN_BLOG = {
@@ -2473,21 +2509,27 @@ export const NN_META_AD_CAMPAIGN = {
 } as const;
 
 export const NN_FOUNDER_ABOUT = {
-  eyebrow: "Founder",
-  headline: "Driven by Experience. Backed by Science.",
+  eyebrow: "Vision",
+  headline: "The Vision Behind NeuroNourish",
   title:
     "Background in nutraceuticals, ReCODE & PreCODE, functional medicine principles, and nutrition & health coaching",
   credentialsShort:
     "Nutraceuticals · ReCODE & PreCODE · Nutrition & health coaching · 30 Under 30 Honouree",
-  teaser:
-    "I came to brain health the hard way. A severe cycling accident disrupted my processing speed and memory for years. I became obsessed with understanding how the brain heals, adapts, and builds resilience. I understand how it feels when your brain no longer cooperates.",
-  pullQuote:
-    "That experience led me to become Ireland's first ReCODE practitioner, and eventually, to starting NeuroNourish: a clinic built on the same rigour and care I needed myself, so others don't have to wait for a crisis to take their brain health seriously.",
+  teaser: "The Future of Brain Health is Proactive.",
+  pullQuote: "Because science only changes lives when people can apply it.",
   highlights: [
-    "Lived experience recovering from traumatic brain injury",
-    "Ireland's first ReCODE practitioner",
-    "Founded NeuroNourish for proactive prevention",
+    "Personalised nutrition, cognitive assessment, and blood biomarkers",
+    "Lifestyle medicine and behaviour-change coaching in one programme",
+    "Evidence from nutrition, neuroscience, neurology and neuropsychology",
   ],
+  body: [
+    "NeuroNourish was created to bridge the gap between dementia prevention research and everyday action. Drawing on evidence from nutrition, neuroscience, neurology and neuropsychology, our programme brings together personalised nutrition, cognitive assessment, blood biomarkers, lifestyle medicine and behaviour change into one practical, evidence-based approach to brain health.",
+  ],
+  builtByEyebrow: "Built by Emer Sexton",
+  builtBy:
+    "Emer founded NeuroNourish with one belief: brain health is shaped by the decisions we make every day. Drawing on her background in nutraceuticals, ReCODE®, PreCODE®, functional medicine principles, and nutrition and health coaching, she brought together expertise across nutrition, neuroscience, neurology and neuropsychology to create a personalised brain health programme that translates complex science into practical action.",
+  builtByClose:
+    "Every recommendation is designed to be evidence-based, personalised with precision, and realistic enough to become part of everyday life.",
   quote:
     "What I lived through gave me an insight no textbook could match: I know exactly what it feels like when your brain no longer cooperates. Later, watching my grandfather decline with Alzheimer's, I realized that the same evidence-based strategies that help a brain recover are the ones that protect it from future disease. I founded NeuroNourish to give adults a proactive, structured plan to take control of their cognitive future long before a crisis occurs.",
   attribution: "— Emer Sexton",
