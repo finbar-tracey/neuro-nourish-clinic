@@ -22,6 +22,21 @@ Where Priya (earlier) and Emer Version 2 (later) conflict, **implement Emer / lo
 
 Hero Emer H1 + quiz-only; Vision Behind NeuroNourish; nav Tests · Programme · About · Team · For Businesses; `/tests` catalog with €; High-Touch / Guided / Self-Led rename; outcomes clinical stats + buy assessment + delivery partners; About rewrite with assessment CTA.
 
+### Post-implementation audit — Emer Version 2 (24 Jul 2026)
+
+Automated: CRO **28/28 → 30/30** after fixes · Brand **45/45**. Live spot-check vs PDF.
+
+| Finding | Severity | Fix |
+|---------|----------|-----|
+| OG image still Priya H1 + “NeuroNourish Clinic” + Ireland & UK | P0 regression (D1/H-08) | OG matches Emer H1; brand NeuroNourish |
+| Why fold missing Find Your Programme CTA (W-02) | P1 gap | Restored programme CTA |
+| Catalog links still said “shop” (`/programme`, product detail, success) | Consistency (IA-03) | Point to `/tests` |
+| PageSpeed / mobile audit URL lists still `/shop` | Process | Updated to `/tests` |
+
+**Pass (unchanged):** Emer hero H1; quiz-only hero; Vision fold (no deep violet); nav Tests + For Businesses; Tests € prices; High-Touch/Guided/Self-Led; outcomes buy assessment; About assessment CTA; CRO/brand green.
+
+**Still open:** founder photo; hero media; finger-prick prices; dashboard Wave D; quarterly review form.
+
 ---
 
 ## 0. Decisions required before build (blockers)

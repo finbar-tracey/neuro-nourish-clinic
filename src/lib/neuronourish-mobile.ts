@@ -16,7 +16,7 @@ export const NN_TOUCH_TARGET_PX = 48;
 export const NN_MOBILE_URLS = [
   "/",
   "/quiz",
-  "/shop",
+  "/tests",
   "/shop/cognitive-assessment",
   "/shop/premium-programme",
   "/discovery",

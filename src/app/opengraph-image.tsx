@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "NeuroNourish — Personalised Brain Health Programme";
+export const alt = "NeuroNourish — Protect Your Memory. Optimise Brain Performance.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,29 +15,29 @@ export default async function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: 72,
-          background: "linear-gradient(135deg, #1A3348 0%, #2C1F4A 100%)",
+          background: "linear-gradient(135deg, #1A3348 0%, #3D6480 100%)",
           color: "#F5F0E6",
         }}
       >
         <div style={{ fontSize: 28, color: "#C9A84C", letterSpacing: 4, textTransform: "uppercase" }}>
-          NeuroNourish Clinic
+          NeuroNourish
         </div>
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            fontSize: 52,
+            fontSize: 48,
             marginTop: 24,
             lineHeight: 1.2,
             fontFamily: "serif",
           }}
         >
-          <div>Support your memory.</div>
-          <div>Strengthen your brain health.</div>
-          <div>Live with confidence.</div>
+          <div>Protect Your Memory.</div>
+          <div>Optimise Brain Performance.</div>
+          <div>Strengthen Your Future.</div>
         </div>
-        <div style={{ fontSize: 28, marginTop: 32, color: "#B8D4E2", maxWidth: 900 }}>
-          Personalised brain health programmes · Ireland &amp; UK
+        <div style={{ fontSize: 26, marginTop: 32, color: "#B8D4E2", maxWidth: 920 }}>
+          Personalised lifestyle medicine, biomarkers and nutrition for lasting brain health
         </div>
       </div>
     ),

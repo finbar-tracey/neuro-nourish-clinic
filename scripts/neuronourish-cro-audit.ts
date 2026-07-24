@@ -142,6 +142,27 @@ check(
     !hero.includes("NovaUCD"),
 );
 check(
+  "H8",
+  "CTA hierarchy",
+  "OG image matches Emer H1 (not Priya Support your memory)",
+  (() => {
+    const og = read("src/app/opengraph-image.tsx");
+    return (
+      og.includes("Protect Your Memory") &&
+      og.includes("Optimise Brain Performance") &&
+      !og.includes("Support your memory") &&
+      !og.includes("NeuroNourish Clinic")
+    );
+  })(),
+);
+check(
+  "H9",
+  "CTA hierarchy",
+  "Why fold keeps Find Your Programme CTA",
+  read("src/components/neuronourish/content/why-section.tsx").includes('href="/programme"') &&
+    copy.includes('cta: "Find Your Programme"'),
+);
+check(
   "H4",
   "CTA hierarchy",
   "Results primary is Email my report; next steps are text links only",

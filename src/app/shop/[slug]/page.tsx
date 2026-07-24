@@ -52,8 +52,8 @@ export default async function ShopProductPage({ params }: PageProps) {
       <PageSection className="py-14 sm:py-20">
         <PageContainer width="md">
           <p className="text-center text-sm">
-            <Link href="/shop" className="nn-text-link">
-              ← Back to shop
+            <Link href="/tests" className="nn-text-link">
+              ← Back to tests
             </Link>
           </p>
           <header className="mt-8 text-center">

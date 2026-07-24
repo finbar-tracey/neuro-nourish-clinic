@@ -118,8 +118,8 @@ export default function ProgrammePage() {
 
           <p className="mx-auto mt-12 max-w-xl text-center text-sm text-ink/65">
             Ready to enrol?{" "}
-            <Link href="/shop" className="nn-text-link">
-              Browse all shop options
+            <Link href="/tests" className="nn-text-link">
+              Browse all tests and programmes
             </Link>
           </p>
         </PageContainer>

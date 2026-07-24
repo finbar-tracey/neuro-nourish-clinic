@@ -1,3 +1,4 @@
+import { GoldButton } from "@/components/neuronourish/shell";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { WhyBenefitsGrid } from "@/components/neuronourish/content/why-benefits-grid";
@@ -13,6 +14,10 @@ export function WhySection({ className = "" }: { className?: string }) {
           subtext={NN_WHY.subtext}
         />
         <WhyBenefitsGrid />
+        <div className="mt-10 flex flex-col items-center gap-1.5 border-t border-mist/80 pt-10">
+          <GoldButton href="/programme">{NN_WHY.cta}</GoldButton>
+          <span className="text-center text-xs text-ink/60">{NN_WHY.ctaHint}</span>
+        </div>
       </PageContainer>
     </PageSection>
   );

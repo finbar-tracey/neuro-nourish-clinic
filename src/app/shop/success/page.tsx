@@ -108,13 +108,13 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
             <HighlightList
               items={[
                 "Check your inbox for a Stripe / NeuroNourish confirmation",
-                "Browse the shop if you want to continue",
+                "Browse tests if you want to continue",
                 "Book a discovery call for personalised guidance",
               ]}
             />
           </div>
-          <GoldButton href="/shop" className="mt-8">
-            Back to shop
+          <GoldButton href="/tests" className="mt-8">
+            Back to tests
           </GoldButton>
           <Link href="/discovery" className="mt-4 block text-sm text-slate-blue underline">
             Book a discovery call
@@ -162,8 +162,8 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
             Continue to onboarding
           </GoldButton>
         ) : (
-          <GoldButton href="/shop" className="mt-8">
-            Back to shop
+          <GoldButton href="/tests" className="mt-8">
+            Back to tests
           </GoldButton>
         )}
         {unlockHref && assessmentState !== "pending_dob" ? (
@@ -174,12 +174,12 @@ export default async function ShopSuccessPage({ searchParams }: PageProps) {
         <Link href="/discovery" className="mt-4 block text-sm text-slate-blue underline">
           Book a discovery call
         </Link>
-        <Link href="/shop" className="mt-3 block text-sm text-slate-blue underline">
-          Browse shop
+        <Link href="/tests" className="mt-3 block text-sm text-slate-blue underline">
+          Browse tests
         </Link>
         {isAssessment ? (
           <Link href="/programme" className="mt-3 block text-sm text-slate-blue underline">
-            Explore programme tiers
+            Explore programme options
           </Link>
         ) : null}
       </PageContainer>

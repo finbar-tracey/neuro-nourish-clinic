@@ -15,7 +15,7 @@ export const NN_CWV_THRESHOLDS = {
 export const NN_PAGESPEED_URLS = [
   "/",
   "/quiz",
-  "/shop",
+  "/tests",
   "/shop/cognitive-assessment",
   "/discovery",
   "/programme",
