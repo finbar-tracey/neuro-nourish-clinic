@@ -29,7 +29,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           {NN_OUTCOMES.outcomes.map((outcome) => (
             <li
               key={outcome}
-              className="flex min-w-[10.5rem] items-center justify-center gap-2 rounded-full border border-mist/80 bg-white/60 px-3 py-2 text-sm text-ink/80 sm:min-w-[11.5rem]"
+              className="flex w-[calc(50%-0.35rem)] max-w-[11.5rem] items-center justify-center gap-2 rounded-full border border-mist/80 bg-white/60 px-3 py-2 text-center text-sm text-ink/80 sm:w-auto sm:min-w-[11.5rem]"
             >
               <span
                 className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-gold/15 text-[10px] font-medium text-gold"
@@ -37,7 +37,7 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
               >
                 ✓
               </span>
-              <span className="whitespace-nowrap leading-snug">{outcome}</span>
+              <span className="leading-snug">{outcome}</span>
             </li>
           ))}
         </ul>

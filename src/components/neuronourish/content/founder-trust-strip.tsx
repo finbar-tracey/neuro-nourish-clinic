@@ -9,7 +9,7 @@ export function FounderTrustStrip() {
         {NN_FOUNDER_TRUST.items.map((item) => (
           <div
             key={item.label}
-            className="nn-founder-trust-badge relative flex min-h-[5.5rem] flex-col items-center justify-center gap-2 overflow-hidden rounded-xl border border-ivory/15 bg-white/5 px-3 py-4 text-center transition-colors hover:bg-white/8"
+            className="nn-founder-trust-badge relative flex min-h-[6rem] flex-col items-center justify-center gap-2 overflow-hidden rounded-xl border border-ivory/15 bg-white/5 px-3 py-4 text-center transition-colors hover:bg-white/8"
           >
             <div className="absolute inset-x-0 top-0 h-0.5 bg-gold/50" aria-hidden />
             <Image
@@ -19,7 +19,9 @@ export function FounderTrustStrip() {
               height={item.height}
               className="mx-auto h-8 w-auto max-w-[7.5rem] object-contain"
             />
-            <p className="min-h-[2.25rem] text-[11px] leading-snug text-lavender">{item.detail}</p>
+            <p className="flex min-h-[2.5rem] items-center justify-center text-[11px] leading-snug text-lavender">
+              {item.detail}
+            </p>
           </div>
         ))}
       </div>

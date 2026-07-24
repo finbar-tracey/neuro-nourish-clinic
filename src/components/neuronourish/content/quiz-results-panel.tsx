@@ -62,6 +62,9 @@ function NextStepsBlock({ leadId }: { leadId: string }) {
   return (
     <div className="mt-8 rounded-2xl border border-mist bg-linen/20 p-6 text-left">
       <h3 className="nn-display-card text-slate-blue">{NN_QUIZ_RESULTS.nextStepsTitle}</h3>
+      <p className="mt-2 text-sm text-ink/65">
+        After your emailed report, choose one next step when you are ready.
+      </p>
       <ol className="mt-4 space-y-3 text-sm text-ink/80">
         {NN_QUIZ_RESULTS.nextSteps.map((step, index) => (
           <li key={step.href} className="flex gap-3">
@@ -72,25 +75,6 @@ function NextStepsBlock({ leadId }: { leadId: string }) {
           </li>
         ))}
       </ol>
-      <div className="mt-6 flex flex-col items-stretch gap-3 sm:items-center">
-        <GoldButton href={withLead("/shop/cognitive-assessment", leadId)} className="w-full sm:w-auto">
-          {NN_QUIZ_RESULTS.ctaAssessment}
-        </GoldButton>
-        <span className="text-center text-xs text-ink/55">{NN_QUIZ_RESULTS.ctaAssessmentHint}</span>
-        <Link
-          href={withLead("/programme", leadId)}
-          className="nn-text-link text-center text-sm"
-        >
-          {NN_QUIZ_RESULTS.ctaProgramme} →
-        </Link>
-        <Link
-          href={withLead("/discovery", leadId)}
-          className="nn-text-link text-center text-sm"
-        >
-          {NN_QUIZ_RESULTS.ctaDiscovery} →
-        </Link>
-        <span className="text-center text-xs text-ink/55">{NN_QUIZ_RESULTS.ctaDiscoveryHint}</span>
-      </div>
     </div>
   );
 }
@@ -476,22 +460,6 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       </div>
 
       {reportDone ? <NextStepsBlock leadId={leadId} /> : null}
-
-      {/* Soft next steps always visible so funnel never dead-ends before email */}
-      {reportStatus !== "sent" ? (
-        <div className="mt-6 text-center">
-          <Link
-            href={withLead("/shop/cognitive-assessment", leadId)}
-            className="nn-text-link text-sm"
-          >
-            {NN_QUIZ_RESULTS.ctaAssessment} →
-          </Link>
-          <span className="mx-2 text-ink/30">·</span>
-          <Link href={withLead("/discovery", leadId)} className="nn-text-link text-sm">
-            {NN_QUIZ_RESULTS.ctaDiscovery}
-          </Link>
-        </div>
-      ) : null}
 
       <FunnelTrustBar className="mt-6" />
 

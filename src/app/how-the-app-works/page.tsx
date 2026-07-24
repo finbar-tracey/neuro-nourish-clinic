@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   AppPreviewVisual,
   CheckList,
@@ -26,18 +25,15 @@ export default function HowTheAppWorksPage() {
               <CheckList items={NN_APP.benefits} />
             </div>
             <p className="mt-6 text-sm leading-relaxed text-ink/65">
-              The companion app is not available for public download — access is included for
-              12-month programme clients.
+              The companion app is not available for public download. Access is included for
+              12-month programme clients after enrolment.
             </p>
             <div className="mt-8 flex flex-col items-start gap-1.5">
               <GoldButton href="/programme">{NN_APP.cta}</GoldButton>
               <span className="text-xs text-ink/55">{NN_APP.ctaHint}</span>
-              <Link href="/shop/light-programme" className="nn-text-link mt-3 text-sm">
-                View the Light programme →
-              </Link>
             </div>
           </div>
-              <AppPreviewVisual variant="screenshot" />
+          <AppPreviewVisual variant="screenshot" />
         </div>
       </PageContainer>
     </NeuroNourishShell>

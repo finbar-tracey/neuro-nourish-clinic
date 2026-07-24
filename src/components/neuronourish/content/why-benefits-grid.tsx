@@ -17,10 +17,10 @@ function BenefitIcon({ icon }: { icon: WhyBenefit["icon"] }) {
     case "programme":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
-          <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
-          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M12 4v3M12 17v3M4 12h3M17 12h3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M6.5 6.5l2 2M15.5 15.5l2 2M17.5 6.5l-2 2M8.5 15.5l-2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <rect x="4" y="4" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="13" y="4" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="4" y="13" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+          <rect x="13" y="13" width="7" height="7" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
         </svg>
       );
     case "clinical":
@@ -49,20 +49,13 @@ function BenefitIcon({ icon }: { icon: WhyBenefit["icon"] }) {
     case "support":
       return (
         <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
-          <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="1.5" />
-          <circle cx="16" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.5" />
           <path
-            d="M3.5 19c.8-3 3-5 5.5-5s4.7 2 5.5 5"
+            d="M12 21c-4.5-2.8-7.5-6.2-7.5-10.2A4.5 4.5 0 0 1 12 6.5a4.5 4.5 0 0 1 7.5 4.3C19.5 14.8 16.5 18.2 12 21z"
             stroke="currentColor"
             strokeWidth="1.5"
-            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          <path
-            d="M13 19c.5-2.2 2-3.5 3.8-3.5 1.5 0 2.8.9 3.5 2.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
+          <path d="M12 10v4M10 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
         </svg>
       );
     case "flexible":

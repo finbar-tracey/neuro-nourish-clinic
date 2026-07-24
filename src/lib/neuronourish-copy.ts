@@ -56,37 +56,39 @@ export const NN_METADATA = {
 } as const;
 
 export const NN_HERO = {
-  brand: "NeuroNourish Clinic",
-  eyebrow: "Ireland & UK · Online & in clinic",
+  brand: "NeuroNourish",
+  /** Kept empty: location chips removed per website review (nobody buys on geography). */
+  eyebrow: "",
   headline: "Support your memory.\nStrengthen your brain health.\nLive with confidence.",
   subtext:
-    "Personalised nutrition, biomarkers and lifestyle medicine for adults who want to support memory and mental clarity.",
-  trustBar: ["NovaUCD", "ReCODE", "Clinical oversight"],
+    "Personalised lifestyle medicine, biomarker analysis and targeted nutrition for adults who want to support memory and mental clarity.",
+  /** Trust logos live in the partners / founder strips — not the hero. */
+  trustBar: [] as readonly string[],
   ctaQuiz: "Take the Brain Health Quiz",
-  ctaQuizHint: "Free · 3 minutes · Personalised score",
+  ctaQuizHint: "3 minutes · Habit baseline for your next conversation",
   ctaDiscovery: "Or book a 15-minute discovery call",
 } as const;
 
 export const NN_QUIZ_FOLD = {
   eyebrow: "Brain health quiz",
-  headline: "Understand Your Brain Health in 3 Minutes",
+  headline: "Discover Your Brain Health Score",
   subtext:
-    "Eighteen evidence-led questions on nutrition, sleep, movement and lifestyle — with personalised insights before you speak with our team.",
+    "Answer 18 evidence-based questions to understand how your lifestyle, nutrition, sleep and daily habits may be influencing your brain health. This short assessment provides a baseline profile before speaking with our team.",
   benefits: [
-    "Personalised insights tailored to your answers",
-    "Baseline lifestyle profile for your discovery call",
-    "Built on published dementia-prevention research",
+    "Understand how your daily habits may influence brain health",
+    "Build your baseline lifestyle profile",
+    "Receive evidence-based insights informed by dementia-prevention research",
   ],
   disclaimer: "This is not a medical diagnosis.",
-  cta: "Take the Brain Health Quiz",
-  ctaHint: "Free. No account required",
-  badge: "Free quiz",
-  previewLabel: "Live preview",
+  cta: "Start Your Assessment",
+  ctaHint: "3 minutes",
+  badge: "Brain health quiz",
+  previewLabel: "Sample questions",
   previewStatMinutes: "3 min",
   previewStatMinutesLabel: "Average completion",
   previewStatQuestionsLabel: "Evidence-led questions",
-  /** How many real quiz questions to cycle in the homepage preview. */
-  previewQuestionCount: 3,
+  /** Keep preview short so the full 18-question quiz stays intriguing. */
+  previewQuestionCount: 2,
 } as const;
 
 export interface JourneyStep {
@@ -180,7 +182,7 @@ export interface JourneyTimelineStep {
 export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   {
     id: 1,
-    phase: "It starts with understanding you",
+    phase: "Understand",
     timing: "Start",
     title: "Full Intake & Lifestyle Timeline",
     summary:
@@ -188,7 +190,7 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
   {
     id: 2,
-    phase: "It starts with understanding you",
+    phase: "Understand",
     timing: "Clinical",
     title: "Comprehensive Blood Work Review",
     summary:
@@ -196,7 +198,7 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
   {
     id: 3,
-    phase: "It starts with understanding you",
+    phase: "Understand",
     timing: "Baseline",
     title: "Clinically Validated Cognitive Assessment",
     summary:
@@ -204,7 +206,7 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
   {
     id: 4,
-    phase: "Build your personalised plan",
+    phase: "Personalise",
     timing: "Nutrition",
     title: "Personalised Nutrition Programme",
     summary:
@@ -212,7 +214,7 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
   {
     id: 5,
-    phase: "Build your personalised plan",
+    phase: "Personalise",
     timing: "Lifestyle",
     title: "Brain Health Lifestyle Strategy",
     summary:
@@ -220,7 +222,7 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
   {
     id: 6,
-    phase: "Build your personalised plan",
+    phase: "Personalise",
     timing: "Support",
     title: "Supplementation Guidance",
     summary:
@@ -228,7 +230,7 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
   },
   {
     id: 7,
-    phase: "Sustain & measure progress",
+    phase: "Optimise",
     timing: "Ongoing",
     title: "Ongoing Monitoring & App Tracking",
     summary:
@@ -238,13 +240,14 @@ export const NN_JOURNEY_TIMELINE: JourneyTimelineStep[] = [
 
 export const NN_JOURNEY = {
   headline: "A personalised journey designed around your brain health.",
-  subtext: "It starts with understanding you.",
+  subtext:
+    "We shape every recommendation around your health history, biomarkers, cognitive assessment, lifestyle and goals.",
   timeline: NN_JOURNEY_TIMELINE,
   steps: NN_JOURNEY_STEPS,
-  cta: "Explore the 12-Month Programme",
-  ctaHint: "Full detail on every stage",
-  shopSoft: "Ready to start with a product or tier?",
-  shopCta: "Browse the shop",
+  cta: "Find Your Programme",
+  ctaHint: "Compare tiers and what is included",
+  shopSoft: "",
+  shopCta: "",
 } as const;
 
 export interface WhyBenefit {
@@ -259,13 +262,13 @@ export const NN_WHY_BENEFITS: WhyBenefit[] = [
     icon: "science",
     title: "Evidence-based root cause approach",
     description:
-      "We do not focus on symptoms alone — we explore the nutritional, metabolic, inflammatory, and lifestyle factors too.",
+      "We do not focus on symptoms alone. We explore the nutritional, metabolic, inflammatory, and lifestyle factors too.",
   },
   {
     icon: "programme",
     title: "A complete 360° brain health programme",
     description:
-      "Nutrition, biomarkers, cognitive assessments, supplementation, lifestyle medicine, and coaching.",
+      "Nutrition, biomarkers, cognitive assessments, supplementation, lifestyle medicine, and coaching work together to create a personalised programme for you.",
   },
   {
     icon: "clinical",
@@ -287,7 +290,7 @@ export const NN_WHY_BENEFITS: WhyBenefit[] = [
   },
   {
     icon: "support",
-    title: "Dedicated coaching & accountability",
+    title: "Dedicated coaching and accountability",
     description:
       "Regular one-to-one coaching, personalised guidance, and expert accountability help you stay consistent and make meaningful progress throughout your programme.",
   },
@@ -298,8 +301,8 @@ export const NN_WHY = {
   subtext:
     "Six reasons adults choose a structured, evidence-led approach to brain health.",
   benefits: NN_WHY_BENEFITS,
-  cta: "Explore the 12-Month Programme",
-  ctaHint: "Everything included across 12 months",
+  cta: "Find Your Programme",
+  ctaHint: "Compare tiers and what is included",
 } as const;
 
 export const NN_OUTCOMES = {
@@ -369,9 +372,9 @@ export const NN_APP = {
   eyebrow: "NeuroNourish app",
   headline: "Small Daily Habits. Meaningful Long-Term Progress.",
   subtext:
-    "Your health doesn't stand still between appointments—and neither should your support. The companion app is included for programme clients.",
+    "Your health does not stand still between appointments, and neither should your support. The companion app is included for programme clients. It is not available for public download.",
   benefits: [
-    "Track meals, sleep, movement & mood daily",
+    "Track meals, sleep, movement and mood daily",
     "Real-time habit compliance scoring",
     "Practitioner insights between sessions",
     "Personalised programme adjustments over time",
@@ -388,7 +391,7 @@ export const NN_APP = {
     { value: "12", label: "Habit streak", suffix: "days" },
     { value: "87", label: "Weekly score", suffix: "%" },
   ],
-  cta: "Explore the 12-Month Programme",
+  cta: "Find Your Programme",
   ctaHint: "App access is included for programme clients",
   badge: "Companion app",
   caption: "Meals · sleep · movement · mood",
@@ -398,9 +401,8 @@ export const NN_APP = {
 
 export const NN_PARTNERS = {
   eyebrow: "Partners",
-  headline: "Working Together to Advance Brain Health",
-  subtext:
-    "NeuroNourish collaborates with trusted healthcare professionals, clinical partners, and research organisations to deliver evidence-informed care and support better cognitive health outcomes.",
+  headline: "Research and innovation partners",
+  subtext: "",
   footnote:
     "Programmes developed with leading Irish research, clinical, and innovation partners.",
   groups: [
@@ -1511,10 +1513,10 @@ export const NN_QUIZ_PAGE = {
   eyebrow: "Brain health quiz",
   headline: "What's Your Brain Health Score?",
   subtext:
-    "A 3-minute check built around the latest evidence in cognitive nutrition and brain ageing — designed for stressed working adults and anyone taking brain health seriously.",
+    "A 3-minute check built around the latest evidence in cognitive nutrition and brain ageing, designed for stressed working adults and anyone taking brain health seriously.",
   highlights: [
-    "~3 minutes · 18 evidence-led questions",
-    "Personalised score, archetype, and next-step guidance",
+    "About 3 minutes · 18 evidence-led questions",
+    "Score, archetype, and next-step guidance",
     "Email your report when you finish",
   ],
   timeEstimate: "About 3 minutes · 18 questions",
@@ -1602,13 +1604,13 @@ export const NN_QUIZ_RESULTS = {
   ],
   ctaAssessment: "Start My Assessment",
   ctaAssessmentHint: "Credited toward enrolment within 30 days",
-  ctaDiscovery: "Book Your Discovery Call",
+  ctaDiscovery: "Book a discovery call",
   ctaDiscoveryHint: "15-minute call · No obligation",
   ctaContact: "Contact Our Team",
-  ctaProgramme: "Explore the 12-month programme",
+  ctaProgramme: "Find Your Programme",
   emptyHeadline: "Complete the quiz to see your score",
   emptyBody:
-    "Your personalised results need a full quiz session. Take the 3-minute quiz, or book a discovery call if you'd rather talk first.",
+    "Your results need a full quiz session. Take the 3-minute quiz, or book a discovery call if you'd rather talk first.",
   emptyCtaQuiz: "Take the brain health quiz",
   emptyCtaDiscovery: "Book a discovery call",
 } as const;
@@ -2473,9 +2475,10 @@ export const NN_META_AD_CAMPAIGN = {
 export const NN_FOUNDER_ABOUT = {
   eyebrow: "Founder",
   headline: "Driven by Experience. Backed by Science.",
-  title: "Nutrition Scientist, Ireland's First ReCODE Practitioner & Irish Independent 30 Under 30 Honouree",
+  title:
+    "Background in nutraceuticals, ReCODE & PreCODE, functional medicine principles, and nutrition & health coaching",
   credentialsShort:
-    "Nutrition Scientist · Ireland's First ReCODE Practitioner · 30 Under 30 Honouree",
+    "Nutraceuticals · ReCODE & PreCODE · Nutrition & health coaching · 30 Under 30 Honouree",
   teaser:
     "I came to brain health the hard way. A severe cycling accident disrupted my processing speed and memory for years. I became obsessed with understanding how the brain heals, adapts, and builds resilience. I understand how it feels when your brain no longer cooperates.",
   pullQuote:

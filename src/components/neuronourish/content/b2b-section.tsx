@@ -90,18 +90,18 @@ export function B2bSection({ className = "" }: { className?: string }) {
 
         <ul className="mx-auto mt-8 flex max-w-xl flex-col items-center gap-3 text-center">
           {NN_B2B.highlights.map((item) => (
-            <li key={item} className="text-sm text-ink/80">
-              <span className="mr-2 text-gold" aria-hidden>
+            <li key={item} className="flex items-center justify-center gap-2 text-sm text-ink/80">
+              <span className="text-gold" aria-hidden>
                 ✓
               </span>
-              {item}
+              <span>{item}</span>
             </li>
           ))}
         </ul>
 
-        <div className="mt-10 flex flex-col items-center gap-3 border-t border-mist/80 pt-10">
+        <div className="mt-10 flex flex-col items-center gap-1.5 border-t border-mist/80 pt-10">
           <GoldButton href="/clinics">{NN_B2B.cta}</GoldButton>
-          <span className="text-xs text-ink/60">{NN_B2B.ctaHint}</span>
+          <span className="text-center text-xs text-ink/60">{NN_B2B.ctaHint}</span>
         </div>
       </PageContainer>
     </PageSection>

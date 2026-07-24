@@ -79,8 +79,10 @@ check(
 check(
   "C5",
   "Continuity",
-  "Results preserve leadId on assessment CTA",
-  results.includes("withLead") && results.includes("/shop/cognitive-assessment"),
+  "Results preserve leadId on next-step links",
+  results.includes("withLead") &&
+    copy.includes("/shop/cognitive-assessment") &&
+    copy.includes('href: "/discovery"'),
 );
 check(
   "C6",
@@ -124,14 +126,18 @@ check(
 check(
   "H4",
   "CTA hierarchy",
-  "Results next steps: assessment is GoldButton; discovery is text link",
-  results.includes("ctaAssessment") &&
-    results.includes("GoldButton") &&
-    results.includes("ctaDiscovery") &&
-    /ctaDiscovery[\s\S]{0,200}nn-text-link|nn-text-link[\s\S]{0,200}ctaDiscovery/.test(results) &&
-    !/OutlineButton[\s\S]{0,80}ctaDiscovery|ctaDiscovery[\s\S]{0,80}OutlineButton/.test(
-      results.slice(results.indexOf("function NextStepsBlock")),
-    ),
+  "Results primary is Email my report; next steps are text links only",
+  (() => {
+    const start = results.indexOf("function NextStepsBlock");
+    const end = results.indexOf("export function QuizResultsPanel");
+    const nextSteps = start >= 0 && end > start ? results.slice(start, end) : "";
+    return (
+      copy.includes('cta: "Email my report"') &&
+      results.includes("NN_QUIZ_REPORT_CTA") &&
+      nextSteps.includes("nn-text-link") &&
+      !nextSteps.includes("GoldButton")
+    );
+  })(),
 );
 check(
   "H5",
@@ -179,8 +185,9 @@ check(
 check(
   "T1",
   "Trust",
-  "Hero trust bar under CTA",
-  hero.includes("trustBar") || hero.includes("nn-hero-trust-bar"),
+  "Founder / partners trust logos present",
+  read("src/components/neuronourish/content/founder-trust-strip.tsx").includes("NN_FOUNDER_TRUST") &&
+    read("src/components/neuronourish/content/partner-strip.tsx").includes("NN_PARTNERS"),
 );
 check(
   "T2",

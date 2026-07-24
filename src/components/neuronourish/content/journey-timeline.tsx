@@ -20,7 +20,7 @@ export function JourneyTimeline() {
   const phases = groupTimelineByPhase();
 
   return (
-    <div className="mt-12 space-y-10 lg:space-y-12">
+    <div className="space-y-10 lg:space-y-12">
       {phases.map((group, groupIndex) => (
         <div key={group.phase}>
           <p className="nn-eyebrow text-gold">{group.phase}</p>
