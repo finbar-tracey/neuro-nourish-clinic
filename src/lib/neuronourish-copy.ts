@@ -101,7 +101,7 @@ export interface JourneyStep {
 export const NN_JOURNEY_STEPS: JourneyStep[] = [
   {
     id: 1,
-    benefitFocus: "It starts with understanding you.",
+    benefitFocus: "Establish your baseline first.",
     title: "Full Intake & Lifestyle Timeline",
     highlights: [
       "Medical history, lifestyle, nutrition, symptoms, and goals",
@@ -1638,7 +1638,7 @@ export const NN_TEAM = {
   members: [
     {
       name: "Emer Sexton",
-      role: "Founder · Nutrition Scientist · Ireland's First ReCODE Practitioner",
+      role: "Founder · Nutraceuticals · Ireland's First ReCODE Practitioner",
       bio: "Leads clinical direction and Premium programme walkthroughs. Lived experience of cognitive recovery after a cycling accident shaped NeuroNourish.",
       href: "/about",
       hrefLabel: "Read Emer's full story",
@@ -1681,7 +1681,7 @@ export const NN_BLOG = {
   subtext:
     "Evidence-led articles on sleep, nutrition, movement, and daily habits — written for adults taking a proactive approach to brain health.",
   cta: "Take the Brain Health Quiz",
-  ctaHint: "Free · 3 minutes · Personalised score",
+  ctaHint: "3 minutes · Habit baseline for your next conversation",
   posts: [
     {
       slug: "sleep-brain-investment",
@@ -1735,7 +1735,7 @@ export const NN_CLOSING = {
     "Whether you're looking to support your cognitive health, improve mental clarity, or better understand your personal risk factors, we're here to guide you with personalised, evidence-based care designed around you.",
   trustChips: ["Free brain health quiz", "No obligation", "Ireland & UK"],
   ctaPrimary: "Or book a discovery call",
-  ctaPrimaryHint: "Free · 3 minutes · Personalised score",
+  ctaQuizHint: "3 minutes · Habit baseline for your next conversation",
   ctaSecondary: "Contact Our Team",
   ctaQuiz: "Take the Brain Health Quiz",
 } as const;

@@ -11,6 +11,20 @@ Legend: `[x]` done · `[ ]` open · `[!]` conflict / needs Emer or Priya · `[~]
 Implemented unblocked review items without flipping D1/D2/D3 (hero H1, Vision fold, public €).  
 **Summary:** hero cleanup; quiz fold rewrite; journey phases Understand/Personalise/Optimise; one programme CTA label; partners strip compressed; B2B bullets centred; quiz results = Email my report primary; app page no public download CTA; founder credentials + trust badge alignment; Why icons/copy tweaks.
 
+### Post-implementation audit (24 Jul 2026)
+
+Automated CRO: **26/26 → 28/28** after fixes. Live spot-check vs checklist.
+
+| Finding | Severity | Fix |
+|---------|----------|-----|
+| Closing CTA still showed “Free · 3 minutes · Personalised score” | P0 regression (H-06) | Closing uses `NN_CLOSING.ctaQuizHint` = habit baseline |
+| Blog / shop quiz hints still said “Personalised score” | Consistency | Softened to match hero |
+| Team page Emer role still “Nutrition Scientist” | F-03 drift | Role → Nutraceuticals · ReCODE |
+| Dead journey step badge still “It starts with understanding you” | J-01 hygiene | Reworded baseline focus |
+| CRO did not guard closing score claim | Process | Added H2b + H7 checks |
+
+Wave A items remain `[x]` below. Open items (D1–D3, Waves B–E) unchanged.
+
 ---
 
 ## 0. Decisions required before build (blockers)

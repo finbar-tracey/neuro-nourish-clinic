@@ -48,7 +48,7 @@ export function ClosingCtaSection({
 
         <div className="mt-10 flex flex-col items-center gap-1.5">
           <GoldButton href={quizTarget}>{NN_CLOSING.ctaQuiz}</GoldButton>
-          <span className="text-xs text-sky-blue/80">Free · 3 minutes · Personalised score</span>
+          <span className="text-xs text-sky-blue/80">{NN_CLOSING.ctaQuizHint}</span>
         </div>
 
         <Link

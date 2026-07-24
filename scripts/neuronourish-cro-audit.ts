@@ -118,10 +118,28 @@ check(
     closing.includes("discoveryTarget"),
 );
 check(
+  "H2b",
+  "CTA hierarchy",
+  "Closing quiz hint softens score claim (habit baseline)",
+  closing.includes("ctaQuizHint") &&
+    !closing.includes("Personalised score") &&
+    copy.includes('ctaQuizHint: "3 minutes · Habit baseline for your next conversation"'),
+);
+check(
   "H3",
   "CTA hierarchy",
   "Quiz fold single gold quiz CTA",
   quizFold.includes('GoldButton href="/quiz"') && !quizFold.includes("OutlineButton"),
+);
+check(
+  "H7",
+  "CTA hierarchy",
+  "Hero brand is NeuroNourish; no geography eyebrow chips",
+  hero.includes("NN_HERO.brand") &&
+    copy.includes('brand: "NeuroNourish"') &&
+    copy.includes('eyebrow: ""') &&
+    !hero.includes("Ireland") &&
+    !hero.includes("NovaUCD"),
 );
 check(
   "H4",
