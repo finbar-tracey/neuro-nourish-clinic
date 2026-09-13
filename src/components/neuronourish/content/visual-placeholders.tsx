@@ -7,12 +7,21 @@ type PortraitProps = {
   className?: string;
   priority?: boolean;
   variant?: "light" | "dark";
+  /** Constrains the circle so it fits tight layouts (e.g. Team card). */
+  size?: "sm" | "md" | "lg";
 };
+
+const SIZE_CLASS = {
+  sm: "w-40 sm:w-44",
+  md: "w-[min(100%,15rem)] sm:w-60",
+  lg: "w-[min(100%,15rem)] sm:w-[17rem] lg:w-[19rem] xl:w-[21rem]",
+} as const;
 
 export function FounderPortrait({
   className = "",
   priority = false,
   variant = "light",
+  size = "lg",
 }: PortraitProps) {
   const src = `${EMER_PORTRAIT_SRC}?v=${EMER_PORTRAIT_VERSION}`;
   const frameClass =
@@ -21,8 +30,8 @@ export function FounderPortrait({
       : "bg-black shadow-[0_12px_40px_rgba(26,51,72,0.18)] ring-2 ring-linen";
 
   return (
-    <div className={`flex justify-center lg:justify-start ${className}`}>
-      <div className="w-[min(100%,15rem)] sm:w-[17rem] lg:w-[19rem] xl:w-[21rem]">
+    <div className={`flex justify-center ${className}`}>
+      <div className={SIZE_CLASS[size]}>
         <div className={`aspect-square overflow-hidden rounded-full ${frameClass}`}>
           {/* eslint-disable-next-line @next/next/no-img-element -- static brand asset; avoid next/image optimizer cache issues on Vercel */}
           <img

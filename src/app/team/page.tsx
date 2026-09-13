@@ -25,16 +25,18 @@ export default function TeamPage() {
             as="h1"
           />
 
-          <div className="mx-auto mt-12 grid max-w-3xl items-center gap-8 rounded-3xl border border-mist/90 bg-white p-6 shadow-[0_8px_24px_rgba(26,51,72,0.07)] sm:p-8 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:gap-10">
-            <FounderPortrait className="mx-auto" priority />
-            <div className="text-center lg:text-left">
+          <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-6 rounded-3xl border border-mist/90 bg-white p-6 shadow-[0_8px_24px_rgba(26,51,72,0.07)] sm:gap-8 sm:p-8 md:flex-row md:items-center md:gap-10">
+            <div className="shrink-0">
+              <FounderPortrait size="sm" priority />
+            </div>
+            <div className="min-w-0 flex-1 text-center md:text-left">
               <h2 className="nn-display-card text-deep-slate">{emer.name}</h2>
               <p className="mt-2 text-xs font-medium uppercase tracking-wide text-ink/55">
                 {emer.role}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-ink/75">{emer.bio}</p>
               {emer.href ? (
-                <div className="mt-6 flex flex-col items-center gap-1.5 lg:items-start">
+                <div className="mt-6 flex flex-col items-center gap-1.5 md:items-start">
                   <GoldButton href={emer.href}>{emer.hrefLabel ?? NN_TEAM.ctaAbout}</GoldButton>
                 </div>
               ) : null}
