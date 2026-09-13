@@ -25,7 +25,7 @@ export function SectionHeader({
     <div className={alignClass}>
       <SectionEyebrow>{eyebrow}</SectionEyebrow>
       <HeadlineTag
-        className={`nn-display-section mt-3 text-slate-blue ${headlineClassName} ${align === "center" ? "mx-auto" : "max-w-2xl"}`}
+        className={`nn-display-section mt-3 text-deep-slate ${headlineClassName} ${align === "center" ? "mx-auto" : "max-w-2xl"}`}
       >
         {headline}
       </HeadlineTag>
@@ -56,7 +56,7 @@ export function PageHeader({
   return (
     <header>
       <SectionEyebrow>{eyebrow}</SectionEyebrow>
-      <HeadlineTag className="nn-display-section mt-3 text-slate-blue">{headline}</HeadlineTag>
+      <HeadlineTag className="nn-display-section mt-3 text-deep-slate">{headline}</HeadlineTag>
       {subtext ? <p className="nn-body mt-4 text-ink/85">{subtext}</p> : null}
     </header>
   );

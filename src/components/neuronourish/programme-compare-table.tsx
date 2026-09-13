@@ -22,7 +22,7 @@ export function ProgrammeCompareTable() {
     <section className="mt-16" aria-labelledby="programme-compare">
       <h2
         id="programme-compare"
-        className="text-center font-display text-2xl text-slate-blue sm:text-3xl"
+              className="text-center font-display text-2xl text-deep-slate sm:text-3xl"
       >
         {NN_PROGRAMME.compareTitle}
       </h2>

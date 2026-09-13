@@ -17,7 +17,7 @@ function LogoMark({ item }: { item: LogoMarqueeItem }) {
       alt=""
       width={item.width}
       height={item.height}
-      className="nn-partner-logo h-12 w-auto max-w-[11rem] object-contain opacity-95 sm:h-14 sm:max-w-[13rem]"
+      className="nn-partner-logo h-12 w-auto max-w-[11rem] object-contain opacity-80 sm:h-14 sm:max-w-[13rem] [filter:grayscale(1)_brightness(0.45)_contrast(1.05)]"
     />
   );
 
@@ -72,7 +72,7 @@ export function LogoMarquee({
         <PageContainer width="xl" className="px-4 pt-8 text-center sm:px-6 sm:pt-9">
           {eyebrow ? <SectionEyebrow>{eyebrow}</SectionEyebrow> : null}
           {headline ? (
-            <h2 className="mt-2 font-display text-xl text-slate-blue sm:text-2xl">{headline}</h2>
+            <h2 className="mt-2 font-display text-xl text-deep-slate sm:text-2xl">{headline}</h2>
           ) : null}
         </PageContainer>
       )}

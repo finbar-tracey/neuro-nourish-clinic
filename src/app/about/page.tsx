@@ -36,7 +36,7 @@ export default function AboutPage() {
               <div className="mt-5">
                 <SectionEyebrow>{NN_ABOUT.eyebrow}</SectionEyebrow>
               </div>
-              <h1 className="nn-display-section mt-3 text-slate-blue">{NN_ABOUT.headline}</h1>
+              <h1 className="nn-display-section mt-3 text-deep-slate">{NN_ABOUT.headline}</h1>
               <p className="nn-body mx-auto mt-5 max-w-xl text-ink/85 lg:mx-0">{NN_ABOUT.subtext}</p>
               {NN_ABOUT.visionBody.map((paragraph) => (
                 <p key={paragraph.slice(0, 28)} className="nn-body mx-auto mt-4 max-w-xl text-ink/80 lg:mx-0">
@@ -50,7 +50,7 @@ export default function AboutPage() {
 
       <PageContainer width="md" className="py-14 sm:py-16">
         <p className="nn-eyebrow text-gold">{NN_ABOUT.founderEyebrow}</p>
-        <p className="nn-display-card mt-3 text-slate-blue">{NN_ABOUT.founderBelief}</p>
+        <p className="nn-display-card mt-3 text-deep-slate">{NN_ABOUT.founderBelief}</p>
         {NN_ABOUT.founderBody.map((paragraph) => (
           <p key={paragraph.slice(0, 28)} className="nn-body mt-5 text-ink/85">
             {paragraph}
@@ -98,27 +98,31 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <blockquote className="nn-pull-quote mt-12 text-ink/85">{NN_FOUNDER_ABOUT.quote}</blockquote>
-        <p className="mt-4 text-sm text-slate-blue">
+        <blockquote className="nn-pull-quote mt-14 max-w-xl text-deep-slate">
+          {NN_FOUNDER_ABOUT.quote}
+        </blockquote>
+        <p className="mt-5 text-sm text-ink/65">
           {NN_FOUNDER_ABOUT.attribution} · {NN_FOUNDER_ABOUT.title}
         </p>
 
         <FounderTrustStrip tone="light" className="mt-12" />
 
-        <div className="mt-12 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
+        <div className="mt-12 flex flex-col items-start gap-4">
           <div className="flex flex-col items-start gap-1.5">
             <GoldButton href={NN_ABOUT.ctaHref}>{NN_ABOUT.cta}</GoldButton>
             <span className="text-xs text-ink/55">{NN_ABOUT.ctaHint}</span>
           </div>
-          <Link href="/team" className="nn-text-link text-sm">
-            {NN_ABOUT.teamLink} →
-          </Link>
-          <Link href="/programme" className="nn-text-link text-sm">
-            {NN_ABOUT.programmeSoft} →
-          </Link>
-          <Link href="/discovery" className="nn-text-link text-sm">
-            {NN_ABOUT.discoveryLink} →
-          </Link>
+          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2">
+            <Link href="/team" className="text-sm text-ink/70 underline-offset-3 hover:text-deep-slate hover:underline">
+              {NN_ABOUT.teamLink} →
+            </Link>
+            <Link href="/programme" className="text-sm text-ink/70 underline-offset-3 hover:text-deep-slate hover:underline">
+              {NN_ABOUT.programmeSoft} →
+            </Link>
+            <Link href="/discovery" className="text-sm text-ink/70 underline-offset-3 hover:text-deep-slate hover:underline">
+              {NN_ABOUT.discoveryLink} →
+            </Link>
+          </div>
         </div>
       </PageContainer>
     </NeuroNourishShell>

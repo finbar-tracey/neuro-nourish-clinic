@@ -20,11 +20,11 @@ export function JourneySection({ className = "" }: { className?: string }) {
           {NN_JOURNEY.method.map((phase) => (
             <NnCard key={phase.title} as="li">
               <div className="flex gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gold bg-ivory font-display text-sm text-slate-blue">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-gold bg-ivory font-display text-sm text-deep-slate">
                   {phase.step}
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="nn-display-card text-slate-blue">{phase.title}</h3>
+                  <h3 className="nn-display-card text-deep-slate">{phase.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/75">{phase.body}</p>
                 </div>
               </div>
@@ -35,7 +35,7 @@ export function JourneySection({ className = "" }: { className?: string }) {
         <div className="mt-10 grid items-center gap-8 border-t border-mist/80 pt-10 lg:grid-cols-2 lg:gap-12">
           <div className="max-w-lg">
             <p className="nn-eyebrow text-gold">Ongoing support</p>
-            <h3 className="nn-display-card mt-3 text-slate-blue">
+            <h3 className="nn-display-card mt-3 text-deep-slate">
               Daily tracking inside the NeuroNourish App
             </h3>
             <p className="mt-3 text-sm leading-relaxed text-ink/75">

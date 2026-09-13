@@ -56,7 +56,7 @@ export function AppPreviewVisual({ variant = "mock" }: AppPreviewVisualProps) {
   }
 
   return (
-    <div className="nn-app-preview rounded-2xl border border-mist bg-linen/25 p-6 shadow-sm sm:p-8">
+    <div className="nn-app-preview rounded-2xl border border-mist bg-white p-6 shadow-[0_12px_32px_rgba(26,51,72,0.08)] sm:p-8">
       <div className="mb-4 flex items-center justify-between gap-3">
         <span className="nn-badge">{NN_APP.badge}</span>
         <span className="text-[10px] font-medium uppercase tracking-wider text-ink/45">
@@ -65,7 +65,7 @@ export function AppPreviewVisual({ variant = "mock" }: AppPreviewVisualProps) {
       </div>
 
       <div
-        className="mx-auto w-[12.25rem] rounded-[1.85rem] border-[5px] border-deep-slate/12 bg-white p-3.5 shadow-lg sm:w-[13.25rem]"
+        className="mx-auto w-[14.5rem] rounded-[2rem] border-[5px] border-deep-slate/12 bg-white p-4 shadow-lg sm:w-[16rem]"
         aria-hidden
       >
         <div className="rounded-2xl bg-deep-slate px-3 py-2 text-center text-[10px] font-medium tracking-wide text-ivory">

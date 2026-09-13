@@ -69,7 +69,7 @@ export default function ClinicsPage() {
 
       <PageContainer width="lg" className="py-14 sm:py-16">
         <p className="nn-eyebrow text-gold">{NN_CLINICS.referral.eyebrow}</p>
-        <h2 className="nn-display-section mt-3 max-w-2xl text-slate-blue">
+        <h2 className="nn-display-section mt-3 max-w-2xl text-deep-slate">
           {NN_CLINICS.referral.headline}
         </h2>
         <p className="nn-body mt-4 max-w-2xl text-ink/75">{NN_CLINICS.referral.subtext}</p>
@@ -77,7 +77,7 @@ export default function ClinicsPage() {
           {NN_CLINICS.referral.steps.map((step, index) => (
             <li key={step.title} className="border-l-2 border-gold pl-5">
               <p className="font-display text-sm text-gold">{index + 1}</p>
-              <h3 className="nn-display-card mt-2 text-slate-blue">{step.title}</h3>
+              <h3 className="nn-display-card mt-2 text-deep-slate">{step.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-ink/75">{step.body}</p>
             </li>
           ))}

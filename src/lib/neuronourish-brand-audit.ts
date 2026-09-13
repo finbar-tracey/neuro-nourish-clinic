@@ -143,8 +143,8 @@ export function runNeuronourishBrandGuidelinesAudit(
     checks,
     "T9",
     "Typography",
-    "Light-section headings use Slate Blue",
-    readFile(root, "src/components/neuronourish/content/section-header.tsx").includes("text-slate-blue"),
+    "Light-section headings use Deep Slate (full contrast)",
+    readFile(root, "src/components/neuronourish/content/section-header.tsx").includes("text-deep-slate"),
   );
   addCheck(checks, "T10", "Typography", "No italics in marketing copy", !copy.includes("italic"));
   const quizUi = readFile(root, "src/components/neuronourish/brain-health-quiz.tsx");
@@ -253,8 +253,8 @@ export function runNeuronourishBrandGuidelinesAudit(
     checks,
     "S1",
     "Surfaces",
-    "Why benefits use linen card surfaces",
-    readFile(root, "src/components/neuronourish/content/nn-card.tsx").includes("bg-linen/") &&
+    "Why benefits use elevated white NnCard surfaces",
+    readFile(root, "src/components/neuronourish/content/nn-card.tsx").includes("bg-white") &&
       readFile(root, "src/components/neuronourish/content/why-benefits-grid.tsx").includes("NnCard"),
   );
 

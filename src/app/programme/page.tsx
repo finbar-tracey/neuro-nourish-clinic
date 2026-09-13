@@ -5,6 +5,7 @@ import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { NnFaqBlock } from "@/components/neuronourish/content/nn-faq-accordion";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
 import { ProgrammeCompareTable } from "@/components/neuronourish/programme-compare-table";
+import { ProgrammeYearTimeline } from "@/components/neuronourish/programme-year-timeline";
 import { ShopProductCard } from "@/components/neuronourish/shop-product-card";
 import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
 import { NN_PROGRAMME } from "@/lib/neuronourish-copy";
@@ -35,7 +36,7 @@ export default function ProgrammePage() {
           </p>
 
           {!NN_PROGRAMME.showPublicPrice ? (
-            <p className="mx-auto mt-4 max-w-xl text-center text-sm text-slate-blue">
+            <p className="mx-auto mt-4 max-w-xl text-center text-sm text-ink/65">
               {NN_PROGRAMME.investmentHeadline}
             </p>
           ) : null}
@@ -62,30 +63,12 @@ export default function ProgrammePage() {
             </Link>
           </p>
 
-          <section className="mt-16" aria-labelledby="programme-year">
-            <h2
-              id="programme-year"
-              className="text-center font-display text-2xl text-slate-blue sm:text-3xl"
-            >
-              {NN_PROGRAMME.yearTitle}
-            </h2>
-            <NnCardGrid as="ol" className="mt-10">
-              {NN_PROGRAMME.yearPhases.map((phase) => (
-                <NnCard
-                  key={phase.timing}
-                  as="li"
-                  eyebrow={phase.timing}
-                  title={phase.title}
-                  body={phase.detail}
-                />
-              ))}
-            </NnCardGrid>
-          </section>
+          <ProgrammeYearTimeline />
 
           <section className="mt-16" aria-labelledby="programme-inclusions">
             <h2
               id="programme-inclusions"
-              className="text-center font-display text-2xl text-slate-blue sm:text-3xl"
+              className="text-center font-display text-2xl text-deep-slate sm:text-3xl"
             >
               {NN_PROGRAMME.inclusionsTitle}
             </h2>
@@ -99,7 +82,9 @@ export default function ProgrammePage() {
           <ul className="mx-auto mt-12 max-w-xl space-y-3 text-sm text-ink/80">
             {NN_PROGRAMME.highlights.map((item) => (
               <li key={item} className="flex gap-3">
-                <span className="text-gold">✓</span>
+                <span className="text-deep-slate" aria-hidden>
+                  ✓
+                </span>
                 <span>{item}</span>
               </li>
             ))}

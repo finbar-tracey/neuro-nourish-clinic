@@ -5,7 +5,7 @@ import {
 } from "react";
 
 /**
- * Global NeuroNourish marketing card — linen surface, gold hairline, equal-height ready.
+ * Global NeuroNourish marketing card — white elevated surface, muted gold hairline.
  * Pair with NnCardGrid so cards stretch to the tallest in the row on every breakpoint.
  */
 
@@ -44,13 +44,13 @@ export function NnCard({
 
   return (
     <Tag
-      className={`nn-card relative flex h-full flex-col overflow-hidden rounded-2xl border p-5 sm:p-6 ${
-        featured ? "border-gold/40 bg-linen/40" : "border-mist bg-linen/30"
+      className={`nn-card relative flex h-full flex-col overflow-hidden rounded-2xl border p-5 sm:p-6 shadow-[0_8px_24px_rgba(26,51,72,0.07)] ${
+        featured ? "border-gold/35 bg-white" : "border-mist/90 bg-white"
       } ${align === "center" ? "text-center" : "text-left"} ${className}`}
     >
       {!hideHairline ? (
         <div
-          className={`absolute inset-x-0 top-0 h-0.5 ${featured ? "bg-gold/75" : "bg-gold/55"}`}
+          className={`absolute inset-x-0 top-0 h-0.5 ${featured ? "bg-gold/50" : "bg-gold/30"}`}
           aria-hidden
         />
       ) : null}
@@ -73,7 +73,7 @@ export function NnCard({
 
       {title ? (
         <h3
-          className={`nn-display-card text-slate-blue ${
+          className={`nn-display-card text-deep-slate ${
             eyebrow || icon || badge ? "mt-2" : ""
           }`}
         >

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { NnCard, NnCardGrid } from "@/components/neuronourish/content/nn-card";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
+import { FounderPortrait } from "@/components/neuronourish/content/visual-placeholders";
 import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
 import { NN_TEAM } from "@/lib/neuronourish-copy";
 import { buildNeuronourishMetadata } from "@/lib/neuronourish-seo";
@@ -9,6 +10,8 @@ import { buildNeuronourishMetadata } from "@/lib/neuronourish-seo";
 export const metadata = buildNeuronourishMetadata("team");
 
 export default function TeamPage() {
+  const [emer, ...others] = NN_TEAM.members;
+
   return (
     <NeuroNourishShell>
       <PageSection className="py-14 sm:py-20">
@@ -22,17 +25,34 @@ export default function TeamPage() {
             as="h1"
           />
 
-          <NnCardGrid className="mt-12">
-            {NN_TEAM.members.map((member) => (
+          <div className="mx-auto mt-12 grid max-w-3xl items-center gap-8 rounded-3xl border border-mist/90 bg-white p-6 shadow-[0_8px_24px_rgba(26,51,72,0.07)] sm:p-8 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] lg:gap-10">
+            <FounderPortrait className="mx-auto" priority />
+            <div className="text-center lg:text-left">
+              <h2 className="nn-display-card text-deep-slate">{emer.name}</h2>
+              <p className="mt-2 text-xs font-medium uppercase tracking-wide text-ink/55">
+                {emer.role}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-ink/75">{emer.bio}</p>
+              {emer.href ? (
+                <div className="mt-6 flex flex-col items-center gap-1.5 lg:items-start">
+                  <GoldButton href={emer.href}>{emer.hrefLabel ?? NN_TEAM.ctaAbout}</GoldButton>
+                </div>
+              ) : null}
+            </div>
+          </div>
+
+          <NnCardGrid className="mt-10">
+            {others.map((member) => (
               <NnCard
                 key={member.name}
                 title={member.name}
                 body={
                   <>
-                    <p className="text-xs font-medium uppercase tracking-wide text-gold">
+                    <p className="text-xs font-medium uppercase tracking-wide text-ink/55">
                       {member.role}
                     </p>
                     <p className="mt-3">{member.bio}</p>
+                    <p className="mt-4 text-xs text-ink/45">Named profiles publishing soon.</p>
                   </>
                 }
                 footer={
@@ -46,8 +66,7 @@ export default function TeamPage() {
             ))}
           </NnCardGrid>
 
-          <div className="mt-12 flex flex-col items-center gap-3">
-            <GoldButton href="/about">{NN_TEAM.ctaAbout}</GoldButton>
+          <div className="mt-12 flex flex-col items-center gap-2">
             <Link href="/discovery" className="nn-text-link text-sm">
               {NN_TEAM.ctaDiscovery} →
             </Link>

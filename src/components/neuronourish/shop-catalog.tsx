@@ -52,8 +52,8 @@ export function ShopCatalog({
               onClick={() => setFilter(item.id)}
               className={`min-h-[44px] rounded-full px-4 py-2 text-[12px] font-medium transition ${
                 active
-                  ? "bg-gold text-deep-slate"
-                  : "border border-mist bg-white/80 text-ink/70 hover:border-gold/40 hover:text-deep-slate"
+                  ? "border border-deep-slate bg-deep-slate text-ivory"
+                  : "border border-mist bg-white text-ink/70 hover:border-deep-slate/30 hover:text-deep-slate"
               }`}
               aria-pressed={active}
             >
@@ -65,7 +65,7 @@ export function ShopCatalog({
 
       {visibleTiers.length > 0 ? (
         <section className="mt-16" aria-labelledby="shop-tiers">
-          <h2 id="shop-tiers" className="text-center font-display text-2xl text-slate-blue">
+          <h2 id="shop-tiers" className="text-center font-display text-2xl text-deep-slate">
             {NN_SHOP.tiersTitle}
           </h2>
           <NnCardGrid className="mt-8">
@@ -78,7 +78,7 @@ export function ShopCatalog({
 
       {visibleServices.length > 0 ? (
         <section className="mt-16" aria-labelledby="shop-services">
-          <h2 id="shop-services" className="text-center font-display text-2xl text-slate-blue">
+          <h2 id="shop-services" className="text-center font-display text-2xl text-deep-slate">
             {NN_SHOP.productsTitle}
           </h2>
           <NnCardGrid className="mt-8">

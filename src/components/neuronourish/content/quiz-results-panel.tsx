@@ -194,7 +194,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         <FunnelStepper active="quiz" />
         <div className="mt-10">
           <SectionEyebrow>{NN_QUIZ_RESULTS.eyebrow}</SectionEyebrow>
-          <h1 className="nn-display-section mt-3 text-slate-blue">
+          <h1 className="nn-display-section mt-3 text-deep-slate">
             {NN_QUIZ_RESULTS.emptyHeadline}
           </h1>
           <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/75">
@@ -216,7 +216,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       <FunnelStepper active="quiz" leadId={leadId || undefined} />
       <div className="mt-8">
         <SectionEyebrow>Your NeuroNourish Brain Health Score</SectionEyebrow>
-        <h1 className="nn-display-section mt-3 text-slate-blue">
+        <h1 className="nn-display-section mt-3 text-deep-slate">
           Your brain health results
         </h1>
       </div>
@@ -237,7 +237,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       <p className="mt-4 text-sm text-ink/60">out of 100</p>
       <span className="nn-badge mt-3">{result.segment.name}</span>
 
-      <h2 className="nn-display-section mt-6 text-slate-blue">{result.segment.headline}</h2>
+      <h2 className="nn-display-section mt-6 text-deep-slate">{result.segment.headline}</h2>
       <p className="mx-auto mt-3 max-w-md text-base leading-[1.75] text-ink/80">
         {result.segment.body}
       </p>

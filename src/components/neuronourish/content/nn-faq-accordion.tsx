@@ -93,7 +93,7 @@ export function NnFaqBlock({
 }: NnFaqBlockProps) {
   return (
     <section className={`mx-auto w-full max-w-2xl ${className}`} aria-labelledby={id}>
-      <h2 id={id} className="nn-display-section text-center text-slate-blue">
+      <h2 id={id} className="nn-display-section text-center text-deep-slate">
         {title}
       </h2>
       {subtext ? (

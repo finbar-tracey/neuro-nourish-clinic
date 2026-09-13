@@ -6,7 +6,7 @@ export function ClinicianFaqSection({ className = "" }: { className?: string }) 
   return (
     <PageSection className={`nn-faq-section border-t border-linen/80 ${className}`}>
       <PageContainer width="lg">
-        <h2 className="nn-display-section mb-8 text-center text-slate-blue">
+        <h2 className="nn-display-section mb-8 text-center text-deep-slate">
           {NN_CLINICIAN_FAQ.headline}
         </h2>
         <NnFaqAccordion

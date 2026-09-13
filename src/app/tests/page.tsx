@@ -21,7 +21,7 @@ export default function TestsPage() {
 
   return (
     <NeuroNourishShell>
-      <PageSection className="py-14 sm:py-20">
+      <PageSection className="nn-tests-header py-14 sm:py-20">
         <PageContainer width="xl">
           <SectionHeader
             eyebrow={NN_SHOP.eyebrow}
@@ -31,6 +31,19 @@ export default function TestsPage() {
             headlineClassName="max-w-3xl"
             as="h1"
           />
+
+          <div
+            className="mx-auto mt-10 aspect-[21/9] max-w-3xl overflow-hidden rounded-2xl border border-mist/80 bg-gradient-to-br from-linen/80 via-white to-mist/40 shadow-[0_8px_24px_rgba(26,51,72,0.06)]"
+            role="img"
+            aria-label="Clinical assessment context — photography coming soon"
+          >
+            <div className="flex h-full flex-col items-center justify-center gap-2 px-6 text-center">
+              <p className="nn-eyebrow text-slate-blue">In clinic &amp; at home</p>
+              <p className="max-w-md text-sm text-ink/55">
+                Cognitive assessment and consultation imagery will appear here.
+              </p>
+            </div>
+          </div>
 
           <div className="mt-8 flex flex-col items-center gap-1.5">
             <Link href="/quiz" className="nn-text-link text-sm">
