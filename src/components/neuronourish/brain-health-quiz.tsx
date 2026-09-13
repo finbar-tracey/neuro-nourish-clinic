@@ -358,7 +358,7 @@ export function BrainHealthQuiz() {
 
           <div className="mt-10 text-center">
             <SectionEyebrow>{NN_QUIZ_CAPTURE.eyebrow}</SectionEyebrow>
-            <h2 className="nn-display-section mt-3 text-slate-blue">
+            <h2 className="nn-display-section mt-3 text-deep-slate">
               {NN_QUIZ_CAPTURE.headline}
             </h2>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-ink/75">
@@ -445,7 +445,7 @@ export function BrainHealthQuiz() {
       <NeuroNourishShell>
         <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
           <SectionEyebrow>{NN_QUIZ_PAGE.eyebrow}</SectionEyebrow>
-          <h1 className="nn-display-section mt-3 text-center text-slate-blue">
+          <h1 className="nn-display-section mt-3 text-center text-deep-slate">
             {NN_QUIZ_PAGE.headline}
           </h1>
           <p className="mt-3 text-center text-base leading-relaxed text-ink/75">
@@ -515,7 +515,7 @@ export function BrainHealthQuiz() {
             <p className="text-center text-xs font-semibold uppercase tracking-[0.18em] text-slate-blue">
               {question.section}
             </p>
-            <h2 className="nn-display-section mt-3 text-center text-slate-blue">
+            <h2 className="nn-display-section mt-3 text-center text-deep-slate">
               {question.prompt}
             </h2>
             {question.note ? (

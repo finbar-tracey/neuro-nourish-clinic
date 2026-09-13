@@ -252,7 +252,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
         >
           Your brain archetype · {arch.eyebrow}
         </p>
-        <h3 className="nn-display-section mt-2 text-slate-blue">{arch.name}</h3>
+        <h3 className="nn-display-section mt-2 text-deep-slate">{arch.name}</h3>
         <p className="mt-3 text-sm leading-relaxed text-ink/80">{arch.tagline}</p>
 
         <div className="mt-5">
@@ -321,7 +321,7 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       ) : null}
 
       <div className="mt-8 rounded-2xl border border-gold/40 bg-linen/30 p-6 text-left">
-        <h3 className="nn-display-card text-slate-blue">
+        <h3 className="nn-display-card text-deep-slate">
           {NN_QUIZ_REPORT_CTA.titlePrefix}{" "}
           <span className="text-deep-slate">{arch.name}</span>{" "}
           {NN_QUIZ_REPORT_CTA.titleSuffix}

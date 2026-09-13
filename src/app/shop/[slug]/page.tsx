@@ -58,7 +58,7 @@ export default async function ShopProductPage({ params }: PageProps) {
           </p>
           <header className="mt-8 text-center">
             <SectionEyebrow>{product.eyebrow}</SectionEyebrow>
-            <h1 className="nn-display-section mx-auto mt-3 max-w-2xl text-slate-blue">
+            <h1 className="nn-display-section mx-auto mt-3 max-w-2xl text-deep-slate">
               {product.headline}
             </h1>
             <p className="nn-body mx-auto mt-4 max-w-xl text-ink/85">{product.subtext}</p>
@@ -110,7 +110,7 @@ export default async function ShopProductPage({ params }: PageProps) {
 
         {related.length > 0 ? (
           <PageContainer width="xl" className="mt-16">
-            <h2 className="text-center font-display text-2xl text-slate-blue">
+            <h2 className="text-center font-display text-2xl text-deep-slate">
               {NN_SHOP.relatedTitle}
             </h2>
             <Suspense fallback={<p className="mt-8 text-center text-sm text-ink/60">Loading…</p>}>

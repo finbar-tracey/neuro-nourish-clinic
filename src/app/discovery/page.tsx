@@ -17,11 +17,11 @@ export default function DiscoveryPage() {
       <PageSection className="nn-discovery-section py-14 sm:py-20">
         <PageContainer width="md">
           <header className="mx-auto max-w-2xl text-center">
-            <p className="nn-display-section tracking-tight text-slate-blue">{NN_DISCOVERY.brand}</p>
+            <p className="nn-display-section tracking-tight text-deep-slate">{NN_DISCOVERY.brand}</p>
             <div className="mt-5">
               <SectionEyebrow>{NN_DISCOVERY.eyebrow}</SectionEyebrow>
             </div>
-            <h1 className="nn-display-section mx-auto mt-3 max-w-2xl text-slate-blue">
+            <h1 className="nn-display-section mx-auto mt-3 max-w-2xl text-deep-slate">
               {NN_DISCOVERY.headline}
             </h1>
             <p className="nn-body mx-auto mt-4 max-w-xl text-ink/85">{NN_DISCOVERY.subtext}</p>

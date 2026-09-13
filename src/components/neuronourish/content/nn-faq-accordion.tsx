@@ -32,7 +32,7 @@ export function NnFaqAccordion({
 
   return (
     <div
-      className={`nn-faq-accordion rounded-2xl border border-mist bg-linen/30 p-2 sm:p-3 ${className}`}
+      className={`nn-faq-accordion rounded-2xl border border-mist/90 bg-white p-2 shadow-[0_8px_24px_rgba(26,51,72,0.06)] sm:p-3 ${className}`}
     >
       {items.map((item, index) => (
         <details
@@ -51,7 +51,7 @@ export function NnFaqAccordion({
             }
           }}
         >
-          <summary className="nn-faq-summary flex min-h-[48px] w-full cursor-pointer list-none items-center justify-between gap-4 py-3 text-left font-medium text-slate-blue">
+          <summary className="nn-faq-summary flex min-h-[48px] w-full cursor-pointer list-none items-center justify-between gap-4 py-3 text-left font-medium text-deep-slate">
             <span className="pr-2 text-[15px] leading-snug sm:text-base">{item.q}</span>
             <span
               className="nn-faq-toggle inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/30 bg-gold/10 text-lg leading-none text-gold transition-transform duration-200 group-open:rotate-45"

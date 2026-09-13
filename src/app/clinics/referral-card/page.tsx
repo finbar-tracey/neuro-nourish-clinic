@@ -21,7 +21,7 @@ export default function ClinicalReferralCardPage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-gold">
               {NN_CLINICS.eyebrow}
             </p>
-            <h1 className="nn-display-section mt-1 text-slate-blue">Clinical referral card</h1>
+            <h1 className="nn-display-section mt-1 text-deep-slate">Clinical referral card</h1>
             <p className="mt-2 max-w-xl text-sm text-ink/70">
               DL-format desk card for GP consulting rooms and practice manager briefings. Print
               double-sided on 350gsm matte stock.

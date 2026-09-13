@@ -70,7 +70,7 @@ export function QuizAbandonSheet({
         className="nn-quiz-abandon-panel relative z-10 w-full max-w-md rounded-t-2xl border border-mist bg-ivory p-6 shadow-[0_-12px_40px_rgba(26,51,72,0.18)] sm:rounded-2xl sm:p-8"
       >
         <p className="nn-eyebrow text-gold">{NN_QUIZ_ABANDON.eyebrow}</p>
-        <h2 id={titleId} className="nn-display-card mt-3 text-slate-blue">
+        <h2 id={titleId} className="nn-display-card mt-3 text-deep-slate">
           {NN_QUIZ_ABANDON.headline}
         </h2>
         <p id={descId} className="mt-3 text-sm leading-relaxed text-ink/75">

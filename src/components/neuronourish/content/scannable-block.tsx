@@ -31,7 +31,7 @@ export function ScannableBlock({
   return (
     <article className="border-l-2 border-gold py-2 pl-6">
       {benefitFocus ? <span className="nn-badge mb-2">{benefitFocus}</span> : null}
-      <h3 className="nn-display-card text-slate-blue">{title}</h3>
+      <h3 className="nn-display-card text-deep-slate">{title}</h3>
       <div className="mt-3">
         <HighlightList items={highlights} />
       </div>

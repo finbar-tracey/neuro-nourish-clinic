@@ -51,7 +51,7 @@ export function DiscoveryBookingPanel({
             <Heart className="h-5 w-5 text-gold" aria-hidden />
           </div>
           <div>
-            <h1 className="nn-display-section text-slate-blue">
+            <h1 className="nn-display-section text-deep-slate">
               {NN_DISCOVERY.recoveredCard.headline}
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-ink/75">
@@ -61,13 +61,13 @@ export function DiscoveryBookingPanel({
         </div>
       ) : hideIntro ? null : (
         <header className="text-center">
-          <p className="nn-display-section tracking-tight text-slate-blue">
+          <p className="nn-display-section tracking-tight text-deep-slate">
             {NN_DISCOVERY.brand}
           </p>
           <div className="mt-5">
             <SectionEyebrow>{NN_DISCOVERY.eyebrow}</SectionEyebrow>
           </div>
-          <h1 className="nn-display-section mx-auto mt-3 max-w-2xl text-slate-blue">
+          <h1 className="nn-display-section mx-auto mt-3 max-w-2xl text-deep-slate">
             {NN_DISCOVERY.headline}
           </h1>
           <p className="nn-body mx-auto mt-4 max-w-xl text-ink/85">{NN_DISCOVERY.subtext}</p>

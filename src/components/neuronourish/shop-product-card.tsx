@@ -29,7 +29,7 @@ export function ShopProductCard({ product }: { product: ShopProduct }) {
               {product.placeholderNote}
             </p>
           ) : null}
-          <p className="mt-4 text-sm font-medium text-slate-blue">
+          <p className="mt-4 text-sm font-medium text-ink/65">
             {shopPublicPriceLabel(product)}
           </p>
         </>

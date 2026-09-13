@@ -12,7 +12,7 @@ export function FounderTrustStrip({
 
   return (
     <div className={`mt-14 border-t ${light ? "border-mist/80" : "border-ivory/15"} pt-10 sm:mt-16 ${className}`}>
-      <p className={`nn-eyebrow text-center ${light ? "text-slate-blue" : "text-lavender"}`}>
+      <p className={`nn-eyebrow text-center ${light ? "text-gold" : "text-lavender"}`}>
         As supported by &amp; featured in
       </p>
       <ul className="mt-6 flex flex-wrap items-stretch justify-center gap-3 sm:gap-4">

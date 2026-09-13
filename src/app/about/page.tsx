@@ -60,7 +60,7 @@ export default function AboutPage() {
         <CheckList items={NN_ABOUT.credentials} className="mt-8" />
 
         <div className="mt-12 border-t border-linen/70 pt-10">
-          <p className="nn-eyebrow text-slate-blue">{NN_CREDENTIAL_LOGOS.eyebrow}</p>
+          <p className="nn-eyebrow text-gold">{NN_CREDENTIAL_LOGOS.eyebrow}</p>
           <ul className="mt-6 flex flex-wrap items-stretch justify-center gap-4 sm:justify-start sm:gap-5">
             {NN_CREDENTIAL_LOGOS.items.map((item) => (
               <li
@@ -90,7 +90,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-12 space-y-5 border-t border-linen/70 pt-10">
-          <p className="nn-eyebrow text-slate-blue">Lived experience</p>
+          <p className="nn-eyebrow text-gold">Lived experience</p>
           {NN_ABOUT.bio.map((paragraph) => (
             <p key={paragraph.slice(0, 24)} className="nn-body text-ink/85">
               {paragraph}
