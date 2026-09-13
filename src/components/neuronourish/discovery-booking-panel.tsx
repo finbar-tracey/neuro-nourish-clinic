@@ -79,7 +79,7 @@ export function DiscoveryBookingPanel({
       <section className="mt-12" aria-labelledby="discovery-what-happens">
         <h2
           id="discovery-what-happens"
-          className="text-center font-display text-xl text-slate-blue sm:text-2xl"
+          className="text-center font-display text-xl text-deep-slate sm:text-2xl"
         >
           {NN_DISCOVERY.whatHappensTitle}
         </h2>
@@ -97,7 +97,7 @@ export function DiscoveryBookingPanel({
       <section className="mt-12" aria-labelledby="discovery-precall">
         <h2
           id="discovery-precall"
-          className="text-center font-display text-xl text-slate-blue sm:text-2xl"
+          className="text-center font-display text-xl text-deep-slate sm:text-2xl"
         >
           {NN_DISCOVERY.preCallTitle}
         </h2>
@@ -129,7 +129,7 @@ export function DiscoveryBookingPanel({
         <section className="mt-12" aria-labelledby="discovery-calendar">
           <h2
             id="discovery-calendar"
-            className="text-center font-display text-xl text-slate-blue sm:text-2xl"
+            className="text-center font-display text-xl text-deep-slate sm:text-2xl"
           >
             {NN_DISCOVERY.calendlyTitle}
           </h2>
@@ -147,7 +147,7 @@ export function DiscoveryBookingPanel({
             </p>
           </div>
           <div className="mt-10 border-t border-linen/70 pt-10">
-            <p className="mb-1 text-center font-display text-lg text-slate-blue">
+            <p className="mb-1 text-center font-display text-lg text-deep-slate">
               {NN_DISCOVERY.formTitle}
             </p>
             <p className="mb-6 text-center text-sm text-ink/70">
@@ -160,7 +160,7 @@ export function DiscoveryBookingPanel({
         <section className="mt-12" aria-labelledby="discovery-request">
           <h2
             id="discovery-request"
-            className="text-center font-display text-xl text-slate-blue sm:text-2xl"
+            className="text-center font-display text-xl text-deep-slate sm:text-2xl"
           >
             {NN_DISCOVERY.formTitle}
           </h2>
@@ -188,7 +188,7 @@ export function DiscoveryBookingPanel({
       />
 
       <aside className="mt-12 border-t border-linen/70 pt-10 text-center">
-        <p className="font-display text-lg text-slate-blue">{NN_DISCOVERY.quizAltTitle}</p>
+        <p className="font-display text-lg text-deep-slate">{NN_DISCOVERY.quizAltTitle}</p>
         <p className="mx-auto mt-2 max-w-md text-sm text-ink/70">{NN_DISCOVERY.quizAltBody}</p>
         <Link
           href={leadId ? `/quiz?leadId=${encodeURIComponent(leadId)}` : "/quiz"}

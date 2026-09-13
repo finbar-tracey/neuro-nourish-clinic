@@ -436,6 +436,15 @@ details > summary::-webkit-details-marker {
   );
 }
 
+.nn-site-header {
+  background-color: var(--brand-deep-slate);
+  background-image: linear-gradient(
+    90deg,
+    var(--brand-deep-slate) 0%,
+    color-mix(in oklab, var(--brand-deep-slate) 82%, var(--brand-deep-violet)) 100%
+  );
+}
+
 .nn-defer-section {
   content-visibility: auto;
   contain-intrinsic-size: auto 600px;

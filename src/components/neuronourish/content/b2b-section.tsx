@@ -82,7 +82,7 @@ export function B2bSection({ className = "" }: { className?: string }) {
         <div className="mx-auto mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
           {NN_B2B.stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-display text-3xl text-slate-blue">{stat.value}</p>
+              <p className="font-display text-3xl text-deep-slate">{stat.value}</p>
               <p className="mt-1 text-xs text-ink/60">{stat.label}</p>
             </div>
           ))}
@@ -91,7 +91,7 @@ export function B2bSection({ className = "" }: { className?: string }) {
         <ul className="mx-auto mt-8 flex max-w-xl flex-col items-center gap-3 text-center">
           {NN_B2B.highlights.map((item) => (
             <li key={item} className="flex items-center justify-center gap-2 text-sm text-ink/80">
-              <span className="text-gold" aria-hidden>
+              <span className="text-deep-slate" aria-hidden>
                 ✓
               </span>
               <span>{item}</span>

@@ -72,7 +72,7 @@ export default function AboutPage() {
                   alt={item.label}
                   width={item.width}
                   height={item.height}
-                  className="h-12 w-auto max-w-[9.5rem] object-contain sm:h-14"
+                  className="h-12 w-auto max-w-[9.5rem] object-contain opacity-80 sm:h-14 [filter:grayscale(1)_brightness(0.45)_contrast(1.05)]"
                 />
                 <p className="text-[11px] leading-snug text-ink/60">{item.detail}</p>
               </li>

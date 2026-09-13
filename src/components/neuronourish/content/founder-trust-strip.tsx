@@ -31,7 +31,7 @@ export function FounderTrustStrip({
               alt={item.label}
               width={item.width}
               height={item.height}
-              className="mx-auto h-12 w-auto max-w-[10rem] object-contain sm:h-[3.25rem]"
+              className="mx-auto h-12 w-auto max-w-[10rem] object-contain opacity-80 sm:h-[3.25rem] [filter:grayscale(1)_brightness(0.45)_contrast(1.05)]"
             />
             {item.detail ? (
               <p className="text-[11px] leading-snug text-ink/60">{item.detail}</p>

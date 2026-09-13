@@ -3,6 +3,10 @@ import { Suspense } from "react";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { NnFaqBlock } from "@/components/neuronourish/content/nn-faq-accordion";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
+import {
+  EMER_PORTRAIT_SRC,
+  EMER_PORTRAIT_VERSION,
+} from "@/components/neuronourish/content/visual-placeholders";
 import { ShopCatalog } from "@/components/neuronourish/shop-catalog";
 import { NeuroNourishShell } from "@/components/neuronourish/shell";
 import {
@@ -18,6 +22,7 @@ export const metadata = buildNeuronourishMetadata("shop");
 export default function TestsPage() {
   const tiers = shopTierProducts();
   const services = shopServiceProducts();
+  const portraitSrc = `${EMER_PORTRAIT_SRC}?v=${EMER_PORTRAIT_VERSION}`;
 
   return (
     <NeuroNourishShell>
@@ -32,15 +37,23 @@ export default function TestsPage() {
             as="h1"
           />
 
-          <div
-            className="mx-auto mt-10 aspect-[21/9] max-w-3xl overflow-hidden rounded-2xl border border-mist/80 bg-gradient-to-br from-linen/80 via-white to-mist/40 shadow-[0_8px_24px_rgba(26,51,72,0.06)]"
-            role="img"
-            aria-label="Clinical assessment context — photography coming soon"
-          >
-            <div className="flex h-full flex-col items-center justify-center gap-2 px-6 text-center">
-              <p className="nn-eyebrow text-slate-blue">In clinic &amp; at home</p>
-              <p className="max-w-md text-sm text-ink/55">
-                Cognitive assessment and consultation imagery will appear here.
+          <div className="mx-auto mt-10 grid max-w-4xl overflow-hidden rounded-2xl border border-mist/80 bg-white shadow-[0_8px_24px_rgba(26,51,72,0.07)] sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)]">
+            <div className="relative min-h-[14rem] bg-deep-slate sm:min-h-full">
+              {/* eslint-disable-next-line @next/next/no-img-element -- static brand asset */}
+              <img
+                src={portraitSrc}
+                alt="Emer Sexton, Founder of NeuroNourish Clinic"
+                width={1080}
+                height={1080}
+                className="absolute inset-0 h-full w-full object-cover object-[center_12%]"
+              />
+            </div>
+            <div className="flex flex-col justify-center gap-3 px-6 py-8 text-left sm:px-8">
+              <p className="nn-eyebrow text-gold">Clinical leadership</p>
+              <h2 className="nn-display-card text-deep-slate">Assessments guided by Emer Sexton</h2>
+              <p className="text-sm leading-relaxed text-ink/70">
+                Cognitive testing, consultations, and programme pathways are delivered under clinical
+                oversight — so you always know who is behind the recommendation.
               </p>
             </div>
           </div>

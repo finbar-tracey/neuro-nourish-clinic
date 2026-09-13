@@ -290,8 +290,8 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       </div>
 
       {hasStoredResult ? (
-        <div className="mt-8 rounded-2xl border border-mist bg-linen/30 p-6 text-left">
-          <p className="text-sm font-medium text-slate-blue">Where your score is coming from</p>
+        <div className="mt-8 rounded-2xl border border-mist/90 bg-white p-6 text-left shadow-[0_8px_24px_rgba(26,51,72,0.06)]">
+          <p className="text-sm font-medium text-deep-slate">Where your score is coming from</p>
           <ul className="mt-4 space-y-3">
             {categoryRows.map((row) => (
               <li key={row.key}>
@@ -312,15 +312,15 @@ export function QuizResultsPanel({ score, leadId }: { score: number; leadId: str
       ) : null}
 
       {result.insight ? (
-        <div className="mt-8 rounded-2xl border border-mist bg-linen/30 p-6 text-left">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-blue">
+        <div className="mt-8 rounded-2xl border border-mist/90 bg-white p-6 text-left shadow-[0_8px_24px_rgba(26,51,72,0.06)]">
+          <p className="text-xs font-semibold uppercase tracking-wide text-deep-slate">
             {result.insight.tag}
           </p>
           <p className="mt-2 text-sm leading-relaxed text-ink/75">{result.insight.text}</p>
         </div>
       ) : null}
 
-      <div className="mt-8 rounded-2xl border border-gold/40 bg-linen/30 p-6 text-left">
+      <div className="mt-8 rounded-2xl border border-gold/35 bg-white p-6 text-left shadow-[0_8px_24px_rgba(26,51,72,0.06)]">
         <h3 className="nn-display-card text-deep-slate">
           {NN_QUIZ_REPORT_CTA.titlePrefix}{" "}
           <span className="text-deep-slate">{arch.name}</span>{" "}
