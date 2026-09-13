@@ -17,7 +17,7 @@ function LogoMark({ item }: { item: LogoMarqueeItem }) {
       alt=""
       width={item.width}
       height={item.height}
-      className="nn-partner-logo h-12 w-auto max-w-[11rem] object-contain opacity-80 sm:h-14 sm:max-w-[13rem] [filter:grayscale(1)_brightness(0.45)_contrast(1.05)]"
+      className="nn-partner-logo nn-logo-mono h-12 w-auto max-w-[11rem] object-contain sm:h-14 sm:max-w-[13rem]"
     />
   );
 

@@ -259,6 +259,22 @@ h3,
   opacity: 1;
 }
 
+/**
+ * Unified mono logos on light surfaces.
+ * Avoid brightness() — it turns white logo backplates into grey boxes.
+ * Multiply blend drops white/light backplates into the page colour.
+ */
+.nn-logo-mono {
+  filter: grayscale(1) contrast(1.08);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+}
+
+.nn-logo-mono:hover,
+.nn-partner-link:hover .nn-logo-mono {
+  opacity: 1;
+}
+
 @keyframes nn-logo-marquee {
   from {
     transform: translate3d(0, 0, 0);
