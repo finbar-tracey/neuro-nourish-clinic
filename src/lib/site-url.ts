@@ -1,12 +1,4 @@
-import { isHealthcare } from "@/lib/vertical-config";
-
 const PRODUCTION_NN = "https://neuronourish.clinic";
-const PRODUCTION_BC = "https://bookedconsult.com";
-
-function productionSite(): string {
-  if (isHealthcare()) return PRODUCTION_BC;
-  return PRODUCTION_NN;
-}
 
 function normalizeSiteOrigin(raw: string): string | null {
   const cleaned = raw.trim().replace(/\/$/, "");
@@ -25,7 +17,7 @@ function normalizeSiteOrigin(raw: string): string | null {
 
 /** Public LP origin for borrower SMS/email deep links (always production). */
 export function borrowerLinkOrigin(): string {
-  return productionSite();
+  return PRODUCTION_NN;
 }
 
 /** Canonical origin for emails, SMS links, metadata, and sitemap. */
@@ -39,7 +31,7 @@ export function getSiteUrl(): string {
   }
 
   if (process.env.VERCEL || process.env.NODE_ENV === "production") {
-    return productionSite();
+    return PRODUCTION_NN;
   }
 
   return "http://localhost:3000";

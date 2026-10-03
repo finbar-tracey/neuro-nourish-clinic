@@ -29,7 +29,6 @@ import { smsConfigured } from "@/lib/sms";
 import { sendMetaCapiEvent, type MetaCapiInput } from "@/lib/meta-capi";
 import { contactCaptureSchema, leadFormSchema } from "@/lib/validations";
 import { autoPauseWinbackForEmail } from "@/lib/winback-auto-pause";
-import { handleHealthcareLeadPost } from "@/lib/healthcare-lead-submit";
 import { handleFunnelPost } from "@/lib/neuronourish-lead-submit";
 
 type TrackingInput = {
@@ -222,10 +221,6 @@ export async function POST(request: Request) {
     await ensureCaptureAutomationRules();
 
     const body = await request.json();
-
-    if (body?.vertical === "healthcare") {
-      return handleHealthcareLeadPost(request, body);
-    }
 
     if (body?.vertical === "neuronourish") {
       return handleFunnelPost(request, body);

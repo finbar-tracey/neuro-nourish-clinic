@@ -1,15 +1,6 @@
 import type { Metadata } from "next";
 import { getSiteUrl } from "@/lib/site-url";
-import { bookedConsultBrandName, brandName, isNeuronourish } from "@/lib/vertical-config";
-
-const BOOKED_CONSULT_PATH_PREFIXES = ["/for-clinics", "/lp/implants"];
-
-function siteNameForPath(path: string): string {
-  if (BOOKED_CONSULT_PATH_PREFIXES.some((prefix) => path.startsWith(prefix))) {
-    return bookedConsultBrandName();
-  }
-  return brandName();
-}
+import { brandName, isNeuronourish } from "@/lib/vertical-config";
 
 /** Paid / conversion subdomain — exclude from organic index (Screaming Frog Directives). */
 export const NOINDEX_ROBOTS: NonNullable<Metadata["robots"]> = {
@@ -56,7 +47,7 @@ export function buildPageMetadata(input: {
       title: input.title,
       description: input.description,
       url: canonical,
-      siteName: siteNameForPath(path),
+      siteName: brandName(),
       locale: "en_GB",
       type: "website",
       ...(ogImage ? { images: [{ url: ogImage }] } : {}),

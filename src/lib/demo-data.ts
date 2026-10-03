@@ -2,12 +2,11 @@ import type { CaseStage, Lead, OperationalQueue, RiskLevel } from "@/generated/p
 import { BRIDGING_DOCUMENT_TEMPLATE } from "@/lib/document-checklist";
 import { PRIORITY_CALL_BOOKED_PREFIX } from "@/lib/lead-tags";
 import { computeExpectedCommission, computeExpectedValue, STAGE_PROBABILITY } from "@/lib/case-stages";
-import { seedHealthcareDemoData } from "@/lib/demo-data-healthcare";
 import {
   clearNeuronourishDemoData,
   seedNeuronourishDemoData,
 } from "@/lib/demo-data-neuronourish";
-import { isHealthcare, isNeuronourish } from "@/lib/vertical-config";
+import { isNeuronourish } from "@/lib/vertical-config";
 import { db } from "@/lib/db";
 
 export const DEMO_EMAIL_DOMAIN = "@demo.blb.local";
@@ -469,9 +468,6 @@ export async function clearDemoData() {
 }
 
 export async function seedDemoData(options?: { force?: boolean }) {
-  if (isHealthcare()) {
-    return seedHealthcareDemoData(options);
-  }
   if (isNeuronourish()) {
     return seedNeuronourishDemoData(options);
   }

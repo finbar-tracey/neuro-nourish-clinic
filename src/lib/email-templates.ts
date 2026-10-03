@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-import { GOOGLE_RATING } from "@/lib/reviews";
 import {
   emailDanielPhotoUrl,
   emailLogoUrl,
@@ -39,10 +38,8 @@ export type BrandedEmailOptions = {
   preheader?: string;
   /** Show phone link under primary CTA */
   showPhoneCta?: boolean;
-  /** Hide Daniel signature block (healthcare transactional) */
+  /** Hide Daniel signature block */
   showDanielSignature?: boolean;
-  /** Booked Consult header/footer instead of BLB */
-  healthcareBrand?: boolean;
   /** Marketing footer — one-click unsubscribe link */
   unsubscribeUrl?: string;
 };
@@ -190,20 +187,9 @@ export function brandedEmailHtml(
   const logoSrc = options.embedInlineAssets
     ? options.logoUrl ?? logoDataUri() ?? emailLogoUrl()
     : options.logoUrl ?? emailLogoUrl();
-  const healthcare = options.healthcareBrand === true;
-  const logoBlock = healthcare
-    ? `<table role="presentation" cellpadding="0" cellspacing="0"><tr>
-        <td style="vertical-align:middle;padding-right:12px">
-          <div style="width:44px;height:44px;border-radius:10px;background:${EMAIL_BRAND.orange};color:${EMAIL_BRAND.navy};font-weight:800;font-size:14px;line-height:44px;text-align:center">BC</div>
-        </td>
-        <td style="vertical-align:middle">
-          <div style="font-size:15px;font-weight:700;color:#ffffff;line-height:1.2">Booked Consult</div>
-          <div style="font-size:12px;color:${EMAIL_BRAND.orangeLight};line-height:1.2">Qualified consultations for clinics</div>
-        </td>
-      </tr></table>`
-    : logoSrc
-      ? `<img src="${escapeHtml(logoSrc)}" alt="Bridging Loans Broker" width="180" height="56" style="display:block;height:56px;width:auto;max-width:200px;border:0" />`
-      : textLogoFallback();
+  const logoBlock = logoSrc
+    ? `<img src="${escapeHtml(logoSrc)}" alt="Bridging Loans Broker" width="180" height="56" style="display:block;height:56px;width:auto;max-width:200px;border:0" />`
+    : textLogoFallback();
 
   const preheader = options.preheader ?? subject;
   const stagePill = options.stageLabel
@@ -235,8 +221,8 @@ export function brandedEmailHtml(
 
   const trustStrip = `<p style="margin:14px 0 0;font-size:12px;line-height:1.5;color:${EMAIL_BRAND.muted};text-align:center">
       <span style="color:${EMAIL_BRAND.orange};letter-spacing:1px">★★★★★</span>
-      <strong style="color:${EMAIL_BRAND.navy}">${GOOGLE_RATING.label}</strong> on Google
-      · ${GOOGLE_RATING.count} reviews
+      <strong style="color:${EMAIL_BRAND.navy}">5.0</strong> on Google
+      · 29 reviews
       · <a href="${siteHomeUrl()}" style="color:${EMAIL_BRAND.navy};text-decoration:none;font-weight:600">bridgingloansbroker.co.uk</a>
     </p>`;
 
@@ -267,7 +253,7 @@ export function brandedEmailHtml(
           <tr>
             <td style="background:${EMAIL_BRAND.navy};background-image:radial-gradient(circle at 85% 0%, rgba(249,142,56,0.22), transparent 55%);padding:26px 28px 24px">
               ${logoBlock}
-              <p style="margin:10px 0 0;font-size:13px;color:${EMAIL_BRAND.orange};font-weight:600;letter-spacing:0.02em">${healthcare ? "Dental consultation bookings" : "Independent bridging finance specialists"}</p>
+              <p style="margin:10px 0 0;font-size:13px;color:${EMAIL_BRAND.orange};font-weight:600;letter-spacing:0.02em">Independent bridging finance specialists</p>
               ${stagePill}
             </td>
           </tr>
@@ -280,7 +266,7 @@ export function brandedEmailHtml(
           </tr>
           <tr>
             <td style="padding:6px 28px 28px">
-              ${options.showDanielSignature !== false && !healthcare
+              ${options.showDanielSignature !== false
                 ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${EMAIL_BRAND.cream};border-radius:14px;border:1px solid rgba(249,142,56,0.22)">
                 <tr>
                   <td style="padding:20px 22px">
@@ -301,9 +287,9 @@ export function brandedEmailHtml(
                 </tr>
               </table>`
                 : ""}
-              ${healthcare ? "" : trustStrip}
+              ${trustStrip}
               ${options.unsubscribeUrl ? `<p style="margin:14px 0 0;font-size:11px;line-height:1.55;color:#94a3b8;text-align:center"><a href="${escapeHtml(options.unsubscribeUrl)}" style="color:#64748b;text-decoration:underline">Unsubscribe from marketing emails</a></p>` : ""}
-              <p style="margin:14px 0 0;font-size:11px;line-height:1.55;color:#94a3b8;text-align:center">${healthcare ? "Booked Consult arranges consultation bookings on behalf of participating dental clinics. We do not provide clinical advice. Treatment is delivered by registered dental professionals." : "Business and investment purposes only. Subject to status and lender criteria.<br>Bridging Loans Broker · 12 Old Bond Street, Mayfair, London W1S 4PP"}</p>
+              <p style="margin:14px 0 0;font-size:11px;line-height:1.55;color:#94a3b8;text-align:center">Business and investment purposes only. Subject to status and lender criteria.<br>Bridging Loans Broker · 12 Old Bond Street, Mayfair, London W1S 4PP</p>
             </td>
           </tr>
         </table>

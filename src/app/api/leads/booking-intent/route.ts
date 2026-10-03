@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { chaseBookingIntent } from "@/lib/booking-intent-chase";
 import { db } from "@/lib/db";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
-import { isHealthcare } from "@/lib/vertical-config";
 
 const schema = z.object({
   leadId: z.string().min(1),
@@ -53,10 +51,6 @@ export async function POST(request: Request) {
         description: `Preferred consultation slot: ${preferredSlot}`,
       },
     });
-
-    if (isHealthcare()) {
-      await chaseBookingIntent(leadId, preferredSlot);
-    }
 
     return NextResponse.json({ ok: true });
   } catch {
