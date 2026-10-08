@@ -9,6 +9,24 @@ import { buildNeuronourishMetadata } from "@/lib/neuronourish-seo";
 
 export const metadata = buildNeuronourishMetadata("team");
 
+function MemberInitials({ name }: { name: string }) {
+  const initials = name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase() ?? "")
+    .join("");
+
+  return (
+    <div
+      className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(145deg,var(--brand-deep-slate),color-mix(in_oklab,var(--brand-deep-slate)_70%,var(--brand-deep-violet)))] font-display text-xl text-ivory shadow-[0_8px_20px_rgba(27,58,92,0.18)]"
+      aria-hidden
+    >
+      {initials || "NN"}
+    </div>
+  );
+}
+
 export default function TeamPage() {
   const [emer, ...others] = NN_TEAM.members;
 
@@ -25,7 +43,7 @@ export default function TeamPage() {
             as="h1"
           />
 
-          <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-6 rounded-3xl border border-mist/90 bg-white p-6 shadow-[0_8px_24px_rgba(26,51,72,0.07)] sm:gap-8 sm:p-8 md:flex-row md:items-center md:gap-10">
+          <div className="mx-auto mt-12 flex max-w-3xl flex-col items-center gap-6 rounded-3xl border border-mist/90 bg-white p-6 shadow-[0_12px_32px_rgba(27,58,92,0.1)] sm:gap-8 sm:p-8 md:flex-row md:items-center md:gap-10">
             <div className="shrink-0">
               <FounderPortrait size="sm" priority />
             </div>
@@ -47,9 +65,13 @@ export default function TeamPage() {
             {others.map((member) => (
               <NnCard
                 key={member.name}
+                align="center"
                 title={member.name}
                 body={
                   <>
+                    <div className="mb-5">
+                      <MemberInitials name={member.name} />
+                    </div>
                     <p className="text-xs font-medium uppercase tracking-wide text-ink/55">
                       {member.role}
                     </p>
@@ -59,7 +81,10 @@ export default function TeamPage() {
                 }
                 footer={
                   member.href ? (
-                    <Link href={member.href} className="nn-text-link inline-block text-sm">
+                    <Link
+                      href={member.href}
+                      className="inline-block text-sm font-medium text-deep-slate underline-offset-3 hover:underline"
+                    >
                       {member.hrefLabel} →
                     </Link>
                   ) : undefined
@@ -67,12 +92,6 @@ export default function TeamPage() {
               />
             ))}
           </NnCardGrid>
-
-          <div className="mt-12 flex flex-col items-center gap-2">
-            <Link href="/discovery" className="nn-text-link text-sm">
-              {NN_TEAM.ctaDiscovery} →
-            </Link>
-          </div>
         </PageContainer>
       </PageSection>
     </NeuroNourishShell>

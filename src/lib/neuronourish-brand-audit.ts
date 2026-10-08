@@ -245,7 +245,7 @@ export function runNeuronourishBrandGuidelinesAudit(
     "Colour",
     "Print styles use brand Gold and Deep Slate",
     globals.includes("#C9A84C") &&
-      globals.includes("#1A3348") &&
+      (globals.includes("#1B3A5C") || globals.includes("#1b3a5c")) &&
       !globals.toLowerCase().includes("#d4af37") &&
       !globals.toLowerCase().includes("#1a2e3b"),
   );

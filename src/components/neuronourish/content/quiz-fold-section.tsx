@@ -8,7 +8,8 @@ import { NN_QUIZ_FOLD } from "@/lib/neuronourish-copy";
 export function QuizFoldSection({ className = "" }: { className?: string }) {
   return (
     <PageSection id="quiz" className={`nn-quiz-fold border-t border-linen/80 ${className}`}>
-      <PageContainer width="xl">
+      <div className="nn-brand-band h-1 w-full" aria-hidden />
+      <PageContainer width="xl" className="pt-10 sm:pt-12">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div>
             <SectionHeader

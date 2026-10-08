@@ -4,7 +4,8 @@
  */
 
 export const NN_BRAND = {
-  deepSlate: "#1A3348",
+  /** Full-opacity navy for primary headlines — Website Visual Review. */
+  deepSlate: "#1B3A5C",
   slateBlue: "#3D6480",
   skyBlue: "#6B98B2",
   mist: "#B8D4E2",

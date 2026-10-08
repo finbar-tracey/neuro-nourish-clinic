@@ -98,31 +98,28 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <blockquote className="nn-pull-quote mt-14 max-w-xl text-deep-slate">
-          {NN_FOUNDER_ABOUT.quote}
-        </blockquote>
-        <p className="mt-5 text-sm text-ink/65">
-          {NN_FOUNDER_ABOUT.attribution} · {NN_FOUNDER_ABOUT.title}
-        </p>
+        <figure className="mt-14 max-w-xl">
+          <blockquote className="nn-pull-quote text-deep-slate">
+            {NN_FOUNDER_ABOUT.quote}
+          </blockquote>
+          <figcaption className="mt-5 text-sm text-ink/65">
+            {NN_FOUNDER_ABOUT.attribution} · {NN_FOUNDER_ABOUT.title}
+          </figcaption>
+        </figure>
 
         <FounderTrustStrip tone="light" className="mt-12" />
 
-        <div className="mt-12 flex flex-col items-start gap-4">
+        <div className="mt-12 flex flex-col items-start gap-3">
           <div className="flex flex-col items-start gap-1.5">
             <GoldButton href={NN_ABOUT.ctaHref}>{NN_ABOUT.cta}</GoldButton>
             <span className="text-xs text-ink/55">{NN_ABOUT.ctaHint}</span>
           </div>
-          <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-2">
-            <Link href="/team" className="text-sm text-ink/70 underline-offset-3 hover:text-deep-slate hover:underline">
-              {NN_ABOUT.teamLink} →
-            </Link>
-            <Link href="/programme" className="text-sm text-ink/70 underline-offset-3 hover:text-deep-slate hover:underline">
-              {NN_ABOUT.programmeSoft} →
-            </Link>
-            <Link href="/discovery" className="text-sm text-ink/70 underline-offset-3 hover:text-deep-slate hover:underline">
-              {NN_ABOUT.discoveryLink} →
-            </Link>
-          </div>
+          <Link
+            href="/team"
+            className="text-sm text-ink/65 underline-offset-3 hover:text-deep-slate hover:underline"
+          >
+            {NN_ABOUT.teamLink} →
+          </Link>
         </div>
       </PageContainer>
     </NeuroNourishShell>

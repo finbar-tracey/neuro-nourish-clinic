@@ -65,7 +65,7 @@ export function AppPreviewVisual({ variant = "mock" }: AppPreviewVisualProps) {
       </div>
 
       <div
-        className="mx-auto w-[14.5rem] rounded-[2rem] border-[5px] border-deep-slate/12 bg-white p-4 shadow-lg sm:w-[16rem]"
+        className="mx-auto w-[16.5rem] rounded-[2.15rem] border-[6px] border-deep-slate/14 bg-white p-5 shadow-[0_18px_40px_rgba(27,58,92,0.16)] sm:w-[19rem]"
         aria-hidden
       >
         <div className="rounded-2xl bg-deep-slate px-3 py-2 text-center text-[10px] font-medium tracking-wide text-ivory">

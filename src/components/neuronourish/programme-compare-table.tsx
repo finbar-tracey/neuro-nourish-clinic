@@ -4,7 +4,7 @@ function Cell({ included }: { included: boolean }) {
   return (
     <td className="px-3 py-3 text-center text-sm">
       {included ? (
-        <span className="font-medium text-gold" aria-label="Included">
+        <span className="font-medium text-deep-slate" aria-label="Included">
           ✓
         </span>
       ) : (

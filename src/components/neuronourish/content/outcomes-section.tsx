@@ -58,11 +58,11 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
       </div>
 
       <PageContainer width="xl" className="mt-10">
-        <figure className="mx-auto max-w-2xl rounded-2xl border border-mist/80 bg-white px-6 py-8 shadow-[0_8px_24px_rgba(26,51,72,0.06)] sm:px-8">
+        <figure className="mx-auto max-w-2xl rounded-3xl border border-mist/90 bg-white px-6 py-9 shadow-[0_14px_36px_rgba(27,58,92,0.1)] sm:px-10 sm:py-10">
           <blockquote className="nn-pull-quote text-deep-slate">
             {NN_OUTCOMES.testimonial.quote}
           </blockquote>
-          <figcaption className="mt-4 text-sm text-ink/65">
+          <figcaption className="mt-5 text-sm font-medium text-deep-slate/80">
             — {NN_OUTCOMES.testimonial.attribution}
           </figcaption>
           <p className="mt-6 border-t border-mist/70 pt-5 text-xs leading-relaxed text-ink/55">

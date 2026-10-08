@@ -8,7 +8,7 @@ import {
   EMER_PORTRAIT_VERSION,
 } from "@/components/neuronourish/content/visual-placeholders";
 import { ShopCatalog } from "@/components/neuronourish/shop-catalog";
-import { NeuroNourishShell } from "@/components/neuronourish/shell";
+import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
 import {
   NN_SHOP,
   shopServiceProducts,
@@ -59,14 +59,14 @@ export default function TestsPage() {
           </div>
 
           <div className="mt-8 flex flex-col items-center gap-1.5">
-            <Link href="/quiz" className="nn-text-link text-sm">
-              {NN_SHOP.quizCta} →
-            </Link>
+            <GoldButton href="/quiz">{NN_SHOP.quizCta}</GoldButton>
             <span className="text-xs text-ink/60">{NN_SHOP.quizHint}</span>
-            <Link href="/discovery" className="nn-text-link mt-2 text-sm">
+            <Link
+              href="/discovery"
+              className="mt-3 text-sm text-ink/65 underline-offset-3 hover:text-deep-slate hover:underline"
+            >
               {NN_SHOP.discoveryCta} →
             </Link>
-            <span className="text-xs text-ink/60">{NN_SHOP.discoveryHint}</span>
           </div>
 
           <Suspense fallback={<p className="mt-10 text-center text-sm text-ink/60">Loading catalog…</p>}>
