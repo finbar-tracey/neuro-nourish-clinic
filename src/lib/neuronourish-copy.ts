@@ -1195,7 +1195,7 @@ export const NN_DISCOVERY = {
   faq: [
     {
       q: "Who will I speak with?",
-      a: "A member of the NeuroNourish care team. Calls are supervised under CORU-registered dietitian clinical oversight.",
+      a: "A member of the NeuroNourish care team.",
     },
     {
       q: "Do I need quiz results first?",
