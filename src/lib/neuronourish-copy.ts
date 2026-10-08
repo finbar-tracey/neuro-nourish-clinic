@@ -61,14 +61,16 @@ export const NN_HERO = {
   /** Kept empty: location chips removed per website review (nobody buys on geography). */
   eyebrow: "",
   headline: "Protect Your Memory.\nOptimise Brain Performance.\nStrengthen Your Future.",
+  lead: "Understand the health and lifestyle factors shaping your brain today — and discover what you can do to support it for the future.",
   subtext:
-    "Personalised lifestyle medicine, biomarker analysis and targeted nutrition for adults who want to protect memory and boost mental performance.",
+    "Personalised cognitive assessment, nutrition, biomarkers and lifestyle support for adults who want to stay sharper for longer.",
   /** Trust logos live in the partners / founder strips — not the hero. */
   trustBar: [] as readonly string[],
-  ctaQuiz: "Take the Brain Health Quiz",
-  ctaQuizHint: "3 minutes · Habit baseline for your next conversation",
-  /** Discovery remains in header; hero is quiz-only per Emer Version 2. */
-  ctaDiscovery: "Or book a 15-minute discovery call",
+  ctaQuiz: "Discover My Brain Health Score",
+  ctaQuizHint: "Free • Takes approximately 3 minutes • Personalised results",
+  /** Secondary only — not a competing gold CTA above the fold. */
+  ctaAssessment: "Explore Cognitive Assessment",
+  ctaAssessmentHref: "/shop/cognitive-assessment",
 } as const;
 
 export const NN_QUIZ_FOLD = {
