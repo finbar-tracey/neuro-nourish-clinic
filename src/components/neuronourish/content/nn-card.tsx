@@ -44,8 +44,8 @@ export function NnCard({
 
   return (
     <Tag
-      className={`nn-card relative flex h-full flex-col overflow-hidden rounded-2xl border p-5 sm:p-6 shadow-[0_8px_24px_rgba(26,51,72,0.07)] ${
-        featured ? "border-gold/35 bg-white" : "border-mist/90 bg-white"
+      className={`nn-card relative flex h-full flex-col overflow-hidden rounded-2xl border bg-white p-5 sm:p-6 ${
+        featured ? "border-gold/40" : "border-mist/90"
       } ${align === "center" ? "text-center" : "text-left"} ${className}`}
     >
       {!hideHairline ? (

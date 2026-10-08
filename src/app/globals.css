@@ -6,7 +6,7 @@
   --foreground: #2a2830;
   --keyboard-offset: 0px;
 
-  --brand-deep-slate: #1a3348;
+  --brand-deep-slate: #1b3a5c;
   --brand-slate-blue: #3d6480;
   --brand-sky-blue: #6b98b2;
   --brand-mist: #b8d4e2;
@@ -208,12 +208,14 @@ h3,
 
 .nn-pull-quote {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+  font-size: clamp(1.55rem, 2.6vw, 2rem);
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: -0.01em;
   border-left: 5px solid var(--brand-gold);
-  padding-left: 1.75rem;
+  padding: 1.25rem 1.5rem 1.25rem 1.75rem;
+  background: color-mix(in oklab, var(--brand-mist) 18%, white);
+  border-radius: 0 1rem 1rem 0;
 }
 
 .nn-pull-quote-dark {
@@ -248,10 +250,27 @@ h3,
 }
 
 .nn-partners-section {
-  background-image: radial-gradient(
-    ellipse 80% 60% at 50% 0%,
-    rgba(92, 74, 138, 0.22),
-    transparent 65%
+  background-color: color-mix(in oklab, var(--brand-linen) 35%, var(--brand-ivory));
+  background-image:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--brand-deep-slate) 8%, transparent) 0%,
+      transparent 42%
+    ),
+    radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      rgba(92, 74, 138, 0.28),
+      transparent 65%
+    );
+}
+
+/* Subtle brand signature band — Navy→Purple beyond the nav */
+.nn-brand-band {
+  background-image: linear-gradient(
+    90deg,
+    var(--brand-deep-slate) 0%,
+    color-mix(in oklab, var(--brand-deep-slate) 70%, var(--brand-deep-violet)) 55%,
+    color-mix(in oklab, var(--brand-deep-slate) 55%, var(--brand-plum)) 100%
   );
 }
 
@@ -260,19 +279,20 @@ h3,
 }
 
 /**
- * Unified mono logos on light surfaces.
+ * Unified navy mono logos on light surfaces — one trust bar, not a logo dump.
  * Avoid brightness() — it turns white logo backplates into grey boxes.
  * Multiply blend drops white/light backplates into the page colour.
  */
 .nn-logo-mono {
-  filter: grayscale(1) contrast(1.08);
+  filter: grayscale(1) contrast(1.15) brightness(0.72);
   mix-blend-mode: multiply;
-  opacity: 0.9;
+  opacity: 0.82;
 }
 
 .nn-logo-mono:hover,
 .nn-partner-link:hover .nn-logo-mono {
-  opacity: 1;
+  opacity: 0.95;
+  filter: grayscale(1) contrast(1.2) brightness(0.68);
 }
 
 @keyframes nn-logo-marquee {
@@ -345,22 +365,30 @@ h3,
 }
 
 .nn-tests-header {
-  background-image: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--brand-mist) 28%, var(--brand-ivory)) 0%,
-    var(--brand-ivory) 100%
-  );
+  background-image:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--brand-deep-slate) 10%, var(--brand-ivory)) 0%,
+      color-mix(in oklab, var(--brand-mist) 22%, var(--brand-ivory)) 38%,
+      var(--brand-ivory) 100%
+    ),
+    radial-gradient(
+      ellipse 70% 45% at 85% 0%,
+      rgba(92, 74, 138, 0.14),
+      transparent 60%
+    );
 }
 
-/* Global marketing card — shared hover / equal-height grid */
+/* Global marketing card — white elevated surface (Visual Review) */
 .nn-card {
+  box-shadow: 0 10px 28px rgba(27, 58, 92, 0.09);
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
 .nn-card:hover {
-  box-shadow: 0 14px 32px rgba(26, 51, 72, 0.11);
+  box-shadow: 0 16px 36px rgba(27, 58, 92, 0.14);
   transform: translateY(-2px);
 }
 
@@ -656,7 +684,7 @@ details > summary::-webkit-details-marker {
 .nn-blog-art--sleep {
   background-image:
     radial-gradient(circle at 75% 25%, rgba(201, 168, 76, 0.35), transparent 45%),
-    linear-gradient(145deg, #1a3348 0%, #3d6480 55%, #6b98b2 100%);
+    linear-gradient(145deg, #1B3A5C 0%, #3d6480 55%, #6b98b2 100%);
 }
 
 .nn-blog-art--movement {
@@ -674,7 +702,7 @@ details > summary::-webkit-details-marker {
 .nn-blog-art--energy {
   background-image:
     radial-gradient(circle at 30% 30%, rgba(201, 168, 76, 0.45), transparent 50%),
-    linear-gradient(160deg, #1a3348 0%, #3d6480 100%);
+    linear-gradient(160deg, #1B3A5C 0%, #3d6480 100%);
 }
 
 .nn-blog-art--habits {
@@ -686,7 +714,7 @@ details > summary::-webkit-details-marker {
 .nn-blog-art--metabolic {
   background-image:
     radial-gradient(circle at 70% 20%, rgba(184, 212, 226, 0.55), transparent 40%),
-    linear-gradient(135deg, #1a3348 0%, #6b98b2 70%, #c9a84c 100%);
+    linear-gradient(135deg, #1B3A5C 0%, #6b98b2 70%, #c9a84c 100%);
 }
 
 [id="waitlist"],
@@ -802,7 +830,7 @@ details > summary::-webkit-details-marker {
     top: 0;
     width: 100%;
     background-color: #ffffff !important;
-    color: #1A3348 !important;
+    color: #1B3A5C !important;
     font-family: "Inter", sans-serif !important;
     margin: 0 !important;
     padding: 20mm !important;
@@ -810,7 +838,7 @@ details > summary::-webkit-details-marker {
 
   .print-header-serif {
     font-family: "Playfair Display", serif !important;
-    color: #1A3348 !important;
+    color: #1B3A5C !important;
     border-bottom: 2px solid #C9A84C !important;
     padding-bottom: 8mm !important;
     margin-bottom: 10mm !important;

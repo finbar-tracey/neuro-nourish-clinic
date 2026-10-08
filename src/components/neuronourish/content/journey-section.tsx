@@ -32,7 +32,7 @@ export function JourneySection({ className = "" }: { className?: string }) {
           ))}
         </NnCardGrid>
 
-        <div className="mt-10 grid items-center gap-8 border-t border-mist/80 pt-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-12">
+        <div className="mt-12 grid items-center gap-10 rounded-3xl border border-mist/80 bg-white px-5 py-8 shadow-[0_12px_32px_rgba(27,58,92,0.08)] sm:px-8 sm:py-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.2fr)] lg:gap-14">
           <div className="max-w-lg">
             <p className="nn-eyebrow text-gold">Ongoing support</p>
             <h3 className="nn-display-card mt-3 text-deep-slate">
@@ -44,7 +44,7 @@ export function JourneySection({ className = "" }: { className?: string }) {
             </p>
             <p className="mt-4 text-xs leading-relaxed text-ink/55">{NN_APP.ctaHint}</p>
           </div>
-          <div className="lg:justify-self-stretch">
+          <div className="flex justify-center lg:justify-end">
             <AppPreviewVisual />
           </div>
         </div>
