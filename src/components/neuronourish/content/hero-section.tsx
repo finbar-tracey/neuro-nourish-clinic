@@ -18,7 +18,6 @@ export function HeroSection() {
 
           <div className="nn-hero-lead mx-auto mt-5 space-y-3 text-sky-blue">
             <p>{NN_HERO.lead}</p>
-            <p>{NN_HERO.subtext}</p>
           </div>
 
           <div className="mt-10 flex flex-col items-center gap-3">
