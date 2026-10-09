@@ -154,7 +154,7 @@ export const NN_FUNNEL_STAGES = {
       label: "Know",
       title: "Take your Brain Health Quiz",
       body: "Understand the lifestyle and health factors that may be influencing your brain.",
-      cta: "Take the Free Quiz",
+      cta: "Take the Brain Health Quiz",
       href: "/quiz",
     },
     {
@@ -2080,7 +2080,7 @@ export const NN_CLOSING = {
   ctaPrimary: "Or book a consultation",
   ctaQuizHint: "Free · Personalised Brain Health Profile",
   ctaSecondary: "Contact Our Team",
-  ctaQuiz: "Take the Free Quiz",
+  ctaQuiz: "Take the Brain Health Quiz",
 } as const;
 
 export const NN_FAQ = {
@@ -2132,7 +2132,7 @@ export const NN_FAQ = {
       a: "With your permission, we can share assessment findings and programme context with your GP or other clinicians so our work supports your wider care.",
     },
   ],
-  cta: "Take the Free Brain Health Quiz",
+  cta: "Take the Brain Health Quiz",
   ctaHint: "About 3 minutes · Personalised profile",
   ctaSecondary: "Contact our team",
 } as const;
