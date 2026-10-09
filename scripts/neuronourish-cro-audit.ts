@@ -102,10 +102,9 @@ check(
 check(
   "H1",
   "CTA hierarchy",
-  "Hero gold primary is quiz; secondary is cognitive assessment (not discovery)",
+  "Hero gold primary is quiz only (no second CTA)",
   hero.includes('GoldButton href="/quiz"') &&
-    hero.includes("ctaAssessment") &&
-    hero.includes("OutlineButton") &&
+    !hero.includes("OutlineButton") &&
     !hero.includes('href="/discovery"'),
 );
 check(

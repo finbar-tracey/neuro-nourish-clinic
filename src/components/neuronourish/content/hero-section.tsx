@@ -1,4 +1,4 @@
-import { GoldButton, OutlineButton } from "@/components/neuronourish/shell";
+import { GoldButton } from "@/components/neuronourish/shell";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { NN_HERO } from "@/lib/neuronourish-copy";
 
@@ -24,12 +24,6 @@ export function HeroSection() {
           <div className="mt-10 flex flex-col items-center gap-3">
             <GoldButton href="/quiz">{NN_HERO.ctaQuiz}</GoldButton>
             <span className="text-center text-xs text-sky-blue/85">{NN_HERO.ctaQuizHint}</span>
-            <OutlineButton
-              href={NN_HERO.ctaAssessmentHref}
-              className="mt-2 border-ivory/30 text-ivory hover:bg-white/10"
-            >
-              {NN_HERO.ctaAssessment}
-            </OutlineButton>
           </div>
         </div>
       </PageContainer>
