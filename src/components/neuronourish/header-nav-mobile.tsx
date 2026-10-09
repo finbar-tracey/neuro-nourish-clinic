@@ -78,13 +78,6 @@ export function NeuroNourishHeaderNavMobile() {
             </ul>
             <div className="mt-3 flex flex-col gap-2 border-t border-linen pt-3">
               <Link
-                href="/discovery"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-deep-slate/20 px-4 text-[13px] font-medium text-deep-slate hover:bg-linen/50"
-                onClick={closeOnNavigate(() => setOpen(false))}
-              >
-                {NN_NAV.ctaDiscovery}
-              </Link>
-              <Link
                 href="/quiz"
                 className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-gold px-4 text-[13px] font-medium text-deep-slate hover:bg-gold/90"
                 onClick={closeOnNavigate(() => setOpen(false))}

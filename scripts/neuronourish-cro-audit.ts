@@ -120,10 +120,10 @@ check(
 check(
   "H2b",
   "CTA hierarchy",
-  "Closing quiz hint softens score claim (habit baseline)",
+  "Closing quiz hint positions free Brain Health Profile",
   closing.includes("ctaQuizHint") &&
     !closing.includes("Personalised score") &&
-    copy.includes('ctaQuizHint: "3 minutes · Habit baseline for your next conversation"'),
+    copy.includes('ctaQuizHint: "Free · Personalised Brain Health Profile"'),
 );
 check(
   "H3",

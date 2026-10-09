@@ -1,5 +1,10 @@
 export { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 export { HeroSection } from "@/components/neuronourish/content/hero-section";
+export { WhyBrainHealthSection } from "@/components/neuronourish/content/why-brain-health-section";
+export { TodayFutureSection } from "@/components/neuronourish/content/today-future-section";
+export { FunnelJourneySection } from "@/components/neuronourish/content/funnel-journey-section";
+export { AssessmentFoldSection } from "@/components/neuronourish/content/assessment-fold-section";
+export { ProgrammeFoldSection } from "@/components/neuronourish/content/programme-fold-section";
 export { HighlightList, CheckList } from "@/components/neuronourish/content/highlight-list";
 export { SectionHeader, PageHeader } from "@/components/neuronourish/content/section-header";
 export { ScannableBlock, ScannableGrid } from "@/components/neuronourish/content/scannable-block";
