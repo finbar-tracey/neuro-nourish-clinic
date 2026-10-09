@@ -6,7 +6,7 @@
   --foreground: #2a2830;
   --keyboard-offset: 0px;
 
-  --brand-deep-slate: #1b3a5c;
+  --brand-deep-slate: #1a3348;
   --brand-slate-blue: #3d6480;
   --brand-sky-blue: #6b98b2;
   --brand-mist: #b8d4e2;
@@ -381,14 +381,14 @@ h3,
 
 /* Global marketing card — white elevated surface (Visual Review) */
 .nn-card {
-  box-shadow: 0 10px 28px rgba(27, 58, 92, 0.09);
+  box-shadow: 0 10px 28px rgba(26, 51, 72, 0.09);
   transition:
     box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
 .nn-card:hover {
-  box-shadow: 0 16px 36px rgba(27, 58, 92, 0.14);
+  box-shadow: 0 16px 36px rgba(26, 51, 72, 0.14);
   transform: translateY(-2px);
 }
 
@@ -472,21 +472,12 @@ details > summary::-webkit-details-marker {
 
 .nn-hero {
   background-color: var(--brand-deep-slate);
-  background-image: linear-gradient(
-    135deg,
-    var(--brand-deep-slate) 0%,
-    color-mix(in oklab, var(--brand-deep-slate) 72%, var(--brand-deep-violet)) 55%,
-    color-mix(in oklab, var(--brand-deep-slate) 55%, var(--brand-plum)) 100%
-  );
+  background-image: none;
 }
 
 .nn-site-header {
   background-color: var(--brand-deep-slate);
-  background-image: linear-gradient(
-    90deg,
-    var(--brand-deep-slate) 0%,
-    color-mix(in oklab, var(--brand-deep-slate) 82%, var(--brand-deep-violet)) 100%
-  );
+  background-image: none;
 }
 
 .nn-defer-section {
@@ -684,7 +675,7 @@ details > summary::-webkit-details-marker {
 .nn-blog-art--sleep {
   background-image:
     radial-gradient(circle at 75% 25%, rgba(201, 168, 76, 0.35), transparent 45%),
-    linear-gradient(145deg, #1B3A5C 0%, #3d6480 55%, #6b98b2 100%);
+    linear-gradient(145deg, #1A3348 0%, #3d6480 55%, #6b98b2 100%);
 }
 
 .nn-blog-art--movement {
@@ -702,7 +693,7 @@ details > summary::-webkit-details-marker {
 .nn-blog-art--energy {
   background-image:
     radial-gradient(circle at 30% 30%, rgba(201, 168, 76, 0.45), transparent 50%),
-    linear-gradient(160deg, #1B3A5C 0%, #3d6480 100%);
+    linear-gradient(160deg, #1A3348 0%, #3d6480 100%);
 }
 
 .nn-blog-art--habits {
@@ -714,7 +705,7 @@ details > summary::-webkit-details-marker {
 .nn-blog-art--metabolic {
   background-image:
     radial-gradient(circle at 70% 20%, rgba(184, 212, 226, 0.55), transparent 40%),
-    linear-gradient(135deg, #1B3A5C 0%, #6b98b2 70%, #c9a84c 100%);
+    linear-gradient(135deg, #1A3348 0%, #6b98b2 70%, #c9a84c 100%);
 }
 
 [id="waitlist"],
@@ -830,7 +821,7 @@ details > summary::-webkit-details-marker {
     top: 0;
     width: 100%;
     background-color: #ffffff !important;
-    color: #1B3A5C !important;
+    color: #1A3348 !important;
     font-family: "Inter", sans-serif !important;
     margin: 0 !important;
     padding: 20mm !important;
@@ -838,7 +829,7 @@ details > summary::-webkit-details-marker {
 
   .print-header-serif {
     font-family: "Playfair Display", serif !important;
-    color: #1B3A5C !important;
+    color: #1A3348 !important;
     border-bottom: 2px solid #C9A84C !important;
     padding-bottom: 8mm !important;
     margin-bottom: 10mm !important;

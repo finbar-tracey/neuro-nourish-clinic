@@ -63,8 +63,6 @@ export const NN_HERO = {
   eyebrow: "",
   headline: "Protect Your Memory.\nOptimise Brain Performance.\nStrengthen Your Future.",
   lead: "Understand the health and lifestyle factors shaping your brain today — and discover what you can do to support it for the future.",
-  subtext:
-    "Personalised cognitive assessment, nutrition, biomarkers and lifestyle support for adults who want to stay sharper for longer.",
   /** Trust logos live in the partners / founder strips — not the hero. */
   trustBar: [] as readonly string[],
   ctaQuiz: "Discover My Brain Health Score",
