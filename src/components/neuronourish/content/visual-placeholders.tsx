@@ -4,6 +4,8 @@ export const EMER_PORTRAIT_SRC = "/brand/emer-sexton-portrait.jpg";
 export const EMER_PORTRAIT_VERSION = "7";
 
 type PortraitProps = {
+  src?: string;
+  rectangular?: boolean;
   className?: string;
   priority?: boolean;
   variant?: "light" | "dark";
@@ -22,8 +24,10 @@ export function FounderPortrait({
   priority = false,
   variant = "light",
   size = "lg",
+  src: customSrc,
+  rectangular = false,
 }: PortraitProps) {
-  const src = `${EMER_PORTRAIT_SRC}?v=${EMER_PORTRAIT_VERSION}`;
+  const src = customSrc ?? `${EMER_PORTRAIT_SRC}?v=${EMER_PORTRAIT_VERSION}`;
   const frameClass =
     variant === "dark"
       ? "bg-black shadow-[0_16px_48px_rgba(0,0,0,0.45)] ring-[3px] ring-white/90"
@@ -32,7 +36,7 @@ export function FounderPortrait({
   return (
     <div className={`flex justify-center ${className}`}>
       <div className={SIZE_CLASS[size]}>
-        <div className={`aspect-square overflow-hidden rounded-full ${frameClass}`}>
+        <div className={`${rectangular ? "aspect-[2/3] rounded-xl" : "aspect-square rounded-full"} overflow-hidden ${frameClass}`}>
           {/* eslint-disable-next-line @next/next/no-img-element -- static brand asset; avoid next/image optimizer cache issues on Vercel */}
           <img
             src={src}

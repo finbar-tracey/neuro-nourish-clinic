@@ -29,7 +29,7 @@ export function FounderSection({ className = "" }: { className?: string }) {
         </div>
 
         <div className="mx-auto mt-14 grid max-w-3xl items-center gap-10 border-t border-mist/80 pt-10 lg:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] lg:gap-12 lg:text-left">
-          <FounderPortrait className="mx-auto lg:mx-0" />
+          <FounderPortrait rectangular src="/brand/emer-built-by-portrait.jpg" className="mx-auto lg:mx-0" />
           <div className="text-center lg:text-left">
             <p className="nn-eyebrow text-gold">{NN_FOUNDER_ABOUT.builtByEyebrow}</p>
             <p className="nn-body mt-4 text-ink/75">{NN_FOUNDER_ABOUT.builtBy}</p>
