@@ -5,6 +5,7 @@ export const EMER_PORTRAIT_VERSION = "7";
 
 type PortraitProps = {
   src?: string;
+  rectangular?: boolean;
   className?: string;
   priority?: boolean;
   variant?: "light" | "dark";
@@ -24,6 +25,7 @@ export function FounderPortrait({
   variant = "light",
   size = "lg",
   src: customSrc,
+  rectangular = false,
 }: PortraitProps) {
   const src = customSrc ?? `${EMER_PORTRAIT_SRC}?v=${EMER_PORTRAIT_VERSION}`;
   const frameClass =
@@ -34,7 +36,7 @@ export function FounderPortrait({
   return (
     <div className={`flex justify-center ${className}`}>
       <div className={SIZE_CLASS[size]}>
-        <div className={`aspect-square overflow-hidden rounded-full ${frameClass}`}>
+        <div className={`${rectangular ? "aspect-[2/3] rounded-xl" : "aspect-square rounded-full"} overflow-hidden ${frameClass}`}>
           {/* eslint-disable-next-line @next/next/no-img-element -- static brand asset; avoid next/image optimizer cache issues on Vercel */}
           <img
             src={src}
