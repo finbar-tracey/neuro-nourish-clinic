@@ -24,10 +24,9 @@ export const NN_NAV = {
     { href: "/healthcare", label: "For Healthcare Professionals" },
     { href: "/about", label: "About" },
   ],
-  ctaQuiz: "Take the Free Brain Health Quiz",
-  ctaQuizShort: "Free Quiz",
-  /** Soft secondary only — must not compete with quiz in the header. */
-  ctaDiscovery: "Book a consultation",
+  ctaQuiz: "Take the Brain Health Quiz",
+  ctaQuizShort: "Take Quiz",
+  ctaDiscovery: "Book Discovery Call",
 } as const;
 
 export const NN_FOOTER = {
