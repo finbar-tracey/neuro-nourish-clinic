@@ -102,10 +102,9 @@ check(
 check(
   "H1",
   "CTA hierarchy",
-  "Hero gold primary is quiz; secondary is cognitive assessment (not discovery)",
+  "Hero gold primary is quiz only (no second CTA)",
   hero.includes('GoldButton href="/quiz"') &&
-    hero.includes("ctaAssessment") &&
-    hero.includes("OutlineButton") &&
+    !hero.includes("OutlineButton") &&
     !hero.includes('href="/discovery"'),
 );
 check(
@@ -120,10 +119,10 @@ check(
 check(
   "H2b",
   "CTA hierarchy",
-  "Closing quiz hint softens score claim (habit baseline)",
+  "Closing quiz hint positions free Brain Health Profile",
   closing.includes("ctaQuizHint") &&
     !closing.includes("Personalised score") &&
-    copy.includes('ctaQuizHint: "3 minutes · Habit baseline for your next conversation"'),
+    copy.includes('ctaQuizHint: "Free · Personalised Brain Health Profile"'),
 );
 check(
   "H3",
