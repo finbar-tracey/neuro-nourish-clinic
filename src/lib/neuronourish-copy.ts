@@ -17,11 +17,12 @@ export interface BlogPost {
 
 export const NN_NAV = {
   links: [
-    { href: "/tests", label: "Tests" },
+    { href: "/shop/cognitive-assessment", label: "Cognitive Assessment" },
     { href: "/programme", label: "Programme" },
+    { href: "/masterclasses", label: "Masterclasses" },
+    { href: "/employers", label: "For Employers" },
+    { href: "/healthcare", label: "For Healthcare Professionals" },
     { href: "/about", label: "About" },
-    { href: "/team", label: "Team" },
-    { href: "/clinics", label: "For Businesses" },
   ],
   ctaQuiz: "Take the Brain Health Quiz",
   ctaQuizShort: "Take Quiz",
@@ -32,15 +33,15 @@ export const NN_FOOTER = {
   tagline: "Evidence-based brain health programmes for Ireland & the UK.",
   consumers: [
     { href: "/quiz", label: "Brain health quiz" },
-    { href: "/tests", label: "Tests" },
+    { href: "/shop/cognitive-assessment", label: "Cognitive assessment" },
     { href: "/programme", label: "12-month programme" },
-    { href: "/discovery", label: "Discovery call" },
+    { href: "/masterclasses", label: "Masterclasses" },
     { href: "/about", label: "About us" },
-    { href: "/team", label: "Team" },
     { href: "/contact", label: "Contact" },
   ],
   clinics: [
-    { href: "/clinics", label: "For Businesses" },
+    { href: "/employers", label: "For employers" },
+    { href: "/healthcare", label: "For healthcare professionals" },
     { href: "/privacy", label: "Privacy" },
     { href: "/workspace/login", label: "Team login" },
   ],
@@ -61,8 +62,9 @@ export const NN_HERO = {
   /** Kept empty: location chips removed per website review (nobody buys on geography). */
   eyebrow: "",
   headline: "Protect Your Memory.\nOptimise Brain Performance.\nStrengthen Your Future.",
+  lead: "Understand the health and lifestyle factors shaping your brain today — and discover what you can do to support it for the future.",
   subtext:
-    "Understand the health and lifestyle factors shaping your brain today — and discover what you can do to support it for the future.",
+    "Personalised cognitive assessment, nutrition, biomarkers and lifestyle support for adults who want to stay sharper for longer.",
   /** Trust logos live in the partners / founder strips — not the hero. */
   trustBar: [] as readonly string[],
   ctaQuiz: "Discover My Brain Health Score",
@@ -72,20 +74,162 @@ export const NN_HERO = {
   ctaAssessmentHref: "/shop/cognitive-assessment",
 } as const;
 
+/** Homepage §4 — modifiable factors education (Lancet Commission citation required). */
+export const NN_WHY_BRAIN_HEALTH = {
+  eyebrow: "Why brain health matters",
+  headline: "Your brain health is not fixed.",
+  body: "Research suggests that a substantial proportion of dementia risk at population level is associated with potentially modifiable factors.",
+  factors: [
+    "Physical activity",
+    "Blood pressure",
+    "Cholesterol",
+    "Diabetes / metabolic health",
+    "Nutrition",
+    "Hearing",
+    "Social connection",
+    "Smoking",
+    "Alcohol",
+    "Cognitive stimulation",
+    "Depression",
+    "Vision",
+    "Air pollution",
+    "Traumatic brain injury",
+  ] as const,
+  close:
+    "The earlier we understand your individual picture, the more opportunity we have to support the factors we can influence.",
+  citation:
+    "Livingston et al., The Lancet Commission on dementia prevention, intervention, and care (2020 & 2024).",
+  cta: "Discover My Brain Health Profile",
+  ctaHref: "/quiz",
+} as const;
+
+/** Homepage §5 — today vs future motivations. */
+export const NN_TODAY_FUTURE = {
+  eyebrow: "Today and tomorrow",
+  headline: "Speak to both how you feel now — and what you want to protect.",
+  subtext:
+    "NeuroNourish helps you understand both: how your brain is performing now and the modifiable factors that may influence its future health.",
+  today: {
+    title: "How is your brain serving you today?",
+    items: [
+      {
+        title: "Memory",
+        body: "Forgetting names, words, appointments or information.",
+      },
+      {
+        title: "Focus",
+        body: "Difficulty concentrating or sustaining attention.",
+      },
+      {
+        title: "Mental energy",
+        body: "Brain fog, cognitive fatigue or reduced sharpness.",
+      },
+      {
+        title: "Sleep & stress",
+        body: "Feeling that poor sleep or chronic stress is affecting how you think.",
+      },
+    ] as const,
+  },
+  future: {
+    title: "How are you protecting your brain for tomorrow?",
+    items: [
+      { title: "Family history", body: "Family history of dementia or cognitive decline." },
+      { title: "Cardiovascular risk", body: "Blood pressure, cholesterol and heart health." },
+      { title: "Metabolic health", body: "Diabetes risk, weight and metabolic markers." },
+      { title: "Healthy ageing", body: "Staying sharper as the years go on." },
+      { title: "Nutrition", body: "Eating patterns that support long-term brain health." },
+      { title: "Cognitive reserve", body: "Learning, stimulation and long-term memory protection." },
+    ] as const,
+  },
+} as const;
+
+/** Homepage §6 — commercial funnel stages. */
+export const NN_FUNNEL_STAGES = {
+  eyebrow: "Your journey",
+  headline: "Know → Measure → Understand → Change → Track",
+  subtext: "A clear path from curiosity to lasting brain-health change.",
+  stages: [
+    {
+      id: "01",
+      label: "Know",
+      title: "Take your Brain Health Quiz",
+      body: "Understand the lifestyle and health factors that may be influencing your brain.",
+      cta: "Take the Brain Health Quiz",
+      href: "/quiz",
+    },
+    {
+      id: "02",
+      label: "Measure",
+      title: "Establish your cognitive baseline",
+      body: "Measure areas such as memory, attention, processing speed and executive function.",
+      cta: "Cognitive Assessment — €89.99",
+      href: "/shop/cognitive-assessment",
+    },
+    {
+      id: "03",
+      label: "Understand",
+      title: "Make sense of your results",
+      body: "Combine your assessment with your personal health and lifestyle context.",
+      cta: "Book Consultation",
+      href: "/discovery",
+    },
+    {
+      id: "04",
+      label: "Change",
+      title: "Build your personalised brain-health strategy",
+      body: "Work systematically on the areas that matter most to you.",
+      cta: "Explore the 12-Month Programme",
+      href: "/programme",
+    },
+    {
+      id: "05",
+      label: "Track",
+      title: "See what changes",
+      body: "Use the NeuroNourish app, ongoing coaching and reassessment to monitor progress over time.",
+      cta: "How the app works",
+      href: "/how-the-app-works",
+    },
+  ] as const,
+} as const;
+
+export const NN_ASSESSMENT_FOLD = {
+  eyebrow: "Measure",
+  headline: "Establish your cognitive baseline",
+  subtext:
+    "An online cognitive assessment that moves you from self-reported lifestyle information to objective measurement across memory, attention, processing speed and executive function.",
+  price: "€89.99",
+  cta: "Measure My Cognition",
+  ctaHref: "/shop/cognitive-assessment",
+  ctaHint: "Online · Clinician-reviewed summary",
+} as const;
+
+export const NN_PROGRAMME_FOLD = {
+  eyebrow: "Change",
+  headline: "The 12-month High-Touch Programme",
+  subtext:
+    "A personalised brain-health programme designed to help you understand, improve and track the modifiable factors influencing your cognitive health.",
+  price: "€3,500",
+  priceHint: "for 12 months · Payment options available",
+  cta: "Apply for the Programme",
+  ctaHref: "/discovery",
+  secondaryCta: "See what’s included",
+  secondaryHref: "/programme",
+} as const;
+
 export const NN_QUIZ_FOLD = {
-  eyebrow: "Brain health quiz",
+  eyebrow: "Your Brain Health Profile",
   headline: "Discover Your Brain Health Score",
   subtext:
-    "Answer 18 evidence-based questions to understand how your lifestyle, nutrition, sleep and daily habits may be influencing your brain health. This short assessment provides a baseline profile before speaking with our team.",
+    "18 questions to help you understand the lifestyle and health behaviours supporting your brain today.",
   benefits: [
-    "Understand how your daily habits may influence brain health",
-    "Build your baseline lifestyle profile",
-    "Receive evidence-based insights informed by dementia-prevention research",
+    "Understand the lifestyle factors that may be influencing your brain",
+    "Build your personal Brain Health Profile",
+    "Get clear, practical next steps — not a medical diagnosis",
   ],
-  disclaimer: "This is not a medical diagnosis.",
-  cta: "Take the Brain Health Quiz",
-  ctaHint: "3 minutes · Habit baseline",
-  badge: "Brain health quiz",
+  disclaimer: "This is not a medical diagnosis and not a dementia-risk score.",
+  cta: "Discover My Score",
+  ctaHint: "Free · About 3 minutes · Personalised results",
+  badge: "Brain Health Profile",
   previewLabel: "Sample questions",
   previewStatMinutes: "3 min",
   previewStatMinutesLabel: "Average completion",
@@ -329,10 +473,12 @@ export const NN_WHY = {
 } as const;
 
 export const NN_OUTCOMES = {
-  eyebrow: "Results",
-  headline: "Let the numbers speak for themselves",
+  eyebrow: "Client stories",
+  headline: "What people notice when they have a plan",
   subtext:
-    "From a medically led clinic. Individual results vary — figures reflect measured change across programme clients.",
+    "NeuroNourish combines measurement, personalised support and ongoing tracking — without promising to diagnose or prevent dementia.",
+  /** Pending source audit — do not present as validated NeuroNourish outcome claims until verified. */
+  statsPendingAudit: true,
   stats: [
     { value: "4.4", label: "Average-point improvement in cognitive scores over 12 months" },
     { value: "73%", label: "Improved on family-reported symptom assessments" },
@@ -1926,52 +2072,68 @@ export const NN_BLOG = {
 } as const;
 
 export const NN_CLOSING = {
-  eyebrow: "Take the next step",
-  headline: "Your Brain Is With You for Life. Give It the Care It Deserves.",
+  eyebrow: "Start here",
+  headline: "Start With Your Brain Health Profile",
   subtext:
-    "Whether you're looking to support your cognitive health, improve mental clarity, or better understand your personal risk factors, we're here to guide you with personalised, evidence-based care designed around you.",
-  trustChips: ["Free brain health quiz", "No obligation", "Habit baseline first"],
-  ctaPrimary: "Or book a discovery call",
-  ctaQuizHint: "3 minutes · Habit baseline for your next conversation",
+    "Know your brain. Measure what matters. Change what you can. Track what happens.",
+  trustChips: ["Free Brain Health Quiz", "About 3 minutes", "Clear next steps"],
+  ctaPrimary: "Or book a consultation",
+  ctaQuizHint: "Free · Personalised Brain Health Profile",
   ctaSecondary: "Contact Our Team",
   ctaQuiz: "Take the Brain Health Quiz",
 } as const;
 
 export const NN_FAQ = {
   eyebrow: "FAQ",
-  headline: "Your Questions, Answered.",
+  headline: "Questions people ask before they start",
   subtext:
-    "Clear answers about our preventative approach, clinical collaboration, and what to expect from the 12-month programme.",
+    "Clear answers about relevance, assessment, the 12-month programme, and what NeuroNourish does — and does not — claim.",
   disclaimer:
-    "NeuroNourish provides nutritional and lifestyle medicine support for cognitive health. We do not diagnose, treat, or cure dementia or Alzheimer's disease.",
+    "NeuroNourish helps people understand cognitive performance, measure relevant factors, identify modifiable areas, and build healthier behaviours. We do not diagnose, treat, cure, or promise to prevent dementia or Alzheimer's disease.",
   items: [
     {
-      q: "Is this a medical treatment for dementia?",
-      a: "No. NeuroNourish is a preventative, evidence-based lifestyle modification programme. We focus on early proactive optimisation and identifying modifiable lifestyle risk factors before chronic cognitive issues develop.",
+      q: "I'm healthy. Is this still relevant to me?",
+      a: "Yes. Many people come to NeuroNourish while they still feel well — because they want a clear baseline, better understanding of modifiable factors, and a plan they can stick to as they age.",
+    },
+    {
+      q: "I have a family history of Alzheimer's disease. Can you tell me if I will develop it?",
+      a: "No. NeuroNourish cannot predict whether an individual will develop Alzheimer's disease. We focus on cognitive measurement and modifiable factors associated with brain health — not individual disease prediction.",
+    },
+    {
+      q: "I've noticed changes in my memory. Should I come to NeuroNourish or my GP?",
+      a: "If you have sudden, severe, or worrying neurological symptoms, contact your GP or emergency services first. NeuroNourish can complement medical care for people who want measurement, lifestyle support and ongoing tracking — it does not replace medical assessment.",
+    },
+    {
+      q: "Why would I join for 12 months?",
+      a: "Meaningful lifestyle change usually needs a baseline, prioritisation, sustained habits, monitoring and reassessment. Twelve months gives enough time to measure, implement, track and review — not just collect advice.",
+    },
+    {
+      q: "Can I just take the cognitive assessment?",
+      a: "Yes. The €89.99 cognitive assessment stands on its own. Many people start with the free Brain Health Quiz, then measure cognition, then decide whether a consultation or programme is right for them.",
+    },
+    {
+      q: "Do I need to live in Cavan?",
+      a: "No. NeuroNourish delivers across Ireland and the UK with remote and hybrid options. Some appointments can be in person where that suits you.",
+    },
+    {
+      q: "What does the €3,500 programme include?",
+      a: "The High-Touch 12-month programme combines baseline assessment, personalised planning, coaching support, lifestyle and nutrition guidance, app tracking and reassessment. See the Programme page for what’s included.",
+    },
+    {
+      q: "Can I pay in instalments?",
+      a: "Payment options are available. We discuss the right arrangement during your programme consultation.",
+    },
+    {
+      q: "Is this suitable if I already have a dementia diagnosis?",
+      a: "NeuroNourish is not a dementia treatment service. If you already have a diagnosis, speak with your GP or specialist first. We can advise whether lifestyle support is appropriate alongside your medical care.",
     },
     {
       q: "How do you work alongside my existing doctor or GP?",
-      a: "We believe in collaborative care. With your permission, we share assessment findings, biomarker reviews, and programme tracking data with your GP or neurologist so our protocols support your overall medical care.",
-    },
-    {
-      q: "Why is the programme structured for a full 12 months?",
-      a: "Shifting metabolic baselines and establishing durable neural habits requires consistency over time. A 12-month window gives your nervous system the stable, supervised timeline it needs to adapt, stabilise, and build cognitive reserve.",
-    },
-    {
-      q: "Who is NeuroNourish for?",
-      a: "Adults who want to take a proactive approach to brain health — whether you're concerned about memory, focus, energy, family history, or simply want structured prevention.",
-    },
-    {
-      q: "Can I access the programme online?",
-      a: "Yes. We deliver securely across Ireland and the UK via virtual consultations, with in-clinic options where available. The companion app supports daily habit tracking between sessions for programme clients.",
-    },
-    {
-      q: "How much does the programme cost?",
-      a: "Investment details are shared personally once we understand your goals and whether the programme is a good fit. Book a complimentary discovery call and our care team will walk you through options clearly — with no obligation.",
+      a: "With your permission, we can share assessment findings and programme context with your GP or other clinicians so our work supports your wider care.",
     },
   ],
-  cta: "Book Your Discovery Call",
-  ctaHint: "15-minute call · No obligation",
+  cta: "Take the Brain Health Quiz",
+  ctaHint: "About 3 minutes · Personalised profile",
   ctaSecondary: "Contact our team",
 } as const;
 

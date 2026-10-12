@@ -7,7 +7,7 @@ import { NN_FAQ } from "@/lib/neuronourish-copy";
 function FaqCtaBlock({ className = "" }: { className?: string }) {
   return (
     <div className={`flex flex-col items-start gap-1.5 ${className}`}>
-      <GoldButton href="/discovery">{NN_FAQ.cta}</GoldButton>
+      <GoldButton href="/quiz">{NN_FAQ.cta}</GoldButton>
       <span className="text-xs text-ink/60">{NN_FAQ.ctaHint}</span>
     </div>
   );
@@ -32,7 +32,7 @@ export function FaqSection({ className = "", id }: { className?: string; id?: st
           <NnFaqAccordion items={NN_FAQ.items} groupName="home-faq" defaultOpenIndex={0} />
         </div>
         <div className="mt-10 flex flex-col items-center gap-1.5 border-t border-mist/80 pt-10 lg:hidden">
-          <GoldButton href="/discovery">{NN_FAQ.cta}</GoldButton>
+          <GoldButton href="/quiz">{NN_FAQ.cta}</GoldButton>
           <span className="text-xs text-ink/60">{NN_FAQ.ctaHint}</span>
         </div>
       </PageContainer>

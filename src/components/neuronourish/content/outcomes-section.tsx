@@ -16,16 +16,19 @@ export function OutcomesSection({ className = "" }: { className?: string }) {
           <p className="nn-body mx-auto mt-4 text-ink/75">{NN_OUTCOMES.subtext}</p>
         </div>
 
-        <div className="nn-outcomes-stats-panel mt-10 rounded-3xl px-5 py-8 sm:px-8 sm:py-10">
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
-            {NN_OUTCOMES.stats.map((stat) => (
-              <li key={stat.label} className="text-center">
-                <p className="font-display text-4xl text-ivory lg:text-[2.75rem]">{stat.value}</p>
-                <p className="mt-2 text-sm leading-relaxed text-mist/90">{stat.label}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Outcome stats hidden until source audit (handover §22). */}
+        {!NN_OUTCOMES.statsPendingAudit ? (
+          <div className="nn-outcomes-stats-panel mt-10 rounded-3xl px-5 py-8 sm:px-8 sm:py-10">
+            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+              {NN_OUTCOMES.stats.map((stat) => (
+                <li key={stat.label} className="text-center">
+                  <p className="font-display text-4xl text-ivory lg:text-[2.75rem]">{stat.value}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-mist/90">{stat.label}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
 
         <ul className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-2.5">
           {NN_OUTCOMES.outcomes.map((outcome) => (

@@ -36,7 +36,7 @@ export function NeuroNourishFooter() {
             </ul>
           </div>
           <div>
-            <p className="nn-eyebrow text-gold">Clinics</p>
+            <p className="nn-eyebrow text-gold">Organisations</p>
             <ul className="nn-footer-text mt-3 space-y-2.5">
               {NN_FOOTER.clinics.map((l) => (
                 <li key={l.href}>

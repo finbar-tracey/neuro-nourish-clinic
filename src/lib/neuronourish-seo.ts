@@ -83,6 +83,24 @@ export const NN_PAGE_SEO = {
       "Partner with NeuroNourish to deliver evidence-based preventive brain health programmes for clinics and care organisations.",
     path: "/clinics",
   },
+  masterclasses: {
+    title: "Brain Health Masterclasses | NeuroNourish",
+    description:
+      "Engaging, practical brain-health masterclasses delivered in person across Ireland or live online.",
+    path: "/masterclasses",
+  },
+  employers: {
+    title: "Brain Health at Work | NeuroNourish",
+    description:
+      "Practical brain-health education and preventative cognitive-health programmes for organisations.",
+    path: "/employers",
+  },
+  healthcare: {
+    title: "For Healthcare Professionals | NeuroNourish",
+    description:
+      "Refer clients to NeuroNourish for cognitive assessment, lifestyle support and structured programme pathways.",
+    path: "/healthcare",
+  },
   blog: {
     title: "Brain Health Insights Blog | NeuroNourish",
     description: "Evidence-led articles on sleep, nutrition, movement, and cognitive wellbeing.",
