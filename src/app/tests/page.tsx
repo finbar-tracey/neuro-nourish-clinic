@@ -3,10 +3,6 @@ import { Suspense } from "react";
 import { PageContainer, PageSection } from "@/components/neuronourish/content/container";
 import { NnFaqBlock } from "@/components/neuronourish/content/nn-faq-accordion";
 import { SectionHeader } from "@/components/neuronourish/content/section-header";
-import {
-  EMER_PORTRAIT_SRC,
-  EMER_PORTRAIT_VERSION,
-} from "@/components/neuronourish/content/visual-placeholders";
 import { ShopCatalog } from "@/components/neuronourish/shop-catalog";
 import { GoldButton, NeuroNourishShell } from "@/components/neuronourish/shell";
 import {
@@ -22,7 +18,6 @@ export const metadata = buildNeuronourishMetadata("shop");
 export default function TestsPage() {
   const tiers = shopTierProducts();
   const services = shopServiceProducts();
-  const portraitSrc = `${EMER_PORTRAIT_SRC}?v=${EMER_PORTRAIT_VERSION}`;
 
   return (
     <NeuroNourishShell>
@@ -41,11 +36,11 @@ export default function TestsPage() {
             <div className="relative min-h-[14rem] bg-deep-slate sm:min-h-full">
               {/* eslint-disable-next-line @next/next/no-img-element -- static brand asset */}
               <img
-                src={portraitSrc}
-                alt="Emer Sexton, Founder of NeuroNourish Clinic"
-                width={1080}
-                height={1080}
-                className="absolute inset-0 h-full w-full object-cover object-[center_12%]"
+                src="/brand/emer-tests-consultation.png"
+                alt="Emer Sexton seated in a group discussion"
+                width={1536}
+                height={1024}
+                className="absolute inset-0 h-full w-full object-cover object-center"
               />
             </div>
             <div className="flex flex-col justify-center gap-3 px-6 py-8 text-left sm:px-8">
